@@ -1,0 +1,142 @@
+{
+  "format": 1,
+  "restore": {
+    "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj": {}
+  },
+  "projects": {
+    "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj",
+        "projectName": "Restaurante.DataAccess",
+        "projectPath": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\LAB01\\.nuget\\packages\\",
+        "outputPath": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\LAB01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj": {
+                "projectPath": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj",
+        "projectName": "Restaurante.Entities",
+        "projectPath": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj",
+        "packagesPath": "C:\\Users\\LAB01\\.nuget\\packages\\",
+        "outputPath": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\LAB01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
