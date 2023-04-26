@@ -470,43 +470,37 @@ INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
 VALUES('Vanessa','Sosa','0501200078651','2002-11-20','F','2','63','Res. La candelaria, segunda calle','94308765','vanessosa@gmail.com','1','1',1);
 GO
-
---// sucursal 1 pendiente...
-
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Jason','Gomez','0501199787456','2003-01-19','M','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+VALUES('Jason','Gomez','0501199787456','2003-01-19','M','1','63','Aldea Monterrey, Bajos','94563217','marisol22@gmail.com','1','3',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+VALUES('Marcia','Rivera','0602200074569','05-21-1999','F','3','63','col. La lopez, pasaje 4, casa 2','97710447','rivera22@gmail.com','1','4',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
-GO
-
-
-
-INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
-[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+VALUES('Jose','Martinez','0102199987451','02-16-1998','M','4','63','Res. Las fuentes, bloque 3, casa 9','87495621','joseMartinez11@gmail.com','1','5',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Vanessa','Sosa','0501200078651','2002-11-20','F','2','63','Res. La candelaria, segunda calle','94308765','vanessosa@gmail.com','1','1',1);
+VALUES('Linda','Sanchez','0801200074512','06-30-2002','F','5','63','Res. El racncho, fecitram ','93125687','lindaliss@gmail.com','1','6',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+VALUES('Melissa','Alberto','0901199412345','11-15-2003','F','1','63','Aldea la Bueso, los Bajos','94309647','melissaalbert@gmail.com','1','7',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+VALUES('Daniel','Lainez','0302200078456','08-15-2001','M','2','63','Res. San Carlos bloque 25, casa 3','97157663','danili@gmail.com','1','8',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+VALUES('Brenda','Robles','1001200096327','10-28-2000','F','3','63','Aldea Monterrey, Bajos de Choloma, calle 4 casa 276','94306589','brendarol@gmail.com','1','9',1);
+GO
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Estefany','Simon','1102199912347','05-20-2000','F','4','63','Resudencial villas matilda, bloque 17, casa 4','87124399','estefanysim@gmail.com','1','10',1);
 GO
 
 
