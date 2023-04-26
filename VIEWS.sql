@@ -15,7 +15,11 @@ SELECT T1.[user_Id]
 	  ,T3.empe_Nombres + ' ' + T3.empe_Apellidos AS empe_NombreCompleto
 	  ,t3.carg_Id
 	  ,T4.carg_Descripcion
-      ,T1.[user_UsuCreacion]
+      ,T1.clie_Id
+	  ,T5.clie_Nombres 
+	  ,T5.clie_Apellidos
+	  ,T5.clie_Nombres +' '+T5.clie_Apellidos AS clie_NombreCompleto
+	  ,T1.[user_UsuCreacion]
 	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
       ,T1.[user_FechaCreacion]
       ,T1.[user_UsuModificacion]
@@ -27,7 +31,8 @@ SELECT T1.[user_Id]
   ON T3.empe_Id = T1.empe_Id INNER JOIN [gral].[tbCargos] T4
   ON t4.carg_Id = T3.carg_Id  INNER JOIN acce.tbUsuarios TC
   ON T1.user_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
-  ON T1.user_UsuModificacion = TM.[user_Id]
+  ON T1.user_UsuModificacion = TM.[user_Id] INNER JOIN [rest].[tbClientes] T5
+  ON T5.clie_Id = T1.clie_Id
 
 GO
 
@@ -237,7 +242,7 @@ GO
 --Clientes
 CREATE OR ALTER VIEW VW_tbClientes
 AS
-SELECT [clie_Id]
+SELECT T1.[clie_Id]
       ,[clie_Nombres]
       ,[clie_Apellidos]
       ,[clie_Nombres]+' '+[clie_Apellidos] AS clie_NombreCompleto
@@ -265,10 +270,15 @@ GO
 CREATE OR ALTER VIEW VW_tbProveedores
 AS
 SELECT [prov_Id]
-      ,[prov_NombreEmpresa]
+      ,T1.[prov_NombreEmpresa]
       ,[prov_NombreContacto]
       ,[prov_Telefono]
-      ,[muni_Id]
+      ,T1.[muni_Id]
+	  ,T2.muni_Nombre
+	  ,T2.muni_Codigo
+	  ,T2.depa_Id
+	  ,T3.depa_Nombre
+	  ,T3.depa_Codigo
       ,[prov_DireccionExacta]
       ,[prov_FechaCreacion]
       ,[prov_UsuarioCreacion]
@@ -279,9 +289,87 @@ SELECT [prov_Id]
       ,[prov_Estado]
   FROM [rest].[tbProveedores]  T1 INNER JOIN acce.tbUsuarios TC
   ON T1.prov_UsuarioCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
-  ON T1.prov_UsuarioModificacion = TM.[user_Id]
+  ON T1.prov_UsuarioModificacion = TM.[user_Id] INNER JOIN [gral].[tbMunicipios] T2
+  ON T2.muni_Id = T1.muni_Id INNER JOIN [gral].[tbDepartamentos] T3
+  ON T3.depa_Id = T2.depa_Id
 
 GO
+
+--Ingredientes
+CREATE OR ALTER VIEW VW_tbIngredientes
+AS
+SELECT [ingr_Id]
+      ,[ingr_Nombre]
+      ,[ingr_PrecioX100gr]
+      ,T1.[prov_Id]
+	  ,T2.prov_NombreEmpresa
+      ,[ingr_FechaCreacion]
+      ,[ingr_UsuarioCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[ingr_FechaModificacion]
+      ,[ingr_UsuarioModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[ingr_Estado]
+  FROM [rest].[tbIngredientes] T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.ingr_UsuarioCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.ingr_UsuarioModificacion = TM.[user_Id] INNER JOIN [rest].[tbProveedores] T2
+  ON T1.prov_Id = T2.prov_Id
+
+GO
+
+--Platillos
+CREATE OR ALTER VIEW VW_tbPlatillos
+AS
+SELECT [plat_Id]
+      ,[plat_Nombre]
+      ,[plat_Precio]
+      ,T1.[cate_Id]
+	  ,T2.cate_Descripcion
+      ,[plat_FechaCreacion]
+      ,[plat_UsuarioCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[plat_FechaModificacion]
+      ,[plat_UsuarioModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[plat_Estado]
+  FROM [rest].[tbPlatillos] T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.plat_UsuarioCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.plat_UsuarioModificacion = TM.[user_Id] INNER JOIN [gral].[tbCategorias] T2
+  ON T2.cate_Id = T1.cate_Id
+
+GO
+
+--Reservacions
+CREATE OR ALTER VIEW VW_tbReservaciones
+AS
+SELECT [rese_Id]
+      ,T1.[clie_Id]
+	  ,T2.clie_Nombres
+	  ,T2.clie_Apellidos
+	  ,T2.clie_Nombres + ' ' + T2.clie_Apellidos AS clie_NombreCompleto
+      ,T1.[sucu_Id]
+	  ,T3.sucu_Nombre
+      ,[rese_Personas]
+      ,[rese_FechaHora]
+      ,[rese_FechaCreacion]
+      ,[rese_UsuarioCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[rese_FechaModificacion]
+      ,[rese_UsuarioModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[rese_Estado]
+  FROM [rest].[tbReservaciones]  T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.rese_UsuarioCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.rese_UsuarioModificacion = TM.[user_Id] INNER JOIN [rest].[tbClientes] T2
+  ON T2.clie_Id = T1.clie_Id INNER JOIN [rest].[tbSucursales] T3
+  ON T3.sucu_Id = T1.sucu_Id
+
+GO
+
+
+
+
+
 
 
 
