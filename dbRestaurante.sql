@@ -378,6 +378,7 @@ CREATE TABLE rest.tbPlatillos(
     plat_Nombre			                 NVARCHAR (200) NOT NULL,
     plat_Precio				             DECIMAL(18,2) NOT NULL,
 	cate_Id								 INT NOT NULL,
+	plat_Imagen							 NVARCHAR(MAX) NOT NULL,
     plat_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
     plat_UsuarioCreacion		         INT NOT null,
     plat_FechaModificacion	             DATETIME,
@@ -532,16 +533,16 @@ GO
 
 
 --Pendiente de probar.
-CREATE OR ALTER TRIGGER rest.trg_HistorialPlatillos
-   ON  rest.tbPlatillos
-   AFTER UPDATE
-AS 
-BEGIN
+--CREATE OR ALTER TRIGGER rest.trg_HistorialPlatillos
+--   ON  rest.tbPlatillos
+--   AFTER UPDATE
+--AS 
+--BEGIN
 	
-     INSERT INTO [rest].tbPlatillosHistorial
-     SELECT*FROM deleted T1
-END
-GO
-
+--     INSERT INTO [rest].tbPlatillosHistorial
+--     SELECT*FROM deleted T1
+--END
+--GO
+--me dio error 
 
 -- DROP TABLE [rest].[tbPlatillosHistorial] 

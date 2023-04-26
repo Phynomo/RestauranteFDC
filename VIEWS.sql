@@ -240,7 +240,7 @@ SELECT T1.[empe_Id]
 GO
 
 --Clientes
-CREATE OR ALTER VIEW VW_tbClientes
+CREATE OR ALTER VIEW rest.VW_tbClientes
 AS
 SELECT T1.[clie_Id]
       ,[clie_Nombres]
@@ -267,7 +267,7 @@ SELECT T1.[clie_Id]
 GO
 
 --Proveedores
-CREATE OR ALTER VIEW VW_tbProveedores
+CREATE OR ALTER VIEW rest.VW_tbProveedores
 AS
 SELECT [prov_Id]
       ,T1.[prov_NombreEmpresa]
@@ -296,7 +296,7 @@ SELECT [prov_Id]
 GO
 
 --Ingredientes
-CREATE OR ALTER VIEW VW_tbIngredientes
+CREATE OR ALTER VIEW rest.VW_tbIngredientes
 AS
 SELECT [ingr_Id]
       ,[ingr_Nombre]
@@ -318,11 +318,12 @@ SELECT [ingr_Id]
 GO
 
 --Platillos
-CREATE OR ALTER VIEW VW_tbPlatillos
+CREATE OR ALTER VIEW rest.VW_tbPlatillos
 AS
 SELECT [plat_Id]
       ,[plat_Nombre]
       ,[plat_Precio]
+	  ,[plat_Imagen]
       ,T1.[cate_Id]
 	  ,T2.cate_Descripcion
       ,[plat_FechaCreacion]
@@ -340,14 +341,16 @@ SELECT [plat_Id]
 GO
 
 --Reservacions
-CREATE OR ALTER VIEW VW_tbReservaciones
+CREATE OR ALTER VIEW rest.VW_tbReservaciones
 AS
 SELECT [rese_Id]
       ,T1.[clie_Id]
 	  ,T2.clie_Nombres
 	  ,T2.clie_Apellidos
 	  ,T2.clie_Nombres + ' ' + T2.clie_Apellidos AS clie_NombreCompleto
-      ,T1.[sucu_Id]
+      ,T2.clie_RTN
+	  ,T2.clie_Sexo
+	  ,T1.[sucu_Id]
 	  ,T3.sucu_Nombre
       ,[rese_Personas]
       ,[rese_FechaHora]
@@ -365,8 +368,83 @@ SELECT [rese_Id]
   ON T3.sucu_Id = T1.sucu_Id
 
 GO
+--Factura
+CREATE OR ALTER VIEW rest.VW_tbFacturas
+AS
+SELECT [fact_Id]
+      ,T1.[clie_Id]
+      ,T4.clie_Nombres
+	  ,T4.clie_Apellidos
+	  ,T4.clie_Nombres+' '+T4.clie_Apellidos AS clie_NombreCompleto
+	  ,T4.clie_RTN
+	  ,T4.clie_Telefono
+	  ,T4.clie_Identidad
+	  ,T4.clie_Sexo
+	  ,T1.[empe_Id]
+	  ,T3.empe_Nombres
+	  ,T3.empe_Apellidos
+	  ,T3.empe_Nombres +' '+ T3.empe_Apellidos AS empe_NombreCompleto
+	  ,T3.sucu_Id
+      ,T1.[metp_Id]
+	  ,T2.metp_Descripcion
+      ,[fact_Fecha]
+      ,[fact_FechaCreacion]
+      ,[fact_UsuarioCreacion]
+      ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[fact_FechaModificacion]
+      ,[fact_UsuarioModificacion]
+      ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+     ,[fact_Estado]
+  FROM [rest].[tbFacturas] T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.fact_UsuarioCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.fact_UsuarioModificacion = TM.[user_Id] INNER JOIN [gral].[tbMetodosPago] T2
+  ON T1.metp_Id =  T2.metp_Id INNER JOIN [rest].[tbEmpleados] T3
+  ON T3.empe_Id = T1.empe_Id INNER JOIN [rest].[tbClientes] T4
+  ON T4.clie_Id = T1.clie_Id 
 
+GO
 
+--FacturaDetalles
+CREATE OR ALTER VIEW rest.VW_tbFacturaDetalles
+AS
+SELECT [fade_Id]
+      ,T1.[fact_Id]
+	  ,T2.clie_Nombres
+	  ,T2.clie_Apellidos
+	  ,T2.clie_NombreCompleto
+	  ,T2.clie_RTN
+	  ,T2.clie_Sexo
+	  ,T2.clie_Id
+	  ,T2.clie_Identidad
+	  ,T2.clie_Telefono
+	  ,T2.empe_Nombres
+	  ,T2.empe_Apellidos
+	  ,T2.empe_NombreCompleto
+      ,T3.[plat_Id]
+      ,T3.plat_Nombre
+	  ,T3.plat_Precio
+	  ,T3.[plat_Imagen]
+	  ,T3.cate_Id
+	  ,T4.cate_Descripcion
+	  ,[fade_Cantidad]
+      ,[fade_Precio]
+      ,[fade_FechaCreacion]
+      ,[fade_UsuarioCreacion]
+      ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[fade_FechaModificacion]
+      ,[fade_UsuarioModificacion]
+      ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[fade_Estado]
+  FROM [rest].[tbFacturasDetalles] T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.fade_UsuarioCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.fade_UsuarioModificacion = TM.[user_Id] INNER JOIN [rest].[VW_tbFacturas] T2
+  ON T2.fact_Id = T1.fact_Id INNER JOIN [rest].[tbPlatillos] T3
+  ON T3.plat_Id = T1.plat_Id INNER JOIN [gral].[tbCategorias] T4
+  ON T4.cate_Id = T3.cate_Id
+
+GO
+
+--que es un hook y sem y seo
 
 
 
