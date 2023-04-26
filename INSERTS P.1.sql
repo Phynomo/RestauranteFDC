@@ -366,7 +366,152 @@ GO
 
 
 
+--************************************* Cargos ******************************-
+INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
+VALUES('Gerente general','1');
+GO
 
---INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
---VALUES();
---GO
+INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
+VALUES('Administrador','1');
+GO
+INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
+VALUES('Chef ejecutivo','1');
+GO
+INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
+VALUES('Encargado de compras','1');
+GO
+INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
+VALUES('Chef de estación','1');
+GO
+INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
+VALUES('Cocineros','1');
+GO
+INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
+VALUES('Asistentes de cocina','1');
+GO
+INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
+VALUES('Pinches','1');
+GO
+INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
+VALUES('Cajero','1');
+GO
+INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
+VALUES('Encargado de limpieza en sala','1');
+GO
+
+--************************************************************************-
+
+
+--************************************* Categorias ***************************-
+INSERT INTO [gral].[tbCategorias]([cate_Descripcion],[cate_UsuCreacion])
+VALUES('Ensaladas','1');
+GO
+INSERT INTO [gral].[tbCategorias]([cate_Descripcion],[cate_UsuCreacion])
+VALUES('Mariscos','1');
+GO
+INSERT INTO [gral].[tbCategorias]([cate_Descripcion],[cate_UsuCreacion])
+VALUES('Aperitivos','1');
+GO
+INSERT INTO [gral].[tbCategorias]([cate_Descripcion],[cate_UsuCreacion])
+VALUES('Asados','1');
+GO
+INSERT INTO [gral].[tbCategorias]([cate_Descripcion],[cate_UsuCreacion])
+VALUES('Frituras','1');
+GO
+INSERT INTO [gral].[tbCategorias]([cate_Descripcion],[cate_UsuCreacion])
+VALUES('Sopas','1');
+GO
+INSERT INTO [gral].[tbCategorias]([cate_Descripcion],[cate_UsuCreacion])
+VALUES('Postres','1');
+GO
+INSERT INTO [gral].[tbCategorias]([cate_Descripcion],[cate_UsuCreacion])
+VALUES('Aderezos','1');
+GO
+INSERT INTO [gral].[tbCategorias]([cate_Descripcion],[cate_UsuCreacion])
+VALUES('Bebidas','1');
+GO
+--************************************************************************-
+
+
+
+--************************************* Metódos de pagos *******************-
+INSERT INTO [gral].[tbMetodosPago]([metp_Descripcion],[metp_UsuCreacion])	
+VALUES('Efectivo','1');														
+GO																			
+INSERT INTO [gral].[tbMetodosPago]([metp_Descripcion],[metp_UsuCreacion])	
+VALUES('Tarjeta(débito/crédito)','1');										
+GO																			
+INSERT INTO [gral].[tbMetodosPago]([metp_Descripcion],[metp_UsuCreacion])	
+VALUES('Transferencia','1');												
+GO																			
+																			
+--**************************************************************************-
+
+--************************************* Empleados **************************-
+INSERT INTO [rest].[tbSucursales]([sucu_Nombre],[muni_Id],[sucu_Direccion],[sucu_UsuCreacion])
+VALUES('Sucursal Centrral','63','San Pedro Sula: 2 Av. 12 Cl. N.o., 104 Bo. Las Acacias','1');
+GO
+INSERT INTO [rest].[tbSucursales]([sucu_Nombre],[muni_Id],[sucu_Direccion],[sucu_UsuCreacion])
+VALUES('Sucursal bvlr. norte','64','Crr. A Puerto Cortés, Despues De Zip. Choloma, Antes De Gasoline','1');
+GO
+INSERT INTO [rest].[tbSucursales]([sucu_Nombre],[muni_Id],[sucu_Direccion],[sucu_UsuCreacion])
+VALUES('Sucursal Costa Sur','65','8 Ave. S.e. 19 Y 20 Cll. No. 1963 Bo. Las Palmas Postal 8 85','1');
+GO
+
+--**************************************************************************-
+
+
+--************************************* Empleados **************************-
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+GO
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Vanessa','Sosa','0501200078651','2002-11-20','F','2','63','Res. La candelaria, segunda calle','94308765','vanessosa@gmail.com','1','1',1);
+GO
+
+--// sucursal 1 pendiente...
+
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Jason','Gomez','0501199787456','2003-01-19','M','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+GO
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+GO
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+GO
+
+
+
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+GO
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Vanessa','Sosa','0501200078651','2002-11-20','F','2','63','Res. La candelaria, segunda calle','94308765','vanessosa@gmail.com','1','1',1);
+GO
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+GO
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+GO
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+GO
+
+
+--****************************************************************************-
+
+
+
+
