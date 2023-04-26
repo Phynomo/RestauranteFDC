@@ -61,6 +61,7 @@ CREATE TABLE acce.tbUsuarios(
 	user_EsAdmin			BIT,
 	role_Id					INT,
 	empe_Id					INT,
+	clie_Id					INT,
 	user_UsuCreacion		INT NOT NULL,
 	user_FechaCreacion		DATETIME NOT NULL CONSTRAINT DF_user_FechaCreacion DEFAULT(GETDATE()),
 	user_UsuModificacion	INT,
@@ -75,18 +76,19 @@ CREATE OR ALTER PROCEDURE acce.UDP_InsertUsuario
     @user_Contrasena NVARCHAR(200),
 	@user_EsAdmin BIT,					
     @role_Id INT, 
-	@empe_Id INT										
+	@empe_Id INT, 
+	@clie_Id INT											
 AS
 BEGIN
 	DECLARE @password NVARCHAR(MAX)=(SELECT HASHBYTES('Sha2_512', @user_Contrasena));
 
-	INSERT acce.tbUsuarios(user_NombreUsuario, user_Contrasena, user_EsAdmin, role_Id, empe_Id, user_UsuCreacion)
-	VALUES(@user_NombreUsuario, @password, @user_EsAdmin, @role_Id, @empe_Id, 1);
+	INSERT acce.tbUsuarios(user_NombreUsuario, user_Contrasena, user_EsAdmin, role_Id, empe_Id, clie_id,  user_UsuCreacion)
+	VALUES(@user_NombreUsuario, @password, @user_EsAdmin, @role_Id, @empe_Id,@clie_Id, 1);
 END;
 
 
 GO
-EXEC acce.UDP_InsertUsuario 'Admin', '123', 1, NULL, 1;
+EXEC acce.UDP_InsertUsuario 'Admin', '123', 1, NULL, 1, null;
 GO
 ALTER TABLE acce.tbRoles
 ADD CONSTRAINT FK_acce_tbRoles_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(role_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),
@@ -156,7 +158,7 @@ CONSTRAINT    FK_gral_tbEstadosCiviles_UsuModificacion_usua_Id    FOREIGN KEY(ec
 GO
 --tbMetodosPago
 CREATE TABLE gral.tbMetodosPago(
-metp_Id                        INT IdENTITY(1,1),
+metp_Id                        INT IDENTITY(1,1),
 metp_Descripcion            VARCHAR(100),
 metp_UsuCreacion            INT NOT NULL,
 metp_FechaCreacion            DATETIME NOT NULL CONSTRAINT DF_gral_TbMetodosPago_metp_FechaCreacion    DEFAULT(GETDATE()),
@@ -315,7 +317,7 @@ GO
 --tbProveedores
 CREATE TABLE rest.tbProveedores(
     prov_Id                              INT IDENTITY(1,1),
-    prov_NombreEmprest                   NVARCHAR (150) NOT NULL,
+    prov_NombreEmpresa                   NVARCHAR (150) NOT NULL,
     prov_NombreContacto                  NVARCHAR (150) NOT NULL,
     prov_Telefono                        NVARCHAR (20) NOT NULL,
     muni_Id                              INT NOT NULL,
@@ -478,7 +480,7 @@ CREATE TABLE rest.tbIngredientesHistorial(
     ingr_Id                              INT,
     ingr_Nombre			                 NVARCHAR (200) NOT NULL,
     ingr_PrecioX100gr		             DECIMAL(18,2) NOT NULL,
-	ingr_Gramos                          INT,
+	--ingr_Gramos                          INT,
     prov_Id                              INT NOT NULL,
     ingr_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
     CONSTRAINT PK_rest_tbIngredientesHistorial_ingh_Id PRIMARY KEY(ingh_Id),
@@ -491,19 +493,20 @@ GO
 -- 3)  
 
 --triggers
-GO
-CREATE OR ALTER TRIGGER rest.trg_HistorialPlatillos
-   ON  rest.tbPlatillos
-   AFTER UPDATE
-AS 
-BEGIN
+--GO
+--CREATE OR ALTER TRIGGER rest.trg_HistorialPlatillos
+--   ON  rest.tbPlatillos
+--   AFTER UPDATE
+--AS 
+--BEGIN
 	
-INSERT INTO [rest].[tbPlatillosHistorial]
-           ([plat_Id]
-           ,[plat_Nombre]
-           ,[plat_Precio]
-           ,[cate_Id]
-           ,[plat_FechaCreacion])
-     SELECT T1.plat_Id,T1.plat_Nombre,T1.plat_Precio,T1.cate_Id,GETDATE() FROM inserted T1
-END
-GO
+--INSERT INTO [rest].[tbPlatillosHistorial]
+--           ([plat_Id]
+--           ,[plat_Nombre]
+--           ,[plat_Precio]
+--           ,[cate_Id]
+--           ,[plat_FechaCreacion])
+--     SELECT T1.plat_Id,T1.plat_Nombre,T1.plat_Precio,T1.cate_Id,GETDATE() FROM inserted T1
+--END
+--GO
+

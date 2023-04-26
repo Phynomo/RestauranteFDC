@@ -1,7 +1,7 @@
 --Views  
 
 --Usuarios
-CREATE OR ALTER VIEW VW_tbUsuarios
+CREATE OR ALTER VIEW acce.VW_tbUsuarios
 AS
 SELECT T1.[user_Id]
       ,T1.[user_NombreUsuario]
@@ -30,8 +30,9 @@ SELECT T1.[user_Id]
   ON T1.user_UsuModificacion = TM.[user_Id]
 
 GO
+
 --Roles
-CREATE OR ALTER VIEW VW_tbRoles
+CREATE OR ALTER VIEW acce.VW_tbRoles
 AS
 SELECT T1.[role_Id]
       ,[role_Nombre]
@@ -46,5 +47,252 @@ SELECT T1.[role_Id]
   ON T1.role_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
   ON T1.role_UsuModificacion = TM.[user_Id]
 GO
+
+--Departamentos 
+CREATE OR ALTER VIEW gral.VW_tbDepartamentos 
+AS
+SELECT [depa_Id]
+      ,[depa_Nombre]
+      ,[depa_Codigo]
+      ,[depa_UsuCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[depa_FechaCreacion]
+      ,[depa_UsuModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[depa_FechaModificacion]
+      ,[depa_Estado]
+  FROM [gral].[tbDepartamentos] T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.depa_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.depa_UsuModificacion = TM.[user_Id]
+
+GO
+--Municipios
+CREATE OR ALTER VIEW gral.VW_tbMunicipios
+AS
+SELECT [muni_Id]
+      ,[muni_Nombre]
+      ,[muni_Codigo]
+      ,T1.[depa_Id]
+      ,T2.depa_Nombre
+	  ,T2.depa_Codigo
+	  ,[muni_UsuCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[muni_FechaCreacion]
+      ,[muni_UsuModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[muni_FechaModificacion]
+      ,[muni_Estado]
+  FROM [gral].[tbMunicipios] T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.muni_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.muni_UsuModificacion = TM.[user_Id] INNER JOIN gral.tbDepartamentos T2
+  ON T2.depa_Id = T1.depa_Id
+
+GO
+
+--Estados Civiles
+CREATE OR ALTER VIEW gral.VW_tbEstadosCiviles
+AS
+SELECT [eciv_Id]
+      ,[eciv_Descripcion]
+      ,[eciv_UsuCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[eciv_FechaCreacion]
+      ,[eciv_UsuModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[eciv_FechaModificacion]
+      ,[eciv_Estado]
+  FROM [gral].[tbEstadosCiviles] T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.eciv_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.eciv_UsuModificacion = TM.[user_Id] 
+
+GO
+
+--Metodos Pago
+CREATE OR ALTER VIEW gral.VW_tbMetodosPago
+AS
+SELECT [metp_Id]
+      ,[metp_Descripcion]
+      ,[metp_UsuCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[metp_FechaCreacion]
+      ,[metp_UsuModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[metp_FechaModificacion]
+      ,[metp_Estado]
+  FROM [gral].[tbMetodosPago] T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.metp_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.metp_UsuModificacion = TM.[user_Id]
+
+GO
+
+--Cargos
+CREATE OR ALTER VIEW gral.VW_tbCargos
+AS
+SELECT [carg_Id]
+      ,[carg_Descripcion]
+      ,[carg_UsuCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[carg_FechaCreacion]
+      ,[carg_UsuModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[carg_FechaModificacion]
+      ,[carg_Estado]
+  FROM [gral].[tbCargos] T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.carg_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.carg_UsuModificacion = TM.[user_Id]
+
+GO
+
+--Categorias
+CREATE OR ALTER VIEW gral.VW_tbCategorias
+AS
+SELECT [cate_Id]
+      ,[cate_Descripcion]
+      ,[cate_UsuCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[cate_FechaCreacion]
+      ,[cate_UsuModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[cate_FechaModificacion]
+      ,[cate_Estado]
+  FROM [gral].[tbCategorias] T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.cate_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.cate_UsuModificacion = TM.[user_Id]
+
+GO
+
+--Sucursales
+CREATE OR ALTER VIEW rest.VW_tbSucursales
+AS
+SELECT [sucu_Id]
+      ,[sucu_Nombre]
+      ,T1.[muni_Id]
+	  ,T2.muni_Nombre
+	  ,T2.muni_Codigo
+	  ,T2.depa_Id
+	  ,T3.depa_Nombre
+	  ,T3.depa_Codigo
+      ,[sucu_Direccion]
+      ,[sucu_UsuCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[sucu_FechaCreacion]
+      ,[sucu_UsuModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[sucu_FechaModificacion]
+      ,[sucu_Estado]
+  FROM [rest].[tbSucursales] T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.sucu_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.sucu_UsuModificacion = TM.[user_Id] INNER JOIN [gral].[tbMunicipios] T2
+  ON T2.muni_Id = T1.muni_Id INNER JOIN [gral].[tbDepartamentos] T3
+  ON T3.depa_Id = T2.depa_Id
+
+GO
+
+--Empleados
+CREATE OR ALTER VIEW rest.VW_tbEmpleados
+AS
+SELECT T1.[empe_Id]
+      ,[empe_Nombres]
+      ,[empe_Apellidos]
+      ,[empe_Nombres] +' '+[empe_Apellidos] empe_NombreCompleto
+      ,[empe_Identidad]
+      ,[empe_FechaNacimiento]
+      ,[empe_Sexo] AS InicialSexo
+	  ,CASE WHEN [empe_Sexo] = 'F' THEN 'Femenino'
+				ELSE 'Masculino'
+			END AS empe_Sexo
+      ,T1.[eciv_Id]
+	  ,T2.eciv_Descripcion
+      ,T1.[muni_Id]
+	  ,T3.muni_Nombre
+	  ,T3.muni_Codigo
+	  ,T3.depa_Id
+	  ,T4.depa_Nombre
+	  ,T4.depa_Codigo
+      ,[empe_DireccionExacta]
+      ,[empe_Telefono]
+      ,[empe_CorreoElectronico]
+      ,T1.[sucu_Id]
+	  ,T5.sucu_Nombre
+      ,T1.[carg_Id]
+	  ,T6.carg_Descripcion
+      ,[empe_UsuCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[empe_FechaCreacion]
+      ,[empe_UsuModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[empe_FechaModificacion]
+      ,[empe_Estado]
+  FROM [rest].[tbEmpleados]  T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.empe_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.empe_UsuModificacion = TM.[user_Id] INNER JOIN [gral].[tbEstadosCiviles] T2
+  ON T2.eciv_Id = T1.eciv_Id INNER JOIN [gral].[tbMunicipios] T3
+  ON T3.muni_Id = T1.muni_Id INNER JOIN [gral].[tbDepartamentos] T4
+  ON T3.depa_Id = T3.depa_Id INNER JOIN [rest].[tbSucursales] T5
+  ON T5.sucu_Id = T1.sucu_Id INNER JOIN [gral].[tbCargos] T6
+  ON T6.carg_Id = T1.carg_Id
+
+GO
+
+--Clientes
+CREATE OR ALTER VIEW VW_tbClientes
+AS
+SELECT [clie_Id]
+      ,[clie_Nombres]
+      ,[clie_Apellidos]
+      ,[clie_Nombres]+' '+[clie_Apellidos] AS clie_NombreCompleto
+      ,[clie_Identidad]
+      ,[clie_RTN]
+      ,[clie_Sexo] AS InicialSexo
+	  ,CASE WHEN [clie_Sexo] = 'F' THEN 'Femenino'
+				ELSE 'Masculino'
+			END AS clie_Sexo
+      ,[clie_Telefono]
+      ,[clie_UsuCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[clie_FechaCreacion]
+      ,[clie_UsuModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[clie_FechaModificacion]
+      ,[clie_Estado]
+  FROM [rest].[tbClientes] T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.clie_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.clie_UsuModificacion = TM.[user_Id]
+
+GO
+
+--Proveedores
+CREATE OR ALTER VIEW VW_tbProveedores
+AS
+SELECT [prov_Id]
+      ,[prov_NombreEmpresa]
+      ,[prov_NombreContacto]
+      ,[prov_Telefono]
+      ,[muni_Id]
+      ,[prov_DireccionExacta]
+      ,[prov_FechaCreacion]
+      ,[prov_UsuarioCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[prov_FechaModificacion]
+      ,[prov_UsuarioModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[prov_Estado]
+  FROM [rest].[tbProveedores]  T1 INNER JOIN acce.tbUsuarios TC
+  ON T1.prov_UsuarioCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.prov_UsuarioModificacion = TM.[user_Id]
+
+GO
+
+
+
+
+
+
+
+
+
+
+
+
 
 
