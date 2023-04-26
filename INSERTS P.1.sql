@@ -504,6 +504,25 @@ VALUES('Estefany','Simon','1102199912347','05-20-2000','F','4','63','Resudencial
 GO
 
 
+
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Gabriel','Acosta','1312200012784','11-25-2000','M','3','64','1ra y 2da avenida, 4ta calle S, casa 890','74561289','gabrilcst@gmail.com','2','1',1);
+GO
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Denia','America','1414199078452','02-28-1990','F','4','64','Redidencial villa valencia, bloque 4 casa 15','95410020','deniaamerians@gmail.com','2','5',1);
+GO
+
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Juan','Sagastume','0401200078514','03-01-2000','M','1','64','5ta avenida, calle 33 casa 404','97451288','juanis1@gmail.com','2','2',1);
+GO
+INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
+[empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
+VALUES('Andrea','Paz','0502199674521','12-15-2000','F','1','64','Res. San carlos, 3 pasaje','95458303','andreasRrt@gmail.com','2','6',1);
+GO
+
 --****************************************************************************-
 
 
