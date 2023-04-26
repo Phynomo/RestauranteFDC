@@ -481,17 +481,17 @@ GO
 --);
 --GO
 --tbIngredientesHistorial
-CREATE TABLE rest.tbIngredientesHistorial(
-    ingh_Id                              INT,
-    ingr_Id                              INT,
-    ingr_Nombre			                 NVARCHAR (200) NOT NULL,
-    ingr_PrecioX100gr		             DECIMAL(18,2) NOT NULL,
-	--ingr_Gramos                          INT,
-    prov_Id                              INT NOT NULL,
-    ingr_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
-    CONSTRAINT PK_rest_tbIngredientesHistorial_ingh_Id PRIMARY KEY(ingh_Id),
-);
-GO
+--CREATE TABLE rest.tbIngredientesHistorial(
+--    ingh_Id                              INT,
+--    ingr_Id                              INT,
+--    ingr_Nombre			                 NVARCHAR (200) NOT NULL,
+--    ingr_PrecioX100gr		             DECIMAL(18,2) NOT NULL,
+--	--ingr_Gramos                          INT,
+--    prov_Id                              INT NOT NULL,
+--    ingr_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
+--    CONSTRAINT PK_rest_tbIngredientesHistorial_ingh_Id PRIMARY KEY(ingh_Id),
+--);
+--GO
 
 --Cosas necesarias
 -- 1) al insertar un ingrediente en la tabla de IngredientesPorPlatillo se debe actualizar el precio de los platillos
@@ -530,7 +530,18 @@ CREATE TABLE rest.tbPlatillosHistorial(
     plat_Estado                          BIT
 );
 GO
-
+CREATE TABLE rest.tbIngredientesHistorial(
+    ingr_Id                              INT ,
+    ingr_Nombre			                 NVARCHAR (200) NOT NULL,
+    ingr_PrecioX100gr		             DECIMAL(18,2) NOT NULL,
+    prov_Id                              INT NOT NULL,
+    ingr_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
+    ingr_UsuarioCreacion		         INT NOT null,
+    ingr_FechaModificacion	             DATETIME,
+    ingr_UsuarioModificacion             INT,
+    ingr_Estado                          BIT NOT NULL DEFAULT 1,
+);
+GO
 
 --Pendiente de probar.
 --CREATE OR ALTER TRIGGER rest.trg_HistorialPlatillos

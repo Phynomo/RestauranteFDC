@@ -8339,7 +8339,6 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
       "Restaurante.BusinessLogic >= 1.0.0",
-      "Restaurante.DataAccess >= 1.0.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -8349,11 +8348,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.WEBUI\\Restaurante.WEBUI.csproj",
+      "projectUniqueName": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.WEBUI\\Restaurante.WEBUI.csproj",
       "projectName": "Restaurante.WEBUI",
-      "projectPath": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.WEBUI\\Restaurante.WEBUI.csproj",
+      "projectPath": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.WEBUI\\Restaurante.WEBUI.csproj",
       "packagesPath": "C:\\Users\\LAB01\\.nuget\\packages\\",
-      "outputPath": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.WEBUI\\obj\\",
+      "outputPath": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.WEBUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LAB01\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8370,11 +8369,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.BusinessLogic\\Restaurante.BusinessLogic.csproj": {
-              "projectPath": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.BusinessLogic\\Restaurante.BusinessLogic.csproj"
-            },
-            "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj": {
-              "projectPath": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj"
+            "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.BusinessLogic\\Restaurante.BusinessLogic.csproj": {
+              "projectPath": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.BusinessLogic\\Restaurante.BusinessLogic.csproj"
             }
           }
         }

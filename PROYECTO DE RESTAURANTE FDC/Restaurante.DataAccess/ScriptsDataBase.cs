@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Restaurante.DataAccess
 {
-    class ScriptsDataBase
+    public class ScriptsDataBase
     {
+        #region Usuarios
+
+        public static string UDP_Usuarios_List = "acce.UDP_tbUsuarios_Select";
+
+        #endregion
     }
 }

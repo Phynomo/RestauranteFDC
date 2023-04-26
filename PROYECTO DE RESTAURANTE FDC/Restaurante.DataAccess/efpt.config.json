@@ -1,0 +1,193 @@
+﻿{
+   "CodeGenerationMode": 0,
+   "ContextClassName": "DbrestauranteContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Context",
+   "ProjectRootNamespace": "Restaurante.DataAccess",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 1,
+   "Tables": [
+      {
+         "Name": "[acce].[tbPantallas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[acce].[tbPantallasPorRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[acce].[tbRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[acce].[tbUsuarios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[gral].[tbCargos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[gral].[tbCategorias]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[gral].[tbDepartamentos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[gral].[tbEstadosCiviles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[gral].[tbMetodosPago]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[gral].[tbMunicipios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[rest].[tbClientes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[rest].[tbEmpleados]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[rest].[tbFacturas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[rest].[tbFacturasDetalles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[rest].[tbIngredientes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[rest].[tbIngredientesHistorial]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[rest].[tbIngredientesXPlatillos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[rest].[tbIngredientesXSucursal]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[rest].[tbPlatillos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[rest].[tbPlatillosHistorial]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[rest].[tbProveedores]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[rest].[tbReservaciones]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[rest].[tbSucursales]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[acce].[VW_tbRoles]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[acce].[VW_tbUsuarios]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[gral].[VW_tbCargos]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[gral].[VW_tbCategorias]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[gral].[VW_tbDepartamentos]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[gral].[VW_tbEstadosCiviles]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[gral].[VW_tbMetodosPago]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[gral].[VW_tbMunicipios]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[rest].[VW_tbClientes]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[rest].[VW_tbEmpleados]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[rest].[VW_tbFacturaDetalles]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[rest].[VW_tbFacturas]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[rest].[VW_tbIngredientes]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[rest].[VW_tbPlatillos]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[rest].[VW_tbProveedores]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[rest].[VW_tbReservaciones]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[rest].[VW_tbSucursales]",
+         "ObjectType": 3
+      }
+   ],
+   "UiHint": "DESKTOP-E6OAL4S\\SERVIDORLOCALDM.dbRestaurante",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}

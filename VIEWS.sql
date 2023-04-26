@@ -27,11 +27,11 @@ SELECT T1.[user_Id]
       ,T1.[user_FechaModificacion]
       ,T1.[user_Estado]
   FROM [acce].[tbUsuarios] T1 INNER JOIN [acce].[tbRoles] T2
-  ON T1.role_Id = T2.role_Id INNER JOIN [rest].[tbEmpleados] T3
+  ON T1.role_Id = T2.role_Id LEFT JOIN [rest].[tbEmpleados] T3
   ON T3.empe_Id = T1.empe_Id INNER JOIN [gral].[tbCargos] T4
   ON t4.carg_Id = T3.carg_Id  INNER JOIN acce.tbUsuarios TC
   ON T1.user_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
-  ON T1.user_UsuModificacion = TM.[user_Id] INNER JOIN [rest].[tbClientes] T5
+  ON T1.user_UsuModificacion = TM.[user_Id] LEFT JOIN [rest].[tbClientes] T5
   ON T5.clie_Id = T1.clie_Id
 
 GO
