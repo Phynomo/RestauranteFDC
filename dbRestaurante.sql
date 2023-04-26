@@ -336,7 +336,7 @@ CREATE TABLE rest.tbIngredientes(
     ingr_Id                              INT IDENTITY(1,1),
     ingr_Nombre			                 NVARCHAR (200) NOT NULL,
     ingr_PrecioX100gr		             DECIMAL(18,2) NOT NULL,
-	ingr_Gramos                          INT,
+	--ingr_StockEnGramos                   DECIMAL(18,2) NOT NULL,
     prov_Id                              INT NOT NULL,
     ingr_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
     ingr_UsuarioCreacion		         INT NOT null,
@@ -347,6 +347,24 @@ CREATE TABLE rest.tbIngredientes(
     CONSTRAINT FK_rest_tbIngredientes_tbProveedores_proc_Id FOREIGN key(prov_Id) REFERENCES rest.tbProveedores(prov_Id),
 	CONSTRAINT FK_rest_tbIngredientes_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(ingr_UsuarioCreacion) REFERENCES acce.tbUsuarios([user_Id]),
 	CONSTRAINT FK_rest_tbIngredientes_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(ingr_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
+);
+GO
+--tbIngredientesXSucursal
+CREATE TABLE rest.tbIngredientesXSucursal(
+    ingrsucu_Id								 INT IDENTITY(1,1),
+    ingr_Id									 INT NOT NULL,
+    sucu_Id									 INT NOT NULL,
+	ingrsucu_StockEnGramos                   DECIMAL(18,2) NOT NULL,
+    ingrsucu_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
+    ingrsucu_UsuarioCreacion		         INT NOT null,
+    ingrsucu_FechaModificacion	             DATETIME,
+    ingrsucu_UsuarioModificacion             INT,
+    ingrsucu_Estado                          BIT NOT NULL DEFAULT 1,
+    CONSTRAINT PK_rest_tbIngredientesXSucursal_ingr_Id PRIMARY KEY(ingrsucu_Id),
+    CONSTRAINT FK_rest_tbIngredientesXSucursal_tbSucursales_sucu_Id							FOREIGN key(sucu_Id) REFERENCES rest.tbSucursales(sucu_Id),
+    CONSTRAINT FK_rest_tbIngredientesXSucursal_tbIngredientes_ingr_Id						FOREIGN key(ingr_Id) REFERENCES rest.tbIngredientes(ingr_Id),
+	CONSTRAINT FK_rest_tbIngredientesXSucursal_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(ingrsucu_UsuarioCreacion) REFERENCES acce.tbUsuarios([user_Id]),
+	CONSTRAINT FK_rest_tbIngredientesXSucursal_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(ingrsucu_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
 );
 GO
 --tbPlatillos
@@ -467,6 +485,10 @@ CREATE TABLE rest.tbIngredientesHistorial(
 );
 GO
 
+--Cosas necesarias
+-- 1) al insertar un ingrediente en la tabla de IngredientesPorPlatillo se debe actualizar el precio de los platillos
+-- 2) al actualizar el precio de un ingrediente se debe de actualizar el precio de los platillos que lo utilizan y crear un registro en la tabla de historial de ingredientes
+-- 3)  
 
 --triggers
 GO
