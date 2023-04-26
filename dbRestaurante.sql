@@ -351,6 +351,7 @@ CREATE TABLE rest.tbIngredientes(
 	CONSTRAINT FK_rest_tbIngredientes_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(ingr_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
 );
 GO
+
 --tbIngredientesXSucursal
 CREATE TABLE rest.tbIngredientesXSucursal(
     ingrsucu_Id								 INT IDENTITY(1,1),
@@ -369,6 +370,8 @@ CREATE TABLE rest.tbIngredientesXSucursal(
 	CONSTRAINT FK_rest_tbIngredientesXSucursal_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(ingrsucu_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
 );
 GO
+
+
 --tbPlatillos
 CREATE TABLE rest.tbPlatillos(
     plat_Id                              INT IDENTITY(1,1),
@@ -386,6 +389,8 @@ CREATE TABLE rest.tbPlatillos(
 	CONSTRAINT FK_rest_tbPlatillos_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(plat_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
 );
 GO
+
+
 --tbIngredientesPorPlatillo
 CREATE TABLE rest.tbIngredientesXPlatillos(
     ingrplat_Id                              INT IDENTITY(1,1),
@@ -464,16 +469,16 @@ CONSTRAINT FK_rest_tbFacturasDetalles_acce_tbUsuarios_fade_UsuarioModificacion_u
 );
 GO
 --tbPaltillosHistorial
-CREATE TABLE rest.tbPlatillosHistorial(
-    plah_Id                              INT IDENTITY(1,1),
-    plat_Id                              INT NOT NULL ,
-    plat_Nombre			                 NVARCHAR (200) NOT NULL,
-    plat_Precio				             DECIMAL(18,2) NOT NULL,
-	cate_Id								 INT NOT NULL,
-    plat_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
-    CONSTRAINT PK_rest_tbPlatillosHistorial_plah_Id PRIMARY KEY(plah_Id),
-);
-GO
+--CREATE TABLE rest.tbPlatillosHistorial(
+--    plah_Id                              INT IDENTITY(1,1),
+--    plat_Id                              INT NOT NULL ,
+--    plat_Nombre			                 NVARCHAR (200) NOT NULL,
+--    plat_Precio				             DECIMAL(18,2) NOT NULL,
+--	cate_Id								 INT NOT NULL,
+--    plat_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
+--    CONSTRAINT PK_rest_tbPlatillosHistorial_plah_Id PRIMARY KEY(plah_Id),
+--);
+--GO
 --tbIngredientesHistorial
 CREATE TABLE rest.tbIngredientesHistorial(
     ingh_Id                              INT,
@@ -494,19 +499,49 @@ GO
 
 --triggers
 --GO
+GO
 --CREATE OR ALTER TRIGGER rest.trg_HistorialPlatillos
 --   ON  rest.tbPlatillos
 --   AFTER UPDATE
 --AS 
 --BEGIN
 	
+
 --INSERT INTO [rest].[tbPlatillosHistorial]
 --           ([plat_Id]
 --           ,[plat_Nombre]
 --           ,[plat_Precio]
 --           ,[cate_Id]
 --           ,[plat_FechaCreacion])
---     SELECT T1.plat_Id,T1.plat_Nombre,T1.plat_Precio,T1.cate_Id,GETDATE() FROM inserted T1
+--     SELECT T1.plat_Id,T1.plat_Nombre,T1.plat_Precio,T1.cate_Id,GETDATE() FROM deleted T1
 --END
 --GO
 
+CREATE TABLE rest.tbPlatillosHistorial(
+    plat_Id                              INT,
+    plat_Nombre			                 NVARCHAR (200) NOT NULL,
+    plat_Precio				             DECIMAL(18,2) NOT NULL,
+	cate_Id								 INT NOT NULL,
+    plat_FechaCreacion		             DATETIME ,
+    plat_UsuarioCreacion		         INT NOT null,
+    plat_FechaModificacion	             DATETIME,
+    plat_UsuarioModificacion             INT,
+    plat_Estado                          BIT
+);
+GO
+
+
+--Pendiente de probar.
+CREATE OR ALTER TRIGGER rest.trg_HistorialPlatillos
+   ON  rest.tbPlatillos
+   AFTER UPDATE
+AS 
+BEGIN
+	
+     INSERT INTO [rest].tbPlatillosHistorial
+     SELECT*FROM deleted T1
+END
+GO
+
+
+-- DROP TABLE [rest].[tbPlatillosHistorial] 
