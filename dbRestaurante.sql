@@ -58,6 +58,7 @@ CREATE TABLE acce.tbUsuarios(
 	[user_Id] 				INT IDENTITY(1,1),
 	user_NombreUsuario		NVARCHAR(100) NOT NULL,
 	user_Contrasena			NVARCHAR(MAX) NOT NULL,
+	user_Image				NVARCHAR(MAX),
 	user_EsAdmin			BIT,
 	role_Id					INT,
 	empe_Id					INT,
@@ -323,14 +324,14 @@ CREATE TABLE rest.tbProveedores(
     muni_Id                              INT NOT NULL,
     prov_DireccionExacta                 NVARCHAR (500) NOT NULL,
     prov_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
-    prov_UsuarioCreacion		         INT NOT null,
+    prov_UsuCreacion		         INT NOT null,
     prov_FechaModificacion	             DATETIME,
-    prov_UsuarioModificacion             INT,
+    prov_UsuModificacion             INT,
     prov_Estado                          BIT NOT NULL DEFAULT 1,
     CONSTRAINT PK_rest_tbProveedores_prov_Id PRIMARY KEY(prov_Id),
     CONSTRAINT FK_rest_tbProveedores_tbMunicipio_muni_id FOREIGN key(muni_id) REFERENCES gral.tbMunicipios(muni_id),
-	CONSTRAINT FK_rest_tbproveedores_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(prov_UsuarioCreacion) REFERENCES acce.tbUsuarios([user_Id]),
-	CONSTRAINT FK_rest_tbproveedores_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(prov_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
+	CONSTRAINT FK_rest_tbproveedores_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(prov_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),
+	CONSTRAINT FK_rest_tbproveedores_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(prov_UsuModificacion) REFERENCES acce.tbUsuarios([user_Id])
 );
 GO
 --tbIngredientes
@@ -341,14 +342,14 @@ CREATE TABLE rest.tbIngredientes(
 	--ingr_StockEnGramos                   DECIMAL(18,2) NOT NULL,
     prov_Id                              INT NOT NULL,
     ingr_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
-    ingr_UsuarioCreacion		         INT NOT null,
+    ingr_UsuCreacion		         INT NOT null,
     ingr_FechaModificacion	             DATETIME,
-    ingr_UsuarioModificacion             INT,
+    ingr_UsuModificacion             INT,
     ingr_Estado                          BIT NOT NULL DEFAULT 1,
     CONSTRAINT PK_rest_tbIngredientes_ingr_Id PRIMARY KEY(ingr_Id),
     CONSTRAINT FK_rest_tbIngredientes_tbProveedores_proc_Id FOREIGN key(prov_Id) REFERENCES rest.tbProveedores(prov_Id),
-	CONSTRAINT FK_rest_tbIngredientes_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(ingr_UsuarioCreacion) REFERENCES acce.tbUsuarios([user_Id]),
-	CONSTRAINT FK_rest_tbIngredientes_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(ingr_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
+	CONSTRAINT FK_rest_tbIngredientes_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(ingr_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),
+	CONSTRAINT FK_rest_tbIngredientes_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(ingr_UsuModificacion) REFERENCES acce.tbUsuarios([user_Id])
 );
 GO
 
@@ -359,15 +360,15 @@ CREATE TABLE rest.tbIngredientesXSucursal(
     sucu_Id									 INT NOT NULL,
 	ingrsucu_StockEnGramos                   DECIMAL(18,2) NOT NULL,
     ingrsucu_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
-    ingrsucu_UsuarioCreacion		         INT NOT null,
+    ingrsucu_UsuCreacion		         INT NOT null,
     ingrsucu_FechaModificacion	             DATETIME,
-    ingrsucu_UsuarioModificacion             INT,
+    ingrsucu_UsuModificacion             INT,
     ingrsucu_Estado                          BIT NOT NULL DEFAULT 1,
     CONSTRAINT PK_rest_tbIngredientesXSucursal_ingr_Id PRIMARY KEY(ingrsucu_Id),
     CONSTRAINT FK_rest_tbIngredientesXSucursal_tbSucursales_sucu_Id							FOREIGN key(sucu_Id) REFERENCES rest.tbSucursales(sucu_Id),
     CONSTRAINT FK_rest_tbIngredientesXSucursal_tbIngredientes_ingr_Id						FOREIGN key(ingr_Id) REFERENCES rest.tbIngredientes(ingr_Id),
-	CONSTRAINT FK_rest_tbIngredientesXSucursal_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(ingrsucu_UsuarioCreacion) REFERENCES acce.tbUsuarios([user_Id]),
-	CONSTRAINT FK_rest_tbIngredientesXSucursal_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(ingrsucu_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
+	CONSTRAINT FK_rest_tbIngredientesXSucursal_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(ingrsucu_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),
+	CONSTRAINT FK_rest_tbIngredientesXSucursal_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(ingrsucu_UsuModificacion) REFERENCES acce.tbUsuarios([user_Id])
 );
 GO
 
@@ -380,14 +381,14 @@ CREATE TABLE rest.tbPlatillos(
 	cate_Id								 INT NOT NULL,
 	plat_Imagen							 NVARCHAR(MAX) NOT NULL,
     plat_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
-    plat_UsuarioCreacion		         INT NOT null,
+    plat_UsuCreacion		         INT NOT null,
     plat_FechaModificacion	             DATETIME,
-    plat_UsuarioModificacion             INT,
+    plat_UsuModificacion             INT,
     plat_Estado                          BIT NOT NULL DEFAULT 1,
     CONSTRAINT PK_rest_tbPlatillos_plat_Id PRIMARY KEY(plat_Id),
 	CONSTRAINT FK_rest_tbPlatillos_tbCategorias_cate_Id FOREIGN key(cate_Id) REFERENCES gral.tbCategorias(cate_Id),
-	CONSTRAINT FK_rest_tbPlatillos_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(plat_UsuarioCreacion) REFERENCES acce.tbUsuarios([user_Id]),
-	CONSTRAINT FK_rest_tbPlatillos_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(plat_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
+	CONSTRAINT FK_rest_tbPlatillos_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(plat_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),
+	CONSTRAINT FK_rest_tbPlatillos_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(plat_UsuModificacion) REFERENCES acce.tbUsuarios([user_Id])
 );
 GO
 
@@ -399,15 +400,15 @@ CREATE TABLE rest.tbIngredientesXPlatillos(
 	ingr_Id									 INT NOT NULL,
     ingrplat_Gramos                          INT NOT NULL,
     ingrplat_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
-    ingrplat_UsuarioCreacion		         INT NOT null,
+    ingrplat_UsuCreacion		         INT NOT null,
     ingrplat_FechaModificacion	             DATETIME,
-    ingrplat_UsuarioModificacion             INT,
+    ingrplat_UsuModificacion             INT,
     ingrplat_Estado                          BIT NOT NULL DEFAULT 1,
     CONSTRAINT PK_rest_tbIngredientesXPlatillos_plat_Id PRIMARY KEY(ingrplat_Id),
 	CONSTRAINT FK_rest_tbIngredientesXPlatillos_tbPratillos_plat_Id FOREIGN key(plat_Id) REFERENCES rest.tbPlatillos(plat_Id),
 	CONSTRAINT FK_rest_tbIngredientesXPlatillos_tbIngredientes_ingr_Id FOREIGN key(ingr_Id) REFERENCES rest.tbIngredientes(ingr_Id),
-	CONSTRAINT FK_rest_tbIngredientesXPlatillos_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(ingrplat_UsuarioCreacion) REFERENCES acce.tbUsuarios([user_Id]),
-	CONSTRAINT FK_rest_tbIngredientesXPlatillos_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(ingrplat_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
+	CONSTRAINT FK_rest_tbIngredientesXPlatillos_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(ingrplat_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),
+	CONSTRAINT FK_rest_tbIngredientesXPlatillos_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(ingrplat_UsuModificacion) REFERENCES acce.tbUsuarios([user_Id])
 );
 GO
 --tbReservaciones
@@ -418,15 +419,15 @@ CREATE TABLE rest.tbReservaciones(
 	rese_Personas						 INT NOT NULL,
     rese_FechaHora                       DATETIME NOT NULL,
     rese_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
-    rese_UsuarioCreacion		         INT NOT null,
+    rese_UsuCreacion		         INT NOT null,
     rese_FechaModificacion	             DATETIME,
-    rese_UsuarioModificacion             INT,
+    rese_UsuModificacion             INT,
     rese_Estado                          BIT NOT NULL DEFAULT 1,
     CONSTRAINT PK_rest_tbReservaciones_rese_Id PRIMARY KEY(rese_Id),
 	CONSTRAINT FK_rest_tbReservaciones_tbClientes_clie_Id FOREIGN key(clie_Id) REFERENCES rest.tbClientes(clie_Id),
 	CONSTRAINT FK_rest_tbReservaciones_tbSucursales_sucu_Id FOREIGN key(sucu_Id) REFERENCES rest.tbSucursales(sucu_Id),
-	CONSTRAINT FK_rest_tbReservaciones_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(rese_UsuarioCreacion) REFERENCES acce.tbUsuarios([user_Id]),
-	CONSTRAINT FK_rest_tbReservaciones_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(rese_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
+	CONSTRAINT FK_rest_tbReservaciones_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(rese_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),
+	CONSTRAINT FK_rest_tbReservaciones_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(rese_UsuModificacion) REFERENCES acce.tbUsuarios([user_Id])
 );
 GO
 --tbFecturas
@@ -438,17 +439,17 @@ CREATE TABLE rest.tbFacturas(
 	fact_Cerrada						BIT NOT NULL,
     fact_Fecha						    DATETIME NOT NULL DEFAULT GETDATE(),
     fact_FechaCreacion					DATETIME NOT NULL DEFAULT GETDATE(),
-    fact_UsuarioCreacion				INT not null,
+    fact_UsuCreacion				INT not null,
     fact_FechaModificacion				DATETIME,
-    fact_UsuarioModificacion			INT,
+    fact_UsuModificacion			INT,
     fact_Estado							BIT NOT NULL DEFAULT 1,
 
     CONSTRAINT PK_rest_tbFacturas_fact_Id PRIMARY KEY(fact_Id),
     CONSTRAINT FK_rest_tbFacturas_tbClientes_clie_id FOREIGN KEY(clie_Id) REFERENCES rest.tbClientes(clie_Id),  
     CONSTRAINT FK_rest_tbFacturas_tbMetodoPago_metp_id FOREIGN KEY(metp_Id) REFERENCES gral.tbMetodosPago(metp_Id),
     CONSTRAINT FK_rest_tbFacturas_rest_tbEmpleados_empl_Id FOREIGN KEY(empe_Id) REFERENCES rest.tbEmpleados(empe_Id),
-    CONSTRAINT FK_rest_tbFacturas_acce_tbUsuarios_ped_UsuarioCreacion_usur_Id FOREIGN KEY(fact_UsuarioCreacion) REFERENCES acce.tbUsuarios([user_Id]),
-    CONSTRAINT FK_rest_tbFacturas_acce_tbUsuarios_ped_UsuarioModificacion_usur_Id FOREIGN KEY(fact_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
+    CONSTRAINT FK_rest_tbFacturas_acce_tbUsuarios_ped_UsuCreacion_usur_Id FOREIGN KEY(fact_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),
+    CONSTRAINT FK_rest_tbFacturas_acce_tbUsuarios_ped_UsuModificacion_usur_Id FOREIGN KEY(fact_UsuModificacion) REFERENCES acce.tbUsuarios([user_Id])
 
 );
 --tbFacturaDetalles
@@ -459,15 +460,15 @@ plat_Id                             INT,
 fade_Cantidad						INT NOT NULL,
 fade_Precio							DECIMAL (18,2) NOT NULL,
 fade_FechaCreacion					DATETIME NOT NULL DEFAULT GETDATE(),
-fade_UsuarioCreacion				INT not null,
+fade_UsuCreacion				INT not null,
 fade_FechaModificacion				DATETIME,
-fade_UsuarioModificacion			INT,
+fade_UsuModificacion			INT,
 fade_Estado							BIT NOT NULL DEFAULT 1,
 CONSTRAINT PK_rest_tbFacturasDetalles_fade_Id PRIMARY KEY(fade_Id),
 CONSTRAINT FK_rest_tbFacturasDetalles_tbFacturas_fact_id FOREIGN KEY(fact_Id) REFERENCES rest.tbFacturas(fact_Id),
 CONSTRAINT FK_rest_tbFacturasDetalles_tbProductos_prod_id FOREIGN KEY(plat_Id) REFERENCES rest.tbPlatillos(plat_Id),
-CONSTRAINT FK_rest_tbFacturasDetalles_acce_tbUsuarios_fade_UsuarioCreacion_user_Id FOREIGN KEY(fade_UsuarioCreacion) REFERENCES acce.tbUsuarios([user_Id]),
-CONSTRAINT FK_rest_tbFacturasDetalles_acce_tbUsuarios_fade_UsuarioModificacion_user_Id FOREIGN KEY(fade_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
+CONSTRAINT FK_rest_tbFacturasDetalles_acce_tbUsuarios_fade_UsuCreacion_user_Id FOREIGN KEY(fade_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),
+CONSTRAINT FK_rest_tbFacturasDetalles_acce_tbUsuarios_fade_UsuModificacion_user_Id FOREIGN KEY(fade_UsuModificacion) REFERENCES acce.tbUsuarios([user_Id])
 );
 GO
 --tbPaltillosHistorial
@@ -525,9 +526,9 @@ CREATE TABLE rest.tbPlatillosHistorial(
     plat_Precio				             DECIMAL(18,2) NOT NULL,
 	cate_Id								 INT NOT NULL,
     plat_FechaCreacion		             DATETIME ,
-    plat_UsuarioCreacion		         INT NOT null,
+    plat_UsuCreacion		         INT NOT null,
     plat_FechaModificacion	             DATETIME,
-    plat_UsuarioModificacion             INT,
+    plat_UsuModificacion             INT,
     plat_Estado                          BIT
 );
 GO
@@ -537,9 +538,9 @@ CREATE TABLE rest.tbIngredientesHistorial(
     ingr_PrecioX100gr		             DECIMAL(18,2) NOT NULL,
     prov_Id                              INT NOT NULL,
     ingr_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
-    ingr_UsuarioCreacion		         INT NOT null,
+    ingr_UsuCreacion		         INT NOT null,
     ingr_FechaModificacion	             DATETIME,
-    ingr_UsuarioModificacion             INT,
+    ingr_UsuModificacion             INT,
     ingr_Estado                          BIT NOT NULL DEFAULT 1,
 );
 GO
