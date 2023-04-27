@@ -1,4 +1,5 @@
-﻿using Restaurante.DataAccess.Repositories.REST;
+﻿using MAVEX.BusinessLogic;
+using Restaurante.DataAccess.Repositories.REST;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,5 +40,150 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             _sucursalesRepository = sucursalesRepository;
         }
 
+
+        #region Clientes
+
+        public ServiceResult ListadoClientes()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _clienteRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
+
+        #region Empleados
+
+        public ServiceResult ListadoEmpleados()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _empleadosRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
+
+        #region Facturas
+
+        public ServiceResult ListadoFacturas()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturasRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
+
+        #region Ingredientes
+
+        public ServiceResult ListadoIngredientes()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _ingredientesRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
+
+        #region Platillos
+
+        public ServiceResult ListadoPlatillos()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _platillosRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
+
+        #region Proveedores
+
+        public ServiceResult ListadoProveedores()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _proveedoresRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
+
+        #region Reservaciones
+
+        public ServiceResult ListadoReservaciones()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _reservacionesRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
+
+        #region Sucursales
+
+        public ServiceResult ListadoSucursales()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _sucursalesRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
     }
+
 }

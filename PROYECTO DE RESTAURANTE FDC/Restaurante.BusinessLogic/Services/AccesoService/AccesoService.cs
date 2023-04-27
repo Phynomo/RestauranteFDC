@@ -39,5 +39,23 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
 
         #endregion
 
+        #region Roles
+
+        public ServiceResult ListadoRoles()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _rolesRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
+
     }
 }

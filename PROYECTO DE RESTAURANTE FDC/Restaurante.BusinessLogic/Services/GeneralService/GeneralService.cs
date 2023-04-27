@@ -1,4 +1,5 @@
-﻿using Restaurante.DataAccess.Repositories.GRAL;
+﻿using MAVEX.BusinessLogic;
+using Restaurante.DataAccess.Repositories.GRAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,25 +34,115 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             _municipiosRepository = municipiosRepository;
         }
 
+        #region Departamentos
 
+        public ServiceResult ListadoDepartamentos()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _departamentosRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
 
+        #endregion
+
+        #region Cargos
+
+        public ServiceResult ListadoCargos()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _cargosRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
+
+        #region Categorias
+
+        public ServiceResult ListadoCategorias()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _categoriaRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
+
+        #region Estados Civiles
+
+        public ServiceResult ListadoEstadosCiviles()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _estadosCivilesRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
+
+        #region Metodos de Pago
+
+        public ServiceResult ListadoMetodosPago()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _metodosPagoRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
+
+        #region Municipios
+
+        public ServiceResult ListadoMunicipios()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _municipiosRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        #endregion
 
     }
 
-    #region Departamentos
 
-    //public IEnumerable<VW_tbUsuarios> ListadoUsuarios()
-    //{
-    //    try
-    //    {
-    //        return _usuariosRepository.List();
-    //    }
-    //    catch (Exception e)
-    //    {
-
-    //        return Enumerable.Empty<VW_tbUsuarios>();
-    //    }
-    //}
-
-    #endregion
 }
