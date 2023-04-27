@@ -237,7 +237,7 @@ BEGIN
 						   ,@muni_Codigo
 						   ,@depa_Id
 						   ,@muni_UsuCreacion
-						   ,NULL
+						   ,GETDATE()
 						   ,NULL
 						   ,NULL
 						   ,1)
@@ -262,3 +262,183 @@ END
 GO
 
 --Estados Civiles
+CREATE OR ALTER  PROCEDURE gral.UDP_tbEstadosCiviles_Insert
+@eciv_Descripcion varchar(100),
+@eciv_UsuCreacion int
+AS
+BEGIN
+	BEGIN TRY
+
+		IF NOT EXISTS (SELECT * FROM gral.tbEstadosCiviles WHERE eciv_Descripcion = @eciv_Descripcion)
+		BEGIN
+
+		INSERT INTO [gral].[tbEstadosCiviles]
+				   ([eciv_Descripcion]
+				   ,[eciv_UsuCreacion]
+				   ,[eciv_FechaCreacion]
+				   ,[eciv_UsuModificacion]
+				   ,[eciv_FechaModificacion]
+				   ,[eciv_Estado])
+			 VALUES
+				   (@eciv_Descripcion
+				   ,@eciv_UsuCreacion
+				   ,GETDATE()
+				   ,NULL
+				   ,NULL
+				   ,1)
+
+		SELECT 1 as Proceso
+	END
+	ELSE IF EXISTS (SELECT * FROM gral.tbEstadosCiviles WHERE eciv_Descripcion = @eciv_Descripcion and eciv_Estado = 1)
+		SELECT -2 as Proceso
+	ELSE 
+		UPDATE gral.tbEstadosCiviles
+		SET eciv_Estado = 1
+		WHERE eciv_Descripcion = @eciv_Descripcion
+
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+
+END
+GO
+
+--Metodos de pago 
+CREATE OR ALTER PROCEDURE gral.UDP_tbMetodoPago_Insert
+    @metp_Descripcion             NVARCHAR (100),
+    @metp_UsuCreacion         INT
+AS
+BEGIN
+	BEGIN TRY
+
+		IF NOT EXISTS (SELECT * FROM gral.tbMetodosPago WHERE @metp_Descripcion = metp_Descripcion)
+		BEGIN
+
+			INSERT INTO gral.tbMetodosPago 
+						([metp_Descripcion], 
+						[metp_FechaCreacion], 
+						[metp_UsuCreacion], 
+						[metp_FechaModificacion], 
+						[metp_UsuModificacion], 
+						[metp_Estado])
+				VALUES 
+						(@metp_Descripcion, 
+						GETDATE(), 
+						@metp_UsuCreacion, 
+						NULL, 
+						NULL, 
+						1);
+
+			SELECT 1 as Proceso
+		END
+		ELSE IF EXISTS (SELECT * FROM gral.tbMetodosPago WHERE @metp_Descripcion = metp_Descripcion and metp_Estado = 1)
+			SELECT -2 as Proceso
+		ELSE
+			UPDATE gral.tbMetodosPago
+			SET metp_Estado = 1
+			WHERE @metp_Descripcion = metp_Descripcion
+		SELECT 1 as Proceso
+
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+    
+END
+GO
+
+--Cargos
+CREATE OR ALTER PROCEDURE gral.UDP_tbCargos_Insert
+	@carg_Descripcion Nvarchar(100),
+	@carg_UsuCreacion int
+
+AS
+BEGIN
+	BEGIN TRY
+
+		IF NOT EXISTS (SELECT * FROM gral.tbCargos WHERE carg_Descripcion = @carg_Descripcion)
+		BEGIN
+
+			INSERT INTO [gral].[tbCargos]
+					   ([carg_Descripcion]
+					   ,[carg_FechaCreacion]
+					   ,[carg_UsuCreacion]
+					   ,[carg_FechaModificacion]
+					   ,[carg_UsuModificacion]
+					   ,[carg_Estado])
+				 VALUES
+					   (@carg_Descripcion
+					   ,GETDATE()
+					   ,@carg_UsuCreacion
+					   ,null
+					   ,null
+					   ,1)
+
+			SELECT 1 as Proceso
+
+		END
+		ELSE IF EXISTS (SELECT * FROM gral.tbCargos WHERE carg_Descripcion = @carg_Descripcion AND carg_Estado = 1)
+			SELECT -2 as Proceso
+		ELSE
+			UPDATE gral.tbCargos
+			SET carg_Estado = 1
+			WHERE carg_Descripcion = @carg_Descripcion
+			select 1
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+END
+GO
+
+--Categorias
+CREATE OR ALTER PROCEDURE gral.UDP_tbCategorias_Insert
+	@cate_Descripcion Nvarchar(150),
+	@cate_UsuCreacion int
+AS
+BEGIN
+	BEGIN TRY
+
+		IF NOT EXISTS (SELECT * FROM gral.tbCategorias WHERE cate_Descripcion = @cate_Descripcion)		
+		BEGIN
+
+			INSERT INTO [gral].tbCategorias
+					   ([cate_Descripcion]
+					   ,[cate_FechaCreacion]
+					   ,[cate_UsuCreacion]
+					   ,[cate_FechaModificacion]
+					   ,[cate_UsuModificacion]
+					   ,[cate_Estado])
+				 VALUES
+					   (@cate_Descripcion
+					   ,GETDATE()
+					   ,@cate_UsuCreacion
+					   ,null
+					   ,null
+					   ,1)
+
+			SELECT 1 as Proceso
+
+		END
+		ELSE IF EXISTS (SELECT * FROM gral.tbCategorias WHERE cate_Descripcion = @cate_Descripcion AND cate_Estado = 1)
+			SELECT -2 as Proceso
+		ELSE 
+		BEGIN
+
+			UPDATE gral.tbCategorias
+			SET cate_Estado = 1
+			WHERE cate_Descripcion = @cate_Descripcion
+
+			SELECT 1 as Proceso
+
+		END
+
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+
+
+END
+GO
