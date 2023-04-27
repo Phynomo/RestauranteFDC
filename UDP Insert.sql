@@ -112,6 +112,7 @@ GO
 CREATE OR ALTER PROCEDURE acce.UDP_tbusuarios_INSERT
  @user_NombreUsuario NVARCHAR(100),
  @user_Contrasena NVARCHAR(MAX),
+ @user_Image NVARCHAR(MAX),
  @user_EsAdmin BIT,
  @role_Id INT,
  @empe_Id INT,
@@ -131,6 +132,7 @@ BEGIN
            ([user_NombreUsuario]
            ,[user_Contrasena]
            ,[user_EsAdmin]
+		   ,[user_Image]
            ,[role_Id]
            ,[empe_Id]
            ,[clie_Id]
@@ -143,6 +145,7 @@ BEGIN
            (@user_NombreUsuario
            ,HASHBYTES('SHA2_512',@user_Contrasena)
            ,@user_EsAdmin
+		   ,@user_Image
            ,@role_Id
            ,@empe_Id
            ,@clie_Id
