@@ -387,6 +387,7 @@ SELECT [fact_Id]
 	  ,T3.sucu_Id
       ,T1.[metp_Id]
 	  ,T2.metp_Descripcion
+	  ,T1.fact_Cerrada
       ,[fact_Fecha]
       ,[fact_FechaCreacion]
       ,[fact_UsuarioCreacion]
@@ -420,6 +421,7 @@ SELECT [fade_Id]
 	  ,T2.empe_Nombres
 	  ,T2.empe_Apellidos
 	  ,T2.empe_NombreCompleto
+	  ,T2.fact_Cerrada
       ,T3.[plat_Id]
       ,T3.plat_Nombre
 	  ,T3.plat_Precio

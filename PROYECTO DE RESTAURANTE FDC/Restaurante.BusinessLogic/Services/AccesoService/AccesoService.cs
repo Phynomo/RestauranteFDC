@@ -11,10 +11,14 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
     public class AccesoService
     {
         private readonly UsuariosRepository _usuariosRepository;
+        private readonly RolesRepository _rolesRepository;
 
-        public AccesoService(UsuariosRepository usuarioRepository)
+        public AccesoService(   UsuariosRepository usuarioRepository,
+                                RolesRepository rolesRepository 
+            )
         {
             _usuariosRepository = usuarioRepository;
+            _rolesRepository = rolesRepository;
         }
 
         #region Usuarios

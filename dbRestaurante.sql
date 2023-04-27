@@ -435,6 +435,7 @@ CREATE TABLE rest.tbFacturas(
     clie_Id                             INT not null,
     empe_Id								INT not null,
     metp_Id							    INT not null,
+	fact_Cerrada						BIT NOT NULL,
     fact_Fecha						    DATETIME NOT NULL DEFAULT GETDATE(),
     fact_FechaCreacion					DATETIME NOT NULL DEFAULT GETDATE(),
     fact_UsuarioCreacion				INT not null,
