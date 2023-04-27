@@ -61,6 +61,7 @@ CREATE TABLE acce.tbUsuarios(
 	user_EsAdmin			BIT,
 	role_Id					INT,
 	empe_Id					INT,
+	clie_Id					INT,
 	user_UsuCreacion		INT NOT NULL,
 	user_FechaCreacion		DATETIME NOT NULL CONSTRAINT DF_user_FechaCreacion DEFAULT(GETDATE()),
 	user_UsuModificacion	INT,
@@ -75,18 +76,19 @@ CREATE OR ALTER PROCEDURE acce.UDP_InsertUsuario
     @user_Contrasena NVARCHAR(200),
 	@user_EsAdmin BIT,					
     @role_Id INT, 
-	@empe_Id INT										
+	@empe_Id INT, 
+	@clie_Id INT											
 AS
 BEGIN
 	DECLARE @password NVARCHAR(MAX)=(SELECT HASHBYTES('Sha2_512', @user_Contrasena));
 
-	INSERT acce.tbUsuarios(user_NombreUsuario, user_Contrasena, user_EsAdmin, role_Id, empe_Id, user_UsuCreacion)
-	VALUES(@user_NombreUsuario, @password, @user_EsAdmin, @role_Id, @empe_Id, 1);
+	INSERT acce.tbUsuarios(user_NombreUsuario, user_Contrasena, user_EsAdmin, role_Id, empe_Id, clie_id,  user_UsuCreacion)
+	VALUES(@user_NombreUsuario, @password, @user_EsAdmin, @role_Id, @empe_Id,@clie_Id, 1);
 END;
 
 
 GO
-EXEC acce.UDP_InsertUsuario 'Admin', '123', 1, NULL, 1;
+EXEC acce.UDP_InsertUsuario 'Admin', '123', 1, NULL, 1, null;
 GO
 ALTER TABLE acce.tbRoles
 ADD CONSTRAINT FK_acce_tbRoles_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(role_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),
@@ -156,7 +158,7 @@ CONSTRAINT    FK_gral_tbEstadosCiviles_UsuModificacion_usua_Id    FOREIGN KEY(ec
 GO
 --tbMetodosPago
 CREATE TABLE gral.tbMetodosPago(
-metp_Id                        INT IdENTITY(1,1),
+metp_Id                        INT IDENTITY(1,1),
 metp_Descripcion            VARCHAR(100),
 metp_UsuCreacion            INT NOT NULL,
 metp_FechaCreacion            DATETIME NOT NULL CONSTRAINT DF_gral_TbMetodosPago_metp_FechaCreacion    DEFAULT(GETDATE()),
@@ -315,7 +317,7 @@ GO
 --tbProveedores
 CREATE TABLE rest.tbProveedores(
     prov_Id                              INT IDENTITY(1,1),
-    prov_NombreEmprest                   NVARCHAR (150) NOT NULL,
+    prov_NombreEmpresa                   NVARCHAR (150) NOT NULL,
     prov_NombreContacto                  NVARCHAR (150) NOT NULL,
     prov_Telefono                        NVARCHAR (20) NOT NULL,
     muni_Id                              INT NOT NULL,
@@ -336,7 +338,7 @@ CREATE TABLE rest.tbIngredientes(
     ingr_Id                              INT IDENTITY(1,1),
     ingr_Nombre			                 NVARCHAR (200) NOT NULL,
     ingr_PrecioX100gr		             DECIMAL(18,2) NOT NULL,
-	ingr_Gramos                          INT,
+	--ingr_StockEnGramos                   DECIMAL(18,2) NOT NULL,
     prov_Id                              INT NOT NULL,
     ingr_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
     ingr_UsuarioCreacion		         INT NOT null,
@@ -349,12 +351,34 @@ CREATE TABLE rest.tbIngredientes(
 	CONSTRAINT FK_rest_tbIngredientes_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(ingr_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
 );
 GO
+
+--tbIngredientesXSucursal
+CREATE TABLE rest.tbIngredientesXSucursal(
+    ingrsucu_Id								 INT IDENTITY(1,1),
+    ingr_Id									 INT NOT NULL,
+    sucu_Id									 INT NOT NULL,
+	ingrsucu_StockEnGramos                   DECIMAL(18,2) NOT NULL,
+    ingrsucu_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
+    ingrsucu_UsuarioCreacion		         INT NOT null,
+    ingrsucu_FechaModificacion	             DATETIME,
+    ingrsucu_UsuarioModificacion             INT,
+    ingrsucu_Estado                          BIT NOT NULL DEFAULT 1,
+    CONSTRAINT PK_rest_tbIngredientesXSucursal_ingr_Id PRIMARY KEY(ingrsucu_Id),
+    CONSTRAINT FK_rest_tbIngredientesXSucursal_tbSucursales_sucu_Id							FOREIGN key(sucu_Id) REFERENCES rest.tbSucursales(sucu_Id),
+    CONSTRAINT FK_rest_tbIngredientesXSucursal_tbIngredientes_ingr_Id						FOREIGN key(ingr_Id) REFERENCES rest.tbIngredientes(ingr_Id),
+	CONSTRAINT FK_rest_tbIngredientesXSucursal_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(ingrsucu_UsuarioCreacion) REFERENCES acce.tbUsuarios([user_Id]),
+	CONSTRAINT FK_rest_tbIngredientesXSucursal_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(ingrsucu_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
+);
+GO
+
+
 --tbPlatillos
 CREATE TABLE rest.tbPlatillos(
     plat_Id                              INT IDENTITY(1,1),
     plat_Nombre			                 NVARCHAR (200) NOT NULL,
     plat_Precio				             DECIMAL(18,2) NOT NULL,
 	cate_Id								 INT NOT NULL,
+	plat_Imagen							 NVARCHAR(MAX) NOT NULL,
     plat_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
     plat_UsuarioCreacion		         INT NOT null,
     plat_FechaModificacion	             DATETIME,
@@ -366,6 +390,8 @@ CREATE TABLE rest.tbPlatillos(
 	CONSTRAINT FK_rest_tbPlatillos_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(plat_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
 );
 GO
+
+
 --tbIngredientesPorPlatillo
 CREATE TABLE rest.tbIngredientesXPlatillos(
     ingrplat_Id                              INT IDENTITY(1,1),
@@ -409,6 +435,7 @@ CREATE TABLE rest.tbFacturas(
     clie_Id                             INT not null,
     empe_Id								INT not null,
     metp_Id							    INT not null,
+	fact_Cerrada						BIT NOT NULL,
     fact_Fecha						    DATETIME NOT NULL DEFAULT GETDATE(),
     fact_FechaCreacion					DATETIME NOT NULL DEFAULT GETDATE(),
     fact_UsuarioCreacion				INT not null,
@@ -444,44 +471,90 @@ CONSTRAINT FK_rest_tbFacturasDetalles_acce_tbUsuarios_fade_UsuarioModificacion_u
 );
 GO
 --tbPaltillosHistorial
+--CREATE TABLE rest.tbPlatillosHistorial(
+--    plah_Id                              INT IDENTITY(1,1),
+--    plat_Id                              INT NOT NULL ,
+--    plat_Nombre			                 NVARCHAR (200) NOT NULL,
+--    plat_Precio				             DECIMAL(18,2) NOT NULL,
+--	cate_Id								 INT NOT NULL,
+--    plat_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
+--    CONSTRAINT PK_rest_tbPlatillosHistorial_plah_Id PRIMARY KEY(plah_Id),
+--);
+--GO
+--tbIngredientesHistorial
+--CREATE TABLE rest.tbIngredientesHistorial(
+--    ingh_Id                              INT,
+--    ingr_Id                              INT,
+--    ingr_Nombre			                 NVARCHAR (200) NOT NULL,
+--    ingr_PrecioX100gr		             DECIMAL(18,2) NOT NULL,
+--	--ingr_Gramos                          INT,
+--    prov_Id                              INT NOT NULL,
+--    ingr_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
+--    CONSTRAINT PK_rest_tbIngredientesHistorial_ingh_Id PRIMARY KEY(ingh_Id),
+--);
+--GO
+
+--Cosas necesarias
+-- 1) al insertar un ingrediente en la tabla de IngredientesPorPlatillo se debe actualizar el precio de los platillos
+-- 2) al actualizar el precio de un ingrediente se debe de actualizar el precio de los platillos que lo utilizan y crear un registro en la tabla de historial de ingredientes
+-- 3)  
+
+--triggers
+--GO
+GO
+--CREATE OR ALTER TRIGGER rest.trg_HistorialPlatillos
+--   ON  rest.tbPlatillos
+--   AFTER UPDATE
+--AS 
+--BEGIN
+	
+
+--INSERT INTO [rest].[tbPlatillosHistorial]
+--           ([plat_Id]
+--           ,[plat_Nombre]
+--           ,[plat_Precio]
+--           ,[cate_Id]
+--           ,[plat_FechaCreacion])
+--     SELECT T1.plat_Id,T1.plat_Nombre,T1.plat_Precio,T1.cate_Id,GETDATE() FROM deleted T1
+--END
+--GO
+
 CREATE TABLE rest.tbPlatillosHistorial(
-    plah_Id                              INT IDENTITY(1,1),
-    plat_Id                              INT NOT NULL ,
+    plat_Id                              INT,
     plat_Nombre			                 NVARCHAR (200) NOT NULL,
     plat_Precio				             DECIMAL(18,2) NOT NULL,
 	cate_Id								 INT NOT NULL,
-    plat_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
-    CONSTRAINT PK_rest_tbPlatillosHistorial_plah_Id PRIMARY KEY(plah_Id),
+    plat_FechaCreacion		             DATETIME ,
+    plat_UsuarioCreacion		         INT NOT null,
+    plat_FechaModificacion	             DATETIME,
+    plat_UsuarioModificacion             INT,
+    plat_Estado                          BIT
 );
 GO
---tbIngredientesHistorial
 CREATE TABLE rest.tbIngredientesHistorial(
-    ingh_Id                              INT,
-    ingr_Id                              INT,
+    ingr_Id                              INT ,
     ingr_Nombre			                 NVARCHAR (200) NOT NULL,
     ingr_PrecioX100gr		             DECIMAL(18,2) NOT NULL,
-	ingr_Gramos                          INT,
     prov_Id                              INT NOT NULL,
     ingr_FechaCreacion		             DATETIME NOT NULL DEFAULT GETDATE(),
-    CONSTRAINT PK_rest_tbIngredientesHistorial_ingh_Id PRIMARY KEY(ingh_Id),
+    ingr_UsuarioCreacion		         INT NOT null,
+    ingr_FechaModificacion	             DATETIME,
+    ingr_UsuarioModificacion             INT,
+    ingr_Estado                          BIT NOT NULL DEFAULT 1,
 );
 GO
 
-
---triggers
-GO
-CREATE OR ALTER TRIGGER rest.trg_HistorialPlatillos
-   ON  rest.tbPlatillos
-   AFTER UPDATE
-AS 
-BEGIN
+--Pendiente de probar.
+--CREATE OR ALTER TRIGGER rest.trg_HistorialPlatillos
+--   ON  rest.tbPlatillos
+--   AFTER UPDATE
+--AS 
+--BEGIN
 	
-INSERT INTO [rest].[tbPlatillosHistorial]
-           ([plat_Id]
-           ,[plat_Nombre]
-           ,[plat_Precio]
-           ,[cate_Id]
-           ,[plat_FechaCreacion])
-     SELECT T1.plat_Id,T1.plat_Nombre,T1.plat_Precio,T1.cate_Id,GETDATE() FROM inserted T1
-END
-GO
+--     INSERT INTO [rest].tbPlatillosHistorial
+--     SELECT*FROM deleted T1
+--END
+--GO
+--me dio error 
+
+-- DROP TABLE [rest].[tbPlatillosHistorial] 
