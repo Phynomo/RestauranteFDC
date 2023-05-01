@@ -1,0 +1,4 @@
+Utiliza el comando 
+npm install --force
+
+Si da mas problemas pregunta ChatGPT :D
