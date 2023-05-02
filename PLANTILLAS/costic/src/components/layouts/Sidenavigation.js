@@ -55,6 +55,16 @@ class Sidenavigation extends Component {
                             <ul id="dashboard" className="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">
                                 <li> <Link to="/">Costic</Link>
                                 </li>
+                                <li> <Link to="/departamentos">Departamentos</Link>
+                                </li>
+                                <li> <Link to="/empleados">Empleados</Link>
+                                </li>
+                                <li> <Link to="/cargos">Cargos</Link>
+                                </li>
+                                <li> <Link to="/estadosCiviles">Estados Civiles</Link>
+                                </li>
+                                <li> <Link to="/metodosPago">Metodos de pago</Link>
+                                </li>
                             </ul>
                         </li>
                         {/* /Dashboard */}

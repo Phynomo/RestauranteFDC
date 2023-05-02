@@ -150,6 +150,13 @@ class Content extends Component {
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="col-md-3 mb-3">
+                                            <label htmlFor="validationCustom29">Lamao</label>
+                                            <div className="input-group">
+                                                <input type="text" className="form-control" id="validationCustom29" placeholder="Lamao" />
+                                                <div className="invalid-feedback">Quiero Probar si funciona con cualquiera</div>
+                                            </div>
+                                        </div>
                                     <button className="btn btn-primary" type="submit">Submit form</button>
                                 </form>
                             </div>

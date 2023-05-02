@@ -12,10 +12,10 @@ namespace Restaurante.DataAccess.Repositories
 
         public RequestStatus Insert(T item);
 
-        public RequestStatus Update(T item, int id);
+        public RequestStatus Update(T item);
 
         public RequestStatus Delete(T item);
 
-        public T Find(int? id);
+        public U Find(int? id);
     }
 }

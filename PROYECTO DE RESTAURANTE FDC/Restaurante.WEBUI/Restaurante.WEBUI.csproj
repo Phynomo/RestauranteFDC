@@ -19,11 +19,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Restaurante.BusinessLogic\Restaurante.BusinessLogic.csproj" />
-    <ProjectReference Include="..\Restaurante.DataAccess\Restaurante.DataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

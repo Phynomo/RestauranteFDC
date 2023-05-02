@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj": {}
+    "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj": {}
   },
   "projects": {
-    "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj": {
+    "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj",
         "projectName": "Restaurante.Entities",
-        "projectPath": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj",
+        "projectPath": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj",
         "packagesPath": "C:\\Users\\LAB01\\.nuget\\packages\\",
-        "outputPath": "H:\\RESTAURANTE FDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\obj\\",
+        "outputPath": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LAB01\\AppData\\Roaming\\NuGet\\NuGet.Config",

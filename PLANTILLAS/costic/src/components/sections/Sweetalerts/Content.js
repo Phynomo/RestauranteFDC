@@ -16,7 +16,7 @@ class Content extends Component {
         this.sweetalertcustom = this.sweetalertcustom.bind(this);
     }
     sweetalertbasic() {
-        Swal.fire('The Internet?', 'That thing is still around?', 'question');
+        Swal.fire('¿Qué es eso?', '¿Esto se puede comer?', 'question');
     }
     sweetalertfooter() {
         Swal.fire({

@@ -2767,6 +2767,13 @@ input:checked + .ms-switch-slider.ms-switch-dark{
   background: #ffffff;
 }
 
+.ms-dark-theme .MuiDataGrid-columnHeaderTitle{
+  color: #ffffff;
+}
+.ms-dark-theme .MuiDataGrid-cellContent{
+  color: #ffffff;
+}
+
 .alert.alert-solid{
   color: #fff;
 }

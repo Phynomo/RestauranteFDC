@@ -4,7 +4,7 @@ import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
 import $ from 'jquery';
 
-// Dataset 
+// Dataset
 var dataSet = [
     ["40521", "  <img src='../../assets/img/costic/pizza.jpg' style='width:50px; height:30px;'>pizza", "5421", "In Stock", "$32", "<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
     ["98521", "<img src='../../assets/img/costic/pizza.jpg' style='width:50px; height:30px;'>shake", "8422", "In Stock", "$17", "<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
@@ -122,18 +122,36 @@ var dataSet6 = [
     ["14451", "<img src='../../assets/img/costic/french-fries.jpg' style='width:50px; height:30px;'>pizza", "5384", "Out Of Stock", "$85", "<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"]
 ];
 class Content extends Component {
-    componentDidMount() {
+    constructor(props){
+        super(props);
+        this.state ={
+          posts:[]
+        }
+      }
+
+      state = {
+        data: []
+      };
+
+
+      componentDidMount() {
+        const url = "https://jsonplaceholder.typicode.com/albums/1/photos";
+        fetch(url)
+          .then(response => response.json())
+          .then(json => this.setState({ data: json }, this.initializeDataTable));
+
+
         //initialize datatable
-        $('#data-table-6').DataTable({
-            data: dataSet6,
-            columns: [
-                { title: "Product ID" },
-                { title: "Product Name" },
-                { title: "Quantity" },
-                { title: "Status" },
-                { title: "Price" }
-            ],
-        });
+        // $('#data-table-6').DataTable({
+        //     data: dataSet6,
+        //     columns: [
+        //         { title: "Product ID" },
+        //         { title: "Product Name" },
+        //         { title: "Quantity" },
+        //         { title: "Status" },
+        //         { title: "Price" }
+        //     ],
+        // });
         $('#data-table-2').DataTable({
             data: dataSet,
             columns: [
@@ -168,7 +186,27 @@ class Content extends Component {
             ],
         });
     }
+    initializeDataTable = () => {
+        $('#data-table-6').DataTable({
+          data: this.state.data.map(item => [
+            item.albumId,
+            item.id,
+            item.title,
+            "<img src='"+item.url+"' style='width:50px; height:30px;'>",
+            "<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"
+          ]),
+          columns: [
+            { title: "Album ID" },
+            { title: "ID" },
+            { title: "Name" },
+            { title: "Imagen" },
+            { title: "" }
+          ]
+        });
+      };
+
     render() {
+        const { posts } = this.state;
         return (
             <div className="ms-content-wrapper">
                 <div className="row">
