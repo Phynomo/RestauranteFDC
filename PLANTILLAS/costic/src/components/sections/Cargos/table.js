@@ -26,9 +26,6 @@ const DataTable = () => {
   const [searchText, setSearchText] = useState('');
   const [rows, setRows] = useState([]);
 
-  const handleSearch = e => {
-    setSearchText(e.target.value);
-  };
 
 
 
@@ -45,8 +42,11 @@ const DataTable = () => {
         });
         setRows(rows);
       });
-  }, []);
+  }, [rows]);
 
+  const handleSearch = e => {
+    setSearchText(e.target.value);
+  };
   const filterData = () => {
     return rows.filter(item =>
       Object.values(item).some(value =>

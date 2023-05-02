@@ -12,8 +12,11 @@ class ModalCreate extends Component {
         this.handleCreate = this.handleCreate.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this); 
         this.state = {
             show: false,
+            carg_Descripcion: '',
+            validated: false,
         };
     }
 
@@ -32,12 +35,40 @@ class ModalCreate extends Component {
         if (form.checkValidity() === false) {
             event.stopPropagation();
         } else {
-            // Aquí puedes enviar el formulario al servidor o hacer lo que necesites
-            console.log("Formulario válido");
+            const data = {
+                carg_Descripcion: this.state.carg_Descripcion, 
+                carg_UsuCreacion: 1, 
+            };
+            fetch('https://localhost:44383/api/Cargos/Insertar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                this.state.carg_Descripcion = null;
+                this.state.validated = false;
+                console.log('Respuesta de la API:', data);
+            })
+            .catch(error => {
+                console.error('Error al enviar los datos:', error);
+            });
             this.handleClose();
         }
 
         this.setState({ validated: true });
+    }
+
+    handleInputChange(event) { 
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
     }
 
     render() {
@@ -56,7 +87,7 @@ class ModalCreate extends Component {
                             <div className="ms-form-group has-icon">
                                 <label htmlFor="validationCustom13">Ingresar cargo</label>
                                 <div className="input-group">
-                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Cargo" required />
+                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Cargo" name="carg_Descripcion" value={this.state.carg_Descripcion} onChange={this.handleInputChange} required />
                                     <div className="invalid-feedback">Ingresar el cargo es algo requerido</div>
                                 </div>
                             </div>
