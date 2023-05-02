@@ -386,6 +386,8 @@ SELECT [fact_Id]
 	  ,T3.empe_Apellidos
 	  ,T3.empe_Nombres +' '+ T3.empe_Apellidos AS empe_NombreCompleto
 	  ,T3.sucu_Id
+	  ,T5.sucu_Nombre
+	  ,T5.sucu_Direccion
       ,T1.[metp_Id]
 	  ,T2.metp_Descripcion
 	  ,T1.fact_Cerrada
@@ -402,7 +404,8 @@ SELECT [fact_Id]
   ON T1.fact_UsuModificacion = TM.[user_Id] INNER JOIN [gral].[tbMetodosPago] T2
   ON T1.metp_Id =  T2.metp_Id INNER JOIN [rest].[tbEmpleados] T3
   ON T3.empe_Id = T1.empe_Id INNER JOIN [rest].[tbClientes] T4
-  ON T4.clie_Id = T1.clie_Id 
+  ON T4.clie_Id = T1.clie_Id INNER JOIN rest.tbSucursales T5
+  ON T5.sucu_Id = T3.sucu_Id
 
 GO
 
