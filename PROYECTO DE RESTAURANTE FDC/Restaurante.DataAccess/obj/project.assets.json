@@ -6605,19 +6605,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LAB01\\.nuget\\packages\\": {}
+    "C:\\Users\\LAB02\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\LAB02\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj",
       "projectName": "Restaurante.DataAccess",
-      "projectPath": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj",
-      "packagesPath": "C:\\Users\\LAB01\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\obj\\",
+      "projectPath": "C:\\Users\\LAB02\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj",
+      "packagesPath": "C:\\Users\\LAB02\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LAB02\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\LAB01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LAB02\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6631,8 +6636,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj": {
-              "projectPath": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj"
+            "C:\\Users\\LAB02\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj": {
+              "projectPath": "C:\\Users\\LAB02\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj"
             }
           }
         }
