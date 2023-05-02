@@ -6,6 +6,7 @@ AS
 SELECT T1.[user_Id]
       ,T1.[user_NombreUsuario]
       ,T1.[user_Contrasena]
+	  ,T1.[user_Image]
       ,T1.[user_EsAdmin]
       ,T1.[role_Id]
 	  ,T2.role_Nombre
@@ -20,10 +21,10 @@ SELECT T1.[user_Id]
 	  ,T5.clie_Apellidos
 	  ,T5.clie_Nombres +' '+T5.clie_Apellidos AS clie_NombreCompleto
 	  ,T1.[user_UsuCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,T1.[user_FechaCreacion]
       ,T1.[user_UsuModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,T1.[user_FechaModificacion]
       ,T1.[user_Estado]
   FROM [acce].[tbUsuarios] T1 INNER JOIN [acce].[tbRoles] T2
@@ -39,13 +40,13 @@ GO
 --Roles
 CREATE OR ALTER VIEW acce.VW_tbRoles
 AS
-SELECT T1.[role_Id]
+SELECT  T1.[role_Id]
       ,[role_Nombre]
       ,[role_UsuCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[role_FechaCreacion]
       ,[role_UsuModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[role_FechaModificacion]
       ,[role_Estado]
   FROM [acce].[tbRoles] T1  INNER JOIN acce.tbUsuarios TC
@@ -60,10 +61,10 @@ SELECT [depa_Id]
       ,[depa_Nombre]
       ,[depa_Codigo]
       ,[depa_UsuCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[depa_FechaCreacion]
       ,[depa_UsuModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[depa_FechaModificacion]
       ,[depa_Estado]
   FROM [gral].[tbDepartamentos] T1 INNER JOIN acce.tbUsuarios TC
@@ -81,10 +82,10 @@ SELECT [muni_Id]
       ,T2.depa_Nombre
 	  ,T2.depa_Codigo
 	  ,[muni_UsuCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[muni_FechaCreacion]
       ,[muni_UsuModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[muni_FechaModificacion]
       ,[muni_Estado]
   FROM [gral].[tbMunicipios] T1 INNER JOIN acce.tbUsuarios TC
@@ -100,10 +101,10 @@ AS
 SELECT [eciv_Id]
       ,[eciv_Descripcion]
       ,[eciv_UsuCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[eciv_FechaCreacion]
       ,[eciv_UsuModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[eciv_FechaModificacion]
       ,[eciv_Estado]
   FROM [gral].[tbEstadosCiviles] T1 INNER JOIN acce.tbUsuarios TC
@@ -118,10 +119,10 @@ AS
 SELECT [metp_Id]
       ,[metp_Descripcion]
       ,[metp_UsuCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[metp_FechaCreacion]
       ,[metp_UsuModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[metp_FechaModificacion]
       ,[metp_Estado]
   FROM [gral].[tbMetodosPago] T1 INNER JOIN acce.tbUsuarios TC
@@ -136,10 +137,10 @@ AS
 SELECT [carg_Id]
       ,[carg_Descripcion]
       ,[carg_UsuCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[carg_FechaCreacion]
       ,[carg_UsuModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[carg_FechaModificacion]
       ,[carg_Estado]
   FROM [gral].[tbCargos] T1 INNER JOIN acce.tbUsuarios TC
@@ -154,10 +155,10 @@ AS
 SELECT [cate_Id]
       ,[cate_Descripcion]
       ,[cate_UsuCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[cate_FechaCreacion]
       ,[cate_UsuModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[cate_FechaModificacion]
       ,[cate_Estado]
   FROM [gral].[tbCategorias] T1 INNER JOIN acce.tbUsuarios TC
@@ -179,10 +180,10 @@ SELECT [sucu_Id]
 	  ,T3.depa_Codigo
       ,[sucu_Direccion]
       ,[sucu_UsuCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[sucu_FechaCreacion]
       ,[sucu_UsuModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[sucu_FechaModificacion]
       ,[sucu_Estado]
   FROM [rest].[tbSucursales] T1 INNER JOIN acce.tbUsuarios TC
@@ -222,20 +223,20 @@ SELECT T1.[empe_Id]
       ,T1.[carg_Id]
 	  ,T6.carg_Descripcion
       ,[empe_UsuCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[empe_FechaCreacion]
       ,[empe_UsuModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[empe_FechaModificacion]
       ,[empe_Estado]
   FROM [rest].[tbEmpleados]  T1 INNER JOIN acce.tbUsuarios TC
-  ON T1.empe_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
-  ON T1.empe_UsuModificacion = TM.[user_Id] INNER JOIN [gral].[tbEstadosCiviles] T2
+  ON T1.empe_UsuCreacion = TC.[user_Id]  INNER JOIN [gral].[tbEstadosCiviles] T2
   ON T2.eciv_Id = T1.eciv_Id INNER JOIN [gral].[tbMunicipios] T3
   ON T3.muni_Id = T1.muni_Id INNER JOIN [gral].[tbDepartamentos] T4
-  ON T3.depa_Id = T3.depa_Id INNER JOIN [rest].[tbSucursales] T5
+  ON T4.depa_Id = T3.depa_Id INNER JOIN [rest].[tbSucursales] T5
   ON T5.sucu_Id = T1.sucu_Id INNER JOIN [gral].[tbCargos] T6
-  ON T6.carg_Id = T1.carg_Id
+  ON T6.carg_Id = T1.carg_Id LEFT JOIN acce.tbUsuarios TM
+  ON T1.empe_UsuModificacion = TM.[user_Id]
 
 GO
 
@@ -254,10 +255,10 @@ SELECT T1.[clie_Id]
 			END AS clie_Sexo
       ,[clie_Telefono]
       ,[clie_UsuCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[clie_FechaCreacion]
       ,[clie_UsuModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[clie_FechaModificacion]
       ,[clie_Estado]
   FROM [rest].[tbClientes] T1 INNER JOIN acce.tbUsuarios TC
@@ -281,15 +282,15 @@ SELECT [prov_Id]
 	  ,T3.depa_Codigo
       ,[prov_DireccionExacta]
       ,[prov_FechaCreacion]
-      ,[prov_UsuarioCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[prov_UsuCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[prov_FechaModificacion]
-      ,[prov_UsuarioModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[prov_UsuModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[prov_Estado]
   FROM [rest].[tbProveedores]  T1 INNER JOIN acce.tbUsuarios TC
-  ON T1.prov_UsuarioCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
-  ON T1.prov_UsuarioModificacion = TM.[user_Id] INNER JOIN [gral].[tbMunicipios] T2
+  ON T1.prov_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.prov_UsuModificacion = TM.[user_Id] INNER JOIN [gral].[tbMunicipios] T2
   ON T2.muni_Id = T1.muni_Id INNER JOIN [gral].[tbDepartamentos] T3
   ON T3.depa_Id = T2.depa_Id
 
@@ -304,15 +305,15 @@ SELECT [ingr_Id]
       ,T1.[prov_Id]
 	  ,T2.prov_NombreEmpresa
       ,[ingr_FechaCreacion]
-      ,[ingr_UsuarioCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[ingr_UsuCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[ingr_FechaModificacion]
-      ,[ingr_UsuarioModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[ingr_UsuModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[ingr_Estado]
   FROM [rest].[tbIngredientes] T1 INNER JOIN acce.tbUsuarios TC
-  ON T1.ingr_UsuarioCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
-  ON T1.ingr_UsuarioModificacion = TM.[user_Id] INNER JOIN [rest].[tbProveedores] T2
+  ON T1.ingr_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.ingr_UsuModificacion = TM.[user_Id] INNER JOIN [rest].[tbProveedores] T2
   ON T1.prov_Id = T2.prov_Id
 
 GO
@@ -327,15 +328,15 @@ SELECT [plat_Id]
       ,T1.[cate_Id]
 	  ,T2.cate_Descripcion
       ,[plat_FechaCreacion]
-      ,[plat_UsuarioCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[plat_UsuCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[plat_FechaModificacion]
-      ,[plat_UsuarioModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[plat_UsuModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[plat_Estado]
   FROM [rest].[tbPlatillos] T1 INNER JOIN acce.tbUsuarios TC
-  ON T1.plat_UsuarioCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
-  ON T1.plat_UsuarioModificacion = TM.[user_Id] INNER JOIN [gral].[tbCategorias] T2
+  ON T1.plat_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.plat_UsuModificacion = TM.[user_Id] INNER JOIN [gral].[tbCategorias] T2
   ON T2.cate_Id = T1.cate_Id
 
 GO
@@ -355,15 +356,15 @@ SELECT [rese_Id]
       ,[rese_Personas]
       ,[rese_FechaHora]
       ,[rese_FechaCreacion]
-      ,[rese_UsuarioCreacion]
-	  ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[rese_UsuCreacion]
+	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[rese_FechaModificacion]
-      ,[rese_UsuarioModificacion]
-	  ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[rese_UsuModificacion]
+	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[rese_Estado]
   FROM [rest].[tbReservaciones]  T1 INNER JOIN acce.tbUsuarios TC
-  ON T1.rese_UsuarioCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
-  ON T1.rese_UsuarioModificacion = TM.[user_Id] INNER JOIN [rest].[tbClientes] T2
+  ON T1.rese_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.rese_UsuModificacion = TM.[user_Id] INNER JOIN [rest].[tbClientes] T2
   ON T2.clie_Id = T1.clie_Id INNER JOIN [rest].[tbSucursales] T3
   ON T3.sucu_Id = T1.sucu_Id
 
@@ -385,23 +386,26 @@ SELECT [fact_Id]
 	  ,T3.empe_Apellidos
 	  ,T3.empe_Nombres +' '+ T3.empe_Apellidos AS empe_NombreCompleto
 	  ,T3.sucu_Id
+	  ,T5.sucu_Nombre
+	  ,T5.sucu_Direccion
       ,T1.[metp_Id]
 	  ,T2.metp_Descripcion
 	  ,T1.fact_Cerrada
       ,[fact_Fecha]
       ,[fact_FechaCreacion]
-      ,[fact_UsuarioCreacion]
-      ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[fact_UsuCreacion]
+      ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[fact_FechaModificacion]
-      ,[fact_UsuarioModificacion]
-      ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[fact_UsuModificacion]
+      ,TM.user_NombreUsuario AS user_NombreUsuModificacion
      ,[fact_Estado]
   FROM [rest].[tbFacturas] T1 INNER JOIN acce.tbUsuarios TC
-  ON T1.fact_UsuarioCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
-  ON T1.fact_UsuarioModificacion = TM.[user_Id] INNER JOIN [gral].[tbMetodosPago] T2
+  ON T1.fact_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.fact_UsuModificacion = TM.[user_Id] INNER JOIN [gral].[tbMetodosPago] T2
   ON T1.metp_Id =  T2.metp_Id INNER JOIN [rest].[tbEmpleados] T3
   ON T3.empe_Id = T1.empe_Id INNER JOIN [rest].[tbClientes] T4
-  ON T4.clie_Id = T1.clie_Id 
+  ON T4.clie_Id = T1.clie_Id INNER JOIN rest.tbSucursales T5
+  ON T5.sucu_Id = T3.sucu_Id
 
 GO
 
@@ -431,15 +435,15 @@ SELECT [fade_Id]
 	  ,[fade_Cantidad]
       ,[fade_Precio]
       ,[fade_FechaCreacion]
-      ,[fade_UsuarioCreacion]
-      ,TC.user_NombreUsuario AS user_NombreUsuarioCreacion
+      ,[fade_UsuCreacion]
+      ,TC.user_NombreUsuario AS user_NombreUsuCreacion
       ,[fade_FechaModificacion]
-      ,[fade_UsuarioModificacion]
-      ,TM.user_NombreUsuario AS user_NombreUsuarioModificacion
+      ,[fade_UsuModificacion]
+      ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,[fade_Estado]
   FROM [rest].[tbFacturasDetalles] T1 INNER JOIN acce.tbUsuarios TC
-  ON T1.fade_UsuarioCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
-  ON T1.fade_UsuarioModificacion = TM.[user_Id] INNER JOIN [rest].[VW_tbFacturas] T2
+  ON T1.fade_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
+  ON T1.fade_UsuModificacion = TM.[user_Id] INNER JOIN [rest].[VW_tbFacturas] T2
   ON T2.fact_Id = T1.fact_Id INNER JOIN [rest].[tbPlatillos] T3
   ON T3.plat_Id = T1.plat_Id INNER JOIN [gral].[tbCategorias] T4
   ON T4.cate_Id = T3.cate_Id
