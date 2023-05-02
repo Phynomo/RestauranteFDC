@@ -14,14 +14,14 @@ namespace Restaurante.Entities.Entities
         public int rese_Personas { get; set; }
         public DateTime rese_FechaHora { get; set; }
         public DateTime rese_FechaCreacion { get; set; }
-        public int rese_UsuarioCreacion { get; set; }
+        public int rese_UsuCreacion { get; set; }
         public DateTime? rese_FechaModificacion { get; set; }
-        public int? rese_UsuarioModificacion { get; set; }
+        public int? rese_UsuModificacion { get; set; }
         public bool? rese_Estado { get; set; }
 
         public virtual tbClientes clie { get; set; }
-        public virtual tbUsuarios rese_UsuarioCreacionNavigation { get; set; }
-        public virtual tbUsuarios rese_UsuarioModificacionNavigation { get; set; }
+        public virtual tbUsuarios rese_UsuCreacionNavigation { get; set; }
+        public virtual tbUsuarios rese_UsuModificacionNavigation { get; set; }
         public virtual tbSucursales sucu { get; set; }
     }
 }

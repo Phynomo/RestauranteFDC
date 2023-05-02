@@ -13,9 +13,9 @@ namespace Restaurante.Entities.Entities
         public decimal plat_Precio { get; set; }
         public int cate_Id { get; set; }
         public DateTime? plat_FechaCreacion { get; set; }
-        public int plat_UsuarioCreacion { get; set; }
+        public int plat_UsuCreacion { get; set; }
         public DateTime? plat_FechaModificacion { get; set; }
-        public int? plat_UsuarioModificacion { get; set; }
+        public int? plat_UsuModificacion { get; set; }
         public bool? plat_Estado { get; set; }
     }
 }

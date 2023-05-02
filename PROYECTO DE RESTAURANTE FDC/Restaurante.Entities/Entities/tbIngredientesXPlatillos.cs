@@ -13,14 +13,14 @@ namespace Restaurante.Entities.Entities
         public int ingr_Id { get; set; }
         public int ingrplat_Gramos { get; set; }
         public DateTime ingrplat_FechaCreacion { get; set; }
-        public int ingrplat_UsuarioCreacion { get; set; }
+        public int ingrplat_UsuCreacion { get; set; }
         public DateTime? ingrplat_FechaModificacion { get; set; }
-        public int? ingrplat_UsuarioModificacion { get; set; }
+        public int? ingrplat_UsuModificacion { get; set; }
         public bool? ingrplat_Estado { get; set; }
 
         public virtual tbIngredientes ingr { get; set; }
-        public virtual tbUsuarios ingrplat_UsuarioCreacionNavigation { get; set; }
-        public virtual tbUsuarios ingrplat_UsuarioModificacionNavigation { get; set; }
+        public virtual tbUsuarios ingrplat_UsuCreacionNavigation { get; set; }
+        public virtual tbUsuarios ingrplat_UsuModificacionNavigation { get; set; }
         public virtual tbPlatillos plat { get; set; }
     }
 }

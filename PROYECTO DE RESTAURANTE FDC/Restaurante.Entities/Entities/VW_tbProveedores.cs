@@ -20,11 +20,11 @@ namespace Restaurante.Entities.Entities
         public string depa_Codigo { get; set; }
         public string prov_DireccionExacta { get; set; }
         public DateTime prov_FechaCreacion { get; set; }
-        public int prov_UsuarioCreacion { get; set; }
-        public string user_NombreUsuarioCreacion { get; set; }
+        public int prov_UsuCreacion { get; set; }
+        public string user_NombreUsuCreacion { get; set; }
         public DateTime? prov_FechaModificacion { get; set; }
-        public int? prov_UsuarioModificacion { get; set; }
-        public string user_NombreUsuarioModificacion { get; set; }
+        public int? prov_UsuModificacion { get; set; }
+        public string user_NombreUsuModificacion { get; set; }
         public bool prov_Estado { get; set; }
     }
 }

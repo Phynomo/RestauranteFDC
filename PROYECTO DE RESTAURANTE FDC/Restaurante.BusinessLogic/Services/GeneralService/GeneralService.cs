@@ -1,5 +1,6 @@
 ﻿using MAVEX.BusinessLogic;
 using Restaurante.DataAccess.Repositories.GRAL;
+using Restaurante.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,35 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             {
                 var list = _cargosRepository.List();
                 return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        public ServiceResult InsertarCargos(tbCargos cargo)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _cargosRepository.Insert(cargo);
+                if (map.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (map.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (map.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else 
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
             }
             catch (Exception e)
             {

@@ -149,7 +149,7 @@ class Content extends Component {
                                         </Modal.Footer>
                                     </Modal>
                                     <div className="col-md-3 col-sm-6">
-                                        <h6 className="section-title">Opt-in Form</h6>
+                                        <h6 className="section-title">Opt-in este</h6>
                                         <button className="btn btn-primary" onClick={this.handleShow3}> Click Me </button>
                                     </div>
                                     <Modal show={this.state.show3} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
@@ -258,7 +258,7 @@ class Content extends Component {
                                         </Modal.Footer>
                                     </Modal>
                                     <div className="col-md-3 col-sm-6">
-                                        <h6 className="section-title">Opt-in Form</h6>
+                                        <h6 className="section-title">Opt-in Esta</h6>
                                         <button className="btn btn-primary" onClick={this.handleShow7}> Click Me </button>
                                     </div>
                                     <Modal show={this.state.show7} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"

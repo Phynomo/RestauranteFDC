@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restaurante.BusinessLogic.Services.GeneralService;
+using Restaurante.Entities.Entities;
+using Restaurante.WEBUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +28,14 @@ namespace Restaurante.WEBUI.Controllers
         public IActionResult Index()
         {
             var list = _generalServivce.ListadoCargos();
+            return Ok(list);
+        }
+
+        [HttpPost("Insertar")]
+        public IActionResult Insert(VWCargosViewModel cargo)
+        {
+            var item = _mapper.Map<tbCargos>(cargo);
+            var list = _generalServivce.InsertarCargos(item);
             return Ok(list);
         }
     }
