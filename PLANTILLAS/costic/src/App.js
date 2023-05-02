@@ -68,6 +68,10 @@ import Stockmanagement from './components/pages/Stockmanagement';
 import Userprofile from './components/pages/Userprofile';
 import Webanalytics from './components/pages/Webanalytics';
 import Departamentos from './components/pages/Departamentos';
+import Empleados from './components/pages/Empleados';
+import Cargos from './components/pages/Cargos';
+import EstadosCiviles from './components/pages/EstadosCiviles';
+import MetodosPago from './components/pages/MetodosPago';
 
 
 function App() {
@@ -78,6 +82,10 @@ function App() {
         <Route exact path="/" component={Dashboard} />
         <Route path="/accordions" component={Accordions} />
         <Route path="/departamentos" component={Departamentos} />
+        <Route path="/estadosCiviles" component={EstadosCiviles} />
+        <Route path="/metodosPago" component={MetodosPago} />
+        <Route path="/empleados" component={Empleados} />
+        <Route path="/cargos" component={Cargos} />
         <Route path="/add-product" component={Addproduct} />
         <Route path="/alerts" component={Alerts} />
         <Route path="/animations" component={Animations} />

@@ -40,7 +40,7 @@ GO
 --Roles
 CREATE OR ALTER VIEW acce.VW_tbRoles
 AS
-SELECT T1.[role_Id]
+SELECT  T1.[role_Id]
       ,[role_Nombre]
       ,[role_UsuCreacion]
 	  ,TC.user_NombreUsuario AS user_NombreUsuCreacion
@@ -230,13 +230,13 @@ SELECT T1.[empe_Id]
       ,[empe_FechaModificacion]
       ,[empe_Estado]
   FROM [rest].[tbEmpleados]  T1 INNER JOIN acce.tbUsuarios TC
-  ON T1.empe_UsuCreacion = TC.[user_Id] LEFT JOIN acce.tbUsuarios TM
-  ON T1.empe_UsuModificacion = TM.[user_Id] INNER JOIN [gral].[tbEstadosCiviles] T2
+  ON T1.empe_UsuCreacion = TC.[user_Id]  INNER JOIN [gral].[tbEstadosCiviles] T2
   ON T2.eciv_Id = T1.eciv_Id INNER JOIN [gral].[tbMunicipios] T3
   ON T3.muni_Id = T1.muni_Id INNER JOIN [gral].[tbDepartamentos] T4
-  ON T3.depa_Id = T3.depa_Id INNER JOIN [rest].[tbSucursales] T5
+  ON T4.depa_Id = T3.depa_Id INNER JOIN [rest].[tbSucursales] T5
   ON T5.sucu_Id = T1.sucu_Id INNER JOIN [gral].[tbCargos] T6
-  ON T6.carg_Id = T1.carg_Id
+  ON T6.carg_Id = T1.carg_Id LEFT JOIN acce.tbUsuarios TM
+  ON T1.empe_UsuModificacion = TM.[user_Id]
 
 GO
 
