@@ -445,3 +445,115 @@ BEGIN
 
 END
 GO
+
+--Sucursales
+CREATE OR ALTER PROCEDURE rest.UDP_tbSucursales_Insert
+	@sucu_Nombre Nvarchar(200),
+	@muni_Id INT,
+	@sucu_Direccion Nvarchar(200),
+	@sucu_UsuCreacion INT
+AS
+BEGIN
+	BEGIN TRY
+
+		IF NOT EXISTS (SELECT * FROM rest.tbSucursales WHERE sucu_Nombre = @sucu_Nombre)		
+		BEGIN
+
+			INSERT INTO rest.tbSucursales
+					   (sucu_Nombre,
+						muni_Id,
+						sucu_Direccion,
+						sucu_UsuCreacion,
+						sucu_FechaCreacion,
+						sucu_UsuModificacion,
+						sucu_FechaModificacion,
+						sucu_Estado)
+				 VALUES
+					   (@sucu_Nombre
+					   ,@muni_Id
+					   ,@sucu_Direccion
+					   ,@sucu_UsuCreacion
+					   ,null
+					   ,null
+					   ,1)
+
+			SELECT 1 as Proceso
+
+		END
+		ELSE IF EXISTS (SELECT * FROM rest.tbSucursales WHERE sucu_Nombre = @sucu_Nombre AND sucu_Estado = 1)
+			SELECT -2 as Proceso
+		ELSE 
+		BEGIN
+
+			UPDATE rest.tbSucursales
+			SET sucu_Estado = 1
+			WHERE sucu_Nombre = @sucu_Nombre
+
+			SELECT 1 as Proceso
+
+		END
+
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+
+
+END
+GO
+
+--Ingredientes
+CREATE OR ALTER PROCEDURE rest.UDP_tbIngredinetes_Insert
+	@ingr_Nombre Nvarchar(200),
+	@ingr_PrecioX100gr Decimal(18,2),
+	@prov_Id INT,
+	@ingr_UsuarioCreacion INT
+AS
+BEGIN
+	BEGIN TRY
+
+		IF NOT EXISTS (SELECT * FROM rest.tbSucursales WHERE sucu_Nombre = @sucu_Nombre)		
+		BEGIN
+
+			INSERT INTO rest.tbSucursales
+					   (sucu_Nombre,
+						muni_Id,
+						sucu_Direccion,
+						sucu_UsuCreacion,
+						sucu_FechaCreacion,
+						sucu_UsuModificacion,
+						sucu_FechaModificacion,
+						sucu_Estado)
+				 VALUES
+					   (@sucu_Nombre
+					   ,@muni_Id
+					   ,@sucu_Direccion
+					   ,@sucu_UsuCreacion
+					   ,null
+					   ,null
+					   ,1)
+
+			SELECT 1 as Proceso
+
+		END
+		ELSE IF EXISTS (SELECT * FROM rest.tbSucursales WHERE sucu_Nombre = @sucu_Nombre AND sucu_Estado = 1)
+			SELECT -2 as Proceso
+		ELSE 
+		BEGIN
+
+			UPDATE rest.tbSucursales
+			SET sucu_Estado = 1
+			WHERE sucu_Nombre = @sucu_Nombre
+
+			SELECT 1 as Proceso
+
+		END
+
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+
+
+END
+GO

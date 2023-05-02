@@ -8,22 +8,22 @@ GO
 
 
 INSERT INTO gral.tbDepartamentos(depa_Codigo,depa_Nombre,depa_UsuCreacion)
-VALUES	('01','Atlántida', '1' ),
-		('02','Colón', '1' ),
+VALUES	('01','Atlï¿½ntida', '1' ),
+		('02','Colï¿½n', '1' ),
 		('03','Comayagua', '1' ),
-		('04','Copán', '1' ),
-		('05','Cortés', '1' ),
+		('04','Copï¿½n', '1' ),
+		('05','Cortï¿½s', '1' ),
 		('06','Choluteca', '1' ),
-		('07','El Paraíso', '1' ),
-		('08','Francisco Morazán', '1' ),
+		('07','El Paraï¿½so', '1' ),
+		('08','Francisco Morazï¿½n', '1' ),
 		('09','Gracias a Dios', '1' ),
-		('10','Intibucá', '1' ),
-		('11','Islas de la Bahía', '1' ),
+		('10','Intibucï¿½', '1' ),
+		('11','Islas de la Bahï¿½a', '1' ),
 		('12','La Paz', '1' ),
 		('13','Lempira', '1' ),
 		('14','Ocotepeque', '1' ),
 		('15','Olancho', '1' ),
-		('16','Santa Bárbara', '1' ),
+		('16','Santa Bï¿½rbara', '1' ),
 		('17','Valle', '1' ),
 		('18','Yoro', '1' );
 GO
@@ -43,10 +43,10 @@ VALUES	('1','0101','La Ceiba', '1' ),
 		('2','0201','Trujillo', '1' ),
 		('2','0202','Balfate', '1' ),
 		('2','0203','Iriona', '1' ),
-		('2','0204','Limón', '1' ),
-		('2','0205','Sabá', '1' ),
+		('2','0204','Limï¿½n', '1' ),
+		('2','0205','Sabï¿½', '1' ),
 		('2','0206','Santa Fe', '1' ),
-		('2','0207','Santa Rosa de Aguán', '1' ),
+		('2','0207','Santa Rosa de Aguï¿½n', '1' ),
 		('2','0208','Sonaguera', '1' ),
 		('2','0209','Tocoa', '1' ),
 		('2','0210','Bonito Oriental', '1' ),
@@ -55,48 +55,48 @@ VALUES	('1','0101','La Ceiba', '1' ),
 		('3','0301','Comayagua', '1' ),
 		('3','0302','Ajuterique', '1' ),
 		('3','0303','El Rosario', '1' ),
-		('3','0304','Esquías', '1' ),
+		('3','0304','Esquï¿½as', '1' ),
 		('3','0305','Humuya', '1' ),
 		('3','0306','La Libertad', '1' ),
-		('3','0307','Lamaní', '1' ),
+		('3','0307','Lamanï¿½', '1' ),
 		('3','0308','La Trinidad', '1' ),
-		('3','0309','Lejamaní', '1' ),
-		('3','0310','Meámbar', '1' ),
+		('3','0309','Lejamanï¿½', '1' ),
+		('3','0310','Meï¿½mbar', '1' ),
 		('3','0311','Minas de Oro', '1' ),
 		('3','0312','Ojos de Agua', '1' ),
-		('3','0313','San Jerónimo', '1' ),
-		('3','0314','San José de Comayagua', '1' ),
-		('3','0315','San José del Potrero', '1' ),
+		('3','0313','San Jerï¿½nimo', '1' ),
+		('3','0314','San Josï¿½ de Comayagua', '1' ),
+		('3','0315','San Josï¿½ del Potrero', '1' ),
 		('3','0316','San Luis', '1' ),
-		('3','0317','San Sebastián', '1' ),
+		('3','0317','San Sebastiï¿½n', '1' ),
 		('3','0318','Siguatepeque', '1' ),
 		('3','0319','Villa de San Antonio', '1' ),
 		('3','0320','Las Lajas', '1' ),
-		('3','0321','Taulabé', '1' ),
+		('3','0321','Taulabï¿½', '1' ),
 
 
-		('4','0401','Santa Rosa de Copán', '1' ),
-		('4','0402','Cabañas', '1' ),
-		('4','0403','Concepción', '1' ),
-		('4','0404','Copán Ruinas', '1' ),
-		('4','0405','Corquín', '1' ),
+		('4','0401','Santa Rosa de Copï¿½n', '1' ),
+		('4','0402','Cabaï¿½as', '1' ),
+		('4','0403','Concepciï¿½n', '1' ),
+		('4','0404','Copï¿½n Ruinas', '1' ),
+		('4','0405','Corquï¿½n', '1' ),
 		('4','0406','Cucuyagua', '1' ),
 		('4','0407','Dolores', '1' ),
 		('4','0408','Dulce Nombre', '1' ),
-		('4','0409','El Paraíso', '1' ),
+		('4','0409','El Paraï¿½so', '1' ),
 		('4','0410','Florida', '1' ),
 		('4','0411','La Jigua', '1' ),
-		('4','0412','La Unión', '1' ),
+		('4','0412','La Uniï¿½n', '1' ),
 		('4','0413','Nueva Arcadia', '1' ),
-		('4','0414','San Agustín', '1' ),
+		('4','0414','San Agustï¿½n', '1' ),
 		('4','0415','San Antonio', '1' ),
-		('4','0416','San Jerónimo', '1' ),
-		('4','0417','San José', '1' ),
+		('4','0416','San Jerï¿½nimo', '1' ),
+		('4','0417','San Josï¿½', '1' ),
 		('4','0418','San Juan de Opoa', '1' ),
-		('4','0419','San Nicolás', '1' ),
+		('4','0419','San Nicolï¿½s', '1' ),
 		('4','0420','San Pedro', '1' ),
 		('4','0421','Santa Rita', '1' ),
-		('4','0422','Trinidad de Copán', '1' ),
+		('4','0422','Trinidad de Copï¿½n', '1' ),
 		('4','0423','Veracruz', '1' ),
 
 
@@ -105,8 +105,8 @@ VALUES	('1','0101','La Ceiba', '1' ),
 		('5','0503','Omoa', '1' ),
 		('5','0504','Pimienta', '1' ),
 		('5','0505','Potrerillos', '1' ),
-		('5','0506','Puerto Cortés', '1' ),
-		('5','0507','San Antonio de Cortés', '1' ),
+		('5','0506','Puerto Cortï¿½s', '1' ),
+		('5','0507','San Antonio de Cortï¿½s', '1' ),
 		('5','0508','San Francisco de Yojoa', '1' ),
 		('5','0509','San Manuel', '1' ),
 		('5','0510','Santa Cruz de Yojoa', '1' ),
@@ -116,35 +116,35 @@ VALUES	('1','0101','La Ceiba', '1' ),
 
 		('6','0601','Choluteca', '1' ),
 		('6','0602','Apacilagua', '1' ),
-		('6','0603','Concepción de María', '1' ),
+		('6','0603','Concepciï¿½n de Marï¿½a', '1' ),
 		('6','0604','Duyure', '1' ),
 		('6','0605','El Corpus', '1' ),
 		('6','0606','El Triunfo', '1' ),
 		('6','0607','Marcovia', '1' ),
 		('6','0608','Morolica', '1' ),
-		('6','0609','Namasigüe', '1' ),
+		('6','0609','Namasigï¿½e', '1' ),
 		('6','0610','Orocuina', '1' ),
 		('6','0611','Pespire', '1' ),
 		('6','0612','San Antonio de Flores', '1' ),
 		('6','0613','San Isidro', '1' ),
-		('6','0614','San José', '1' ),
-		('6','0615','San Marcos de Colón', '1' ),
+		('6','0614','San Josï¿½', '1' ),
+		('6','0615','San Marcos de Colï¿½n', '1' ),
 		('6','0616','Santa Ana de Yusguare', '1' ),
 
 
-		('7','0701','Yuscarán', '1' ),
+		('7','0701','Yuscarï¿½n', '1' ),
 		('7','0702','Alauca', '1' ),
-		('7','0703','Danlí', '1' ),
-		('7','0704','El Paraíso', '1' ),
-		('7','0705','Güinope', '1' ),
+		('7','0703','Danlï¿½', '1' ),
+		('7','0704','El Paraï¿½so', '1' ),
+		('7','0705','Gï¿½inope', '1' ),
 		('7','0706','Jacaleapa', '1' ),
 		('7','0707','Liure', '1' ),
-		('7','0708','Morocelí', '1' ),
-		('7','0709','Oropolí', '1' ),
+		('7','0708','Morocelï¿½', '1' ),
+		('7','0709','Oropolï¿½', '1' ),
 		('7','0710','Potrerillos', '1' ),
 		('7','0711','San Antonio de Flores', '1' ),
 		('7','0712','San Lucas', '1' ),
-		('7','0713','San Matías', '1' ),
+		('7','0713','San Matï¿½as', '1' ),
 		('7','0714','Soledad', '1' ),
 		('7','0715','Teupasenti', '1' ),
 		('7','0716','Texiguat', '1' ),
@@ -154,9 +154,9 @@ VALUES	('1','0101','La Ceiba', '1' ),
 
 
 		('8','0801','Distrito Central', '1' ),
-		('8','0802','Alubarén', '1' ),
+		('8','0802','Alubarï¿½n', '1' ),
 		('8','0803','Cedros', '1' ),
-		('8','0804','Curarén', '1' ),
+		('8','0804','Curarï¿½n', '1' ),
 		('8','0805','El Porvenir', '1' ),
 		('8','0806','Guaimaca', '1' ),
 		('8','0807','La Libertad', '1' ),
@@ -175,10 +175,10 @@ VALUES	('1','0101','La Ceiba', '1' ),
 		('8','0820','San Juan de Flores', '1' ),
 		('8','0821','San Miguelito', '1' ),
 		('8','0822','Santa Ana', '1' ),
-		('8','0823','Santa Lucía', '1' ),
+		('8','0823','Santa Lucï¿½a', '1' ),
 		('8','0824','Talanga', '1' ),
 		('8','0825','Tatumbla', '1' ),
-		('8','0826','Valle de Ángeles', '1' ),
+		('8','0826','Valle de ï¿½ngeles', '1' ),
 		('8','0827','Villa de San Francisco', '1' ),
 		('8','0828','Vallecillo', '1' ),
 
@@ -187,17 +187,17 @@ VALUES	('1','0101','La Ceiba', '1' ),
 		('9','0902','Brus Laguna', '1' ),
 		('9','0903','Ahuas', '1' ),
 		('9','0904','Juan Francisco Bulnes', '1' ),
-		('9','0905','Ramón Villeda Morales', '1' ),
+		('9','0905','Ramï¿½n Villeda Morales', '1' ),
 		('9','0906','Wampusirpe', '1' ),
 
 
 		('10','1001','La Esperanza', '1' ),
 		('10','1002','Camasca', '1' ),
 		('10','1003','Colomoncagua', '1' ),
-		('10','1004','Concepción', '1' ),
+		('10','1004','Concepciï¿½n', '1' ),
 		('10','1005','Dolores', '1' ),
-		('10','1006','Intibucá', '1' ),
-		('10','1007','Jesús de Otoro', '1' ),
+		('10','1006','Intibucï¿½', '1' ),
+		('10','1007','Jesï¿½s de Otoro', '1' ),
 		('10','1008','Magdalena', '1' ),
 		('10','1009','Masaguara', '1' ),
 		('10','1010','San Antonio', '1' ),
@@ -205,20 +205,20 @@ VALUES	('1','0101','La Ceiba', '1' ),
 		('10','1012','San Juan', '1' ),
 		('10','1013','San Marcos de la Sierra', '1' ),
 		('10','1014','San Miguel Guancapla', '1' ),
-		('10','1015','Santa Lucía', '1' ),
+		('10','1015','Santa Lucï¿½a', '1' ),
 		('10','1016','Yamaranguila', '1' ),
 		('10','1017','San Francisco de Opalaca', '1' ),
 
 
-		('11','1101','Roatán', '1' ),
+		('11','1101','Roatï¿½n', '1' ),
 		('11','1102','Guanaja', '1' ),
-		('11','1103','José Santos Guardiola', '1' ),
+		('11','1103','Josï¿½ Santos Guardiola', '1' ),
 		('11','1104','Utila', '1' ),
 
 
 		('12','1201','La Paz', '1' ),
 		('12','1202','Aguanqueterique', '1' ),
-		('12','1203','Cabañas', '1' ),
+		('12','1203','Cabaï¿½as', '1' ),
 		('12','1204','Cane', '1' ),
 		('12','1205','Chinacla', '1' ),
 		('12','1206','Guajiquiro', '1' ),
@@ -227,18 +227,18 @@ VALUES	('1','0101','La Ceiba', '1' ),
 		('12','1209','Mercedes de Oriente', '1' ),
 		('12','1210','Opatoro', '1' ),
 		('12','1211','San Antonio del Norte', '1' ),
-		('12','1212','San José', '1' ),
+		('12','1212','San Josï¿½', '1' ),
 		('12','1213','San Juan', '1' ),
 		('12','1214','San Pedro de Tutule', '1' ),
 		('12','1215','Santa Ana', '1' ),
 		('12','1216','Santa Elena', '1' ),
-		('12','1217','Santa María', '1' ),
+		('12','1217','Santa Marï¿½a', '1' ),
 		('12','1218','Santiago de Puringla', '1' ),
 		('12','1219','Yarula', '1' ),
 
 
 		('13','1301','Gracias', '1' ),
-		('13','1302','Belén', '1' ),
+		('13','1302','Belï¿½n', '1' ),
 		('13','1303','Candelaria', '1' ),
 		('13','1304','Cololaca', '1' ),
 		('13','1305','Erandique', '1' ),
@@ -247,32 +247,32 @@ VALUES	('1','0101','La Ceiba', '1' ),
 		('13','1308','La Campa', '1' ),
 		('13','1309','La Iguala', '1' ),
 		('13','1310','Las Flores', '1' ),
-		('13','1311','La Unión', '1' ),
+		('13','1311','La Uniï¿½n', '1' ),
 		('13','1312','La Virtud', '1' ),
 		('13','1313','Lepaera', '1' ),
 		('13','1314','Mapulaca', '1' ),
 		('13','1315','Piraera', '1' ),
-		('13','1316','San Andrés', '1' ),
+		('13','1316','San Andrï¿½s', '1' ),
 		('13','1317','San Francisco', '1' ),
 		('13','1318','San Juan Guarita', '1' ),
 		('13','1319','San Manuel Colohete', '1' ),
 		('13','1320','San Rafael', '1' ),
-		('13','1321','San Sebastián', '1' ),
+		('13','1321','San Sebastiï¿½n', '1' ),
 		('13','1322','Santa Cruz', '1' ),
 		('13','1323','Talgua', '1' ),
 		('13','1324','Tambla', '1' ),
-		('13','1325','Tomalá', '1' ),
+		('13','1325','Tomalï¿½', '1' ),
 		('13','1326','Valladolid', '1' ),
 		('13','1327','Virginia', '1' ),
-		('13','1328','San Marcos de Caiquín', '1' ),
+		('13','1328','San Marcos de Caiquï¿½n', '1' ),
 
 
 		('14','1401','Ocotepeque', '1' ),
-		('14','1402','Belén Gualcho', '1' ),
-		('14','1403','Concepción', '1' ),
-		('14','1404','Dolores Merendón', '1' ),
+		('14','1402','Belï¿½n Gualcho', '1' ),
+		('14','1403','Concepciï¿½n', '1' ),
+		('14','1404','Dolores Merendï¿½n', '1' ),
 		('14','1405','Fraternidad', '1' ),
-		('14','1406','La Encarnación', '1' ),
+		('14','1406','La Encarnaciï¿½n', '1' ),
 		('14','1407','La Labor', '1' ),
 		('14','1408','Lucerna', '1' ),
 		('14','1409','Mercedes', '1' ),
@@ -289,7 +289,7 @@ VALUES	('1','0101','La Ceiba', '1' ),
 		('15','1502','Campamento', '1' ),
 		('15','1503','Catacamas', '1' ),
 		('15','1504','Concordia', '1' ),
-		('15','1505','Dulce Nombre de Culmí', '1' ),
+		('15','1505','Dulce Nombre de Culmï¿½', '1' ),
 		('15','1506','El Rosario', '1' ),
 		('15','1507','Esquipulas del Norte', '1' ),
 		('15','1508','Gualaco', '1' ),
@@ -297,28 +297,28 @@ VALUES	('1','0101','La Ceiba', '1' ),
 		('15','1510','Guata', '1' ),
 		('15','1511','Guayape', '1' ),
 		('15','1512','Jano', '1' ),
-		('15','1513','La Unión', '1' ),
+		('15','1513','La Uniï¿½n', '1' ),
 		('15','1514','Mangulile', '1' ),
 		('15','1515','Manto', '1' ),
-		('15','1516','Salamá', '1' ),
+		('15','1516','Salamï¿½', '1' ),
 		('15','1517','San Esteban', '1' ),
 		('15','1518','San Francisco de Becerra', '1' ),
 		('15','1519','San Francisco de la Paz', '1' ),
-		('15','1520','Santa María del Real', '1' ),
+		('15','1520','Santa Marï¿½a del Real', '1' ),
 		('15','1521','Silca', '1' ),
-		('15','1522','Yocón', '1' ),
+		('15','1522','Yocï¿½n', '1' ),
 		('15','1523','Patuca', '1' ),
 
 
-		('16','1601','Santa Bárbara', '1' ),
+		('16','1601','Santa Bï¿½rbara', '1' ),
 		('16','1602','Arada', '1' ),
 		('16','1603','Atima', '1' ),
 		('16','1604','Azacualpa', '1' ),
 		('16','1605','Ceguaca', '1' ),
-		('16','1606','Concepción del Norte', '1' ),
-		('16','1607','Concepción del Sur', '1' ),
+		('16','1606','Concepciï¿½n del Norte', '1' ),
+		('16','1607','Concepciï¿½n del Sur', '1' ),
 		('16','1608','Chinda', '1' ),
-		('16','1609','El Níspero', '1' ),
+		('16','1609','El Nï¿½spero', '1' ),
 		('16','1610','Gualala', '1' ),
 		('16','1611','Ilama', '1' ),
 		('16','1612','Las Vegas', '1' ),
@@ -327,13 +327,13 @@ VALUES	('1','0101','La Ceiba', '1' ),
 		('16','1615','Nuevo Celilac', '1' ),
 		('16','1616','Nueva Frontera', '1' ),
 		('16','1617','Petoa', '1' ),
-		('16','1618','Protección', '1' ),
-		('16','1619','Quimistán', '1' ),
+		('16','1618','Protecciï¿½n', '1' ),
+		('16','1619','Quimistï¿½n', '1' ),
 		('16','1620','San Francisco de Ojuera', '1' ),
-		('16','1621','San José de las Colinas', '1' ),
+		('16','1621','San Josï¿½ de las Colinas', '1' ),
 		('16','1622','San Luis', '1' ),
 		('16','1623','San Marcos', '1' ),
-		('16','1624','San Nicolás', '1' ),
+		('16','1624','San Nicolï¿½s', '1' ),
 		('16','1625','San Pedro Zacapa', '1' ),
 		('16','1626','San Vicente Centenario', '1' ),
 		('16','1627','Santa Rita', '1' ),
@@ -345,7 +345,7 @@ VALUES	('1','0101','La Ceiba', '1' ),
 		('17','1703','Amapala', '1' ),
 		('17','1704','Aramecina', '1' ),
 		('17','1705','Caridad', '1' ),
-		('17','1706','Goascorán', '1' ),
+		('17','1706','Goascorï¿½n', '1' ),
 		('17','1707','Langue', '1' ),
 		('17','1708','San Francisco de Coray', '1' ),
 		('17','1709','San Lorenzo', '1' ),
@@ -355,8 +355,8 @@ VALUES	('1','0101','La Ceiba', '1' ),
 		('18','1802','Arenal', '1' ),
 		('18','1803','El Negrito', '1' ),
 		('18','1804','El Progreso', '1' ),
-		('18','1805','Jocón', '1' ),
-		('18','1806','Morazán', '1' ),
+		('18','1805','Jocï¿½n', '1' ),
+		('18','1806','Morazï¿½n', '1' ),
 		('18','1807','Olanchito', '1' ),
 		('18','1808','Santa Rita', '1' ),
 		('18','1809','Sulaco', '1' ),
@@ -381,7 +381,7 @@ INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
 VALUES('Encargado de compras','1');
 GO
 INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
-VALUES('Chef de estación','1');
+VALUES('Chef de estaciï¿½n','1');
 GO
 INSERT INTO [gral].[tbCargos]([carg_Descripcion],[carg_UsuCreacion])
 VALUES('Cocineros','1');
@@ -434,12 +434,12 @@ GO
 
 
 
---************************************* Metódos de pagos *******************-
+--************************************* Metï¿½dos de pagos *******************-
 INSERT INTO [gral].[tbMetodosPago]([metp_Descripcion],[metp_UsuCreacion])	
 VALUES('Efectivo','1');														
 GO																			
 INSERT INTO [gral].[tbMetodosPago]([metp_Descripcion],[metp_UsuCreacion])	
-VALUES('Tarjeta(débito/crédito)','1');										
+VALUES('Tarjeta(dï¿½bito/crï¿½dito)','1');										
 GO																			
 INSERT INTO [gral].[tbMetodosPago]([metp_Descripcion],[metp_UsuCreacion])	
 VALUES('Transferencia','1');												
@@ -447,12 +447,12 @@ GO
 																			
 --**************************************************************************-
 
---************************************* Empleados **************************-
+--************************************* Sucursales **************************-
 INSERT INTO [rest].[tbSucursales]([sucu_Nombre],[muni_Id],[sucu_Direccion],[sucu_UsuCreacion])
 VALUES('Sucursal Centrral','63','San Pedro Sula: 2 Av. 12 Cl. N.o., 104 Bo. Las Acacias','1');
 GO
 INSERT INTO [rest].[tbSucursales]([sucu_Nombre],[muni_Id],[sucu_Direccion],[sucu_UsuCreacion])
-VALUES('Sucursal bvlr. norte','64','Crr. A Puerto Cortés, Despues De Zip. Choloma, Antes De Gasoline','1');
+VALUES('Sucursal bvlr. norte','64','Crr. A Puerto Cortï¿½s, Despues De Zip. Choloma, Antes De Gasoline','1');
 GO
 INSERT INTO [rest].[tbSucursales]([sucu_Nombre],[muni_Id],[sucu_Direccion],[sucu_UsuCreacion])
 VALUES('Sucursal Costa Sur','65','8 Ave. S.e. 19 Y 20 Cll. No. 1963 Bo. Las Palmas Postal 8 85','1');
@@ -552,9 +552,96 @@ GO
 
 
 
---************************************* Clientes **************************-
+--************************************* Roles **************************-
+INSERT INTO acce.tbRoles (role_Nombre, role_UsuCreacion, role_FechaCreacion, role_UsuModificacion, role_FechaModificacion, role_Estado)
+VALUES  ('Invitado', 1, GETDATE(), NULL, NULL),
+		('Administrador', 1, GETDATE(), NULL, NULL),
+		('Usuario', 1, GETDATE(), NULL, NULL),
+		('Supervisor', 1, GETDATE(), NULL, NULL);
 
 --**************************************************************************-
+
+
+--************************************* Platillos **************************-
+
+INSERT INTO rest.tbPlatillos (plat_Nombre, plat_Precio, cate_Id, plat_Imagen, plat_UsuCreacion)
+VALUES ('Tacos al pastor', 50.00, 1, '', 1),
+	   ('Pollo en Salsa de Hongos', 75.00, 2, '', 1),
+	   ('Ensalada CÃ©sar', 60.00, 3, '', 1),
+	   ('Filete Asado', 100.00, 4, '', 1),
+	   ('Sushi variado', 120.00, 5, '', 1),
+	   ('Pasta carbonara', 80.00, 6, '', 1),
+	   ('Sopa de verduras', 40.00, 3, '', 1),
+	   ('Panini de pollo', 55.00, 2, '', 1),
+	   ('Arroz con Almendras', 90.00, 2, '', 1),
+	   ('Lomo de Cerdo', 160.00, 2, '', 1),
+	   ('Alitas de Pollo', 90.00, 2, '', 2),
+	   ('Crepas', 40.00, 2, '', 2),
+	   ('Ensalada de Frutas', 112.00, 2, '', 1),
+	   ('PurÃ© de Papas', 30.00, 2, '', 1),
+	   ('Papa Horneada', 70.00, 2, '', 1),
+	   ('Carne de Res con BrÃ³coli', 125.00, 2, '', 1),
+	   ('Ravioli',130.00, 2, '', 2),
+	   ('GratÃ©n de Coliflor', 190.00, 2, '', 1),
+	   ('Pollo al Vino', 98.00, 2, '', 1),
+	   ('Baleadas', 22.00, 2, '', 1);
+
+
+--**************************************************************************-
+
+
+--************************************* Ingredientes **************************-
+
+INSERT INTO rest.tbIngredientes (ingr_Nombre, ingr_PrecioX100gr, prov_Id, ingr_UsuCreacion)
+VALUES ('Harina de trigo', 2.50, 3, 1),
+	   ('SalmÃ³n', 26.50, 2, 1),
+	   ('Queso cheddar rallado', 5.60, 1, 1),
+	   ('Aceitunas negras sin hueso', 1.50, 4, 1),
+	   ('Tomate', 0.75, 5, 1),
+	   ('Cebolla morada', 0.86, 3, 1),
+	   ('Pollo deshuesado', 2.10, 2, 1),
+	   ('Arroz blanco', 0.90, 1, 1),
+	   ('Pollo', 1.40, 1, 1),
+	   ('Sal', 0.65, 1, 1),
+	   ('Arroz precocido', 0.92, 1, 1),
+	   ('Aceite de Oliva', 1.10, 1, 1),
+	   ('Sardinas', 1.12, 1, 1),
+	   ('Queso Crema', 3.15, 1, 1),
+	   ('Perejil', 0.16, 1, 1),
+	   ('Jengibre', 1.05, 1, 1),
+	   ('Aguacate', 1.45, 1, 1),
+	   ('Pechuga de pavo', 3.85, 1, 1),
+	   ('Zanahorias', 0.35, 1, 1),
+	   ('PiminetÃ³n', 0.45, 1, 1),
+	   ('Carne de Cerdo', 5.05, 1, 1),
+	   ('Trufas', 2.12, 1, 1),
+	   ('ChampiÃ±ones', 1.05, 1, 1);
+
+
+--**************************************************************************-
+
+
+--************************************* Roles **************************-
+
+--**************************************************************************-
+
+
+--************************************* Roles **************************-
+
+--**************************************************************************-
+
+
+--************************************* Roles **************************-
+
+--**************************************************************************-
+
+
+--************************************* Roles **************************-
+
+--**************************************************************************-
+
+
+
 
 
 --**************************** PRUEBA TRIGGER ******************************-
