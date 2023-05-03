@@ -55,8 +55,8 @@ import Vectormaps from './components/pages/Vectormaps';
 import Widgets from './components/pages/Widgets';
 import Clientmanagement from './components/pages/Clientmanagement';
 import Comingsoon from './components/pages/Comingsoon';
-import Defaultlogin from './components/pages/Defaultlogin';
-import Defaultregister from './components/pages/Defaultregister';
+import Defaultlogin from './components/pages/Defaultlogin'; /*login*/
+import Defaultregister from './components/pages/Defaultregister'; /*registrar*/
 import Error from './components/pages/Error';
 import Faq from './components/pages/Faq';
 import Invoice from './components/pages/Invoice';
@@ -73,13 +73,16 @@ import Cargos from './components/pages/Cargos';
 import EstadosCiviles from './components/pages/EstadosCiviles';
 import MetodosPago from './components/pages/MetodosPago';
 
+/*import { BrowserRouter as Router,  Routes, Route} from "react-router-dom";*/
 
 function App() {
   return (
     <Router basename={'/themes/themeforest/react/costic'}>
       <Preloader/>
       <Switch>
-        <Route exact path="/" component={Dashboard} />
+      <Route exac path ="/" element={<Defaultlogin/>}/>
+        <Route path ="/registrar" element={<Defaultregister/>}/>
+        <Route path="/dashboard" component={Dashboard} />
         <Route path="/accordions" component={Accordions} />
         <Route path="/departamentos" component={Departamentos} />
         <Route path="/estadosCiviles" component={EstadosCiviles} />
@@ -150,8 +153,16 @@ function App() {
         <Route path="/stock-management" component={Stockmanagement} />
         <Route path="/user-profile" component={Userprofile} />
         <Route path="/web-analytics" component={Webanalytics} />
+      
+
       </Switch>
+     { /*<Routes>
+        <Route exac path ="/" element={<Defaultlogin/>}/>
+        <Route  path ="/registrar" element={<Defaultregister/>}/>
+        <Route  path ="/error" element={<Error/>}/>       
+  </Routes>*/}
     </Router>
+   
   );
 }
 

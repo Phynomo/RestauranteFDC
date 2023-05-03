@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+
+/*import React, {useEffect,  useState} from "react";
+import axios from "axios";
+import {Link, useNavigate} from 'react-router-dom';*/
+
 import { Link } from 'react-router-dom';
 import { Modal } from "react-bootstrap";
 
@@ -6,6 +11,7 @@ class Content extends Component {
     componentDidMount() {
         //initialize datatable
         function formValidation() {
+       
             window.addEventListener('load', function () {
                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
                 var forms = document.getElementsByClassName('needs-validation');

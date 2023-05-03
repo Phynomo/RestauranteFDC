@@ -25,6 +25,7 @@ namespace Restaurante.DataAccess
         #region Clientes
 
         public static string UDP_Clientes_List = "rest.UDP_tbClientes_Select";
+        public static string InsertarClientes = "rest.UDP_InsertarCliente";
 
         #endregion
 
@@ -38,7 +39,7 @@ namespace Restaurante.DataAccess
         #region Empleados
 
         public static string UDP_Empleados_List = "rest.UDP_tbEmpleados_Select";
-
+        public static string InsertarEmpleados = "rest.UDP_InsertarEmpleados";
         #endregion
 
         #region Estados Civiles
@@ -51,6 +52,7 @@ namespace Restaurante.DataAccess
         #region Facturas
 
         public static string UDP_Facturas_List = "rest.UDP_tbFacturas_Select";
+        public static string InsertarFactura = "rest.UDP_InsertarFactura";
 
         #endregion
 
@@ -63,6 +65,7 @@ namespace Restaurante.DataAccess
         #region Ingredientes
 
         public static string UDP_Ingredientes_List = "rest.UDP_tbIngredientes_Select";
+        public static string InsertarIngredientes = "rest.UDP_InsertarIngedientes";
 
         #endregion
 
@@ -83,13 +86,13 @@ namespace Restaurante.DataAccess
         #region Platillos
 
         public static string UDP_Platillos_List = "rest.UDP_tbPlatillos_Select";
-
+        public static string InsertarPlatillos = "rest.UDP_InsertarPlatillos";
         #endregion
         
         #region Proveedores
 
         public static string UDP_Proveedores_List = "rest.UDP_tbProveedores_Select";
-
+        public static string InsertarProveedores = "rest.UDP_InsertarProveedores";
         #endregion
 
         #region Reservaciones
@@ -107,6 +110,7 @@ namespace Restaurante.DataAccess
         #region Sucursales
 
         public static string UDP_Sucursales_List = "rest.UDP_tbSucursales_Select";
+        public static string InsertarSucursales = "rest.UDP_InsertarSucursales";
 
         #endregion
         
