@@ -26,6 +26,26 @@ namespace Restaurante.DataAccess.Repositories.GRAL
         {
             throw new NotImplementedException();
         }
+        public RequestStatus NewDepartament(tbDepartamentos item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@depa_Nombre", item.depa_Nombre, DbType.String, ParameterDirection.Input);
+            parameters.Add("@depa_Codigo", item.depa_Codigo, DbType.String, ParameterDirection.Input);
+            parameters.Add("@depa_UsuCreacion", item.depa_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.InsertarDepartamento, parameters, commandType: CommandType.StoredProcedure);
+
+            RequestStatus requestStatus = new()
+            {
+                CodeStatus = result,
+                MessageStatus = "Insertado"
+            };
+            return requestStatus;
+            
+            
+
+        }
+
 
         public IEnumerable<VW_tbDepartamentos> List()
         {

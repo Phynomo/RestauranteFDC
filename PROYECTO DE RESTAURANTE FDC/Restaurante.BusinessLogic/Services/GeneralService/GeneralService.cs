@@ -1,5 +1,6 @@
 ﻿using MAVEX.BusinessLogic;
 using Restaurante.DataAccess.Repositories.GRAL;
+using Restaurante.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,22 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             }
         }
 
+
+        public ServiceResult InsertarDepartamentos(tbDepartamentos item)
+        {
+            var resultado = new ServiceResult();
+            try
+            {
+                var list = _departamentosRepository.NewDepartament(item);
+                return resultado.Ok(list);
+            }
+            catch (Exception x)
+            {
+
+                return resultado.Error(x.Message);
+            }
+        }
+
         #endregion
 
         #region Cargos
@@ -68,6 +85,20 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             }
         }
 
+        public ServiceResult InsertarCargos(tbCargos item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _cargosRepository.Newcharges(item);
+                return result.Ok(list);
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
         #endregion
 
         #region Categorias
@@ -83,6 +114,20 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             catch (Exception e)
             {
                 return result.Error(e.Message);
+            }
+        }
+        public ServiceResult InsertarCategorias(tbCategorias item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _categoriaRepository.Newcategory(item);
+                return result.Ok(list);
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
             }
         }
 
@@ -103,6 +148,22 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
                 return result.Error(e.Message);
             }
         }
+
+        public ServiceResult InsertarStates(tbEstadosCiviles item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _estadosCivilesRepository.Newstate(item);
+                return result.Ok(list);
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
+
 
         #endregion
 
