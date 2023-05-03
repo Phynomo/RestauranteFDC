@@ -177,7 +177,7 @@ BEGIN
 
         BEGIN TRY
         Declare @Password Nvarchar(max) = (HASHBYTES('SHA2_512',@user_Contrasena))
-        SELECT * FROM acce.VW_Login_View       
+        SELECT * FROM acce.VW_tbUsuarios       
 		WHERE   user_Contrasena = @Password 
         AND     user_NombreUsuario = @user_NombreUsuario
 

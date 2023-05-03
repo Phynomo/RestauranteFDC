@@ -465,7 +465,7 @@ GO
 --// SUCURSAL 1
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Marisol','Bueso Melgar','0502200014568','05-20-2000','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
+VALUES('Marisol','Bueso Melgar','0502200014568','2000-05-20','F','1','63','Barrio Guamilito 7 Avenida 8-9 Calle, Contiguo A Laboratorio Salgado','95801478','marisol22@gmail.com','1','2',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
@@ -477,42 +477,42 @@ VALUES('Jason','Gomez','0501199787456','2003-01-19','M','1','63','Aldea Monterre
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Marcia','Rivera','0602200074569','05-21-1999','F','3','63','col. La lopez, pasaje 4, casa 2','97710447','rivera22@gmail.com','1','4',1);
+VALUES('Marcia','Rivera','0602200074569','1999-05-21','F','3','63','col. La lopez, pasaje 4, casa 2','97710447','rivera22@gmail.com','1','4',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Jose','Martinez','0102199987451','02-16-1998','M','4','63','Res. Las fuentes, bloque 3, casa 9','87495621','joseMartinez11@gmail.com','1','5',1);
+VALUES('Jose','Martinez','0102199987451','1998-02-16','M','4','63','Res. Las fuentes, bloque 3, casa 9','87495621','joseMartinez11@gmail.com','1','5',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Linda','Sanchez','0801200074512','06-30-2002','F','5','63','Res. El racncho, fecitram ','93125687','lindaliss@gmail.com','1','6',1);
+VALUES('Linda','Sanchez','0801200074512','2002-06-30','F','5','63','Res. El racncho, fecitram ','93125687','lindaliss@gmail.com','1','6',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Melissa','Alberto','0901199412345','11-15-2003','F','1','63','Aldea la Bueso, los Bajos','94309647','melissaalbert@gmail.com','1','7',1);
+VALUES('Melissa','Alberto','0901199412345','2003-11-15','F','1','63','Aldea la Bueso, los Bajos','94309647','melissaalbert@gmail.com','1','7',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Daniel','Lainez','0302200078456','08-15-2001','M','2','63','Res. San Carlos bloque 25, casa 3','97157663','danili@gmail.com','1','8',1);
+VALUES('Daniel','Lainez','0302200078456','2001-08-15','M','2','63','Res. San Carlos bloque 25, casa 3','97157663','danili@gmail.com','1','8',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Brenda','Robles','1001200096327','10-28-2000','F','3','63','Aldea Monterrey, Bajos de Choloma, calle 4 casa 276','94306589','brendarol@gmail.com','1','9',1);
+VALUES('Brenda','Robles','1001200096327','2000-10-28','F','3','63','Aldea Monterrey, Bajos de Choloma, calle 4 casa 276','94306589','brendarol@gmail.com','1','9',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Estefany','Simon','1102199912347','05-20-2000','F','4','63','Resudencial villas matilda, bloque 17, casa 4','87124399','estefanysim@gmail.com','1','10',1);
+VALUES('Estefany','Simon','1102199912347','2000-05-20','F','4','63','Resudencial villas matilda, bloque 17, casa 4','87124399','estefanysim@gmail.com','1','10',1);
 GO
 
 
 --// SUCURSAL 2
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Gabriel','Acosta','1312200012784','11-25-2000','M','3','64','1ra y 2da avenida, 4ta calle S, casa 890','74561289','gabrilcst@gmail.com','2','1',1);
+VALUES('Gabriel','Acosta','1312200012784','2000-11-25','M','3','64','1ra y 2da avenida, 4ta calle S, casa 890','74561289','gabrilcst@gmail.com','2','1',1);
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Denia','America','1414199078452','02-28-1990','F','4','64','Redidencial villa valencia, bloque 4 casa 15','95410020','deniaamerians@gmail.com','2','5',1);
+VALUES('Denia','America','1414199078452','1990-02-28','F','4','64','Redidencial villa valencia, bloque 4 casa 15','95410020','deniaamerians@gmail.com','2','5',1);
 GO
 --// SUCURSAL 3
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
@@ -521,7 +521,7 @@ VALUES('Juan','Sagastume','0401200078514','03-01-2000','M','1','64','5ta avenida
 GO
 INSERT INTO [rest].[tbEmpleados]([empe_Nombres],[empe_Apellidos],[empe_Identidad],
 [empe_FechaNacimiento],[empe_Sexo],[eciv_Id],[muni_Id],[empe_DireccionExacta],[empe_Telefono],[empe_CorreoElectronico],[sucu_Id],[carg_Id],[empe_UsuCreacion])
-VALUES('Andrea','Paz','0502199674521','12-15-2000','F','1','64','Res. San carlos, 3 pasaje','95458303','andreasRrt@gmail.com','2','6',1);
+VALUES('Andrea','Paz','0502199674521','2000-12-15','F','1','64','Res. San carlos, 3 pasaje','95458303','andreasRrt@gmail.com','2','6',1);
 GO
 
 --****************************************************************************-
@@ -550,10 +550,11 @@ GO
 
 --**************************************************************************-
 
-
+INSERT INTO acce.tbRoles (role_Nombre, role_UsuCreacion, role_FechaCreacion, role_UsuModificacion, role_FechaModificacion)
+VALUES  ('Invitado', 1, GETDATE(), NULL, NULL);
 
 --************************************* Roles **************************-
-INSERT INTO acce.tbRoles (role_Nombre, role_UsuCreacion, role_FechaCreacion, role_UsuModificacion, role_FechaModificacion, role_Estado)
+INSERT INTO acce.tbRoles (role_Nombre, role_UsuCreacion, role_FechaCreacion, role_UsuModificacion, role_FechaModificacion)
 VALUES  ('Invitado', 1, GETDATE(), NULL, NULL),
 		('Administrador', 1, GETDATE(), NULL, NULL),
 		('Usuario', 1, GETDATE(), NULL, NULL),
@@ -569,8 +570,8 @@ VALUES ('Tacos al pastor', 50.00, 1, '', 1),
 	   ('Pollo en Salsa de Hongos', 75.00, 2, '', 1),
 	   ('Ensalada César', 60.00, 3, '', 1),
 	   ('Filete Asado', 100.00, 4, '', 1),
-	   ('Sushi variado', 120.00, 5, '', 1),
-	   ('Pasta carbonara', 80.00, 6, '', 1),
+	   ('Sushi variado', 120.00, 2, '', 1),
+	   ('Pasta carbonara', 80.00, 3, '', 1),
 	   ('Sopa de verduras', 40.00, 3, '', 1),
 	   ('Panini de pollo', 55.00, 2, '', 1),
 	   ('Arroz con Almendras', 90.00, 2, '', 1),
@@ -665,41 +666,41 @@ CREATE TABLE rest.tbPlatillosHistorial2
 );
 GO
 
---  DROP TABLE  rest.tbPlatillosHistorial2
-CREATE TRIGGER trg_Platillos6
-ON rest.tbPlatillos
-AFTER UPDATE, DELETE
-AS
-BEGIN
-    SET NOCOUNT ON;
+----  DROP TABLE  rest.tbPlatillosHistorial2
+--CREATE TRIGGER trg_Platillos6
+--ON rest.tbPlatillos
+--AFTER UPDATE, DELETE
+--AS
+--BEGIN
+--    SET NOCOUNT ON;
 
-    IF EXISTS (SELECT * FROM deleted)
-    BEGIN
-      -- Guardar registro eliminado en el historial
-INSERT INTO rest.tbPlatillosHistorial2 
-SELECT*FROM deleted
-    END
+--    IF EXISTS (SELECT * FROM deleted)
+--    BEGIN
+--      -- Guardar registro eliminado en el historial
+--INSERT INTO rest.tbPlatillosHistorial2 
+--SELECT*FROM deleted
+--    END
 
-    IF EXISTS (SELECT * FROM inserted)
-    BEGIN
-        -- Guardar registro actualizado en el historial
-INSERT INTO rest.tbPlatillosHistorial2 
-SELECT*FROM inserted 
-    END
-END
-GO
+--    IF EXISTS (SELECT * FROM inserted)
+--    BEGIN
+--        -- Guardar registro actualizado en el historial
+--INSERT INTO rest.tbPlatillosHistorial2 
+--SELECT*FROM inserted 
+--    END
+--END
+--GO
 
 
-INSERT INTO [rest].[tbPlatillos]([plat_Nombre], [plat_Precio], [cate_Id],[plat_UsuarioCreacion])
-VALUES('Sopa me pollo',150,6,1);
-GO
+--INSERT INTO [rest].[tbPlatillos]([plat_Nombre], [plat_Precio], [cate_Id],[plat_UsuCreacion])
+--VALUES('Sopa me pollo',150,6,1);
+--GO
 
-UPDATE [rest].[tbPlatillos] SET [plat_Nombre] = 'Sopa de pollo super FEA',[plat_UsuarioModificacion] = 1,[plat_FechaModificacion] = GETDATE() WHERE [plat_Id]= 1;
+UPDATE [rest].[tbPlatillos] SET [plat_Nombre] = 'Sopa de pollo super FEA',[plat_UsuModificacion] = 1,[plat_FechaModificacion] = GETDATE() WHERE [plat_Id]= 1;
 GO
-SELECT*FROM [rest].[tbPlatillos];
-GO
-SELECT*FROM [rest].[tbPlatillosHistorial2];
-GO
+--SELECT*FROM [rest].[tbPlatillos];
+--GO
+--SELECT*FROM [rest].[tbPlatillosHistorial2];
+--GO
 
 ---NO FUNCIONA
 
