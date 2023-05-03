@@ -662,10 +662,10 @@ CREATE TABLE rest.tbPlatillosHistorial2
     plat_FechaModificacion	             DATETIME,
     plat_UsuarioModificacion             INT,
     plat_Estado                          BIT NOT NULL DEFAULT 1,
-    CONSTRAINT PK_rest_tbPlatillosHistorial_plat_Id PRIMARY KEY(plat_Id),
-	CONSTRAINT FK_rest_tbPlatillosHistorial_tbCategorias_cate_Id FOREIGN key(cate_Id) REFERENCES gral.tbCategorias(cate_Id),
-	CONSTRAINT FK_rest_tbPlatillosHistorial_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(plat_UsuarioCreacion) REFERENCES acce.tbUsuarios([user_Id]),
-	CONSTRAINT FK_rest_tbPlatillosHistorial_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(plat_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
+    CONSTRAINT PK_rest_tbPlatillosHistorial2_plat_Id PRIMARY KEY(plat_Id),
+	CONSTRAINT FK_rest_tbPlatillosHistorial2_tbCategorias_cate_Id FOREIGN key(cate_Id) REFERENCES gral.tbCategorias(cate_Id),
+	CONSTRAINT FK_rest_tbPlatillosHistorial2_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(plat_UsuarioCreacion) REFERENCES acce.tbUsuarios([user_Id]),
+	CONSTRAINT FK_rest_tbPlatillosHistorial2_acce_tbUsuarios_role_UsuModificacion_user_Id FOREIGN KEY(plat_UsuarioModificacion) REFERENCES acce.tbUsuarios([user_Id])
 
 );
 GO

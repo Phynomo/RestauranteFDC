@@ -177,11 +177,13 @@ BEGIN
 
         BEGIN TRY
         Declare @Password Nvarchar(max) = (HASHBYTES('SHA2_512',@user_Contrasena))
-        SELECT * FROM acce.VW_tbUsuarios       
+        SELECT user_NombreUsuario, user_Contrasena
+		FROM tbUsuarios       
 		WHERE   user_Contrasena = @Password 
         AND     user_NombreUsuario = @user_NombreUsuario
 
         SELECT 1 as Proceso
+
         END TRY
         BEGIN CATCH
 
@@ -190,7 +192,24 @@ BEGIN
 
 END
 GO
+--acce.UDP_Login 'admin', '123' 
 
+--CREATE OR ALTER PROCEDURE acce.UDP_Login
+--	@user_NombreUsuario		NVARCHAR(100),
+--	@user_Contrasena		NVARCHAR(200)
+--AS
+--BEGIN
+--	Declare @Password Nvarchar(max) = (HASHBYTES('SHA2_512',@user_Contrasena));
+--	SELECT  t1.[user_Id], t1.user_NombreUsuario,t2.empe_Nombres,t1.role_Id,t2.empe_Id
+--	FROM	acce.tbUsuarios t1 INNER JOIN [rest].[tbEmpleados] t2
+--	ON		t1.empe_Id = t2.empe_Id
+--	WHERE	[user_NombreUsuario] = @user_NombreUsuario
+--	AND		[user_Contrasena] = @user_Contrasena
+--	AND		user_Estado = 1
+
+--END;
+
+--GO
 
 
 GO
@@ -525,7 +544,6 @@ BEGIN
 						muni_Id,
 						sucu_Direccion,
 						sucu_UsuCreacion,
-						sucu_FechaCreacion,
 						sucu_UsuModificacion,
 						sucu_FechaModificacion,
 						sucu_Estado)
@@ -564,57 +582,57 @@ END
 GO
 
 --Ingredientes
-CREATE OR ALTER PROCEDURE rest.UDP_tbIngredinetes_Insert
-	@ingr_Nombre Nvarchar(200),
-	@ingr_PrecioX100gr Decimal(18,2),
-	@prov_Id INT,
-	@ingr_UsuarioCreacion INT
-AS
-BEGIN
-	BEGIN TRY
+--CREATE OR ALTER PROCEDURE rest.UDP_tbIngredinetes_Insert
+--	@ingr_Nombre Nvarchar(200),
+--	@ingr_PrecioX100gr Decimal(18,2),
+--	@prov_Id INT,
+--	@ingr_UsuarioCreacion INT
+--AS
+--BEGIN
+--	BEGIN TRY
 
-		IF NOT EXISTS (SELECT * FROM rest.tbSucursales WHERE sucu_Nombre = @sucu_Nombre)		
-		BEGIN
+--		IF NOT EXISTS (SELECT * FROM rest.tbSucursales WHERE sucu_Nombre = @sucu_Nombre)		
+--		BEGIN
 
-			INSERT INTO rest.tbSucursales
-					   (sucu_Nombre,
-						muni_Id,
-						sucu_Direccion,
-						sucu_UsuCreacion,
-						sucu_FechaCreacion,
-						sucu_UsuModificacion,
-						sucu_FechaModificacion,
-						sucu_Estado)
-				 VALUES
-					   (@sucu_Nombre
-					   ,@muni_Id
-					   ,@sucu_Direccion
-					   ,@sucu_UsuCreacion
-					   ,null
-					   ,null
-					   ,1)
+--			INSERT INTO rest.tbSucursales
+--					   (sucu_Nombre,
+--						muni_Id,
+--						sucu_Direccion,
+--						sucu_UsuCreacion,
+--						sucu_FechaCreacion,
+--						sucu_UsuModificacion,
+--						sucu_FechaModificacion,
+--						sucu_Estado)
+--				 VALUES
+--					   (@sucu_Nombre
+--					   ,@muni_Id
+--					   ,@sucu_Direccion
+--					   ,@sucu_UsuCreacion
+--					   ,null
+--					   ,null
+--					   ,1)
 
-			SELECT 1 as Proceso
+--			SELECT 1 as Proceso
 
-		END
-		ELSE IF EXISTS (SELECT * FROM rest.tbSucursales WHERE sucu_Nombre = @sucu_Nombre AND sucu_Estado = 1)
-			SELECT -2 as Proceso
-		ELSE 
-		BEGIN
+--		END
+--		ELSE IF EXISTS (SELECT * FROM rest.tbSucursales WHERE sucu_Nombre = @sucu_Nombre AND sucu_Estado = 1)
+--			SELECT -2 as Proceso
+--		ELSE 
+--		BEGIN
 
-			UPDATE rest.tbSucursales
-			SET sucu_Estado = 1
-			WHERE sucu_Nombre = @sucu_Nombre
+--			UPDATE rest.tbSucursales
+--			SET sucu_Estado = 1
+--			WHERE sucu_Nombre = @sucu_Nombre
 
-			SELECT 1 as Proceso
+--			SELECT 1 as Proceso
 
-		END
+--		END
 
-	END TRY
-	BEGIN CATCH
-		SELECT 0 as Proceso
-	END CATCH
+--	END TRY
+--	BEGIN CATCH
+--		SELECT 0 as Proceso
+--	END CATCH
 
 
-END
-GO
+--END
+--GO

@@ -528,10 +528,12 @@ CREATE TABLE rest.tbPlatillosHistorial(
     plat_Precio				             DECIMAL(18,2) NOT NULL,
 	cate_Id								 INT NOT NULL,
     plat_FechaCreacion		             DATETIME ,
-    plat_UsuCreacion		         INT NOT null,
+    plat_UsuCreacion					 INT NOT null,
     plat_FechaModificacion	             DATETIME,
-    plat_UsuModificacion             INT,
+    plat_UsuModificacion				 INT,
     plat_Estado                          BIT
+	CONSTRAINT PK_rest_tbPlatillosHistorial_plat_Id PRIMARY KEY(plat_Id)
+
 );
 GO
 CREATE TABLE rest.tbIngredientesHistorial(
@@ -544,6 +546,7 @@ CREATE TABLE rest.tbIngredientesHistorial(
     ingr_FechaModificacion	             DATETIME,
     ingr_UsuModificacion             INT,
     ingr_Estado                          BIT NOT NULL DEFAULT 1,
+	CONSTRAINT PK_rest_tbIngredientesHistorial_ingr_Id PRIMARY KEY(ingr_Id)
 );
 GO
 

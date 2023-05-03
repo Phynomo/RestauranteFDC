@@ -24,7 +24,7 @@ namespace Restaurante.DataAccess.Repositories.ACCE
         }
         public IEnumerable<VW_tbUsuarios> Login(string usuario, string contrasena)
         {
-            using var db = new SqlConnection(DbrestauranteContext.ConnectionString);
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
             var parametros = new DynamicParameters();
             parametros.Add("@user_NombreUsuario", usuario, DbType.String, ParameterDirection.Input);
             parametros.Add("@user_Contrasena", contrasena, DbType.String, ParameterDirection.Input);
@@ -35,7 +35,7 @@ namespace Restaurante.DataAccess.Repositories.ACCE
         {
             RequestStatus result = new RequestStatus();
 
-            using var db = new SqlConnection(DbrestauranteContext.ConnectionString);
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
             var parametros = new DynamicParameters();
             parametros.Add("@user_NombreUsuario", item.user_NombreUsuario, DbType.String, ParameterDirection.Input);
             parametros.Add("@user_Contrasena", item.user_Contrasena, DbType.String, ParameterDirection.Input);
