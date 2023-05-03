@@ -107,6 +107,8 @@ namespace Restaurante.DataAccess
         #region Usuarios
 
         public static string UDP_Usuarios_List = "acce.UDP_tbUsuarios_Select";
+        public static string UDP_Login = "acce.UDP_Login";
+        public static string UDP_Recuperar_Usuarios = "acce.UDP_RecuperarContrasenia";
 
         #endregion
     }

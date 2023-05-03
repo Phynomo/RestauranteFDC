@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Restaurante.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace Restaurante.WEBUI.Extensions
     {
         public MappingProfileExntensions()
         {
-            /*CreateMap<tbUsuarios, UsuariosViewModel>().ReverseMap();*/
-      
+            //CreateMap<tbUsuarios, UsuariosViewModel>().ReverseMap();
+
         }
     }
 }
