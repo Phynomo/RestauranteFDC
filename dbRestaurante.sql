@@ -58,6 +58,7 @@ CREATE TABLE acce.tbUsuarios(
 	[user_Id] 				INT IDENTITY(1,1),
 	user_NombreUsuario		NVARCHAR(100) NOT NULL,
 	user_Contrasena			NVARCHAR(MAX) NOT NULL,
+	user_Correo				NVARCHAR(200),
 	user_Image				NVARCHAR(MAX),
 	user_EsAdmin			BIT,
 	role_Id					INT,

@@ -112,6 +112,7 @@ GO
 CREATE OR ALTER PROCEDURE acce.UDP_tbusuarios_INSERT
  @user_NombreUsuario NVARCHAR(100),
  @user_Contrasena NVARCHAR(MAX),
+ @user_Correo     NVARCHAR(200),
  @user_Image NVARCHAR(MAX),
  @user_EsAdmin BIT,
  @role_Id INT,
@@ -162,6 +163,66 @@ BEGIN
 	BEGIN CATCH
 		SELECT 0 AS Processo
 	END CATCH
+END
+GO
+
+--Procedimientos Almacenados del Login
+
+GO
+CREATE OR ALTER PROCEDURE acce.UDP_Login
+	@user_NombreUsuario Nvarchar(100),
+	@user_Contrasena Nvarchar(Max)
+AS
+BEGIN
+
+        BEGIN TRY
+        Declare @Password Nvarchar(max) = (HASHBYTES('SHA2_512',@user_Contrasena))
+        SELECT * FROM acce.VW_Login_View       
+		WHERE   user_Contrasena = @Password 
+        AND     user_NombreUsuario = @user_NombreUsuario
+
+        SELECT 1 as Proceso
+        END TRY
+        BEGIN CATCH
+
+        SELECT 0 as Proceso
+        END CATCH
+
+END
+GO
+
+
+
+GO
+CREATE OR ALTER    PROCEDURE acce.UDP_RecuperarContrasenia
+@user_NombreUsuario VARCHAR(100),
+@user_Contrasena NVARCHAR(MAX)
+
+as
+BEGIN
+
+BEGIN TRY
+
+Declare @Password Nvarchar(max) = (HASHBYTES('SHA2_512',@user_Contrasena))
+
+UPDATE [acce].[tbUsuarios]
+   SET [user_Contrasena] = @Password
+ WHERE user_NombreUsuario = @user_NombreUsuario
+
+ IF EXISTS (select * FROM acce.tbUsuarios WHERE user_NombreUsuario = @user_NombreUsuario
+												AND [user_Contrasena] = @Password)
+ BEGIN
+ SELECT 1 as Proceso
+ END
+ ELSE
+ SELECT -2 as Proceso
+
+END TRY
+BEGIN CATCH
+
+SELECT 0 as Proceso
+END CATCH
+
 END
 GO
 
