@@ -76,6 +76,7 @@ GO
 CREATE OR ALTER PROCEDURE acce.UDP_InsertUsuario
 	@user_NombreUsuario NVARCHAR(100),	
     @user_Contrasena NVARCHAR(200),
+	@user_Correo NVARCHAR(200),
 	@user_EsAdmin BIT,					
     @role_Id INT, 
 	@empe_Id INT, 
@@ -84,13 +85,13 @@ AS
 BEGIN
 	DECLARE @password NVARCHAR(MAX)=(SELECT HASHBYTES('Sha2_512', @user_Contrasena));
 
-	INSERT acce.tbUsuarios(user_NombreUsuario, user_Contrasena, user_EsAdmin, role_Id, empe_Id, clie_id, user_UsuCreacion)
-	VALUES(@user_NombreUsuario, @password, @user_EsAdmin, @role_Id, @empe_Id,@clie_Id, 1);
+	INSERT acce.tbUsuarios(user_NombreUsuario, user_Correo, user_Contrasena, user_EsAdmin, role_Id, empe_Id, clie_id, user_UsuCreacion)
+	VALUES(@user_NombreUsuario, @password, @user_Correo, @user_EsAdmin, @role_Id, @empe_Id,@clie_Id, 1);
 END;
 
 
 GO
-EXEC acce.UDP_InsertUsuario 'Admin', '123', 1, NULL, 1, null;
+EXEC acce.UDP_InsertUsuario 'Admin', '123', 'correopurbaxd@gmail.com', 1, NULL, 1, null;
 GO
 ALTER TABLE acce.tbRoles
 ADD CONSTRAINT FK_acce_tbRoles_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(role_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),

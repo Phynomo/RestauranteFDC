@@ -550,8 +550,7 @@ GO
 
 --**************************************************************************-
 
-INSERT INTO acce.tbRoles (role_Nombre, role_UsuCreacion, role_FechaCreacion, role_UsuModificacion, role_FechaModificacion)
-VALUES  ('Invitado', 1, GETDATE(), NULL, NULL);
+
 
 --************************************* Roles **************************-
 INSERT INTO acce.tbRoles (role_Nombre, role_UsuCreacion, role_FechaCreacion, role_UsuModificacion, role_FechaModificacion)
@@ -561,46 +560,49 @@ VALUES  ('Invitado', 1, GETDATE(), NULL, NULL),
 		('Supervisor', 1, GETDATE(), NULL, NULL);
 
 --**************************************************************************-
-
+INSERT INTO acce.tbUsuarios (user_NombreUsuario, user_Contrasena, user_Correo, user_Image, user_EsAdmin, role_Id, empe_Id, clie_Id, user_UsuCreacion)
+VALUES  ('Prueba','123','correopruebaxd@gmail.com','https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 0, 1, 1, 1, 1);
 
 --************************************* Platillos **************************-
 
 INSERT INTO rest.tbPlatillos (plat_Nombre, plat_Precio, cate_Id, plat_Imagen, plat_UsuCreacion)
-VALUES ('Tacos al pastor', 50.00, 1, '', 1),
-	   ('Pollo en Salsa de Hongos', 75.00, 2, '', 1),
-	   ('Ensalada César', 60.00, 3, '', 1),
-	   ('Filete Asado', 100.00, 4, '', 1),
-	   ('Sushi variado', 120.00, 2, '', 1),
-	   ('Pasta carbonara', 80.00, 3, '', 1),
-	   ('Sopa de verduras', 40.00, 3, '', 1),
-	   ('Panini de pollo', 55.00, 2, '', 1),
-	   ('Arroz con Almendras', 90.00, 2, '', 1),
-	   ('Lomo de Cerdo', 160.00, 2, '', 1),
-	   ('Alitas de Pollo', 90.00, 2, '', 2),
-	   ('Crepas', 40.00, 2, '', 2),
-	   ('Ensalada de Frutas', 112.00, 2, '', 1),
-	   ('Puré de Papas', 30.00, 2, '', 1),
-	   ('Papa Horneada', 70.00, 2, '', 1),
-	   ('Carne de Res con Brócoli', 125.00, 2, '', 1),
-	   ('Ravioli',130.00, 2, '', 2),
-	   ('Gratén de Coliflor', 190.00, 2, '', 1),
-	   ('Pollo al Vino', 98.00, 2, '', 1),
-	   ('Baleadas', 22.00, 2, '', 1);
+VALUES ('Tacos al pastor', 50.00, 1, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Pollo en Salsa de Hongos', 75.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Ensalada César', 60.00, 3, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Filete Asado', 100.00, 4, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Sushi variado', 120.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Pasta carbonara', 80.00, 3, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Sopa de verduras', 40.00, 3, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Panini de pollo', 55.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Arroz con Almendras', 90.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Lomo de Cerdo', 160.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Alitas de Pollo', 90.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Crepas', 40.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Ensalada de Frutas', 112.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Puré de Papas', 30.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Papa Horneada', 70.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Carne de Res con Brócoli', 125.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Ravioli',130.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Gratén de Coliflor', 190.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Pollo al Vino', 98.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1),
+	   ('Baleadas', 22.00, 2, 'https://pixabay.com/es/photos/cascada-monta%c3%b1a-alpes-7953344/', 1);
 
 
 --**************************************************************************-
 
-
+INSERT INTO rest.tbProveedores(prov_NombreEmpresa, prov_NombreContacto, prov_Telefono, muni_Id, prov_DireccionExacta, prov_UsuCreacion, prov_FechaModificacion, prov_UsuModificacion)
+VALUES('Sula', 'Daniel Espinoza', 8775-6952, 5, 'Una cuadra antes del infierno', 1, NULL, 1);
+GO
 --************************************* Ingredientes **************************-
 
 INSERT INTO rest.tbIngredientes (ingr_Nombre, ingr_PrecioX100gr, prov_Id, ingr_UsuCreacion)
-VALUES ('Harina de trigo', 2.50, 3, 1),
-	   ('Salmón', 26.50, 2, 1),
+VALUES ('Harina de trigo', 2.50, 1, 1),
+	   ('Salmón', 26.50, 1, 1),
 	   ('Queso cheddar rallado', 5.60, 1, 1),
-	   ('Aceitunas negras sin hueso', 1.50, 4, 1),
-	   ('Tomate', 0.75, 5, 1),
-	   ('Cebolla morada', 0.86, 3, 1),
-	   ('Pollo deshuesado', 2.10, 2, 1),
+	   ('Aceitunas negras sin hueso', 1.50, 1, 1),
+	   ('Tomate', 0.75, 1, 1),
+	   ('Cebolla morada', 0.86, 1, 1),
+	   ('Pollo deshuesado', 2.10, 1, 1),
 	   ('Arroz blanco', 0.90, 1, 1),
 	   ('Pollo', 1.40, 1, 1),
 	   ('Sal', 0.65, 1, 1),
@@ -622,7 +624,9 @@ VALUES ('Harina de trigo', 2.50, 3, 1),
 --**************************************************************************-
 
 
---************************************* Roles **************************-
+--************************************* Proveedores **************************-
+
+
 
 --**************************************************************************-
 
