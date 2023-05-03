@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Breadcrumb from './Breadcrumb';
 import { Modal, Accordion, Card } from "react-bootstrap";
-
-
+import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
+import toastr from 'toastr';
 
 
 class ModalCreate extends Component {
@@ -12,7 +11,7 @@ class ModalCreate extends Component {
         this.handleCreate = this.handleCreate.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this); 
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             show: false,
             carg_Descripcion: '',
@@ -36,8 +35,8 @@ class ModalCreate extends Component {
             event.stopPropagation();
         } else {
             const data = {
-                carg_Descripcion: this.state.carg_Descripcion, 
-                carg_UsuCreacion: 1, 
+                carg_Descripcion: this.state.carg_Descripcion,
+                carg_UsuCreacion: 1,
             };
             fetch('https://localhost:44383/api/Cargos/Insertar', {
                 method: 'POST',
@@ -46,22 +45,31 @@ class ModalCreate extends Component {
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => response.json())
-            .then(data => {
-                this.state.carg_Descripcion = null;
-                this.state.validated = false;
-                console.log('Respuesta de la API:', data);
-            })
-            .catch(error => {
-                console.error('Error al enviar los datos:', error);
-            });
-            this.handleClose();
+                .then(response => response.json())
+                .then(data => {
+                    this.state.carg_Descripcion = null;
+                    this.state.validated = false;
+                    console.log('Respuesta de la API:', data);
+                    if (data.message == "Exitoso") {
+                        alertSuccess("Listo", "El registro se realizo con exito","2000");
+                        this.handleClose();
+                    }else if (data.message  == "YaExiste") {
+                        toastr.warning("Este cargo ya existe", "Cargo repetido");
+                    }else{
+                        alertError("Error", "Ocurrio un error mientras se creaba el registro","2000")
+                        this.handleClose();
+                    }
+                    
+                })
+                .catch(error => {
+                    console.error('Error al enviar los datos:', error);
+                });
         }
 
         this.setState({ validated: true });
     }
 
-    handleInputChange(event) { 
+    handleInputChange(event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;

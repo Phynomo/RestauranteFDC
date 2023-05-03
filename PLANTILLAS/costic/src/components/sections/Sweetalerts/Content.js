@@ -70,7 +70,8 @@ class Content extends Component {
         Swal.fire({
             title: 'Auto close alert!',
             html: 'I will close in <strong></strong> seconds.',
-            timer: 2000,
+            timer: 2500,
+            icon: 'warning',
             onBeforeOpen: function onBeforeOpen() {
                 Swal.showLoading();
                 timerInterval = setInterval(function () {
@@ -82,7 +83,6 @@ class Content extends Component {
             }
         }).then(function (result) {
             if (
-                // Read more about handling dismissals
                 result.dismiss === Swal.DismissReason.timer);
         });
     }

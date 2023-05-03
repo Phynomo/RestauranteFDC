@@ -13,6 +13,7 @@ class ModalsPut extends Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmitDelete = this.handleSubmitDelete.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             show: false,
@@ -42,8 +43,9 @@ class ModalsPut extends Component {
             event.stopPropagation();
         } else {
             const data = {
+                carg_Id: this.props.data.carg_Id,
                 carg_Descripcion: this.state.carg_Descripcion,
-                carg_UsuCreacion: 1,
+                carg_UsuModificacion: 1,
             };
             fetch('https://localhost:44383/api/Cargos/Insertar', {
                 method: 'POST',
@@ -67,6 +69,31 @@ class ModalsPut extends Component {
         this.setState({ validated: true });
     }
 
+    handleSubmitDelete() {
+            const data = {
+                carg_Id: this.props.data.carg_Id,
+                carg_UsuModificacion: 1,
+            };
+            fetch('https://localhost:44383/api/Cargos/Insertar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.state.carg_Descripcion = null;
+                    this.state.validated = false;
+                    console.log('Respuesta de la API:', data);
+                })
+                .catch(error => {
+                    console.error('Error al enviar los datos:', error);
+                });
+            this.handleClose();
+        this.setState({ validated: true });
+    }
+
     handleInputChange(event) {
         const target = event.target;
         const value = target.value;
@@ -82,8 +109,8 @@ class ModalsPut extends Component {
             <div>
                 {/* <button onClick={this.handleCreate} className='btn btn-primary btn-pill'>Nuevo registro</button> */}
                 <a style={{ margin: "5px" }} onClick={this.handleEdit}><i class='fas fa-pencil-alt text-secondary'></i></a>
-
                 <a style={{ margin: "5px" }} onClick={this.handleDelete}><i class='far fa-trash-alt ms-text-danger'></i></a>
+                
                 <Modal show={this.state.Edit} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
                     centered>
                     <Modal.Header>
@@ -95,7 +122,7 @@ class ModalsPut extends Component {
                             <div className="ms-form-group has-icon">
                                 <label htmlFor="validationCustom13">Ingresar cargo</label>
                                 <div className="input-group">
-                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Cargo" name="carg_Descripcion" value={this.props.data ? this.props.data.carg_Descripcion : ''} onChange={this.handleInputChange} required />
+                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Cargo" name="carg_Descripcion" value={this.state.carg_Descripcion} onChange={this.handleInputChange} required />
                                     <div className="invalid-feedback">Ingresar el cargo es algo requerido</div>
                                 </div>
                             </div>
@@ -117,7 +144,7 @@ class ModalsPut extends Component {
                     </Modal.Body>
                     <Modal.Footer className='d-flex justify-content-center'> 
                         <button type="button" className="btn btn-light btn-sm" onClick={this.handleClose}>Cancelar</button>
-                        <button type="button" className="btn btn-primary shadow-none btn-sm">Eliminar</button>
+                        <button type="button" className="btn btn-primary shadow-none btn-sm" onClick={this.handleSubmitDelete}>Eliminar</button>
                     </Modal.Footer>
                 </Modal>
             </div>
