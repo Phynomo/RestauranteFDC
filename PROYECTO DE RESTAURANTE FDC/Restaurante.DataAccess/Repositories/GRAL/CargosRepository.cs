@@ -26,13 +26,13 @@ namespace Restaurante.DataAccess.Repositories.GRAL
         {
             using var db = new SqlConnection(RestauranteCon.ConnectionString);
             RequestStatus result = new RequestStatus();
+            
             var parametros = new DynamicParameters();
             parametros.Add("@carg_Descripcion", item.carg_Descripcion, DbType.String, ParameterDirection.Input);
             parametros.Add("@carg_UsuCreacion", item.carg_UsuCreacion, DbType.Int32, ParameterDirection.Input);
             var respuesta = db.QueryFirst<int>(ScriptsDataBase.UDP_Cargos_Insert, parametros, commandType: System.Data.CommandType.StoredProcedure);
 
             result.CodeStatus = respuesta;
-
             return result;
         }
 

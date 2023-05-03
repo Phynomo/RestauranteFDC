@@ -7,26 +7,6 @@ import $ from 'jquery';
 import Table from './table';
 import ModalCreate from './ModalCreate';
 
-const columns = [
-    { field: 'carg_Id', headerName: 'ID', flex: 1 },
-    { field: 'carg_Descripcion', headerName: 'Cargo', flex: 1 },
-     {
-       field: 'actions',
-       headerName: 'Acciones',
-       sortable: false,
-       flex: 1,
-       type: 'number',
-       renderCell: (params) => (
-         <div>
-           <a href="a" style={{ margin: "5px" }}><i class='fas fa-pencil-alt text-secondary'></i></a>
-           <a style={{ margin: "5px" }}><i class='far fa-trash-alt ms-text-danger'></i></a>
-  
-         </div>
-       ),
-     },
-  ];
-
-
 const Content = () => {
     
 

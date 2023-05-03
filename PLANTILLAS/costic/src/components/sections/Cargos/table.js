@@ -2,7 +2,14 @@ import React, { useState, useEffect } from 'react';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 //import { DataGrid } from '@mui/x-data-grid';
 import { DataGrid, GridToolbar,esES } from '@mui/x-data-grid';
+import ModalEdit from './ModalEdit';
 
+
+
+const DataTable = () => {
+  const [searchText, setSearchText] = useState('');
+  const [rows, setRows] = useState([]);
+  
 const columns = [
   { field: 'carg_Id', headerName: 'ID', flex: 1 },
   { field: 'carg_Descripcion', headerName: 'Cargo', flex: 1 },
@@ -13,21 +20,12 @@ const columns = [
      flex: 1,
      type: 'number',
      renderCell: (params) => (
-       <div>
-         <a href="a" style={{ margin: "5px" }}><i class='fas fa-pencil-alt text-secondary'></i></a>
-         <a style={{ margin: "5px" }}><i class='far fa-trash-alt ms-text-danger'></i></a>
-
+       <div className='d-flex justify-content-center'>
+        <ModalEdit data={params.row}/>
        </div>
      ),
    },
 ];
-
-const DataTable = () => {
-  const [searchText, setSearchText] = useState('');
-  const [rows, setRows] = useState([]);
-
-
-
 
   useEffect(() => {
     fetch('https://localhost:44383/api/Cargos/Listado')
@@ -58,7 +56,7 @@ const DataTable = () => {
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-        <h5 style={{ marginLeft: "5px" }} >Empleados</h5>
+        <h5 style={{ marginLeft: "5px" }} >Cargos</h5>
         <div className="input-group" style={{ width: '250px', marginTop: '5px', marginRight: "5px", marginBottom: "-5px" }}>
           <div className="input-group-prepend"> <span className="input-group-text" id="inputGroupPrepend"><i className="flaticon-search" /></span>
           </div>
@@ -78,6 +76,9 @@ const DataTable = () => {
         pageSizeOptions={[5, 10, 15, 25, 50]}
         localeText={esES.components.MuiDataGrid.defaultProps.localeText}
       />
+      
+
+      
     </div>
   );
 };
