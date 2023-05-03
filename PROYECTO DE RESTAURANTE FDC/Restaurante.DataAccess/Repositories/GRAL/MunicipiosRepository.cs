@@ -26,7 +26,24 @@ namespace Restaurante.DataAccess.Repositories.GRAL
         {
             throw new NotImplementedException();
         }
+        public RequestStatus NewMunicipio(tbMunicipios item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@muni_Nombre", item.muni_Nombre, DbType.String, ParameterDirection.Input);
+            parameters.Add("@muni_Codigo", item.muni_Codigo, DbType.String, ParameterDirection.Input);
+            parameters.Add("@depa_Id", item.depa_Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@muni_UsuCreacion", item.muni_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.InsertarMunicipio, parameters, commandType: CommandType.StoredProcedure);
 
+            RequestStatus reques = new()
+            {
+                CodeStatus = result,
+                MessageStatus = "Municipio insertado !"
+            };
+
+            return reques;
+        }
         public IEnumerable<VW_tbMunicipios> List()
         {
             using var db = new SqlConnection(RestauranteCon.ConnectionString);

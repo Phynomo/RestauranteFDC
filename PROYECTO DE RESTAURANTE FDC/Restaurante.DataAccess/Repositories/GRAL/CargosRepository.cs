@@ -44,6 +44,7 @@ namespace Restaurante.DataAccess.Repositories.GRAL
             return reques;
         }
 
+
         public IEnumerable<VW_tbCargos> List()
         {
             using var db = new SqlConnection(RestauranteCon.ConnectionString);

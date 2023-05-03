@@ -76,6 +76,7 @@ namespace Restaurante.DataAccess
         #region Municipios
 
         public static string UDP_Municipios_List = "gral.UDP_tbMunicipios_Select";
+        public static string InsertarMunicipio = "gral.UDP_tbMunicipios_Insert";
 
         #endregion
 
