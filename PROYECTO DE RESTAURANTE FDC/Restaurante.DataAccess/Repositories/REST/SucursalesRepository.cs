@@ -26,6 +26,25 @@ namespace Restaurante.DataAccess.Repositories.REST
         {
             throw new NotImplementedException();
         }
+        public RequestStatus NewBranch(tbSucursales item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@sucu_Nombre", item.sucu_Nombre, DbType.String, ParameterDirection.Input);
+            parameters.Add("@muni_Id", item.muni_Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@sucu_Direccion", item.sucu_Direccion, DbType.String, ParameterDirection.Input);
+            parameters.Add("@sucu_UsuCreacion", item.sucu_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.InsertarSucursales, parameters, commandType: CommandType.StoredProcedure);
+
+            RequestStatus reques = new()
+            {
+                CodeStatus = result,
+                MessageStatus = "Sucursal insertada !"
+            };
+
+            return reques;
+        }
 
         public IEnumerable<VW_tbSucursales> List()
         {

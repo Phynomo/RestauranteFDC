@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restaurante.BusinessLogic.Services.RestauranteService;
+using Restaurante.Entities.Entities;
+using Restaurante.WEBUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,11 +31,11 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(list);
         }
 
-        [HttpPost("InsertarEmpleados")]
-        public IActionResult InsertarEmpleado(EmpleadoViewModel empleado)
+        [HttpPost("InsertarProveedores")]
+        public IActionResult InsertarProveedores(ProveedorViewModel proveedor)
         {
-            var item = _mapper.Map<tbEmpleados>(empleado);
-            var response = _restauranteServicio.InsertarEmpleados(item);
+            var item = _mapper.Map<tbProveedores>(proveedor);
+            var response = _restauranteServicio.InsertarProveedor(item);
             return Ok(response);
         }
     }

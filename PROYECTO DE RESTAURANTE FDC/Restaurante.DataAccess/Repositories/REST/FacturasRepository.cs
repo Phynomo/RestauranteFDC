@@ -27,6 +27,29 @@ namespace Restaurante.DataAccess.Repositories.REST
             throw new NotImplementedException();
         }
 
+
+
+        public RequestStatus NewBill(tbFacturas item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@clie_Id",item.clie_Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@empe_Id",item.empe_Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@metp_Id",item.metp_Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@fact_Cerrada",item.fact_Cerrada, DbType.Boolean, ParameterDirection.Input);
+            parameters.Add("@fact_UsuCreacion",item.fact_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.InsertarFactura, parameters, commandType: CommandType.StoredProcedure);
+
+            RequestStatus reques = new()
+            {
+                CodeStatus = result,
+                MessageStatus = "Factura insertada !"
+            };
+
+            return reques;
+        }
+
         public IEnumerable<VW_tbFacturas> List()
         {
             using var db = new SqlConnection(RestauranteCon.ConnectionString);

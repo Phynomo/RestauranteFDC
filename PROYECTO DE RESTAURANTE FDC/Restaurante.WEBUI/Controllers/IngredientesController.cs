@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restaurante.BusinessLogic.Services.RestauranteService;
+using Restaurante.Entities.Entities;
+using Restaurante.WEBUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,14 @@ namespace Restaurante.WEBUI.Controllers
         {
             var list = _restauranteServicio.ListadoIngredientes();
             return Ok(list);
+        }
+
+        [HttpPost("InsertarIngrediente")]
+        public IActionResult InsertarIngredientes(IngredienteViewModel ingrediente)
+        {
+            var item = _mapper.Map<tbIngredientes>(ingrediente);
+            var response = _restauranteServicio.InsertarIngrediente(item);
+            return Ok(response);
         }
     }
 }

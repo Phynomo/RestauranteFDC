@@ -30,13 +30,12 @@ namespace Restaurante.DataAccess.Repositories.REST
         public RequestStatus NewSupplier(tbProveedores item)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@clie_Nombres", item.clie_Nombres, DbType.String, ParameterDirection.Input);
-            parameters.Add("@clie_Apellidos", item.clie_Apellidos, DbType.String, ParameterDirection.Input);
-            parameters.Add("@clie_Identidad", item.clie_Identidad, DbType.String, ParameterDirection.Input);
-            parameters.Add("@clie_RTN", item.clie_RTN, DbType.String, ParameterDirection.Input);
-            parameters.Add("@clie_Sexo", item.clie_Sexo, DbType.String, ParameterDirection.Input);
-            parameters.Add("@clie_Telefono", item.clie_Telefono, DbType.String, ParameterDirection.Input);
-            parameters.Add("@clie_UsuCreacion", item.clie_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@prov_NombreEmpresa",item.prov_NombreEmpresa, DbType.String, ParameterDirection.Input);
+            parameters.Add("@prov_NombreContacto",item.prov_NombreContacto, DbType.String, ParameterDirection.Input);
+            parameters.Add("@prov_Telefono",item.prov_Telefono, DbType.String, ParameterDirection.Input);
+            parameters.Add("@muni_Id",item.muni_Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@prov_DireccionExacta",item.prov_DireccionExacta, DbType.String, ParameterDirection.Input);
+            parameters.Add("@prov_UsuCreacion",item.prov_UsuCreacion, DbType.Int32, ParameterDirection.Input);
             using var db = new SqlConnection(RestauranteCon.ConnectionString);
             var result = db.QueryFirst<int>(ScriptsDataBase.InsertarProveedores, parameters, commandType: CommandType.StoredProcedure);
 
