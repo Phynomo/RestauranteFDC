@@ -111,6 +111,27 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             }
         }
 
+        public ServiceResult EliminarDepartamentos(tbDepartamentos item)
+        {
+            var result = new ServiceResult();
+
+            try
+            {
+                var insert = _departamentosRepository.Delete(item);
+
+                if (insert.CodeStatus == 1)
+                    return result.SetMessage("Registro eliminado", ServiceResultType.Success);
+                else if (insert.CodeStatus == 0)
+                    return result.SetMessage("Error Inesperado", ServiceResultType.Error);
+                else
+                    return result.SetMessage("Conexión perdida", ServiceResultType.Error);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
         #endregion
 
         #region Cargos
@@ -187,6 +208,27 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             }
         }
 
+        public ServiceResult EliminarCargos(tbCargos item)
+        {
+            var result = new ServiceResult();
+
+            try
+            {
+                var insert = _cargosRepository.Delete(item);
+
+                if (insert.CodeStatus == 1)
+                    return result.SetMessage("Registro eliminado", ServiceResultType.Success);
+                else if (insert.CodeStatus == 0)
+                    return result.SetMessage("Error Inesperado", ServiceResultType.Error);
+                else
+                    return result.SetMessage("Conexión perdida", ServiceResultType.Error);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
         #endregion
 
         #region Categorias
@@ -260,6 +302,27 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             {
 
                 return result.Error(xe.Message);
+            }
+        }
+
+        public ServiceResult EliminarCategorias(tbCategorias item)
+        {
+            var result = new ServiceResult();
+
+            try
+            {
+                var insert = _categoriaRepository.Delete(item);
+
+                if (insert.CodeStatus == 1)
+                    return result.SetMessage("Registro eliminado", ServiceResultType.Success);
+                else if (insert.CodeStatus == 0)
+                    return result.SetMessage("Error Inesperado", ServiceResultType.Error);
+                else
+                    return result.SetMessage("Conexión perdida", ServiceResultType.Error);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
             }
         }
 
@@ -340,6 +403,26 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             }
         }
 
+        public ServiceResult EliminarEstadosCiviles(tbEstadosCiviles item)
+        {
+            var result = new ServiceResult();
+
+            try
+            {
+                var insert = _estadosCivilesRepository.Delete(item);
+
+                if (insert.CodeStatus == 1)
+                    return result.SetMessage("Registro eliminado", ServiceResultType.Success);
+                else if (insert.CodeStatus == 0)
+                    return result.SetMessage("Error Inesperado", ServiceResultType.Error);
+                else
+                    return result.SetMessage("Conexión perdida", ServiceResultType.Error);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
 
         #endregion
 
@@ -415,6 +498,27 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             {
 
                 return result.Error(xe.Message);
+            }
+        }
+
+        public ServiceResult EliminarMetodosPago(tbMetodosPago item)
+        {
+            var result = new ServiceResult();
+
+            try
+            {
+                var insert = _metodosPagoRepository.Delete(item);
+
+                if (insert.CodeStatus == 1)
+                    return result.SetMessage("Registro eliminado", ServiceResultType.Success);
+                else if (insert.CodeStatus == 0)
+                    return result.SetMessage("Error Inesperado", ServiceResultType.Error);
+                else
+                    return result.SetMessage("Conexión perdida", ServiceResultType.Error);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
             }
         }
 
@@ -495,6 +599,26 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             }
         }
 
+        public ServiceResult EliminarMunicipios(tbMunicipios item)
+        {
+            var result = new ServiceResult();
+
+            try
+            {
+                var insert = _municipiosRepository.Delete(item);
+
+                if (insert.CodeStatus == 1)
+                    return result.SetMessage("Registro eliminado", ServiceResultType.Success);
+                else if (insert.CodeStatus == 0)
+                    return result.SetMessage("Error Inesperado", ServiceResultType.Error);
+                else
+                    return result.SetMessage("Conexión perdida", ServiceResultType.Error);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
 
         #endregion
 

@@ -47,5 +47,13 @@ namespace Restaurante.WEBUI.Controllers
             var response = _generalServivce.EditarCategorias(item);
             return Ok(response);
         }
+        
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(CategoriaViewModel categoria)
+        {
+            var item = _mapper.Map<tbCategorias>(categoria);
+            var result = _generalServivce.EliminarCategorias(item);
+            return Ok(result);
+        }
     }
 }

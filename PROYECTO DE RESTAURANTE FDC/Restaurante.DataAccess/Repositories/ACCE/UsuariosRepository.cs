@@ -15,7 +15,16 @@ namespace Restaurante.DataAccess.Repositories.ACCE
     {
         public RequestStatus Delete(tbUsuarios item)
         {
-            throw new NotImplementedException();
+            RequestStatus result = new RequestStatus();
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@user_Id", item.user_Id, DbType.Int32, ParameterDirection.Input);
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_Usuarios_Delete, parametros, commandType: System.Data.CommandType.StoredProcedure);
+
+            result.CodeStatus = resultado;
+
+            return result;
         }
 
         public VW_tbUsuarios Find(int? id)

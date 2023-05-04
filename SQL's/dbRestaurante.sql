@@ -147,13 +147,13 @@ CREATE TABLE gral.tbMunicipios(
 GO
 --tbEstadosCiviles
 CREATE TABLE gral.tbEstadosCiviles(
-eciv_Id                        INT IdENTITY(1,1),
-eciv_Descripcion            VARCHAR(100),
-eciv_UsuCreacion            INT NOT NULL,
-eciv_FechaCreacion            DATETIME NOT NULL CONSTRAINT DF_gral_TbEstadosCiviles_eciv_FechaCreacion    DEFAULT(GETDATE()),
-eciv_UsuModificacion        INT,
-eciv_FechaModificacion        DATETIME,
-eciv_Estado                    BIT NOT NULL CONSTRAINT DF_gral_TbEstadosCiviles_eciv_Estado    DEFAULT(1)
+	eciv_Id                        INT IdENTITY(1,1),
+	eciv_Descripcion				VARCHAR(100),
+	eciv_UsuCreacion				INT NOT NULL,
+	eciv_FechaCreacion				DATETIME NOT NULL CONSTRAINT DF_gral_TbEstadosCiviles_eciv_FechaCreacion    DEFAULT(GETDATE()),
+	eciv_UsuModificacion			INT,
+	eciv_FechaModificacion			DATETIME,
+	eciv_Estado						BIT NOT NULL CONSTRAINT DF_gral_TbEstadosCiviles_eciv_Estado    DEFAULT(1)
 CONSTRAINT     PK_gral_tbEstadosCiviles_ectv_Id PRIMARY KEY(eciv_Id),
 CONSTRAINT    FK_gral_tbEstadosCiviles_UsuCreacion_usua_Id        FOREIGN KEY(eciv_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),
 CONSTRAINT    FK_gral_tbEstadosCiviles_UsuModificacion_usua_Id    FOREIGN KEY(eciv_UsuModificacion) REFERENCES acce.tbUsuarios([user_Id])
@@ -161,13 +161,13 @@ CONSTRAINT    FK_gral_tbEstadosCiviles_UsuModificacion_usua_Id    FOREIGN KEY(ec
 GO
 --tbMetodosPago
 CREATE TABLE gral.tbMetodosPago(
-metp_Id                        INT IDENTITY(1,1),
-metp_Descripcion            VARCHAR(100),
-metp_UsuCreacion            INT NOT NULL,
-metp_FechaCreacion            DATETIME NOT NULL CONSTRAINT DF_gral_TbMetodosPago_metp_FechaCreacion    DEFAULT(GETDATE()),
-metp_UsuModificacion        INT,
-metp_FechaModificacion        DATETIME,
-metp_Estado                    BIT NOT NULL CONSTRAINT DF_gral_tbMetodosPago_eciv_Estado    DEFAULT(1)
+	metp_Id							INT IDENTITY(1,1),
+	metp_Descripcion				VARCHAR(100),
+	metp_UsuCreacion				INT NOT NULL,
+	metp_FechaCreacion				DATETIME NOT NULL CONSTRAINT DF_gral_TbMetodosPago_metp_FechaCreacion    DEFAULT(GETDATE()),
+	metp_UsuModificacion			INT,
+	metp_FechaModificacion			DATETIME,
+	metp_Estado						BIT NOT NULL CONSTRAINT DF_gral_tbMetodosPago_eciv_Estado    DEFAULT(1)
 CONSTRAINT    PK_gral_tbMetodosPago_metp_Id PRIMARY KEY(metp_Id),
 CONSTRAINT    FK_gral_tbMetodosPago_UsuCreacion_usua_Id        FOREIGN KEY(metp_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),
 CONSTRAINT    FK_gral_tbMetodosPago_UsuModificacion_usua_Id    FOREIGN KEY(metp_UsuModificacion) REFERENCES acce.tbUsuarios([user_Id])

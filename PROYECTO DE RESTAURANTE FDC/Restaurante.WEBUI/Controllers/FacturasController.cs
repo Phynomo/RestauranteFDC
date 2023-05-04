@@ -47,5 +47,12 @@ namespace Restaurante.WEBUI.Controllers
             var response = _restauranteServicio.InsertarFactura(item);
             return Ok(response);
         }
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(FacturaViewModel facturas)
+        {
+            var item = _mapper.Map<tbFacturas>(facturas);
+            var result = _restauranteServicio.EliminarFacturas(item);
+            return Ok(result);
+        }
     }
 }

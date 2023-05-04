@@ -47,5 +47,13 @@ namespace Restaurante.WEBUI.Controllers
             var response = _restauranteServicio.InsertarProveedor(item);
             return Ok(response);
         }
+        
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(ProveedorViewModel cliente)
+        {
+            var item = _mapper.Map<tbProveedores>(cliente);
+            var result = _restauranteServicio.EliminarProveedores(item);
+            return Ok(result);
+        }
     }
 }

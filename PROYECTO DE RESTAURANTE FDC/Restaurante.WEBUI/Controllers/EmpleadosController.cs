@@ -46,5 +46,13 @@ namespace Restaurante.WEBUI.Controllers
             var response = _restauranteServicio.InsertarEmpleados(item);
             return Ok(response);
         }
+        
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(EmpleadoViewModel empleado)
+        {
+            var item = _mapper.Map<tbEmpleados>(empleado);
+            var result = _restauranteServicio.EliminarEmpleados(item);
+            return Ok(result);
+        }
     }
 }

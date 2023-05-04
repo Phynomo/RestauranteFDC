@@ -38,5 +38,13 @@ namespace Restaurante.WEBUI.Controllers
             var response = _seguridadServivce.EditarRol(item);
             return Ok(response);
         }
+        
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(RolViewModel roles)
+        {
+            var item = _mapper.Map<tbRoles>(roles);
+            var result = _seguridadServivce.EliminarRoles(item);
+            return Ok(result);
+        }
     }
 }

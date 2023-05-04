@@ -47,5 +47,13 @@ namespace Restaurante.WEBUI.Controllers
             var response = _restauranteServicio.InsertarPlatillos(item);
             return Ok(response);
         }
+        
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(PlatilloViewModel facturas)
+        {
+            var item = _mapper.Map<tbPlatillos>(facturas);
+            var result = _restauranteServicio.EliminarPlatillos(item);
+            return Ok(result);
+        }
     }
 }
