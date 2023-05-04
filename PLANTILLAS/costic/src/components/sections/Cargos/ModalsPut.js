@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from './Breadcrumb';
 import { Modal, Accordion, Card } from "react-bootstrap";
-
-
+import axios from 'axios';
+import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
+import toastr from 'toastr';
 
 
 class ModalsPut extends Component {
@@ -42,54 +43,54 @@ class ModalsPut extends Component {
         if (form.checkValidity() === false) {
             event.stopPropagation();
         } else {
-            const data = {
+            let data = {
                 carg_Id: this.props.data.carg_Id,
                 carg_Descripcion: this.state.carg_Descripcion,
                 carg_UsuModificacion: 1,
             };
-            fetch('https://localhost:44383/api/Cargos/Insertar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    this.state.carg_Descripcion = null;
+
+            axios.put('api/Cargos/Editar', data)
+            .then(response => {
+                console.log(response.data);
+                if (response.data.message == "Exitoso") {
+                    alertSuccess("Listo", "El registro se edito con exito", "2000");
                     this.state.validated = false;
-                    console.log('Respuesta de la API:', data);
-                })
-                .catch(error => {
-                    console.error('Error al enviar los datos:', error);
-                });
-            this.handleClose();
+                    this.handleClose();
+                } else if (response.data.message == "YaExiste") {
+                    toastr.warning("Este cargo ya existe", "Cargo repetido");
+                } else {
+                    alertError("Error", "Ocurrio un error mientras se editaba el registro", "2000")
+                    this.state.validated = false;
+                    this.handleClose();
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
         }
 
         this.setState({ validated: true });
     }
 
     handleSubmitDelete() {
-            const data = {
+            let data = {
                 carg_Id: this.props.data.carg_Id,
                 carg_UsuModificacion: 1,
             };
-            fetch('https://localhost:44383/api/Cargos/Insertar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
+            axios.put('api/Cargos/Eliminar', data)
+            .then(response => {
+                console.log(response.data);
+                if (response.data.message == "Registro eliminado") {
+                    alertSuccess("Listo", "El registro se elimino con exito", "2000");
+                    this.handleClose();
+                }else {
+                    alertError("Error", "Ocurrio un error mientras se eliminaba el registro", "2000")
+                    this.handleClose();
+                }
             })
-                .then(response => response.json())
-                .then(data => {
-                    this.state.carg_Descripcion = null;
-                    this.state.validated = false;
-                    console.log('Respuesta de la API:', data);
-                })
-                .catch(error => {
-                    console.error('Error al enviar los datos:', error);
-                });
+            .catch(error => {
+                console.log(error);
+            });
             this.handleClose();
         this.setState({ validated: true });
     }

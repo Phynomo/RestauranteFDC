@@ -21,6 +21,8 @@ class ModalCreate extends Component {
     }
 
     handleCreate() {
+        this.state.validated = false;
+        this.state.carg_Descripcion = null;
         this.setState({ create: true });
     }
 
@@ -43,16 +45,18 @@ class ModalCreate extends Component {
             axios.post('api/Cargos/Insertar', data, {
             })
                 .then(response => {
-                    this.state.carg_Descripcion = null;
-                    this.state.validated = false;
                     console.log('Respuesta de la API:', response);
                     if (response.data.message == "Exitoso") {
                         alertSuccess("Listo", "El registro se realizo con exito", "2000");
+                        this.state.validated = false;
+                        this.state.carg_Descripcion = null;
                         this.handleClose();
                     } else if (response.data.message == "YaExiste") {
                         toastr.warning("Este cargo ya existe", "Cargo repetido");
                     } else {
                         alertError("Error", "Ocurrio un error mientras se creaba el registro", "2000")
+                        this.state.validated = false;
+                        this.state.carg_Descripcion = null;
                         this.handleClose();
                     }
 
