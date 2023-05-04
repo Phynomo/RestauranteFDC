@@ -1,98 +1,108 @@
-import React,{ useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import {Link,useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import toastr from 'toastr';
 
-  
+
 function Login() {
-    const navigate = useHistory ();
+    const navigate = useHistory();
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [validationErrors, setValidationErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
- 
-    useEffect(()=>{
-        if(localStorage.getItem('token') != "" && localStorage.getItem('token') != null){
+
+    useEffect(() => {
+        if (localStorage.getItem('token') != "" && localStorage.getItem('token') != null) {
             navigate.push('/');
         }
         console.log(localStorage.getItem('token'))
-    },[])
- 
+    }, [])
+
     const loginAction = (e) => {
         setValidationErrors({})
         e.preventDefault();
         setIsSubmitting(true)
         let payload = {
-            usua_Usuario:email,
-            usua_Clave:password,
+            usua_Usuario: email,
+            usua_Clave: password,
         }
-        axios.get('pokemon/mudkip')
-        .then((r) => {
-            setIsSubmitting(false)
-         localStorage.setItem('token', "si")
-         navigate.push('/');
-        })
-        .catch((e) => {
-            console.log(e);
-        });
+        console.log(payload);
+        axios.post('api/Login/ValidarLogin',payload)
+            .then((r) => {
+                console.log(r);
+                if (r.data != null) {
+                    //si existe el usuario entra aca 
+                    setIsSubmitting(false)
+                    localStorage.setItem('token', "si")
+                    navigate.push('/');
+                }else{
+                    //si no existe el usuario entra aca 
+                    toastr.error("Usuario o contraseña erroneos", "Error");
+                }
+
+            })
+            .catch((e) => {
+                console.log(e);
+            });
     }
- 
-     
+
+
     return (
-            <div className="row justify-content-md-center mt-5">
-                <div className="col-4">
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title mb-4">Sign In</h5>
-                            <form onSubmit={(e)=>{loginAction(e)}}>
-                                {Object.keys(validationErrors).length != 0 &&
-                                     <p className='text-center '><small className='text-danger'>Incorrect Email or Password</small></p>
-                                }
-                                
-                                <div className="mb-3">
-                                    <label 
-                                        htmlFor="email"
-                                        className="form-label">
-                                            Email address
-                                    </label>
-                                    <input 
-                                        type="text"
-                                        className="form-control"
-                                        id="email"
-                                        name="email"
-                                        value={email}
-                                        onChange={(e)=>{setEmail(e.target.value)}}
-                                    />
-                                </div>
-                                <div className="mb-3">
-                                    <label 
-                                        htmlFor="password"
-                                        className="form-label">Password
-                                    </label>
-                                    <input 
-                                        type="password"
-                                        className="form-control"
-                                        id="password"
-                                        name="password"
-                                        value={password}
-                                        onChange={(e)=>{setPassword(e.target.value)}}
-                                    />
-                                </div>
-                                <div className="d-grid gap-2">
-                                    <button 
-                                        disabled={isSubmitting}
-                                        type="submit"
-                                        className="btn btn-primary btn-block">Login</button>
-                                    <p className="text-center">Don't have account? <Link to="/register">Registrase Aqui</Link></p>
-                                </div>
-                            </form>
-                        </div>
+        <div className="row justify-content-md-center mt-5">
+            <div className="col-4">
+                <div className="card">
+                    <div className="card-body">
+                        <h5 className="card-title mb-4">Sign In</h5>
+                        <form onSubmit={(e) => { loginAction(e) }}>
+                            {Object.keys(validationErrors).length != 0 &&
+                                <p className='text-center '><small className='text-danger'>Incorrect Email or Password</small></p>
+                            }
+
+                            <div className="mb-3">
+                                <label
+                                    htmlFor="email"
+                                    className="form-label">
+                                    Email address
+                                </label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="email"
+                                    name="email"
+                                    value={email}
+                                    onChange={(e) => { setEmail(e.target.value) }}
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label
+                                    htmlFor="password"
+                                    className="form-label">Password
+                                </label>
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    id="password"
+                                    name="password"
+                                    value={password}
+                                    onChange={(e) => { setPassword(e.target.value) }}
+                                />
+                            </div>
+                            <div className="d-grid gap-2">
+                                <button
+                                    disabled={isSubmitting}
+                                    type="submit"
+                                    className="btn btn-primary btn-block">Login</button>
+                                <p className="text-center">Don't have account? <Link to="/register">Registrase Aqui</Link></p>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
     );
 }
-   
-export default Login;
+
+export default Login;
 
 
 
