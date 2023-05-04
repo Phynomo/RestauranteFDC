@@ -21,10 +21,6 @@
     <ProjectReference Include="..\Restaurante.BusinessLogic\Restaurante.BusinessLogic.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

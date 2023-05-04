@@ -1,0 +1,21 @@
+Procedimientos Almacenados
+	Estados Civiles
+	Departamentos
+	Roles
+	Categorias
+	Cargos
+	Clientes -largo
+	Empleados -largo
+	PantallasPorRoles
+	Usuarios
+	Municipios
+	Metodos de Pago
+	Sucursales
+	Ingredientes
+	
+Modelo(tabla y vista)
+Create mapping agg 2
+Controller
+Service
+Repository
+ScriptsDataBase

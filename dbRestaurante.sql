@@ -58,6 +58,7 @@ CREATE TABLE acce.tbUsuarios(
 	[user_Id] 				INT IDENTITY(1,1),
 	user_NombreUsuario		NVARCHAR(100) NOT NULL,
 	user_Contrasena			NVARCHAR(MAX) NOT NULL,
+	user_Correo				NVARCHAR(200),
 	user_Image				NVARCHAR(MAX),
 	user_EsAdmin			BIT,
 	role_Id					INT,
@@ -75,6 +76,7 @@ GO
 CREATE OR ALTER PROCEDURE acce.UDP_InsertUsuario
 	@user_NombreUsuario NVARCHAR(100),	
     @user_Contrasena NVARCHAR(200),
+	@user_Correo NVARCHAR(200),
 	@user_EsAdmin BIT,					
     @role_Id INT, 
 	@empe_Id INT, 
@@ -83,13 +85,13 @@ AS
 BEGIN
 	DECLARE @password NVARCHAR(MAX)=(SELECT HASHBYTES('Sha2_512', @user_Contrasena));
 
-	INSERT acce.tbUsuarios(user_NombreUsuario, user_Contrasena, user_EsAdmin, role_Id, empe_Id, clie_id,  user_UsuCreacion)
-	VALUES(@user_NombreUsuario, @password, @user_EsAdmin, @role_Id, @empe_Id,@clie_Id, 1);
+	INSERT acce.tbUsuarios(user_NombreUsuario, user_Correo, user_Contrasena, user_EsAdmin, role_Id, empe_Id, clie_id, user_UsuCreacion)
+	VALUES(@user_NombreUsuario, @password, @user_Correo, @user_EsAdmin, @role_Id, @empe_Id,@clie_Id, 1);
 END;
 
 
 GO
-EXEC acce.UDP_InsertUsuario 'Admin', '123', 1, NULL, 1, null;
+EXEC acce.UDP_InsertUsuario 'Admin', '123', 'correopurbaxd@gmail.com', 1, NULL, 1, null;
 GO
 ALTER TABLE acce.tbRoles
 ADD CONSTRAINT FK_acce_tbRoles_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(role_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),
@@ -526,10 +528,12 @@ CREATE TABLE rest.tbPlatillosHistorial(
     plat_Precio				             DECIMAL(18,2) NOT NULL,
 	cate_Id								 INT NOT NULL,
     plat_FechaCreacion		             DATETIME ,
-    plat_UsuCreacion		         INT NOT null,
+    plat_UsuCreacion					 INT NOT null,
     plat_FechaModificacion	             DATETIME,
-    plat_UsuModificacion             INT,
+    plat_UsuModificacion				 INT,
     plat_Estado                          BIT
+	CONSTRAINT PK_rest_tbPlatillosHistorial_plat_Id PRIMARY KEY(plat_Id)
+
 );
 GO
 CREATE TABLE rest.tbIngredientesHistorial(
@@ -542,6 +546,7 @@ CREATE TABLE rest.tbIngredientesHistorial(
     ingr_FechaModificacion	             DATETIME,
     ingr_UsuModificacion             INT,
     ingr_Estado                          BIT NOT NULL DEFAULT 1,
+	CONSTRAINT PK_rest_tbIngredientesHistorial_ingr_Id PRIMARY KEY(ingr_Id)
 );
 GO
 

@@ -1,0 +1,22 @@
+Estados Civiles --
+Departamentos --
+Roles --
+Categorias --
+Cargos --
+Clientes --
+Empleados --
+Pantallas ??
+PantallasPorRoles ??
+Usuarios --
+Municipios --
+Metodos de pago --
+Sucursales --
+Ingredientes
+IngredientesXSucursal 
+Platillos --
+IngredientesXPlatillo
+Facturas
+FacturasDetalle
+PlatilllosHistorial X
+IngredientesHistorial X
+Reservaciones X

@@ -6,6 +6,7 @@ AS
 SELECT T1.[user_Id]
       ,T1.[user_NombreUsuario]
       ,T1.[user_Contrasena]
+      ,T1.[user_Correo]
 	  ,T1.[user_Image]
       ,T1.[user_EsAdmin]
       ,T1.[role_Id]

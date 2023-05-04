@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restaurante.BusinessLogic.Services.AccesoService;
+using Restaurante.Entities.Entities;
+using Restaurante.WEBUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +31,19 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(list);
         }
 
+        [HttpGet("Login")]
+        public IActionResult Login(string usuario, string contrasena)
+        {
+            var list = _seguridadServivce.Login(usuario, contrasena);
+            return Ok(list);
+        }
 
+        [HttpPut("Recuperar")]
+        public IActionResult Recuperar(tbUsuariosViewModel usuarios)
+        {
+            var item = _mapper.Map<tbUsuarios>(usuarios);
+            var response = _seguridadServivce.RecuperarUsuarios(item);
+            return Ok(response);
+        }
     }
 }
