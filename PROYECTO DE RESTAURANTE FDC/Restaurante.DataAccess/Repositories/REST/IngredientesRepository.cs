@@ -27,6 +27,25 @@ namespace Restaurante.DataAccess.Repositories.REST
             throw new NotImplementedException();
         }
 
+        public RequestStatus NewIngrediente(tbIngredientes item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@ingr_Nombre",item.ingr_Nombre, DbType.String, ParameterDirection.Input);
+            parameters.Add("@ingr_PrecioX100gr",item.ingr_PrecioX100gr, DbType.Decimal, ParameterDirection.Input);
+            parameters.Add("@prov_Id",item.prov_Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@ingr_UsuCreacion",item.ingr_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.InsertarIngredientes, parameters, commandType: CommandType.StoredProcedure);
+
+            RequestStatus reques = new()
+            {
+                CodeStatus = result,
+                MessageStatus = "Ingrediente insertado !"
+            };
+
+            return reques;
+        }
+
         public IEnumerable<VW_tbIngredientes> List()
         {
             using var db = new SqlConnection(RestauranteCon.ConnectionString);

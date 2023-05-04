@@ -39,5 +39,13 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(response);
         }
 
+
+        [HttpPost("InsertarFactura")]
+        public IActionResult InsertarFactura(FacturaViewModel factura)
+        {
+            var item = _mapper.Map<tbFacturas>(factura);
+            var response = _restauranteServicio.InsertarFactura(item);
+            return Ok(response);
+        }
     }
 }

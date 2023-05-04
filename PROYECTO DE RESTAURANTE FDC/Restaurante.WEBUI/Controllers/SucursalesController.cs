@@ -38,5 +38,13 @@ namespace Restaurante.WEBUI.Controllers
             var response = _restauranteServicio.EditarSucursal(item);
             return Ok(response);
         }
+        
+        [HttpPost("InsertarSucursal")]
+        public IActionResult InsertarSucursal(SucuarsalViewModel sucursal)
+        {
+            var item = _mapper.Map<tbSucursales>(sucursal);
+            var response = _restauranteServicio.InsertarSucursal(item);
+            return Ok(response);
+        }
     }
 }

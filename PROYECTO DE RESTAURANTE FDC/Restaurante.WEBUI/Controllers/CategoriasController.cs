@@ -34,7 +34,6 @@ namespace Restaurante.WEBUI.Controllers
         [HttpPost("InsertarCategoria")]
         public IActionResult InsertarCategoria(CategoriaViewModel categoria)
         {
-
             var item = _mapper.Map<tbCategorias>(categoria);
             var response = _generalServivce.InsertarCategorias(item);
             return Ok(response);

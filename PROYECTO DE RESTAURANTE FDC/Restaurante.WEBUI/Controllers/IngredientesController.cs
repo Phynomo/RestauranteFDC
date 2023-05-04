@@ -39,5 +39,12 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(response);
         }
 
+        [HttpPost("InsertarIngrediente")]
+        public IActionResult InsertarIngredientes(IngredienteViewModel ingrediente)
+        {
+            var item = _mapper.Map<tbIngredientes>(ingrediente);
+            var response = _restauranteServicio.InsertarIngrediente(item);
+            return Ok(response);
+        }
     }
 }

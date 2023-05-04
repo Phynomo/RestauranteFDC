@@ -157,6 +157,7 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
                 return result.Error(e.Message);
             }
         }
+        
         public ServiceResult EditarCargos(tbCargos cargo)
         {
             var result = new ServiceResult();

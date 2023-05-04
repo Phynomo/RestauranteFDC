@@ -38,5 +38,14 @@ namespace Restaurante.WEBUI.Controllers
             var response = _restauranteServicio.EditarProveedores(item);
             return Ok(response);
         }
+
+
+        [HttpPost("InsertarProveedores")]
+        public IActionResult InsertarProveedores(ProveedorViewModel proveedor)
+        {
+            var item = _mapper.Map<tbProveedores>(proveedor);
+            var response = _restauranteServicio.InsertarProveedor(item);
+            return Ok(response);
+        }
     }
 }
