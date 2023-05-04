@@ -1,0 +1,4 @@
+Lista de codigos de error 
+-2 valor repetido
+0 entro a catch
+>0 insert exitoso 

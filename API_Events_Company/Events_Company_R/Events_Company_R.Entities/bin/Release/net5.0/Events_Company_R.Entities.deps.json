@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Events_Company_R.Entities/1.0.0": {
+        "runtime": {
+          "Events_Company_R.Entities.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Events_Company_R.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

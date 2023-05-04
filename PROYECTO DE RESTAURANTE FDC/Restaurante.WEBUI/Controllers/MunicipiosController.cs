@@ -32,11 +32,27 @@ namespace Restaurante.WEBUI.Controllers
         }
 
         [HttpPost("InsertarMunicipios")]
-        public IActionResult InsertarCargo(MunicipioViewModel muni)
+        public IActionResult Insert(MunicipioViewModel muni)
         {
             var item = _mapper.Map<tbMunicipios>(muni);
             var response = _generalServivce.InsertarMunicipios(item);
             return Ok(response);
+        }
+
+        [HttpPut("EditarMunicipios")]
+        public IActionResult Edit(MunicipioViewModel muni)
+        {
+            var item = _mapper.Map<tbMunicipios>(muni);
+            var response = _generalServivce.EditarMunicipios(item);
+            return Ok(response);
+        }
+        
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(MunicipioViewModel municipio)
+        {
+            var item = _mapper.Map<tbMunicipios>(municipio);
+            var result = _generalServivce.EliminarMunicipios(item);
+            return Ok(result);
         }
     }
 }

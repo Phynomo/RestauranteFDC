@@ -38,7 +38,21 @@ namespace Restaurante.WEBUI.Controllers
             var response = _generalServivce.InsertarDepartamentos(item);
             return Ok(response);
         }
+        
+        [HttpPut("EditarDepartamento")]
+        public IActionResult Edit(DepartamentoViewModel departamentos)
+        {
+            var item = _mapper.Map<tbDepartamentos>(departamentos);
+            var response = _generalServivce.EditarDepartamentos(item);
+            return Ok(response);
+        }
 
-
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(DepartamentoViewModel departamento)
+        {
+            var item = _mapper.Map<tbDepartamentos>(departamento);
+            var result = _generalServivce.EliminarDepartamentos(item);
+            return Ok(result);
+        }
     }
 }

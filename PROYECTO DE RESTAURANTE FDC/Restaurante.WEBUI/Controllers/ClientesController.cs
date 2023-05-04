@@ -31,6 +31,14 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(list);
         }
 
+        [HttpPut("EditarCliente")]
+        public IActionResult Edit(ClienteViewModel cliente)
+        {
+            var item = _mapper.Map<tbClientes>(cliente);
+            var response = _restauranteServicio.EditarClientes(item);
+            return Ok(response);
+        }
+        
         [HttpPost("InsertarClientes")]
         public IActionResult InsertarClientes(ClienteViewModel cargos)
         {
@@ -39,5 +47,12 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(response);
         }
 
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(ClienteViewModel cliente)
+        {
+            var item = _mapper.Map<tbClientes>(cliente);
+            var result = _restauranteServicio.EliminarClientes(item);
+            return Ok(result);
+        }
     }
 }

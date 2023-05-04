@@ -1,0 +1,12 @@
+C:\Users\axel2\OneDrive\Documentos\Events_Company_R\API_Events_Company\Events_Company_R\Events_Company_R.Entities\bin\Release\net5.0\Events_Company_R.Entities.deps.json
+C:\Users\axel2\OneDrive\Documentos\Events_Company_R\API_Events_Company\Events_Company_R\Events_Company_R.Entities\bin\Release\net5.0\Events_Company_R.Entities.dll
+C:\Users\axel2\OneDrive\Documentos\Events_Company_R\API_Events_Company\Events_Company_R\Events_Company_R.Entities\bin\Release\net5.0\ref\Events_Company_R.Entities.dll
+C:\Users\axel2\OneDrive\Documentos\Events_Company_R\API_Events_Company\Events_Company_R\Events_Company_R.Entities\bin\Release\net5.0\Events_Company_R.Entities.pdb
+C:\Users\axel2\OneDrive\Documentos\Events_Company_R\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Release\net5.0\Events_Company_R.Entities.csproj.AssemblyReference.cache
+C:\Users\axel2\OneDrive\Documentos\Events_Company_R\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Release\net5.0\Events_Company_R.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\axel2\OneDrive\Documentos\Events_Company_R\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Release\net5.0\Events_Company_R.Entities.AssemblyInfoInputs.cache
+C:\Users\axel2\OneDrive\Documentos\Events_Company_R\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Release\net5.0\Events_Company_R.Entities.AssemblyInfo.cs
+C:\Users\axel2\OneDrive\Documentos\Events_Company_R\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Release\net5.0\Events_Company_R.Entities.csproj.CoreCompileInputs.cache
+C:\Users\axel2\OneDrive\Documentos\Events_Company_R\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Release\net5.0\Events_Company_R.Entities.dll
+C:\Users\axel2\OneDrive\Documentos\Events_Company_R\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Release\net5.0\ref\Events_Company_R.Entities.dll
+C:\Users\axel2\OneDrive\Documentos\Events_Company_R\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Release\net5.0\Events_Company_R.Entities.pdb

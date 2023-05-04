@@ -14,7 +14,16 @@ namespace Restaurante.DataAccess.Repositories.REST
     {
         public RequestStatus Delete(tbClientes item)
         {
-            throw new NotImplementedException();
+            RequestStatus result = new RequestStatus();
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@clie_Id", item.clie_Id, DbType.Int32, ParameterDirection.Input);
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_Clientes_Delete, parametros, commandType: System.Data.CommandType.StoredProcedure);
+
+            result.CodeStatus = resultado;
+
+            return result;
         }
 
         public VW_tbClientes Find(int? id)
@@ -58,7 +67,23 @@ namespace Restaurante.DataAccess.Repositories.REST
 
         public RequestStatus Update(tbClientes item)
         {
-            throw new NotImplementedException();
+            RequestStatus result = new RequestStatus();
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@clie_Id", item.clie_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@clie_Nombres", item.clie_Nombres, DbType.String, ParameterDirection.Input);
+            parametros.Add("@clie_Apellidos", item.clie_Apellidos, DbType.String, ParameterDirection.Input);
+            parametros.Add("@clie_Identidad", item.clie_Identidad, DbType.String, ParameterDirection.Input);
+            parametros.Add("@clie_RTN", item.clie_RTN, DbType.String, ParameterDirection.Input);
+            parametros.Add("@clie_Sexo", item.clie_Sexo, DbType.String, ParameterDirection.Input);
+            parametros.Add("@clie_Telefono", item.clie_Telefono, DbType.String, ParameterDirection.Input);
+            parametros.Add("@clie_UsuModificacion", item.clie_UsuModificacion, DbType.Int32, ParameterDirection.Input);
+
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_Clientes_Update, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            result.CodeStatus = resultado;
+
+            return result;
         }
     }
 }

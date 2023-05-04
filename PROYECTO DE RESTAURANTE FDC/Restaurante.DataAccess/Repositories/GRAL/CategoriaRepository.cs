@@ -14,7 +14,16 @@ namespace Restaurante.DataAccess.Repositories.GRAL
     {
         public RequestStatus Delete(tbCategorias item)
         {
-            throw new NotImplementedException();
+            RequestStatus result = new RequestStatus();
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@cate_Id", item.cate_Id, DbType.Int32, ParameterDirection.Input);
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_Categorias_Delete, parametros, commandType: System.Data.CommandType.StoredProcedure);
+
+            result.CodeStatus = resultado;
+
+            return result;
         }
 
         public VW_tbCategorias Find(int? id)
@@ -54,7 +63,18 @@ namespace Restaurante.DataAccess.Repositories.GRAL
 
         public RequestStatus Update(tbCategorias item)
         {
-            throw new NotImplementedException();
+            RequestStatus result = new RequestStatus();
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@cate_Id", item.cate_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@cate_Descripcion", item.cate_Descripcion, DbType.String, ParameterDirection.Input);
+            parametros.Add("@cate_UsuModificacion", item.cate_UsuModificacion, DbType.Int32, ParameterDirection.Input);
+
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_Categorias_Update, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            result.CodeStatus = resultado;
+
+            return result;
         }
     }
 }

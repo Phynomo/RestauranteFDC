@@ -1,0 +1,43 @@
+
+importar rutas de las paginas
+import {BrowserRoutes as Router, Routes, Route} from "react-router"
+
+
+import React, {useEffect, useState} from "react";
+import axios from 'axios';
+import {Link, useNavigator} from 'react-router-dom';
+
+const navigate = useNavigator();
+const [usuario, setUsuario] = useState("");
+const [password, setPassword] = useState("");
+
+useEffect(() => {
+	if(localStorage.getItem("usuario") != "")
+		navigate("/home")
+})
+
+const loginAction = (e) =>{ //llamar en el formulario
+	let parameter = {
+		usuario: usuario,
+		password: password
+	}
+	axios.post('/api/login', parameter)
+	.then((r) => {
+		localStorage.setItem('token', r.data.token)
+		navigate("/home")
+	})
+	.catch((e)
+		localStorage.setItem("Error", e.response.data.errors)
+	)
+
+	return(
+		<h5>Inicio de Sesion<h5>
+		<form onSubmit={(e) => {loginAction}}
+
+
+		//Cuerpo del Formulario
+		/>
+	)
+}
+
+<Route exact path="/" elemente={<Login/>}/}
