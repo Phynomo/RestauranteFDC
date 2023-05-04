@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restaurante.BusinessLogic.Services.GeneralService;
 using Restaurante.Entities.Entities;
+using Restaurante.WEBUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,29 +31,11 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(list);
         }
 
-        public class pago
-        {
-            public int metp_Id { get; set; }
-            public string metp_Descripcion { get; set; }
-            public int metp_UsuCreacion { get; set; }
-            public DateTime metp_FechaCreacion { get; set; }
-            public int? metp_UsuModificacion { get; set; }
-            public DateTime? metp_FechaModificacion { get; set; }
-            public bool? metp_Estado { get; set; }
-
-        }
-
         [HttpPost("InsertarMetodoPago")]
-        public IActionResult InsertarCargo(pago metodos)
+        public IActionResult InsertarCargo(MetodoPagoViewModel metodos)
         {
-            tbMetodosPago pag = new()
-            {
-                metp_Descripcion = metodos.metp_Descripcion,
-                metp_UsuCreacion = metodos.metp_UsuCreacion,
-
-            };
-
-            var response = _generalServivce.InsertarMetodos(pag);
+            var item = _mapper.Map<tbMetodosPago>(metodos);
+            var response = _generalServivce.InsertarMetodos(item);
             return Ok(response);
         }
     }

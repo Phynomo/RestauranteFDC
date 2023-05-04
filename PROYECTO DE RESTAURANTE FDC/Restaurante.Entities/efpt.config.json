@@ -94,6 +94,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[rest].[tbPlatillosHistorial2]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[rest].[tbProveedores]",
          "ObjectType": 0
       },

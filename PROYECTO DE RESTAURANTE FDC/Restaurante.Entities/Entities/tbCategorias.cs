@@ -11,6 +11,7 @@ namespace Restaurante.Entities.Entities
         public tbCategorias()
         {
             tbPlatillos = new HashSet<tbPlatillos>();
+            tbPlatillosHistorial2 = new HashSet<tbPlatillosHistorial2>();
         }
 
         public int cate_Id { get; set; }
@@ -24,5 +25,6 @@ namespace Restaurante.Entities.Entities
         public virtual tbUsuarios cate_UsuCreacionNavigation { get; set; }
         public virtual tbUsuarios cate_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbPlatillos> tbPlatillos { get; set; }
+        public virtual ICollection<tbPlatillosHistorial2> tbPlatillosHistorial2 { get; set; }
     }
 }

@@ -14,11 +14,11 @@ namespace Restaurante.Entities.Entities
         public int prov_Id { get; set; }
         public string prov_NombreEmpresa { get; set; }
         public DateTime ingr_FechaCreacion { get; set; }
-        public int ingr_UsuarioCreacion { get; set; }
-        public string user_NombreUsuarioCreacion { get; set; }
+        public int ingr_UsuCreacion { get; set; }
+        public string user_NombreUsuCreacion { get; set; }
         public DateTime? ingr_FechaModificacion { get; set; }
-        public int? ingr_UsuarioModificacion { get; set; }
-        public string user_NombreUsuarioModificacion { get; set; }
+        public int? ingr_UsuModificacion { get; set; }
+        public string user_NombreUsuModificacion { get; set; }
         public bool ingr_Estado { get; set; }
     }
 }

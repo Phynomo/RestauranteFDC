@@ -20,14 +20,14 @@ namespace Restaurante.Entities.Entities
         public int muni_Id { get; set; }
         public string prov_DireccionExacta { get; set; }
         public DateTime prov_FechaCreacion { get; set; }
-        public int prov_UsuarioCreacion { get; set; }
+        public int prov_UsuCreacion { get; set; }
         public DateTime? prov_FechaModificacion { get; set; }
-        public int? prov_UsuarioModificacion { get; set; }
+        public int? prov_UsuModificacion { get; set; }
         public bool? prov_Estado { get; set; }
 
         public virtual tbMunicipios muni { get; set; }
-        public virtual tbUsuarios prov_UsuarioCreacionNavigation { get; set; }
-        public virtual tbUsuarios prov_UsuarioModificacionNavigation { get; set; }
+        public virtual tbUsuarios prov_UsuCreacionNavigation { get; set; }
+        public virtual tbUsuarios prov_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbIngredientes> tbIngredientes { get; set; }
     }
 }

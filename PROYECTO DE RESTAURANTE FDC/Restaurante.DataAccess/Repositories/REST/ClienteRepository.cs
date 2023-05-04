@@ -26,6 +26,7 @@ namespace Restaurante.DataAccess.Repositories.REST
         {
             throw new NotImplementedException();
         }
+
         public RequestStatus NewClient(tbClientes item)
         {
             var parameters = new DynamicParameters();

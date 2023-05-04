@@ -15,11 +15,11 @@ namespace Restaurante.Entities.Entities
         public int cate_Id { get; set; }
         public string cate_Descripcion { get; set; }
         public DateTime plat_FechaCreacion { get; set; }
-        public int plat_UsuarioCreacion { get; set; }
-        public string user_NombreUsuarioCreacion { get; set; }
+        public int plat_UsuCreacion { get; set; }
+        public string user_NombreUsuCreacion { get; set; }
         public DateTime? plat_FechaModificacion { get; set; }
-        public int? plat_UsuarioModificacion { get; set; }
-        public string user_NombreUsuarioModificacion { get; set; }
+        public int? plat_UsuModificacion { get; set; }
+        public string user_NombreUsuModificacion { get; set; }
         public bool plat_Estado { get; set; }
     }
 }

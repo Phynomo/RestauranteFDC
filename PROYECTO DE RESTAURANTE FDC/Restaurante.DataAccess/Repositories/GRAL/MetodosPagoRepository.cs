@@ -26,6 +26,7 @@ namespace Restaurante.DataAccess.Repositories.GRAL
         {
             throw new NotImplementedException();
         }
+
         public RequestStatus NewMethod(tbMetodosPago item)
         {
             var parameters = new DynamicParameters();

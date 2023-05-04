@@ -22,15 +22,18 @@ namespace Restaurante.Entities.Entities
         public string empe_Apellidos { get; set; }
         public string empe_NombreCompleto { get; set; }
         public int sucu_Id { get; set; }
+        public string sucu_Nombre { get; set; }
+        public string sucu_Direccion { get; set; }
         public int metp_Id { get; set; }
         public string metp_Descripcion { get; set; }
+        public bool fact_Cerrada { get; set; }
         public DateTime fact_Fecha { get; set; }
         public DateTime fact_FechaCreacion { get; set; }
-        public int fact_UsuarioCreacion { get; set; }
-        public string user_NombreUsuarioCreacion { get; set; }
+        public int fact_UsuCreacion { get; set; }
+        public string user_NombreUsuCreacion { get; set; }
         public DateTime? fact_FechaModificacion { get; set; }
-        public int? fact_UsuarioModificacion { get; set; }
-        public string user_NombreUsuarioModificacion { get; set; }
+        public int? fact_UsuModificacion { get; set; }
+        public string user_NombreUsuModificacion { get; set; }
         public bool fact_Estado { get; set; }
     }
 }

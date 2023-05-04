@@ -11,10 +11,10 @@ namespace Restaurante.Entities.Entities
         public int metp_Id { get; set; }
         public string metp_Descripcion { get; set; }
         public int metp_UsuCreacion { get; set; }
-        public string user_NombreUsuarioCreacion { get; set; }
+        public string user_NombreUsuCreacion { get; set; }
         public DateTime metp_FechaCreacion { get; set; }
         public int? metp_UsuModificacion { get; set; }
-        public string user_NombreUsuarioModificacion { get; set; }
+        public string user_NombreUsuModificacion { get; set; }
         public DateTime? metp_FechaModificacion { get; set; }
         public bool metp_Estado { get; set; }
     }

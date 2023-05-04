@@ -18,10 +18,10 @@ namespace Restaurante.Entities.Entities
         public string clie_Sexo { get; set; }
         public string clie_Telefono { get; set; }
         public int clie_UsuCreacion { get; set; }
-        public string user_NombreUsuarioCreacion { get; set; }
+        public string user_NombreUsuCreacion { get; set; }
         public DateTime clie_FechaCreacion { get; set; }
         public int? clie_UsuModificacion { get; set; }
-        public string user_NombreUsuarioModificacion { get; set; }
+        public string user_NombreUsuModificacion { get; set; }
         public DateTime? clie_FechaModificacion { get; set; }
         public bool clie_Estado { get; set; }
     }

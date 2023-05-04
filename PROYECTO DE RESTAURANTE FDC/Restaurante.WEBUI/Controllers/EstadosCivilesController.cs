@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restaurante.BusinessLogic.Services.GeneralService;
 using Restaurante.Entities.Entities;
+using Restaurante.WEBUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,30 +31,12 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(list);
         }
 
-        public class state
-        {
-            public int eciv_Id { get; set; }
-            public string eciv_Descripcion { get; set; }
-            public int eciv_UsuCreacion { get; set; }
-            public DateTime eciv_FechaCreacion { get; set; }
-            public int? eciv_UsuModificacion { get; set; }
-            public DateTime? eciv_FechaModificacion { get; set; }
-            public bool? eciv_Estado { get; set; }
-
-
-        }
 
         [HttpPost("InsertarEstadoCivil")]
-        public IActionResult InsertarEstadosciviles(state state)
+        public IActionResult InsertarEstadosciviles(EstadoCivilViewModel estado)
         {
-            tbEstadosCiviles estado = new()
-            {
-               eciv_Descripcion = state.eciv_Descripcion,
-               eciv_UsuCreacion = state.eciv_UsuCreacion
-
-            };
-
-            var response = _generalServivce.InsertarStates(estado);
+            var item = _mapper.Map<tbEstadosCiviles>(estado);
+            var response = _generalServivce.InsertarStates(item);
             return Ok(response);
         }
     }

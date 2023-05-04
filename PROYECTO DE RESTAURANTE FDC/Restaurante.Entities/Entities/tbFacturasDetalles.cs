@@ -14,14 +14,14 @@ namespace Restaurante.Entities.Entities
         public int fade_Cantidad { get; set; }
         public decimal fade_Precio { get; set; }
         public DateTime fade_FechaCreacion { get; set; }
-        public int fade_UsuarioCreacion { get; set; }
+        public int fade_UsuCreacion { get; set; }
         public DateTime? fade_FechaModificacion { get; set; }
-        public int? fade_UsuarioModificacion { get; set; }
+        public int? fade_UsuModificacion { get; set; }
         public bool? fade_Estado { get; set; }
 
         public virtual tbFacturas fact { get; set; }
-        public virtual tbUsuarios fade_UsuarioCreacionNavigation { get; set; }
-        public virtual tbUsuarios fade_UsuarioModificacionNavigation { get; set; }
+        public virtual tbUsuarios fade_UsuCreacionNavigation { get; set; }
+        public virtual tbUsuarios fade_UsuModificacionNavigation { get; set; }
         public virtual tbPlatillos plat { get; set; }
     }
 }
