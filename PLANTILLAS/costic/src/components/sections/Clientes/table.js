@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import { DataGrid, GridToolbar, esES } from '@mui/x-data-grid';
 /*import ModalEdit from './ModalsPut';*/
-import axios from 'axios'
-import toastr from 'toastr';
+
 
 const DataTable = () => {
   const [searchText, setSearchText] = useState('');
@@ -30,10 +29,10 @@ const DataTable = () => {
     },
   ];
   useEffect(() => {
-    axios.get('api/Clientes/Listado') 
-      .then(r => {
-        console.log(r["data"]);
-        const rows = r.data.map(item => { //creo que el problema es aqui ...
+    fetch('https://localhost:44383/api/Clientes/Listado')
+    .then(response => response.json())
+    .then(data => {
+      const rows = data.data.map(item => {
         return {
           id: item.clie_Id,
           clie_Id: item.clie_Id,
