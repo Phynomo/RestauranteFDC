@@ -238,7 +238,7 @@ BEGIN TRY
 					   ,sucu_UsuCreacion
 					   ,sucu_FechaCreacion		
 					   ,sucu_UsuModificacion	
-					   ,sucu_FechaCreacion
+					   ,sucu_FechaModificacion
 					   ,sucu_Estado)
 				 VALUES
 						(@sucu_Nombre		
