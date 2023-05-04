@@ -9,7 +9,7 @@ const DataTable = () => {
   const [searchText, setSearchText] = useState('');
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+ 
   const columns = [
     { field: 'clie_Id', headerName: 'ID', flex: 1 },
     { field: 'clie_NombreCompleto', headerName: 'Nombre', flex: 1 },
@@ -31,14 +31,11 @@ const DataTable = () => {
   ];
   useEffect(() => {
     axios.get('api/Clientes/Listado') 
-    .then((d) => {
-        console.log(d["data"]);
-      if (d.data == null) {
-        throw new Error('La respuesta de la API está vacía');
-      }
-      const rows = d.data.map(item => {
+      .then(r => {
+        console.log(r["data"]);
+        const rows = r.data.map(item => { //creo que el problema es aqui ...
         return {
-          id: item.c,
+          id: item.clie_Id,
           clie_Id: item.clie_Id,
           clie_NombreCompleto: item.clie_NombreCompleto,
           clie_Identidad: item.clie_Identidad,
@@ -50,7 +47,7 @@ const DataTable = () => {
       setIsLoading(false);
     })
     .catch(error => {
-      console.log("Error en la solicitud fetch:", error);
+      console.log("Error en la solicitud axios:", error);
     });
   }, []);
   
