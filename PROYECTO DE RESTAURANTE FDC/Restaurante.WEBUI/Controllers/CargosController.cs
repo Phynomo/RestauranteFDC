@@ -32,29 +32,11 @@ namespace Restaurante.WEBUI.Controllers
         }
 
 
-        public class cargo
-        {
-            public int carg_Id { get; set; }
-            public string carg_Descripcion { get; set; }
-            public int carg_UsuCreacion { get; set; }
-            public DateTime? carg_FechaCreacion { get; set; }
-            public int? carg_UsuModificacion { get; set; }
-            public DateTime? carg_FechaModificacion { get; set; }
-            public bool? carg_Estado { get; set; }
-
-        }
-
         [HttpPost("InsertarCargos")]
-        public IActionResult InsertarCargo(cargo cargos)
+        public IActionResult InsertarCargo(CargoViewModel cargos)
         {
-            tbCargos cargo = new()
-            {
-                carg_Descripcion = cargos.carg_Descripcion,
-                carg_UsuCreacion = cargos.carg_UsuCreacion,
-               
-            };
-
-            var response = _generalServivce.InsertarCargos(cargo);
+            var item = _mapper.Map<tbCargos>(cargos);
+            var response = _generalServivce.InsertarCargos(item);
             return Ok(response);
         }
         
