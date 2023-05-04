@@ -3,6 +3,7 @@ import Breadcrumb from './Breadcrumb';
 import { Modal, Accordion, Card } from "react-bootstrap";
 import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
 import toastr from 'toastr';
+import axios from 'axios';
 
 
 class ModalCreate extends Component {
@@ -34,32 +35,27 @@ class ModalCreate extends Component {
         if (form.checkValidity() === false) {
             event.stopPropagation();
         } else {
-            const data = {
+            let data = {
                 carg_Descripcion: this.state.carg_Descripcion,
                 carg_UsuCreacion: 1,
             };
-            fetch('https://localhost:44383/api/Cargos/Insertar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
+            console.log(data);
+            axios.post('api/Cargos/Insertar', data, {
             })
-                .then(response => response.json())
-                .then(data => {
+                .then(response => {
                     this.state.carg_Descripcion = null;
                     this.state.validated = false;
-                    console.log('Respuesta de la API:', data);
-                    if (data.message == "Exitoso") {
-                        alertSuccess("Listo", "El registro se realizo con exito","2000");
+                    console.log('Respuesta de la API:', response);
+                    if (response.data.message == "Exitoso") {
+                        alertSuccess("Listo", "El registro se realizo con exito", "2000");
                         this.handleClose();
-                    }else if (data.message  == "YaExiste") {
+                    } else if (response.data.message == "YaExiste") {
                         toastr.warning("Este cargo ya existe", "Cargo repetido");
-                    }else{
-                        alertError("Error", "Ocurrio un error mientras se creaba el registro","2000")
+                    } else {
+                        alertError("Error", "Ocurrio un error mientras se creaba el registro", "2000")
                         this.handleClose();
                     }
-                    
+
                 })
                 .catch(error => {
                     console.error('Error al enviar los datos:', error);
