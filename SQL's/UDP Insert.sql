@@ -177,12 +177,10 @@ BEGIN
 
         BEGIN TRY
         Declare @Password Nvarchar(max) = (HASHBYTES('SHA2_512',@user_Contrasena))
-        SELECT user_NombreUsuario, user_Contrasena
-		FROM tbUsuarios       
+        SELECT *
+		FROM acce.VW_tbUsuarios
 		WHERE   user_Contrasena = @Password 
         AND     user_NombreUsuario = @user_NombreUsuario
-
-        SELECT 1 as Proceso
 
         END TRY
         BEGIN CATCH

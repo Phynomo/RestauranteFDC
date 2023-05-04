@@ -85,7 +85,7 @@ AS
 BEGIN
 	DECLARE @password NVARCHAR(MAX)=(SELECT HASHBYTES('Sha2_512', @user_Contrasena));
 
-	INSERT acce.tbUsuarios(user_NombreUsuario, user_Correo, user_Contrasena, user_EsAdmin, role_Id, empe_Id, clie_id, user_UsuCreacion)
+	INSERT acce.tbUsuarios(user_NombreUsuario,  user_Contrasena,user_Correo, user_EsAdmin, role_Id, empe_Id, clie_id, user_UsuCreacion)
 	VALUES(@user_NombreUsuario, @password, @user_Correo, @user_EsAdmin, @role_Id, @empe_Id,@clie_Id, 1);
 END;
 

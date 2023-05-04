@@ -78,7 +78,7 @@ function App() {
     <Router basename={'/themes/themeforest/react/costic/'}>
       <Preloader />
       <Switch>
-        <Route path="/dash" component={Defaultlogin} />
+        <Route exact path="/" component={Dashboard} />
         <Route path="/accordions" component={Accordions} />
         <Route path="/departamentos" component={Departamentos} />
         <Route path="/estadosCiviles" component={EstadosCiviles} />
@@ -137,7 +137,7 @@ function App() {
         <Route path="/widgets" component={Widgets} />
         <Route path="/client-management" component={Clientmanagement} />
         <Route path="/coming-soon" component={Comingsoon} />
-        <Route exac path="/" component={Defaultlogin} />
+        <Route path="/default-login" component={Defaultlogin} />
         <Route path="/default-register" component={Defaultregister} />
         <Route path="/error" component={Error} />
         <Route path="/faq" component={Faq} />

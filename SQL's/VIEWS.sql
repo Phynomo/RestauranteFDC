@@ -28,7 +28,7 @@ SELECT T1.[user_Id]
 	  ,TM.user_NombreUsuario AS user_NombreUsuModificacion
       ,T1.[user_FechaModificacion]
       ,T1.[user_Estado]
-  FROM [acce].[tbUsuarios] T1 INNER JOIN [acce].[tbRoles] T2
+  FROM [acce].[tbUsuarios] T1 LEFT JOIN [acce].[tbRoles] T2
   ON T1.role_Id = T2.role_Id LEFT JOIN [rest].[tbEmpleados] T3
   ON T3.empe_Id = T1.empe_Id INNER JOIN [gral].[tbCargos] T4
   ON t4.carg_Id = T3.carg_Id  INNER JOIN acce.tbUsuarios TC
