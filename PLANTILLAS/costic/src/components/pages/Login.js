@@ -5,14 +5,14 @@ import Layout from "../components/Layout"
   
 function Login() {
     const navigate = useNavigate();
-    const [nombreusuario, setNombreUsuario] = useState("")
+    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [validationErrors, setValidationErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
  
     useEffect(()=>{
         if(localStorage.getItem('token') != "" && localStorage.getItem('token') != null){
-            navigate('/Dashboard', {replace: true});
+            navigate('/error', {replace: true});
         }
         console.log(localStorage.getItem('token'))
     },[])
@@ -22,14 +22,14 @@ function Login() {
         e.preventDefault();
         setIsSubmitting(true)
         let payload = {
-            usua_Usuario:nombreusuario,
+            usua_Usuario:email,
             usua_Clave:password,
         }
-        axios.post('/api/Usuarios/Login', payload)
+        axios.post('/api/Login/ValidarLogin', payload)
         .then((r) => {
             setIsSubmitting(false)
          localStorage.setItem('token', "si")
-           navigate('/Dashboard', {replace: true});
+           navigate('/error', {replace: true});
         })
         .catch((e) => {
             setIsSubmitting(false)
@@ -67,7 +67,7 @@ function Login() {
                                         id="email"
                                         name="email"
                                         value={email}
-                                        onChange={(e)=>{setNombreUsuario(e.target.value)}}
+                                        onChange={(e)=>{setEmail(e.target.value)}}
                                     />
                                 </div>
                                 <div className="mb-3">
@@ -89,7 +89,7 @@ function Login() {
                                         disabled={isSubmitting}
                                         type="submit"
                                         className="btn btn-primary btn-block">Login</button>
-                                    <p className="text-center">Don't have account? <Link to="/register">Registrase Aqui</Link></p>
+                                    <p className="text-center">Don't have account? <Link to="/registrar">Registrase Aqui</Link></p>
                                 </div>
                             </form>
                         </div>

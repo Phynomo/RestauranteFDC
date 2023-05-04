@@ -1,5 +1,6 @@
 ﻿using MAVEX.BusinessLogic;
 using Restaurante.DataAccess.Repositories.GRAL;
+using Restaurante.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,37 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             }
         }
 
+
+        public ServiceResult InsertarDepartamentos(tbDepartamentos item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _departamentosRepository.NewDepartament(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception x)
+            {
+
+                return result.Error(x.Message);
+            }
+        }
+
         #endregion
 
         #region Cargos
@@ -68,6 +100,38 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             }
         }
 
+        public ServiceResult InsertarCargos(tbCargos item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _cargosRepository.Newcharges(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
+
+     
+
         #endregion
 
         #region Categorias
@@ -83,6 +147,35 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             catch (Exception e)
             {
                 return result.Error(e.Message);
+            }
+        }
+        public ServiceResult InsertarCategorias(tbCategorias item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _categoriaRepository.Newcategory(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
             }
         }
 
@@ -104,6 +197,37 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             }
         }
 
+        public ServiceResult InsertarStates(tbEstadosCiviles item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _estadosCivilesRepository.Newstate(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
+
+
         #endregion
 
         #region Metodos de Pago
@@ -119,6 +243,36 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             catch (Exception e)
             {
                 return result.Error(e.Message);
+            }
+        }
+
+        public ServiceResult InsertarMetodos(tbMetodosPago item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _metodosPagoRepository.NewMethod(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
             }
         }
 
@@ -139,6 +293,37 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
                 return result.Error(e.Message);
             }
         }
+
+        public ServiceResult InsertarMunicipios(tbMunicipios item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _municipiosRepository.NewMunicipio(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
+
 
         #endregion
 

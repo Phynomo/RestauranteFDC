@@ -27,6 +27,22 @@ namespace Restaurante.DataAccess.Repositories.GRAL
             throw new NotImplementedException();
         }
 
+        public RequestStatus NewMethod(tbMetodosPago item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@metp_Descripcion", item.metp_Descripcion, DbType.String, ParameterDirection.Input);
+            parameters.Add("@metp_UsuCreacion", item.metp_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.InsertarMetodoPago, parameters, commandType: CommandType.StoredProcedure);
+
+            RequestStatus reques = new()
+            {
+                CodeStatus = result,
+                MessageStatus = "Metodo de pago insertado !"
+            };
+
+            return reques;
+        }
         public IEnumerable<VW_tbMetodosPago> List()
         {
             using var db = new SqlConnection(RestauranteCon.ConnectionString);

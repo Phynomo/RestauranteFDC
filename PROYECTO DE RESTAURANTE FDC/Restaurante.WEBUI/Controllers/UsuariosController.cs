@@ -45,5 +45,6 @@ namespace Restaurante.WEBUI.Controllers
             var response = _seguridadServivce.RecuperarUsuarios(item);
             return Ok(response);
         }
+
     }
 }

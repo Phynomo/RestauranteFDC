@@ -27,6 +27,22 @@ namespace Restaurante.DataAccess.Repositories.GRAL
             throw new NotImplementedException();
         }
 
+        public RequestStatus Newstate(tbEstadosCiviles item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@eciv_Descripcion", item.eciv_Descripcion, DbType.String, ParameterDirection.Input);
+            parameters.Add("@eciv_UsuCreacion", item.eciv_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.InsertarEstadosCiviles, parameters, commandType: CommandType.StoredProcedure);
+
+            RequestStatus reques = new()
+            {
+                CodeStatus = result,
+                MessageStatus = "Estado Civil Insertado !"
+            };
+
+            return reques;
+        }
         public IEnumerable<VW_tbEstadosCiviles> List()
         {
             using var db = new SqlConnection(RestauranteCon.ConnectionString);

@@ -27,6 +27,23 @@ namespace Restaurante.DataAccess.Repositories.GRAL
             throw new NotImplementedException();
         }
 
+        public RequestStatus Newcategory(tbCategorias item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@cate_Descripcion", item.cate_Descripcion, DbType.String, ParameterDirection.Input);
+            parameters.Add("@cate_UsuCreacion", item.cate_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.InsertarCategoria, parameters, commandType: CommandType.StoredProcedure);
+
+            RequestStatus reques = new()
+            {
+                CodeStatus = result,
+                MessageStatus = "categoria insertada"
+            };
+
+            return reques;
+        }
+
         public IEnumerable<VW_tbCategorias> List()
         {
             using var db = new SqlConnection(RestauranteCon.ConnectionString);

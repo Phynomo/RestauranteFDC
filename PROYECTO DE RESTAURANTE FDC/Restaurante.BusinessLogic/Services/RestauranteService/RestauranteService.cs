@@ -1,5 +1,6 @@
 ﻿using MAVEX.BusinessLogic;
 using Restaurante.DataAccess.Repositories.REST;
+using Restaurante.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +58,35 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
+        public ServiceResult InsertarClientes(tbClientes item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _clienteRepository.NewClient(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
         #endregion
 
         #region Empleados

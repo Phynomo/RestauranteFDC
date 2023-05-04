@@ -11,7 +11,7 @@ namespace Restaurante.WEBUI.Extensions
     {
         public MappingProfileExntensions()
         {
-            //CreateMap<tbUsuarios, UsuariosViewModel>().ReverseMap();
+            CreateMap<tbUsuarios, UsuariosViewModel>().ReverseMap();
 
         }
     }

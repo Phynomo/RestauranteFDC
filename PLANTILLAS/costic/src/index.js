@@ -13,6 +13,7 @@ import './assets/vendors/iconic-fonts/cryptocoins/cryptocoins.css';
 import './assets/vendors/iconic-fonts/cryptocoins/cryptocoins-colors.css';
 import './assets/css/animate.min.css';
 import './assets/css/style.css';
+
 axios.defaults.baseURL = process.env.REACT_APP_API_URL
 
 ReactDOM.render(
@@ -21,6 +22,7 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('costic')
 );
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA

@@ -27,6 +27,24 @@ namespace Restaurante.DataAccess.Repositories.GRAL
             throw new NotImplementedException();
         }
 
+        public RequestStatus Newcharges(tbCargos item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@carg_Descripcion", item.carg_Descripcion, DbType.String, ParameterDirection.Input);
+            parameters.Add("@carg_UsuCreacion", item.carg_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.InsertarCargos, parameters, commandType: CommandType.StoredProcedure);
+
+            RequestStatus reques = new()
+            {
+                CodeStatus = result,
+                MessageStatus = "Cargo insertado"
+            };
+
+            return reques;
+        }
+
+
         public IEnumerable<VW_tbCargos> List()
         {
             using var db = new SqlConnection(RestauranteCon.ConnectionString);
