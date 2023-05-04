@@ -39,5 +39,13 @@ namespace Restaurante.WEBUI.Controllers
             var response = _generalServivce.InsertarStates(item);
             return Ok(response);
         }
+
+        [HttpPut("EditarEstadoCivil")]
+        public IActionResult EditarEstadosciviles(EstadoCivilViewModel estado)
+        {
+            var item = _mapper.Map<tbEstadosCiviles>(estado);
+            var response = _generalServivce.EditarStates(item);
+            return Ok(response);
+        }
     }
 }
