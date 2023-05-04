@@ -1,0 +1,181 @@
+﻿{
+   "CodeGenerationMode": 0,
+   "ContextClassName": "Db_Events_Company_CContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Entities",
+   "ProjectRootNamespace": "Events_Company_R.Entities",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 2,
+   "Tables": [
+      {
+         "Name": "[Acce].[tbPantallas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[tbPantallasRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[tbRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[tbUsuarios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Even].[Pedidos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Even].[Pedidos_Detalles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Even].[tbClientes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Even].[tbEmpleados]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Even].[tbEventos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Even].[tbFacturas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Even].[tbInventario]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Even].[tbPaquete_Detalles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Even].[tbPaquetes_Encabezado]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Even].[tbProveedores]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Even].[tbServicios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbDepartamentos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbDirecciones]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbEstadosCiviles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbMunicipios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbTipoPago]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[VW_tbPantallas_ListarPantallas]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Acce].[VW_tbRoles_ListarRoles]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Acce].[VW_tbUsuario]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Even].[VW_Pedidos_ListarPedidos]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Even].[VW_tbClientes_ListarClientes]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Even].[VW_tbEmpleados_ListarEmpleados]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Even].[VW_tbEventos_ListarEventos]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Even].[VW_tbInventario_ListarInventario]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Even].[VW_tbPaqueteDetalles_ListarPaqueteDetalles]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Even].[VW_tbPaquetes_Encabezado_ListarPaquetesEncabezado]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Even].[VW_tbProveedores_ListarProveedores]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Even].[VW_tbServicios_ListarServicios]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Gral].[VW_tbDepartamentos]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Gral].[VW_tbDirecciones]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Gral].[VW_tbEstadosCiviles]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Gral].[VW_tbMunicipios]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Gral].[VW_tbTipoPago]",
+         "ObjectType": 3
+      }
+   ],
+   "UiHint": "DESKTOP-B2FSPCF\\SQLEXPRESS.db_Event_Company_C",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}
