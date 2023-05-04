@@ -72,6 +72,7 @@ import Empleados from './components/pages/Empleados';
 import Cargos from './components/pages/Cargos';
 import EstadosCiviles from './components/pages/EstadosCiviles';
 import MetodosPago from './components/pages/MetodosPago';
+import Clientes from './components/pages/Clientes';
 
 function App() {
   return (
@@ -85,6 +86,8 @@ function App() {
         <Route path="/metodosPago" component={MetodosPago} />
         <Route path="/empleados" component={Empleados} />
         <Route path="/cargos" component={Cargos} />
+        <Route path="/clientes" component={Clientes}></Route>
+
         <Route path="/add-product" component={Addproduct} />
         <Route path="/alerts" component={Alerts} />
         <Route path="/animations" component={Animations} />
