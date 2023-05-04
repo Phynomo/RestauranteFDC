@@ -87,6 +87,35 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
                 return result.Error(xe.Message);
             }
         }
+        public ServiceResult EditarClientes(tbClientes item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _clienteRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
         #endregion
 
         #region Empleados
@@ -102,6 +131,36 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             catch (Exception e)
             {
                 return result.Error(e.Message);
+            }
+        }
+
+        public ServiceResult EditarEmpleado(tbEmpleados item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _empleadosRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
             }
         }
 
@@ -123,6 +182,36 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
+        public ServiceResult EditarFactura(tbFacturas item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _facturasRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
+
         #endregion
 
         #region Ingredientes
@@ -141,6 +230,37 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
+        public ServiceResult Editaringredientes(tbIngredientes item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _ingredientesRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
+
+
         #endregion
 
         #region Platillos
@@ -156,6 +276,37 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             catch (Exception e)
             {
                 return result.Error(e.Message);
+            }
+        }
+
+
+        public ServiceResult EditarPlatillo(tbPlatillos item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _platillosRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
             }
         }
 
@@ -176,6 +327,38 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
                 return result.Error(e.Message);
             }
         }
+
+
+        public ServiceResult EditarProveedores(tbProveedores item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _proveedoresRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
+
 
         #endregion
 
@@ -210,6 +393,37 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             catch (Exception e)
             {
                 return result.Error(e.Message);
+            }
+        }
+
+
+        public ServiceResult EditarSucursal(tbSucursales item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _sucursalesRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
             }
         }
 

@@ -37,7 +37,20 @@ namespace Restaurante.DataAccess.Repositories.REST
 
         public RequestStatus Update(tbIngredientes item)
         {
-            throw new NotImplementedException();
+            RequestStatus result = new RequestStatus();
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@ingr_Id", item.ingr_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@ingr_Nombre", item.ingr_Nombre, DbType.String, ParameterDirection.Input);
+            parametros.Add("@ingr_PrecioX100gr", item.ingr_PrecioX100gr, DbType.Decimal, ParameterDirection.Input);
+            parametros.Add("@prov_Id", item.prov_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@ingr_UsuModificacion", item.ingr_UsuModificacion, DbType.Int32, ParameterDirection.Input);
+
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_Ingredientes_Update, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            result.CodeStatus = resultado;
+
+            return result;
         }
     }
 }

@@ -37,7 +37,36 @@ namespace Restaurante.DataAccess.Repositories.REST
 
         public RequestStatus Update(tbSucursales item)
         {
-            throw new NotImplementedException();
+            RequestStatus result = new RequestStatus();
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@sucu_Id", item.sucu_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@sucu_Nombre", item.sucu_Nombre, DbType.String, ParameterDirection.Input);
+            parametros.Add("@muni_Id", item.muni_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@sucu_Direccion", item.sucu_Direccion, DbType.String, ParameterDirection.Input);
+            parametros.Add("@sucu_UsuModificacion", item.sucu_UsuModificacion, DbType.Int32, ParameterDirection.Input);
+
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_Sucursales_Update, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            result.CodeStatus = resultado;
+
+            return result;
+        }
+
+        public RequestStatus IngredientesPorSucursal(tbIngredientesXSucursal item)
+        {
+            RequestStatus result = new RequestStatus();
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@ingrsucu_Id", item.ingrsucu_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@ingrsucu_StockEnGramos", item.ingrsucu_StockEnGramos, DbType.Decimal, ParameterDirection.Input);
+            parametros.Add("@ingrsucu_UsuModificacion", item.ingrsucu_UsuModificacion, DbType.Int32, ParameterDirection.Input);
+
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_IngredientesXxSucursales_Update, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            result.CodeStatus = resultado;
+
+            return result;
         }
     }
 }

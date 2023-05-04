@@ -37,7 +37,22 @@ namespace Restaurante.DataAccess.Repositories.REST
 
         public RequestStatus Update(tbProveedores item)
         {
-            throw new NotImplementedException();
+            RequestStatus result = new RequestStatus();
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@prov_Id", item.prov_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@prov_NombreEmpresa", item.prov_NombreEmpresa, DbType.String, ParameterDirection.Input);
+            parametros.Add("@prov_NombreContacto", item.prov_NombreContacto, DbType.String, ParameterDirection.Input);
+            parametros.Add("@prov_Telefono", item.prov_Telefono, DbType.String, ParameterDirection.Input);
+            parametros.Add("@muni_Id", item.muni_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@prov_DireccionExacta", item.prov_DireccionExacta, DbType.String, ParameterDirection.Input);
+            parametros.Add("@prov_UsuModificacion", item.prov_UsuModificacion, DbType.Int32, ParameterDirection.Input);
+
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_Proveedores_Update, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            result.CodeStatus = resultado;
+
+            return result;
         }
     }
 }
