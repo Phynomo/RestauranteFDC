@@ -175,3 +175,174 @@ END
 GO
 
 ---sergundo archivo 
+CREATE OR ALTER PROCEDURE rest.UDP_InsertarProveedores 
+@prov_NombreEmpresa				NVARCHAR(150),
+@prov_NombreContacto			NVARCHAR(150),
+@prov_Telefono					NVARCHAR(20), 
+@muni_Id						INT,
+@prov_DireccionExacta			NVARCHAR(500), 
+@prov_UsuCreacion				INT
+
+AS
+BEGIN
+BEGIN TRY
+
+			
+				INSERT INTO [rest].tbProveedores
+					   (prov_NombreEmpresa		
+					   ,prov_NombreContacto	
+					   ,prov_Telefono			
+					   ,muni_Id				
+					   ,prov_DireccionExacta	
+					   ,prov_UsuCreacion		
+					   ,prov_FechaCreacion
+					   ,prov_UsuModificacion
+					   ,prov_FechaModificacion
+					   ,prov_Estado)
+				 VALUES
+						(@prov_NombreEmpresa		
+						,@prov_NombreContacto	
+						,@prov_Telefono			
+						,@muni_Id				
+						,@prov_DireccionExacta	
+						,@prov_UsuCreacion	
+						,GETDATE()
+						,NULL 
+						,NULL 
+						,1);
+
+			SELECT 1 as Proceso		
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+END
+GO
+
+
+CREATE OR ALTER PROCEDURE rest.UDP_InsertarSucursales
+@sucu_Nombre			NVARCHAR(200),
+@muni_Id				INT, 
+@sucu_Direccion			NVARCHAR(200),
+@sucu_UsuCreacion		INT
+AS
+BEGIN
+BEGIN TRY
+
+		IF NOT EXISTS (SELECT * FROM rest.tbSucursales WHERE @sucu_Nombre = sucu_Nombre)
+			BEGIN
+				INSERT INTO [rest].tbSucursales
+					   (sucu_Nombre	
+					   ,muni_Id		
+					   ,sucu_Direccion	
+					   ,sucu_UsuCreacion
+					   ,sucu_FechaCreacion		
+					   ,sucu_UsuModificacion	
+					   ,sucu_FechaCreacion
+					   ,sucu_Estado)
+				 VALUES
+						(@sucu_Nombre		
+						,@muni_Id				
+						,@sucu_Direccion			
+						,@sucu_UsuCreacion	
+						,GETDATE()
+						,NULL 
+						,NULL 
+						,1);
+
+			SELECT 1 as Proceso
+		END
+		ELSE IF EXISTS (SELECT * FROM rest.tbSucursales WHERE (@sucu_Nombre = sucu_Nombre  ) AND sucu_Estado = 1 )
+		
+		SELECT -2 as Proceso
+		
+		ELSE
+			UPDATE rest.tbSucursales
+			SET sucu_Estado = 1
+			WHERE @sucu_Nombre = sucu_Nombre
+			SELECT 1 as Proceso
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+END
+GO
+
+
+CREATE OR ALTER PROCEDURE rest.UDP_InsertarIngedientes
+@ingr_Nombre				NVARCHAR(200), 
+@ingr_PrecioX100gr			DECIMAL(18,2), 
+@prov_Id					INT,
+@ingr_UsuCreacion			INT
+AS
+BEGIN
+BEGIN TRY
+
+	
+				INSERT INTO [rest].tbIngredientes
+					   (ingr_Nombre		
+					   ,ingr_PrecioX100gr	
+					   ,prov_Id			
+					   ,ingr_UsuCreacion	
+					   ,ingr_FechaCreacion		
+					   ,ingr_UsuModificacion	
+					   ,ingr_FechaModificacion
+					   ,ingr_Estado)
+				 VALUES
+						(@ingr_Nombre		
+						,@ingr_PrecioX100gr		
+						,@prov_Id				
+						,@ingr_UsuCreacion	
+						,GETDATE()
+						,NULL 
+						,NULL 
+						,1);
+			SELECT 1 as Proceso
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+END
+GO
+
+
+CREATE OR ALTER PROCEDURE rest.UDP_InsertarPlatillos 
+@plat_Nombre			NVARCHAR(200),
+@plat_Precio			DECIMAL(18,2),
+@cate_Id				INT,
+@plat_Imagen			NVARCHAR(MAX), 
+@plat_UsuCreacion		INT
+AS
+BEGIN
+BEGIN TRY
+
+	
+				INSERT INTO [rest].tbPlatillos
+					   (plat_Nombre	
+					   ,plat_Precio	
+					   ,cate_Id		
+					   ,plat_Imagen	
+					   ,plat_UsuCreacion	
+					   ,plat_FechaCreacion
+					   ,plat_UsuModificacion
+					   ,plat_FechaModificacion
+					   ,plat_Estado)
+				 VALUES
+						(@plat_Nombre	
+						,@plat_Precio	
+						,@cate_Id		
+						,@plat_Imagen	
+						,@plat_UsuCreacion
+						,GETDATE()
+						,NULL 
+						,NULL 
+						,1);
+
+			SELECT 1 as Proceso
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+END
+GO
+
