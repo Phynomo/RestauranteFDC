@@ -20,11 +20,11 @@ namespace Restaurante.Entities.Entities
         public int rese_Personas { get; set; }
         public DateTime rese_FechaHora { get; set; }
         public DateTime rese_FechaCreacion { get; set; }
-        public int rese_UsuarioCreacion { get; set; }
-        public string user_NombreUsuarioCreacion { get; set; }
+        public int rese_UsuCreacion { get; set; }
+        public string user_NombreUsuCreacion { get; set; }
         public DateTime? rese_FechaModificacion { get; set; }
-        public int? rese_UsuarioModificacion { get; set; }
-        public string user_NombreUsuarioModificacion { get; set; }
+        public int? rese_UsuModificacion { get; set; }
+        public string user_NombreUsuModificacion { get; set; }
         public bool rese_Estado { get; set; }
     }
 }

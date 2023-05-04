@@ -21,6 +21,7 @@ namespace Restaurante.Entities.Entities
         public string empe_Nombres { get; set; }
         public string empe_Apellidos { get; set; }
         public string empe_NombreCompleto { get; set; }
+        public bool fact_Cerrada { get; set; }
         public int plat_Id { get; set; }
         public string plat_Nombre { get; set; }
         public decimal plat_Precio { get; set; }
@@ -30,11 +31,11 @@ namespace Restaurante.Entities.Entities
         public int fade_Cantidad { get; set; }
         public decimal fade_Precio { get; set; }
         public DateTime fade_FechaCreacion { get; set; }
-        public int fade_UsuarioCreacion { get; set; }
-        public string user_NombreUsuarioCreacion { get; set; }
+        public int fade_UsuCreacion { get; set; }
+        public string user_NombreUsuCreacion { get; set; }
         public DateTime? fade_FechaModificacion { get; set; }
-        public int? fade_UsuarioModificacion { get; set; }
-        public string user_NombreUsuarioModificacion { get; set; }
+        public int? fade_UsuModificacion { get; set; }
+        public string user_NombreUsuModificacion { get; set; }
         public bool fade_Estado { get; set; }
     }
 }

@@ -54,6 +54,7 @@ namespace Restaurante.DataAccess.Context
         public virtual DbSet<tbPantallasPorRoles> tbPantallasPorRoles { get; set; }
         public virtual DbSet<tbPlatillos> tbPlatillos { get; set; }
         public virtual DbSet<tbPlatillosHistorial> tbPlatillosHistorial { get; set; }
+        public virtual DbSet<tbPlatillosHistorial2> tbPlatillosHistorial2 { get; set; }
         public virtual DbSet<tbProveedores> tbProveedores { get; set; }
         public virtual DbSet<tbReservaciones> tbReservaciones { get; set; }
         public virtual DbSet<tbRoles> tbRoles { get; set; }
@@ -78,11 +79,11 @@ namespace Restaurante.DataAccess.Context
 
                 entity.Property(e => e.carg_FechaModificacion).HasColumnType("datetime");
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbCategorias>(entity =>
@@ -99,11 +100,11 @@ namespace Restaurante.DataAccess.Context
 
                 entity.Property(e => e.cate_FechaModificacion).HasColumnType("datetime");
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbClientes>(entity =>
@@ -153,11 +154,11 @@ namespace Restaurante.DataAccess.Context
                     .IsRequired()
                     .HasMaxLength(20);
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbDepartamentos>(entity =>
@@ -180,11 +181,11 @@ namespace Restaurante.DataAccess.Context
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbEmpleados>(entity =>
@@ -269,11 +270,11 @@ namespace Restaurante.DataAccess.Context
                     .IsRequired()
                     .HasMaxLength(200);
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbEstadosCiviles>(entity =>
@@ -290,11 +291,11 @@ namespace Restaurante.DataAccess.Context
 
                 entity.Property(e => e.eciv_FechaModificacion).HasColumnType("datetime");
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbFacturaDetalles>(entity =>
@@ -365,11 +366,11 @@ namespace Restaurante.DataAccess.Context
 
                 entity.Property(e => e.plat_Precio).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbFacturas>(entity =>
@@ -432,11 +433,19 @@ namespace Restaurante.DataAccess.Context
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.sucu_Direccion)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.sucu_Nombre)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbIngredientes>(entity =>
@@ -459,11 +468,11 @@ namespace Restaurante.DataAccess.Context
                     .IsRequired()
                     .HasMaxLength(150);
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbMetodosPago>(entity =>
@@ -480,11 +489,11 @@ namespace Restaurante.DataAccess.Context
 
                 entity.Property(e => e.metp_FechaModificacion).HasColumnType("datetime");
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbMunicipios>(entity =>
@@ -517,11 +526,11 @@ namespace Restaurante.DataAccess.Context
                     .IsRequired()
                     .HasMaxLength(80);
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbPlatillos>(entity =>
@@ -546,11 +555,11 @@ namespace Restaurante.DataAccess.Context
 
                 entity.Property(e => e.plat_Precio).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbProveedores>(entity =>
@@ -599,11 +608,11 @@ namespace Restaurante.DataAccess.Context
                     .IsRequired()
                     .HasMaxLength(20);
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbReservaciones>(entity =>
@@ -645,11 +654,11 @@ namespace Restaurante.DataAccess.Context
                     .IsRequired()
                     .HasMaxLength(200);
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbRoles>(entity =>
@@ -666,11 +675,11 @@ namespace Restaurante.DataAccess.Context
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbSucursales>(entity =>
@@ -711,11 +720,11 @@ namespace Restaurante.DataAccess.Context
                     .IsRequired()
                     .HasMaxLength(200);
 
-                entity.Property(e => e.user_NombreUsuarioCreacion)
+                entity.Property(e => e.user_NombreUsuCreacion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<VW_tbUsuarios>(entity =>
@@ -728,29 +737,17 @@ namespace Restaurante.DataAccess.Context
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.clie_Apellidos)
-                    .IsRequired()
-                    .HasMaxLength(200);
+                entity.Property(e => e.clie_Apellidos).HasMaxLength(200);
 
-                entity.Property(e => e.clie_NombreCompleto)
-                    .IsRequired()
-                    .HasMaxLength(401);
+                entity.Property(e => e.clie_NombreCompleto).HasMaxLength(401);
 
-                entity.Property(e => e.clie_Nombres)
-                    .IsRequired()
-                    .HasMaxLength(200);
+                entity.Property(e => e.clie_Nombres).HasMaxLength(200);
 
-                entity.Property(e => e.empe_Apellidos)
-                    .IsRequired()
-                    .HasMaxLength(200);
+                entity.Property(e => e.empe_Apellidos).HasMaxLength(200);
 
-                entity.Property(e => e.empe_NombreCompleto)
-                    .IsRequired()
-                    .HasMaxLength(401);
+                entity.Property(e => e.empe_NombreCompleto).HasMaxLength(401);
 
-                entity.Property(e => e.empe_Nombres)
-                    .IsRequired()
-                    .HasMaxLength(200);
+                entity.Property(e => e.empe_Nombres).HasMaxLength(200);
 
                 entity.Property(e => e.role_Nombre)
                     .IsRequired()
@@ -762,15 +759,15 @@ namespace Restaurante.DataAccess.Context
 
                 entity.Property(e => e.user_FechaModificacion).HasColumnType("datetime");
 
+                entity.Property(e => e.user_NombreUsuCreacion)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
+
                 entity.Property(e => e.user_NombreUsuario)
                     .IsRequired()
                     .HasMaxLength(100);
-
-                entity.Property(e => e.user_NombreUsuarioCreacion)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.user_NombreUsuarioModificacion).HasMaxLength(100);
             });
 
             modelBuilder.Entity<tbCargos>(entity =>
@@ -1081,16 +1078,16 @@ namespace Restaurante.DataAccess.Context
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rest_tbFacturas_rest_tbEmpleados_empl_Id");
 
-                entity.HasOne(d => d.fact_UsuarioCreacionNavigation)
-                    .WithMany(p => p.tbFacturasfact_UsuarioCreacionNavigation)
-                    .HasForeignKey(d => d.fact_UsuarioCreacion)
+                entity.HasOne(d => d.fact_UsuCreacionNavigation)
+                    .WithMany(p => p.tbFacturasfact_UsuCreacionNavigation)
+                    .HasForeignKey(d => d.fact_UsuCreacion)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_rest_tbFacturas_acce_tbUsuarios_ped_UsuarioCreacion_usur_Id");
+                    .HasConstraintName("FK_rest_tbFacturas_acce_tbUsuarios_ped_UsuCreacion_usur_Id");
 
-                entity.HasOne(d => d.fact_UsuarioModificacionNavigation)
-                    .WithMany(p => p.tbFacturasfact_UsuarioModificacionNavigation)
-                    .HasForeignKey(d => d.fact_UsuarioModificacion)
-                    .HasConstraintName("FK_rest_tbFacturas_acce_tbUsuarios_ped_UsuarioModificacion_usur_Id");
+                entity.HasOne(d => d.fact_UsuModificacionNavigation)
+                    .WithMany(p => p.tbFacturasfact_UsuModificacionNavigation)
+                    .HasForeignKey(d => d.fact_UsuModificacion)
+                    .HasConstraintName("FK_rest_tbFacturas_acce_tbUsuarios_ped_UsuModificacion_usur_Id");
 
                 entity.HasOne(d => d.metp)
                     .WithMany(p => p.tbFacturas)
@@ -1124,16 +1121,16 @@ namespace Restaurante.DataAccess.Context
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rest_tbFacturasDetalles_tbFacturas_fact_id");
 
-                entity.HasOne(d => d.fade_UsuarioCreacionNavigation)
-                    .WithMany(p => p.tbFacturasDetallesfade_UsuarioCreacionNavigation)
-                    .HasForeignKey(d => d.fade_UsuarioCreacion)
+                entity.HasOne(d => d.fade_UsuCreacionNavigation)
+                    .WithMany(p => p.tbFacturasDetallesfade_UsuCreacionNavigation)
+                    .HasForeignKey(d => d.fade_UsuCreacion)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_rest_tbFacturasDetalles_acce_tbUsuarios_fade_UsuarioCreacion_user_Id");
+                    .HasConstraintName("FK_rest_tbFacturasDetalles_acce_tbUsuarios_fade_UsuCreacion_user_Id");
 
-                entity.HasOne(d => d.fade_UsuarioModificacionNavigation)
-                    .WithMany(p => p.tbFacturasDetallesfade_UsuarioModificacionNavigation)
-                    .HasForeignKey(d => d.fade_UsuarioModificacion)
-                    .HasConstraintName("FK_rest_tbFacturasDetalles_acce_tbUsuarios_fade_UsuarioModificacion_user_Id");
+                entity.HasOne(d => d.fade_UsuModificacionNavigation)
+                    .WithMany(p => p.tbFacturasDetallesfade_UsuModificacionNavigation)
+                    .HasForeignKey(d => d.fade_UsuModificacion)
+                    .HasConstraintName("FK_rest_tbFacturasDetalles_acce_tbUsuarios_fade_UsuModificacion_user_Id");
 
                 entity.HasOne(d => d.plat)
                     .WithMany(p => p.tbFacturasDetalles)
@@ -1164,15 +1161,15 @@ namespace Restaurante.DataAccess.Context
 
                 entity.Property(e => e.ingr_PrecioX100gr).HasColumnType("decimal(18, 2)");
 
-                entity.HasOne(d => d.ingr_UsuarioCreacionNavigation)
-                    .WithMany(p => p.tbIngredientesingr_UsuarioCreacionNavigation)
-                    .HasForeignKey(d => d.ingr_UsuarioCreacion)
+                entity.HasOne(d => d.ingr_UsuCreacionNavigation)
+                    .WithMany(p => p.tbIngredientesingr_UsuCreacionNavigation)
+                    .HasForeignKey(d => d.ingr_UsuCreacion)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rest_tbIngredientes_acce_tbUsuarios_role_UsuCreacion_user_Id");
 
-                entity.HasOne(d => d.ingr_UsuarioModificacionNavigation)
-                    .WithMany(p => p.tbIngredientesingr_UsuarioModificacionNavigation)
-                    .HasForeignKey(d => d.ingr_UsuarioModificacion)
+                entity.HasOne(d => d.ingr_UsuModificacionNavigation)
+                    .WithMany(p => p.tbIngredientesingr_UsuModificacionNavigation)
+                    .HasForeignKey(d => d.ingr_UsuModificacion)
                     .HasConstraintName("FK_rest_tbIngredientes_acce_tbUsuarios_role_UsuModificacion_user_Id");
 
                 entity.HasOne(d => d.prov)
@@ -1228,15 +1225,15 @@ namespace Restaurante.DataAccess.Context
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rest_tbIngredientesXPlatillos_tbIngredientes_ingr_Id");
 
-                entity.HasOne(d => d.ingrplat_UsuarioCreacionNavigation)
-                    .WithMany(p => p.tbIngredientesXPlatillosingrplat_UsuarioCreacionNavigation)
-                    .HasForeignKey(d => d.ingrplat_UsuarioCreacion)
+                entity.HasOne(d => d.ingrplat_UsuCreacionNavigation)
+                    .WithMany(p => p.tbIngredientesXPlatillosingrplat_UsuCreacionNavigation)
+                    .HasForeignKey(d => d.ingrplat_UsuCreacion)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rest_tbIngredientesXPlatillos_acce_tbUsuarios_role_UsuCreacion_user_Id");
 
-                entity.HasOne(d => d.ingrplat_UsuarioModificacionNavigation)
-                    .WithMany(p => p.tbIngredientesXPlatillosingrplat_UsuarioModificacionNavigation)
-                    .HasForeignKey(d => d.ingrplat_UsuarioModificacion)
+                entity.HasOne(d => d.ingrplat_UsuModificacionNavigation)
+                    .WithMany(p => p.tbIngredientesXPlatillosingrplat_UsuModificacionNavigation)
+                    .HasForeignKey(d => d.ingrplat_UsuModificacion)
                     .HasConstraintName("FK_rest_tbIngredientesXPlatillos_acce_tbUsuarios_role_UsuModificacion_user_Id");
 
                 entity.HasOne(d => d.plat)
@@ -1271,15 +1268,15 @@ namespace Restaurante.DataAccess.Context
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rest_tbIngredientesXSucursal_tbIngredientes_ingr_Id");
 
-                entity.HasOne(d => d.ingrsucu_UsuarioCreacionNavigation)
-                    .WithMany(p => p.tbIngredientesXSucursalingrsucu_UsuarioCreacionNavigation)
-                    .HasForeignKey(d => d.ingrsucu_UsuarioCreacion)
+                entity.HasOne(d => d.ingrsucu_UsuCreacionNavigation)
+                    .WithMany(p => p.tbIngredientesXSucursalingrsucu_UsuCreacionNavigation)
+                    .HasForeignKey(d => d.ingrsucu_UsuCreacion)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rest_tbIngredientesXSucursal_acce_tbUsuarios_role_UsuCreacion_user_Id");
 
-                entity.HasOne(d => d.ingrsucu_UsuarioModificacionNavigation)
-                    .WithMany(p => p.tbIngredientesXSucursalingrsucu_UsuarioModificacionNavigation)
-                    .HasForeignKey(d => d.ingrsucu_UsuarioModificacion)
+                entity.HasOne(d => d.ingrsucu_UsuModificacionNavigation)
+                    .WithMany(p => p.tbIngredientesXSucursalingrsucu_UsuModificacionNavigation)
+                    .HasForeignKey(d => d.ingrsucu_UsuModificacion)
                     .HasConstraintName("FK_rest_tbIngredientesXSucursal_acce_tbUsuarios_role_UsuModificacion_user_Id");
 
                 entity.HasOne(d => d.sucu)
@@ -1473,15 +1470,15 @@ namespace Restaurante.DataAccess.Context
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rest_tbPlatillos_tbCategorias_cate_Id");
 
-                entity.HasOne(d => d.plat_UsuarioCreacionNavigation)
-                    .WithMany(p => p.tbPlatillosplat_UsuarioCreacionNavigation)
-                    .HasForeignKey(d => d.plat_UsuarioCreacion)
+                entity.HasOne(d => d.plat_UsuCreacionNavigation)
+                    .WithMany(p => p.tbPlatillosplat_UsuCreacionNavigation)
+                    .HasForeignKey(d => d.plat_UsuCreacion)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rest_tbPlatillos_acce_tbUsuarios_role_UsuCreacion_user_Id");
 
-                entity.HasOne(d => d.plat_UsuarioModificacionNavigation)
-                    .WithMany(p => p.tbPlatillosplat_UsuarioModificacionNavigation)
-                    .HasForeignKey(d => d.plat_UsuarioModificacion)
+                entity.HasOne(d => d.plat_UsuModificacionNavigation)
+                    .WithMany(p => p.tbPlatillosplat_UsuModificacionNavigation)
+                    .HasForeignKey(d => d.plat_UsuModificacion)
                     .HasConstraintName("FK_rest_tbPlatillos_acce_tbUsuarios_role_UsuModificacion_user_Id");
             });
 
@@ -1500,6 +1497,49 @@ namespace Restaurante.DataAccess.Context
                     .HasMaxLength(200);
 
                 entity.Property(e => e.plat_Precio).HasColumnType("decimal(18, 2)");
+            });
+
+            modelBuilder.Entity<tbPlatillosHistorial2>(entity =>
+            {
+                entity.HasKey(e => e.plat_Id)
+                    .HasName("PK_rest_tbPlatillosHistorial_plat_Id");
+
+                entity.ToTable("tbPlatillosHistorial2", "rest");
+
+                entity.Property(e => e.plat_Id).ValueGeneratedNever();
+
+                entity.Property(e => e.plat_Estado)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.plat_FechaCreacion)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.plat_FechaModificacion).HasColumnType("datetime");
+
+                entity.Property(e => e.plat_Nombre)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.plat_Precio).HasColumnType("decimal(18, 2)");
+
+                entity.HasOne(d => d.cate)
+                    .WithMany(p => p.tbPlatillosHistorial2)
+                    .HasForeignKey(d => d.cate_Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_rest_tbPlatillosHistorial_tbCategorias_cate_Id");
+
+                entity.HasOne(d => d.plat_UsuarioCreacionNavigation)
+                    .WithMany(p => p.tbPlatillosHistorial2plat_UsuarioCreacionNavigation)
+                    .HasForeignKey(d => d.plat_UsuarioCreacion)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_rest_tbPlatillosHistorial_acce_tbUsuarios_role_UsuCreacion_user_Id");
+
+                entity.HasOne(d => d.plat_UsuarioModificacionNavigation)
+                    .WithMany(p => p.tbPlatillosHistorial2plat_UsuarioModificacionNavigation)
+                    .HasForeignKey(d => d.plat_UsuarioModificacion)
+                    .HasConstraintName("FK_rest_tbPlatillosHistorial_acce_tbUsuarios_role_UsuModificacion_user_Id");
             });
 
             modelBuilder.Entity<tbProveedores>(entity =>
@@ -1541,15 +1581,15 @@ namespace Restaurante.DataAccess.Context
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rest_tbProveedores_tbMunicipio_muni_id");
 
-                entity.HasOne(d => d.prov_UsuarioCreacionNavigation)
-                    .WithMany(p => p.tbProveedoresprov_UsuarioCreacionNavigation)
-                    .HasForeignKey(d => d.prov_UsuarioCreacion)
+                entity.HasOne(d => d.prov_UsuCreacionNavigation)
+                    .WithMany(p => p.tbProveedoresprov_UsuCreacionNavigation)
+                    .HasForeignKey(d => d.prov_UsuCreacion)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rest_tbproveedores_acce_tbUsuarios_role_UsuCreacion_user_Id");
 
-                entity.HasOne(d => d.prov_UsuarioModificacionNavigation)
-                    .WithMany(p => p.tbProveedoresprov_UsuarioModificacionNavigation)
-                    .HasForeignKey(d => d.prov_UsuarioModificacion)
+                entity.HasOne(d => d.prov_UsuModificacionNavigation)
+                    .WithMany(p => p.tbProveedoresprov_UsuModificacionNavigation)
+                    .HasForeignKey(d => d.prov_UsuModificacion)
                     .HasConstraintName("FK_rest_tbproveedores_acce_tbUsuarios_role_UsuModificacion_user_Id");
             });
 
@@ -1578,15 +1618,15 @@ namespace Restaurante.DataAccess.Context
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rest_tbReservaciones_tbClientes_clie_Id");
 
-                entity.HasOne(d => d.rese_UsuarioCreacionNavigation)
-                    .WithMany(p => p.tbReservacionesrese_UsuarioCreacionNavigation)
-                    .HasForeignKey(d => d.rese_UsuarioCreacion)
+                entity.HasOne(d => d.rese_UsuCreacionNavigation)
+                    .WithMany(p => p.tbReservacionesrese_UsuCreacionNavigation)
+                    .HasForeignKey(d => d.rese_UsuCreacion)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rest_tbReservaciones_acce_tbUsuarios_role_UsuCreacion_user_Id");
 
-                entity.HasOne(d => d.rese_UsuarioModificacionNavigation)
-                    .WithMany(p => p.tbReservacionesrese_UsuarioModificacionNavigation)
-                    .HasForeignKey(d => d.rese_UsuarioModificacion)
+                entity.HasOne(d => d.rese_UsuModificacionNavigation)
+                    .WithMany(p => p.tbReservacionesrese_UsuModificacionNavigation)
+                    .HasForeignKey(d => d.rese_UsuModificacion)
                     .HasConstraintName("FK_rest_tbReservaciones_acce_tbUsuarios_role_UsuModificacion_user_Id");
 
                 entity.HasOne(d => d.sucu)
@@ -1603,7 +1643,7 @@ namespace Restaurante.DataAccess.Context
 
                 entity.ToTable("tbRoles", "acce");
 
-                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82E2D06B62B")
+                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82ED43FE55B")
                     .IsUnique();
 
                 entity.Property(e => e.role_Estado)

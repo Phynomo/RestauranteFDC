@@ -17,17 +17,18 @@ namespace Restaurante.Entities.Entities
         public int clie_Id { get; set; }
         public int empe_Id { get; set; }
         public int metp_Id { get; set; }
+        public bool fact_Cerrada { get; set; }
         public DateTime fact_Fecha { get; set; }
         public DateTime fact_FechaCreacion { get; set; }
-        public int fact_UsuarioCreacion { get; set; }
+        public int fact_UsuCreacion { get; set; }
         public DateTime? fact_FechaModificacion { get; set; }
-        public int? fact_UsuarioModificacion { get; set; }
+        public int? fact_UsuModificacion { get; set; }
         public bool? fact_Estado { get; set; }
 
         public virtual tbClientes clie { get; set; }
         public virtual tbEmpleados empe { get; set; }
-        public virtual tbUsuarios fact_UsuarioCreacionNavigation { get; set; }
-        public virtual tbUsuarios fact_UsuarioModificacionNavigation { get; set; }
+        public virtual tbUsuarios fact_UsuCreacionNavigation { get; set; }
+        public virtual tbUsuarios fact_UsuModificacionNavigation { get; set; }
         public virtual tbMetodosPago metp { get; set; }
         public virtual ICollection<tbFacturasDetalles> tbFacturasDetalles { get; set; }
     }

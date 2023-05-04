@@ -12,6 +12,7 @@ namespace Restaurante.DataAccess
 
         public static string UDP_Cargos_List = "gral.UDP_tbCargos_Select";
         public static string InsertarCargos = "gral.UDP_tbCargos_Insert";
+        public static string UDP_Cargos_Insert = "gral.UDP_tbCargos_Insert";
 
         #endregion
 

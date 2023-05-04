@@ -15,10 +15,10 @@ namespace Restaurante.Entities.Entities
         public string depa_Nombre { get; set; }
         public string depa_Codigo { get; set; }
         public int muni_UsuCreacion { get; set; }
-        public string user_NombreUsuarioCreacion { get; set; }
+        public string user_NombreUsuCreacion { get; set; }
         public DateTime muni_FechaCreacion { get; set; }
         public int? muni_UsuModificacion { get; set; }
-        public string user_NombreUsuarioModificacion { get; set; }
+        public string user_NombreUsuModificacion { get; set; }
         public DateTime? muni_FechaModificacion { get; set; }
         public bool muni_Estado { get; set; }
     }

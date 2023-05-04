@@ -100,37 +100,34 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             }
         }
 
-        public ServiceResult InsertarCargos(tbCargos item)
+        public ServiceResult InsertarCargos(tbCargos cargo)
         {
-            ServiceResult result = new ServiceResult();
+            var result = new ServiceResult();
             try
             {
-                var list = _cargosRepository.Newcharges(item);
-                if (list.CodeStatus > 0)
+                var map = _cargosRepository.Insert(cargo);
+                if (map.CodeStatus > 0)
                 {
                     return result.SetMessage("Exitoso", ServiceResultType.Success);
                 }
-                else if (list.CodeStatus == -2)
+                else if (map.CodeStatus == -2)
                 {
                     return result.SetMessage("YaExiste", ServiceResultType.Conflict);
                 }
-                else if (list.CodeStatus == 0)
+                else if (map.CodeStatus == 0)
                 {
                     return result.SetMessage("ErrorInespero", ServiceResultType.Error);
                 }
-                else
+                else 
                 {
                     return result.SetMessage("ErrorInespero", ServiceResultType.Error);
                 }
             }
-            catch (Exception xe)
+            catch (Exception e)
             {
-
-                return result.Error(xe.Message);
+                return result.Error(e.Message);
             }
         }
-
-     
 
         #endregion
 

@@ -12,10 +12,10 @@ namespace Restaurante.Entities.Entities
         public string depa_Nombre { get; set; }
         public string depa_Codigo { get; set; }
         public int depa_UsuCreacion { get; set; }
-        public string user_NombreUsuarioCreacion { get; set; }
+        public string user_NombreUsuCreacion { get; set; }
         public DateTime depa_FechaCreacion { get; set; }
         public int? depa_UsuModificacion { get; set; }
-        public string user_NombreUsuarioModificacion { get; set; }
+        public string user_NombreUsuModificacion { get; set; }
         public DateTime? depa_FechaModificacion { get; set; }
         public bool depa_Estado { get; set; }
     }

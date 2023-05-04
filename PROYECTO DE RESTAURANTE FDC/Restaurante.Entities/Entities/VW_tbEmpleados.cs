@@ -32,10 +32,10 @@ namespace Restaurante.Entities.Entities
         public int carg_Id { get; set; }
         public string carg_Descripcion { get; set; }
         public int empe_UsuCreacion { get; set; }
-        public string user_NombreUsuarioCreacion { get; set; }
+        public string user_NombreUsuCreacion { get; set; }
         public DateTime empe_FechaCreacion { get; set; }
         public int? empe_UsuModificacion { get; set; }
-        public string user_NombreUsuarioModificacion { get; set; }
+        public string user_NombreUsuModificacion { get; set; }
         public DateTime? empe_FechaModificacion { get; set; }
         public bool empe_Estado { get; set; }
     }
