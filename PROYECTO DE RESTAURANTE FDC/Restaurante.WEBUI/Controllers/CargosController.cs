@@ -47,5 +47,13 @@ namespace Restaurante.WEBUI.Controllers
             var list = _generalServivce.InsertarCargos(item);
             return Ok(list);
         }
+
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(CargoViewModel metodo)
+        {
+            var item = _mapper.Map<tbCargos>(metodo);
+            var result = _generalServivce.EliminarCargos(item);
+            return Ok(result);
+        }
     }
 }

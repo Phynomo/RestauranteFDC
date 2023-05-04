@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restaurante.BusinessLogic.Services.AccesoService;
+using Restaurante.Entities.Entities;
+using Restaurante.WEBUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,14 @@ namespace Restaurante.WEBUI.Controllers
         {
             var list = _seguridadServivce.ListadoRoles();
             return Ok(list);
+        }
+
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(RolViewModel roles)
+        {
+            var item = _mapper.Map<tbRoles>(roles);
+            var result = _seguridadServivce.EliminarRoles(item);
+            return Ok(result);
         }
     }
 }

@@ -39,6 +39,12 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(response);
         }
 
-
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(DepartamentoViewModel departamento)
+        {
+            var item = _mapper.Map<tbDepartamentos>(departamento);
+            var result = _generalServivce.EliminarDepartamentos(item);
+            return Ok(result);
+        }
     }
 }

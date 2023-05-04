@@ -38,6 +38,26 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
             }
         }
 
+        public ServiceResult EliminarUsuarios(tbUsuarios item)
+        {
+            var result = new ServiceResult();
+
+            try
+            {
+                var insert = _usuariosRepository.Delete(item);
+
+                if (insert.CodeStatus == 1)
+                    return result.SetMessage("Registro eliminado", ServiceResultType.Success);
+                else if (insert.CodeStatus == 0)
+                    return result.SetMessage("Error Inesperado", ServiceResultType.Error);
+                else
+                    return result.SetMessage("Conexión perdida", ServiceResultType.Error);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
         public ServiceResult RecuperarUsuarios(tbUsuarios item)
         {
             var result = new ServiceResult();
@@ -92,6 +112,27 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
             catch (Exception e)
             {
                 return result.Error(e.Message);
+            }
+        }
+
+        public ServiceResult EliminarRoles(tbRoles item)
+        {
+            var result = new ServiceResult();
+
+            try
+            {
+                var insert = _rolesRepository.Delete(item);
+
+                if (insert.CodeStatus == 1)
+                    return result.SetMessage("Registro eliminado", ServiceResultType.Success);
+                else if (insert.CodeStatus == 0)
+                    return result.SetMessage("Error Inesperado", ServiceResultType.Error);
+                else
+                    return result.SetMessage("Conexión perdida", ServiceResultType.Error);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
             }
         }
 
