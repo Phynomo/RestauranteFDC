@@ -28,5 +28,13 @@ namespace Restaurante.WEBUI.Controllers
             var list = _restauranteServicio.ListadoProveedores();
             return Ok(list);
         }
+
+        [HttpPost("InsertarEmpleados")]
+        public IActionResult InsertarEmpleado(EmpleadoViewModel empleado)
+        {
+            var item = _mapper.Map<tbEmpleados>(empleado);
+            var response = _restauranteServicio.InsertarEmpleados(item);
+            return Ok(response);
+        }
     }
 }

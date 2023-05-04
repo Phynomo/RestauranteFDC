@@ -43,7 +43,7 @@ namespace Restaurante.DataAccess.Repositories.REST
             RequestStatus reques = new()
             {
                 CodeStatus = result,
-                MessageStatus = "Municipio insertado !"
+                MessageStatus = "Cliente insertado !"
             };
 
             return reques;

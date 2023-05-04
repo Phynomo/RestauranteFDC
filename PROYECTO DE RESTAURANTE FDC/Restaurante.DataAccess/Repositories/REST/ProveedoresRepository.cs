@@ -27,6 +27,28 @@ namespace Restaurante.DataAccess.Repositories.REST
             throw new NotImplementedException();
         }
 
+        public RequestStatus NewSupplier(tbProveedores item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@clie_Nombres", item.clie_Nombres, DbType.String, ParameterDirection.Input);
+            parameters.Add("@clie_Apellidos", item.clie_Apellidos, DbType.String, ParameterDirection.Input);
+            parameters.Add("@clie_Identidad", item.clie_Identidad, DbType.String, ParameterDirection.Input);
+            parameters.Add("@clie_RTN", item.clie_RTN, DbType.String, ParameterDirection.Input);
+            parameters.Add("@clie_Sexo", item.clie_Sexo, DbType.String, ParameterDirection.Input);
+            parameters.Add("@clie_Telefono", item.clie_Telefono, DbType.String, ParameterDirection.Input);
+            parameters.Add("@clie_UsuCreacion", item.clie_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.InsertarProveedores, parameters, commandType: CommandType.StoredProcedure);
+
+            RequestStatus reques = new()
+            {
+                CodeStatus = result,
+                MessageStatus = "Proveedor insertado !"
+            };
+
+            return reques;
+        }
+
         public IEnumerable<VW_tbProveedores> List()
         {
             using var db = new SqlConnection(RestauranteCon.ConnectionString);
