@@ -6634,24 +6634,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\karla\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\danie\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\karla\\OneDrive\\Escritorio\\API_Events_Company\\Events_Company_R\\Events_Company_R.BussinessLogic\\Events_Company_R.BussinessLogic.csproj",
+      "projectUniqueName": "C:\\Users\\danie\\Documents\\GitHub\\RestauranteFDC\\API_Events_Company\\Events_Company_R\\Events_Company_R.BussinessLogic\\Events_Company_R.BussinessLogic.csproj",
       "projectName": "Events_Company_R.BussinessLogic",
-      "projectPath": "C:\\Users\\karla\\OneDrive\\Escritorio\\API_Events_Company\\Events_Company_R\\Events_Company_R.BussinessLogic\\Events_Company_R.BussinessLogic.csproj",
-      "packagesPath": "C:\\Users\\karla\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\karla\\OneDrive\\Escritorio\\API_Events_Company\\Events_Company_R\\Events_Company_R.BussinessLogic\\obj\\",
+      "projectPath": "C:\\Users\\danie\\Documents\\GitHub\\RestauranteFDC\\API_Events_Company\\Events_Company_R\\Events_Company_R.BussinessLogic\\Events_Company_R.BussinessLogic.csproj",
+      "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\danie\\Documents\\GitHub\\RestauranteFDC\\API_Events_Company\\Events_Company_R\\Events_Company_R.BussinessLogic\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\karla\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6665,8 +6660,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\karla\\OneDrive\\Escritorio\\API_Events_Company\\Events_Company_R\\Events_Company_R.DataAccess\\Events_Company_R.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\karla\\OneDrive\\Escritorio\\API_Events_Company\\Events_Company_R\\Events_Company_R.DataAccess\\Events_Company_R.DataAccess.csproj"
+            "C:\\Users\\danie\\Documents\\GitHub\\RestauranteFDC\\API_Events_Company\\Events_Company_R\\Events_Company_R.DataAccess\\Events_Company_R.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\danie\\Documents\\GitHub\\RestauranteFDC\\API_Events_Company\\Events_Company_R\\Events_Company_R.DataAccess\\Events_Company_R.DataAccess.csproj"
             }
           }
         }

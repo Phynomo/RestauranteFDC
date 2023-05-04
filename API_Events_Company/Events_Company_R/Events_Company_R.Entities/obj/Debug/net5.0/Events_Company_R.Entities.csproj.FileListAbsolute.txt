@@ -46,3 +46,15 @@ D:\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Debug\net5.
 D:\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Debug\net5.0\Events_Company_R.Entities.dll
 D:\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Debug\net5.0\ref\Events_Company_R.Entities.dll
 D:\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Debug\net5.0\Events_Company_R.Entities.pdb
+C:\Users\danie\Documents\GitHub\RestauranteFDC\API_Events_Company\Events_Company_R\Events_Company_R.Entities\bin\Debug\net5.0\Events_Company_R.Entities.deps.json
+C:\Users\danie\Documents\GitHub\RestauranteFDC\API_Events_Company\Events_Company_R\Events_Company_R.Entities\bin\Debug\net5.0\Events_Company_R.Entities.dll
+C:\Users\danie\Documents\GitHub\RestauranteFDC\API_Events_Company\Events_Company_R\Events_Company_R.Entities\bin\Debug\net5.0\ref\Events_Company_R.Entities.dll
+C:\Users\danie\Documents\GitHub\RestauranteFDC\API_Events_Company\Events_Company_R\Events_Company_R.Entities\bin\Debug\net5.0\Events_Company_R.Entities.pdb
+C:\Users\danie\Documents\GitHub\RestauranteFDC\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Debug\net5.0\Events_Company_R.Entities.csproj.AssemblyReference.cache
+C:\Users\danie\Documents\GitHub\RestauranteFDC\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Debug\net5.0\Events_Company_R.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danie\Documents\GitHub\RestauranteFDC\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Debug\net5.0\Events_Company_R.Entities.AssemblyInfoInputs.cache
+C:\Users\danie\Documents\GitHub\RestauranteFDC\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Debug\net5.0\Events_Company_R.Entities.AssemblyInfo.cs
+C:\Users\danie\Documents\GitHub\RestauranteFDC\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Debug\net5.0\Events_Company_R.Entities.csproj.CoreCompileInputs.cache
+C:\Users\danie\Documents\GitHub\RestauranteFDC\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Debug\net5.0\Events_Company_R.Entities.dll
+C:\Users\danie\Documents\GitHub\RestauranteFDC\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Debug\net5.0\ref\Events_Company_R.Entities.dll
+C:\Users\danie\Documents\GitHub\RestauranteFDC\API_Events_Company\Events_Company_R\Events_Company_R.Entities\obj\Debug\net5.0\Events_Company_R.Entities.pdb
