@@ -34,12 +34,20 @@ namespace Restaurante.WEBUI.Controllers
         [HttpPost("InsertarCategoria")]
         public IActionResult InsertarCategoria(CategoriaViewModel categoria)
         {
-
             var item = _mapper.Map<tbCategorias>(categoria);
             var response = _generalServivce.InsertarCategorias(item);
             return Ok(response);
         }
+        
+        [HttpPut("EditarCategoria")]
+        public IActionResult Edit(CategoriaViewModel categoria)
+        {
 
+            var item = _mapper.Map<tbCategorias>(categoria);
+            var response = _generalServivce.EditarCategorias(item);
+            return Ok(response);
+        }
+        
         [HttpPut("Eliminar")]
         public IActionResult Delete(CategoriaViewModel categoria)
         {

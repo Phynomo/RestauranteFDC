@@ -48,6 +48,14 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(list);
         }
 
+        [HttpPut("Editar")]
+        public IActionResult Edit(VWCargosViewModel cargo)
+        {
+            var item = _mapper.Map<tbCargos>(cargo);
+            var list = _generalServivce.EditarCargos(item);
+            return Ok(list);
+        }
+        
         [HttpPut("Eliminar")]
         public IActionResult Delete(CargoViewModel metodo)
         {
