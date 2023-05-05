@@ -1,18 +1,18 @@
 CREATE OR ALTER PROCEDURE acce.UDP_tbUsuarios_Update
 	@user_Id INT,
 	@empl_Id int,
-	@userModificacion int
+	@usuModificacion int
 AS
 BEGIN
 
 BEGIN TRY
 
 UPDATE [acce].[tbUsuarios]
-   SET [empl_Id] = @empl_Id
-      ,[user_UserModificacion] = @userModificacion
-      ,[user_FechaModificacion] = GetDate()
+   SET [empe_Id] = @empl_Id
+      ,[user_UsuModificacion] = @usuModificacion
+      ,[user_FechaModificacion] = GETDATE()
       ,[user_Estado] = 1
- WHERE user_Id = @user_Id
+ WHERE [user_Id] = @user_Id
 
 SELECT 1 as Proceso
 END TRY
