@@ -328,6 +328,10 @@ class Sidenavigation extends Component {
                             </ul >
                         </li >
                         {/* /Apps */}
+                        <li className="menu-item" >
+                            <Link to="/pruebas"> <span><i className="material-icons fs-16">format_paint</i>Pruebazzz</span>
+                            </Link>
+                        </li>
                     </ul >
                 </Scrollbar >
             </div >

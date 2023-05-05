@@ -72,6 +72,7 @@ import Empleados from './components/pages/Empleados';
 import Cargos from './components/pages/Cargos';
 import EstadosCiviles from './components/pages/EstadosCiviles';
 import MetodosPago from './components/pages/MetodosPago';
+import Pruebas from './components/pages/pruebas';
 
 function App() {
   return (
@@ -79,6 +80,7 @@ function App() {
       <Preloader />
       <Switch>
         <Route exact path="/" component={Dashboard} />
+        <Route path="/pruebas" component={Pruebas} />
         <Route path="/accordions" component={Accordions} />
         <Route path="/departamentos" component={Departamentos} />
         <Route path="/estadosCiviles" component={EstadosCiviles} />

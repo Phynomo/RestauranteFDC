@@ -8,8 +8,6 @@ import Table from './table';
 import ModalCreate from './ModalCreate';
 
 const Content = () => {
-    
-
     return (
         <div className="ms-content-wrapper">
             <div className="row">
