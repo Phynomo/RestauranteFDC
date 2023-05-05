@@ -33,7 +33,16 @@ namespace Restaurante.DataAccess.Repositories.ACCE
 
         public RequestStatus Insert(tbRoles item)
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            RequestStatus result = new RequestStatus();
+
+            var parametros = new DynamicParameters();
+            parametros.Add("@role_Nombre", item.role_Nombre, DbType.String, ParameterDirection.Input);
+            parametros.Add("@role_UsuCreacion", item.role_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+            var respuesta = db.QueryFirst<int>(ScriptsDataBase.UDP_Roles_Insert, parametros, commandType: System.Data.CommandType.StoredProcedure);
+
+            result.CodeStatus = respuesta;
+            return result;
         }
 
         public IEnumerable<VW_tbRoles> List()

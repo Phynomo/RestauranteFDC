@@ -31,6 +31,14 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(list);
         }
 
+        [HttpPost("Insertar")]
+        public IActionResult Insert(RolViewModel rol)
+        {
+            var item = _mapper.Map<tbRoles>(rol);
+            var list = _seguridadServivce.InsertarRoles(item);
+            return Ok(list);
+        }
+
         [HttpPut("EditarRol")]
         public IActionResult Edit(RolViewModel rol)
         {
