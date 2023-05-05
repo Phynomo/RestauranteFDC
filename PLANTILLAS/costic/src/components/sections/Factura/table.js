@@ -28,23 +28,34 @@ const DataTable = () => {
   ];
 
   useEffect(() => {
-    fetch('https://localhost:44383/api/Cargos/Listado')
-      .then(response => response.json())
-      .then(data => {
-        const rows = data.data.map(item => {
-          return {
-            id: item.carg_Id,
-            carg_Id: item.carg_Id,
-            carg_Descripcion: item.carg_Descripcion
-          }
+    console.log(1);
+    const fetchData = () => {
+      fetch('https://localhost:44383/api/Cargos/Listado')
+        .then(response => response.json())
+        .then(data => {
+          const rows = data.data.map(item => {
+            return {
+              id: item.carg_Id,
+              carg_Id: item.carg_Id,
+              carg_Descripcion: item.carg_Descripcion
+            }
+          });
+          setRows(rows);
+          setIsLoading(false);
+        })
+        .catch(error => {
+          console.log("Error en la solicitud fetch:", error);
         });
-        setRows(rows);
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.log("Error en la solicitud fetch:", error);
-      });
-  }, [rows]);
+    };
+  
+    fetchData(); // llamada inicial
+  
+    const interval = setInterval(() => {
+      fetchData(); // llamada cada 3 segundos
+    }, 3000);
+  
+    return () => clearInterval(interval); // limpiar intervalo al desmontar el componente
+  }, []);
 
   const handleSearch = e => {
     setSearchText(e.target.value);

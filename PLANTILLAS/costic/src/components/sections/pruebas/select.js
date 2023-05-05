@@ -1,38 +1,26 @@
-import React, { useState } from 'react';
-import Select from 'react-select';
+import { useState } from "react";
+import React from "react";
 
-const options = [
-  { value: '1', label: 'Opción 1', column: 'A' },
-  { value: '2', label: 'Opción 2', column: 'A' },
-  { value: '3', label: 'Opción 3', column: 'B' },
-  { value: '4', label: 'Opción 4', column: 'B' },
-];
+function ImageUploader() {
+  const [image, setImage] = useState(null);
 
-const SelectMultiple = () => {
-  const [selectedOptions, setSelectedOptions] = useState([{label: 'Opción 2'}]);
-
-  const handleChange = (selected) => {
-    console.log(selectedOptions);
-    setSelectedOptions(selected);
-  };
-
-  const customStyles = {
-    control: (provided) => ({
-      ...provided,
-    }),
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setImage(reader.result);
+      };
+    }
   };
 
   return (
-    <Select
-      isMulti
-      options={options}
-      value={selectedOptions}
-      onChange={handleChange}
-      styles={customStyles}
-      getOptionLabel={(option) => `${option.label} (${option.column})`}
-      getOptionValue={(option) => option.value}
-    />
+    <div>
+      <input type="file" accept="image/*" onChange={handleImageChange} />
+      {image && <img src={image} alt="uploaded image" />}
+    </div>
   );
-};
+}
 
-export default SelectMultiple;
+export default ImageUploader;

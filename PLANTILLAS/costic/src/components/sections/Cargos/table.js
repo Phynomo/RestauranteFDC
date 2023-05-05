@@ -27,9 +27,13 @@ const DataTable = () => {
     },
   ];
 
+
   useEffect(() => {
-    axios.get('https://localhost:44383/api/Cargos/Listado')
+    const fetchData = () => {
+      axios.get('https://localhost:44383/api/Cargos/Listado')
   .then(response => {
+    
+    console.log("actualizo");
     const rows = response.data.data.map(item => {
       return {
         id: item.carg_Id,
@@ -43,7 +47,17 @@ const DataTable = () => {
   .catch(error => {
     console.log('Error en la solicitud Axios:', error);
   });
-  }, [rows]);
+    };
+  
+    fetchData(); // llamada inicial
+  
+    const interval = setInterval(() => {
+      fetchData(); // llamada cada 3 segundos
+    }, 3000);
+  
+    return () => clearInterval(interval); // limpiar intervalo al desmontar el componente
+  }, []);
+
 
   const handleSearch = e => {
     setSearchText(e.target.value);

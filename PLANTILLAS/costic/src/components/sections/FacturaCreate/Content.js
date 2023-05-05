@@ -18,27 +18,18 @@ function Content() {
                                 <Tab.Container defaultActiveKey="tab1">
                                     <Nav variant="tabs" className="nav nav-tabs tabs-bordered d-flex nav-justified mb-4">
                                         <Nav.Item>
-                                            <Nav.Link eventKey="tab1">Overview</Nav.Link>
+                                            <Nav.Link eventKey="tab1">Encabezado</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
-                                            <Nav.Link disabled="true" eventKey="tab2">Profile</Nav.Link>
-                                        </Nav.Item>
-                                        <Nav.Item>
-                                            <Nav.Link eventKey="tab3">Settings</Nav.Link>
+                                            <Nav.Link disabled={false} eventKey="tab2">Detalles</Nav.Link>
                                         </Nav.Item>
                                     </Nav>
                                     <Tab.Content>
                                         <Tab.Pane eventKey="tab1">
-                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam urna nunc, congue nec laoreet sed, maximus non massa. Fusce vestibulum vel risus vitae tincidunt. </p>
-                                            <p> Cras egestas nisi vel tempor dignissim. Ut condimentum iaculis ex nec ornare. Vivamus sit amet elementum ante. Fusce eget erat volutpat </p>
+                                            <p> Aqui va el encabezado </p>
                                         </Tab.Pane>
                                         <Tab.Pane eventKey="tab2">
-                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam urna nunc, congue nec laoreet sed, maximus non massa. Fusce vestibulum vel risus vitae tincidunt. </p>
-                                            <p> Cras egestas nisi vel tempor dignissim. Ut condimentum iaculis ex nec ornare. Vivamus sit amet elementum ante. Fusce eget erat volutpat </p>
-                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam urna nunc, congue nec laoreet sed, maximus non massa. Fusce vestibulum vel risus vitae tincidunt. </p>
-                                        </Tab.Pane>
-                                        <Tab.Pane eventKey="tab3">
-                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam urna nunc, congue nec laoreet sed, maximus non massa. Fusce vestibulum vel risus vitae tincidunt. </p>
+                                        <p> Aqui va el cuerpo </p>
                                         </Tab.Pane>
                                     </Tab.Content>
                                 </Tab.Container>
