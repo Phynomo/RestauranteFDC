@@ -1,0 +1,25 @@
+CREATE OR ALTER PROCEDURE acce.UDP_tbUsuarios_Update
+	@user_Id INT,
+	@empl_Id int,
+	@userModificacion int
+AS
+BEGIN
+
+BEGIN TRY
+
+UPDATE [acce].[tbUsuarios]
+   SET [empl_Id] = @empl_Id
+      ,[user_UserModificacion] = @userModificacion
+      ,[user_FechaModificacion] = GetDate()
+      ,[user_Estado] = 1
+ WHERE user_Id = @user_Id
+
+SELECT 1 as Proceso
+END TRY
+BEGIN CATCH
+SELECT 0 as Proceso
+END CATCH
+
+
+END
+GO
