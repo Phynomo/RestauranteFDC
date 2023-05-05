@@ -39,14 +39,6 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(response);
         }
 
-        [HttpPut("EditarMetodoPago")]
-        public IActionResult Edit(MetodoPagoViewModel metodos)
-        {
-            var item = _mapper.Map<tbMetodosPago>(metodos);
-            var response = _generalServivce.EditarMetodos(item);
-            return Ok(response);
-        }
-        
         [HttpPut("Eliminar")]
         public IActionResult Delete(MetodoPagoViewModel metodo)
         {

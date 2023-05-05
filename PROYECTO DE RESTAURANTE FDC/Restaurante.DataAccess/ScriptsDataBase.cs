@@ -13,7 +13,6 @@ namespace Restaurante.DataAccess
         public static string UDP_Cargos_List = "gral.UDP_tbCargos_Select";
         public static string InsertarCargos = "gral.UDP_tbCargos_Insert";
         public static string UDP_Cargos_Insert = "gral.UDP_tbCargos_Insert";
-        public static string UDP_Cargos_Update = "gral.UDP_tbCargos_Update";
         public static string UDP_Cargos_Delete = "gral.UDP_tbCargos_Delete";
 
         #endregion
@@ -21,7 +20,6 @@ namespace Restaurante.DataAccess
         #region Categorias
 
         public static string UDP_Categorias_List = "acce.UDP_tbCategorias_Select";
-        public static string UDP_Categorias_Update = "acce.UDP_tbCategorias_Update";
         public static string InsertarCategoria = "gral.UDP_tbCategorias_Insert";
         public static string UDP_Categorias_Delete = "gral.UDP_tbCategorias_Delete";
 
@@ -30,7 +28,6 @@ namespace Restaurante.DataAccess
         #region Clientes
 
         public static string UDP_Clientes_List = "rest.UDP_tbClientes_Select";
-        public static string UDP_Clientes_Update = "rest.UDP_tbClientes_Update";
         public static string InsertarClientes = "rest.UDP_InsertarCliente";
         public static string UDP_Clientes_Delete = "rest.UDP_tbClientes_Delete";
 
@@ -39,7 +36,6 @@ namespace Restaurante.DataAccess
         #region Departamentos
 
         public static string UDP_Departamentos_List = "gral.UDP_tbDepartamentos_Select";
-        public static string UDP_Departamentos_Update = "gral.UDP_tbDepartamentos_Update";
         public static string InsertarDepartamento = "gral.UDP_tbDepartamentos_Insert";
         public static string UDP_Departamentos_Delete = "gral.UDP_tbDepartamentos_Delete";
 
@@ -48,7 +44,6 @@ namespace Restaurante.DataAccess
         #region Empleados
 
         public static string UDP_Empleados_List = "rest.UDP_tbEmpleados_Select";
-        public static string UDP_Empleados_Update = "rest.UDP_tbEmpleados_Update";
         public static string InsertarEmpleados = "rest.UDP_InsertarEmpleados";
         public static string UDP_Empleados_Delete = "rest.UDP_tbEmpleados_Delete";
 
@@ -57,7 +52,6 @@ namespace Restaurante.DataAccess
         #region Estados Civiles
 
         public static string UDP_EstadosCiviles_List = "gral.UDP_tbEstadosCiviles_Select";
-        public static string UDP_EstadosCiviles_Update = "gral.UDP_tbEstadosCiviles_Update";
         public static string InsertarEstadosCiviles = "gral.UDP_tbEstadosCiviles_Insert";
         public static string UDP_EstadosCiviles_Delete = "gral.UDP_tbEstadosCiviles_Delete";
 
@@ -66,7 +60,6 @@ namespace Restaurante.DataAccess
         #region Facturas
 
         public static string UDP_Facturas_List = "rest.UDP_tbFacturas_Select";
-        public static string UDP_Facturas_Update = "rest.UDP_tbFacturas_Update";
         public static string InsertarFactura = "rest.UDP_InsertarFactura";
         public static string UDP_Facturas_Delete = "rest.UDP_tbFacturas_Delete";
 
@@ -82,7 +75,6 @@ namespace Restaurante.DataAccess
         #region Ingredientes
 
         public static string UDP_Ingredientes_List = "rest.UDP_tbIngredientes_Select";
-        public static string UDP_Ingredientes_Update = "rest.UDP_tbIngredientes_Update";
         public static string InsertarIngredientes = "rest.UDP_InsertarIngedientes";
         public static string UDP_Ingredientes_Delete = "rest.UDP_tbIngredientes_Delete";
 
@@ -91,7 +83,6 @@ namespace Restaurante.DataAccess
         #region Metodos De Pago
 
         public static string UDP_MetodosPago_List = "gral.UDP_tbMetodosPago_Select";
-        public static string UDP_MetodosPago_Update = "gral.UDP_tbMetodosPago_Update";
         public static string InsertarMetodoPago = "gral.UDP_tbMetodoPago_Insert";
         public static string UDP_MetodosPago_Delete = "gral.UDP_tbMetodoPago_Delete";
 
@@ -100,7 +91,6 @@ namespace Restaurante.DataAccess
         #region Municipios
 
         public static string UDP_Municipios_List = "gral.UDP_tbMunicipios_Select";
-        public static string UDP_Municipios_Update = "gral.UDP_tbMunicipios_Update";
         public static string InsertarMunicipio = "gral.UDP_tbMunicipios_Insert";
         public static string UDP_Municipios_Delete = "gral.UDP_tbMunicipios_Delete";
 
@@ -109,8 +99,6 @@ namespace Restaurante.DataAccess
         #region Platillos
 
         public static string UDP_Platillos_List = "rest.UDP_tbPlatillos_Select";
-        public static string UDP_Platillos_Update = "rest.UDP_tbPlatillos_Update";
-        public static string UDP_IngredienteXPlatillos_Update = "rest.UDP_tbIngredientesXPlatillos_Update";
         public static string InsertarPlatillos = "rest.UDP_InsertarPlatillos";
         public static string UDP_Platillos_Delete = "rest.UDP_tbPlatillos_Delete";
         #endregion
@@ -118,7 +106,6 @@ namespace Restaurante.DataAccess
         #region Proveedores
 
         public static string UDP_Proveedores_List = "rest.UDP_tbProveedores_Select";
-        public static string UDP_Proveedores_Update = "rest.UDP_tbProveedores_Update";
         public static string InsertarProveedores = "rest.UDP_InsertarProveedores";
         public static string UDP_Proveedores_Delete = "rest.UDP_tbProveedores_Delete";
         #endregion
@@ -132,7 +119,6 @@ namespace Restaurante.DataAccess
         #region Roles
 
         public static string UDP_Roles_List = "acce.UDP_tbRoles_Select";
-        public static string UDP_Roles_Update = "acce.UDP_tbRoles_Update";
         public static string UDP_Roles_Delete = "acce.UDP_tbRoles_Delete";
 
         #endregion
@@ -140,8 +126,6 @@ namespace Restaurante.DataAccess
         #region Sucursales
 
         public static string UDP_Sucursales_List = "rest.UDP_tbSucursales_Select";
-        public static string UDP_Sucursales_Update = "rest.UDP_tbSucursales_Update";
-        public static string UDP_IngredientesXxSucursales_Update = "rest.UDP_tbIngredientesXSucursal_Update";
         public static string InsertarSucursales = "rest.UDP_InsertarSucursales";
         public static string UDP_Sucursales_Delete = "rest.UDP_tbSucursales_Delete";
 

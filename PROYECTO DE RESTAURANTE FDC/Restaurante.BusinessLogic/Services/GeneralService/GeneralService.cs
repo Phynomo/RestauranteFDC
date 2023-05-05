@@ -81,35 +81,6 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
                 return result.Error(x.Message);
             }
         }
-        public ServiceResult EditarDepartamentos(tbDepartamentos item)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _departamentosRepository.Update(item);
-                if (list.CodeStatus > 0)
-                {
-                    return result.SetMessage("Exitoso", ServiceResultType.Success);
-                }
-                else if (list.CodeStatus == -2)
-                {
-                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
-                }
-                else if (list.CodeStatus == 0)
-                {
-                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
-                }
-                else
-                {
-                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
-                }
-            }
-            catch (Exception x)
-            {
-
-                return result.Error(x.Message);
-            }
-        }
 
         public ServiceResult EliminarDepartamentos(tbDepartamentos item)
         {
@@ -178,35 +149,6 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
                 return result.Error(e.Message);
             }
         }
-        
-        public ServiceResult EditarCargos(tbCargos cargo)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var map = _cargosRepository.Update(cargo);
-                if (map.CodeStatus > 0)
-                {
-                    return result.SetMessage("Exitoso", ServiceResultType.Success);
-                }
-                else if (map.CodeStatus == -2)
-                {
-                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
-                }
-                else if (map.CodeStatus == 0)
-                {
-                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
-                }
-                else 
-                {
-                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
-                }
-            }
-            catch (Exception e)
-            {
-                return result.Error(e.Message);
-            }
-        }
 
         public ServiceResult EliminarCargos(tbCargos item)
         {
@@ -252,35 +194,6 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             try
             {
                 var list = _categoriaRepository.Newcategory(item);
-                if (list.CodeStatus > 0)
-                {
-                    return result.SetMessage("Exitoso", ServiceResultType.Success);
-                }
-                else if (list.CodeStatus == -2)
-                {
-                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
-                }
-                else if (list.CodeStatus == 0)
-                {
-                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
-                }
-                else
-                {
-                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
-                }
-            }
-            catch (Exception xe)
-            {
-
-                return result.Error(xe.Message);
-            }
-        }
-        public ServiceResult EditarCategorias(tbCategorias item)
-        {
-            ServiceResult result = new ServiceResult();
-            try
-            {
-                var list = _categoriaRepository.Update(item);
                 if (list.CodeStatus > 0)
                 {
                     return result.SetMessage("Exitoso", ServiceResultType.Success);
@@ -373,35 +286,6 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
                 return result.Error(xe.Message);
             }
         }
-        public ServiceResult EditarStates(tbEstadosCiviles item)
-        {
-            ServiceResult result = new ServiceResult();
-            try
-            {
-                var list = _estadosCivilesRepository.Update(item);
-                if (list.CodeStatus > 0)
-                {
-                    return result.SetMessage("Exitoso", ServiceResultType.Success);
-                }
-                else if (list.CodeStatus == -2)
-                {
-                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
-                }
-                else if (list.CodeStatus == 0)
-                {
-                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
-                }
-                else
-                {
-                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
-                }
-            }
-            catch (Exception xe)
-            {
-
-                return result.Error(xe.Message);
-            }
-        }
 
         public ServiceResult EliminarEstadosCiviles(tbEstadosCiviles item)
         {
@@ -471,35 +355,6 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
                 return result.Error(xe.Message);
             }
         }
-        public ServiceResult EditarMetodos(tbMetodosPago item)
-        {
-            ServiceResult result = new ServiceResult();
-            try
-            {
-                var list = _metodosPagoRepository.Update(item);
-                if (list.CodeStatus > 0)
-                {
-                    return result.SetMessage("Exitoso", ServiceResultType.Success);
-                }
-                else if (list.CodeStatus == -2)
-                {
-                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
-                }
-                else if (list.CodeStatus == 0)
-                {
-                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
-                }
-                else
-                {
-                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
-                }
-            }
-            catch (Exception xe)
-            {
-
-                return result.Error(xe.Message);
-            }
-        }
 
         public ServiceResult EliminarMetodosPago(tbMetodosPago item)
         {
@@ -546,35 +401,6 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             try
             {
                 var list = _municipiosRepository.NewMunicipio(item);
-                if (list.CodeStatus > 0)
-                {
-                    return result.SetMessage("Exitoso", ServiceResultType.Success);
-                }
-                else if (list.CodeStatus == -2)
-                {
-                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
-                }
-                else if (list.CodeStatus == 0)
-                {
-                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
-                }
-                else
-                {
-                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
-                }
-            }
-            catch (Exception xe)
-            {
-
-                return result.Error(xe.Message);
-            }
-        }
-        public ServiceResult EditarMunicipios(tbMunicipios item)
-        {
-            ServiceResult result = new ServiceResult();
-            try
-            {
-                var list = _municipiosRepository.Update(item);
                 if (list.CodeStatus > 0)
                 {
                     return result.SetMessage("Exitoso", ServiceResultType.Success);

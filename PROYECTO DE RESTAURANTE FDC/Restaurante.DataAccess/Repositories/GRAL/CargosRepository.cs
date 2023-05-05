@@ -73,18 +73,7 @@ namespace Restaurante.DataAccess.Repositories.GRAL
 
         public RequestStatus Update(tbCargos item)
         {
-            RequestStatus result = new RequestStatus();
-
-            using var db = new SqlConnection(RestauranteCon.ConnectionString);
-            var parametros = new DynamicParameters();
-            parametros.Add("@carg_Id", item.carg_Id, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@carg_Descripcion", item.carg_Descripcion, DbType.String, ParameterDirection.Input);
-            parametros.Add("@carg_UsuModificacion", item.carg_UsuModificacion, DbType.Int32, ParameterDirection.Input);
-
-            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_Cargos_Update, parametros, commandType: System.Data.CommandType.StoredProcedure);
-            result.CodeStatus = resultado;
-
-            return result;
+            throw new NotImplementedException();
         }
     }
 }

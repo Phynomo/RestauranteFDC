@@ -64,20 +64,7 @@ namespace Restaurante.DataAccess.Repositories.GRAL
 
         public RequestStatus Update(tbMunicipios item)
         {
-            RequestStatus result = new RequestStatus();
-
-            using var db = new SqlConnection(RestauranteCon.ConnectionString);
-            var parametros = new DynamicParameters();
-            parametros.Add("@muni_Id", item.muni_Id, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@muni_Nombre", item.muni_Nombre, DbType.String, ParameterDirection.Input);
-            parametros.Add("@muni_Codigo", item.muni_Codigo, DbType.String, ParameterDirection.Input);
-            parametros.Add("@depa_Id", item.depa_Id, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@muni_UsuModificacion", item.muni_UsuModificacion, DbType.Int32, ParameterDirection.Input);
-
-            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_Municipios_Update, parametros, commandType: System.Data.CommandType.StoredProcedure);
-            result.CodeStatus = resultado;
-
-            return result;
+            throw new NotImplementedException();
         }
     }
 }
