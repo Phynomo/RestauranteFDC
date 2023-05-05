@@ -224,6 +224,8 @@ BEGIN
 	END CATCH
 END
 GO
+
+gral.UDP_tbEstadosCiviles_Update '1', 'Union Libre', '1'
 --MetodosPago
 CREATE OR ALTER PROCEDURE gral.UDP_tbMetodosPago_Update
 @metp_Id INT,

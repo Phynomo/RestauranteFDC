@@ -6,7 +6,7 @@ import toastr from 'toastr';
 import axios from 'axios';
 
 
-class ModalCreate extends Component {
+class ModalCreate2 extends Component {
     constructor(props, context) {
         super(props, context);
         this.handleCreate = this.handleCreate.bind(this);
@@ -36,14 +36,14 @@ class ModalCreate extends Component {
             event.stopPropagation();
         } else {
             let data = {
-                carg_Descripcion: this.state.carg_Descripcion,
-                carg_UsuCreacion: 1,
+                eciv_Descripcion: this.state.eciv_Descripcion,
+                eciv_UsuCreacion: 1,
             };
             console.log(data);
-            axios.post('api/Cargos/Insertar', data, {
+            axios.post('api/EstadosCiviles/InsertarEstadoCivil', data, {
             })
                 .then(response => {
-                    this.state.carg_Descripcion = null;
+                    this.state.eciv_Descripcion = null;
                     this.state.validated = false;
                     console.log('Respuesta de la API:', response);
                     if (response.data.message == "Exitoso") {
@@ -83,16 +83,16 @@ class ModalCreate extends Component {
                 <Modal show={this.state.create} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
                     centered>
                     <Modal.Header>
-                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar un nuevo cargo</h3>
+                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar un nuevo Estado Civil</h3>
                         <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
                     </Modal.Header>
                     <form onSubmit={this.handleSubmit} className={`needs-validation validation-fill ${this.state.validated ? 'was-validated' : ''}`} noValidate>
                         <Modal.Body>
                             <div className="ms-form-group has-icon">
-                                <label htmlFor="validationCustom13">Ingresar cargo</label>
+                                <label htmlFor="validationCustom13">Ingresar estado civil</label>
                                 <div className="input-group">
-                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Cargo" name="carg_Descripcion" value={this.state.carg_Descripcion} onChange={this.handleInputChange} required />
-                                    <div className="invalid-feedback">Ingresar el cargo es algo requerido</div>
+                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Estado Civil" name="eciv_Descripcion" value={this.state.eciv_Descripcion} onChange={this.handleInputChange} required />
+                                    <div className="invalid-feedback">Ingresar el estado civil es algo requerido</div>
                                 </div>
                             </div>
                         </Modal.Body>
@@ -106,4 +106,4 @@ class ModalCreate extends Component {
         );
     }
 }
-export default ModalCreate; 
+export default ModalCreate2;

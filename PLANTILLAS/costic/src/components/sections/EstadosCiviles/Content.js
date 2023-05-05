@@ -4,6 +4,7 @@ import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
 import $ from 'jquery';
 import Table from './table';
+import ModalCreate2 from './ModalCreate2';
 
 class Content extends Component {
     render() {
@@ -17,10 +18,10 @@ class Content extends Component {
                                 <h6>Listado de Estados Civiles</h6>
                                 <hr></hr>
                                 <div className='row d-flex justify-content-center'>
-                                    <div className='col-5'>
-                                        <button className='btn btn-primary btn-pill btn-block'>Nuevo registro</button>
-                                    </div>
+                                <div className='col-5'>
+                                    <ModalCreate2 />
                                 </div>
+                            </div>
                             </div>
                             <div className="ms-panel-body">
                                 <div className="table-responsive">
