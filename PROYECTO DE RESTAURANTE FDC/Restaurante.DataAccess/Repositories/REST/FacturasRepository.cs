@@ -85,5 +85,40 @@ namespace Restaurante.DataAccess.Repositories.REST
 
             return result;
         }
+
+        public RequestStatus InsetFacturaDetalle(tbFacturasDetalles item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@fact_Id", item.fact_Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@plat_Id", item.plat_Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@fade_Cantidad", item.fade_Cantidad, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@fade_UsuCreacion", item.fade_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.InsertarFacturaDetalle, parameters, commandType: CommandType.StoredProcedure);
+
+            RequestStatus reques = new()
+            {
+                CodeStatus = result,
+            };
+
+            return reques;
+        }
+         public RequestStatus DeleteFacturaDetalle(tbFacturasDetalles item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@fade_Id", item.fade_Id, DbType.Int32, ParameterDirection.Input);
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.DeleteFacturaDetalle, parameters, commandType: CommandType.StoredProcedure);
+
+            RequestStatus reques = new()
+            {
+                CodeStatus = result,
+            };
+
+            return reques;
+        }
+
     }
 }

@@ -336,6 +336,63 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
+        public ServiceResult InsertarFacturaDetalle(tbFacturasDetalles item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _facturasRepository.InsetFacturaDetalle(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -4)
+                {
+                    return result.SetMessage("SinStock", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+                return result.Error(xe.Message);
+            }
+        }
+        public ServiceResult EliminarFacturaDetalle(tbFacturasDetalles item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _facturasRepository.DeleteFacturaDetalle(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -4)
+                {
+                    return result.SetMessage("SinStock", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+                return result.Error(xe.Message);
+            }
+        }
+
         #endregion
 
         #region Ingredientes

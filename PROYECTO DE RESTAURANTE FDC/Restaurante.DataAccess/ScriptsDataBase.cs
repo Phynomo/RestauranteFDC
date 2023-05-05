@@ -68,6 +68,8 @@ namespace Restaurante.DataAccess
         public static string UDP_Facturas_List = "rest.UDP_tbFacturas_Select";
         public static string UDP_Facturas_Update = "rest.UDP_tbFacturas_Update";
         public static string InsertarFactura = "rest.UDP_InsertarFactura";
+        public static string InsertarFacturaDetalle = "rest.UDP_tbFacturasDetalles_Insert";
+        public static string DeleteFacturaDetalle = "rest.UDP_tbFacturasDetalles_Delete";
         public static string UDP_Facturas_Delete = "rest.UDP_tbFacturas_Delete";
 
         #endregion
