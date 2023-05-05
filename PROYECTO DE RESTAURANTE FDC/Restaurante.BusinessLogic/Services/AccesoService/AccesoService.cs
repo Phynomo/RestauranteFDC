@@ -38,6 +38,34 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
             }
         }
 
+        public ServiceResult InsertarUsuarios(tbUsuarios item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _usuariosRepository.Insert(item);
+                if (map.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (map.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (map.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInesperado", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInesperado", ServiceResultType.Error);
+                }
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
         public ServiceResult EliminarUsuarios(tbUsuarios item)
         {
             var result = new ServiceResult();
@@ -115,6 +143,34 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
             }
         }
 
+        public ServiceResult InsertarRoles(tbRoles item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _rolesRepository.Insert(item);
+                if (map.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (map.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (map.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInesperado", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInesperado", ServiceResultType.Error);
+                }
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
         public ServiceResult EliminarRoles(tbRoles item)
         {
             var result = new ServiceResult();

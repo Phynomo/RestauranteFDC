@@ -1,0 +1,7 @@
+Clientes
+Empleados
+Facturas
+Ingredientes
+Platillos
+Proveedores
+Sucursales

@@ -1,3 +1,39 @@
+--Usuarios
+CREATE OR ALTER PROCEDURE acce.UDP_tbUsuarios_Update
+	@user_Id INT,
+	@empe_Id int,
+	@usuModificacion int
+AS
+BEGIN
+	BEGIN TRY
+	IF EXISTS (SELECT * FROM acce.tbUsuarios WHERE (empe_Id = @empe_Id AND [user_Id] != @user_Id))
+        BEGIN
+
+			SELECT -2 as Proceso
+		END
+		ELSE
+		BEGIN
+
+			UPDATE [acce].[tbUsuarios]
+			   SET [empe_Id] = @empe_Id
+				  ,[user_UsuModificacion] = @usuModificacion
+				  ,[user_FechaModificacion] = GETDATE()
+				  ,[user_Estado] = 1
+			 WHERE [user_Id] = @user_Id
+
+			SELECT 1 as Proceso
+		END
+
+	END TRY
+
+	BEGIN CATCH
+	SELECT 0 as Proceso
+	END CATCH
+
+END
+GO
+
+
 --Roles
 CREATE OR ALTER PROCEDURE acce.UDP_tbRoles_Update
   @role_Id				INT,

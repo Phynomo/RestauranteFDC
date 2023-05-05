@@ -31,6 +31,14 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(list);
         }
 
+        [HttpPost("Insertar")]
+        public IActionResult InsertarCargo(UsuarioViewModel usuario)
+        {
+            var item = _mapper.Map<tbUsuarios>(usuario);
+            var response = _seguridadServivce.InsertarUsuarios(item);
+            return Ok(response);
+        }
+
         [HttpPut("Eliminar")]
         public IActionResult Delete(UsuarioViewModel usuarios)
         {

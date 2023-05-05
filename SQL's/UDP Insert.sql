@@ -131,6 +131,7 @@ BEGIN
 				INSERT INTO [acce].[tbUsuarios]
            ([user_NombreUsuario]
            ,[user_Contrasena]
+		   ,[user_Correo]
            ,[user_EsAdmin]
 		   ,[user_Image]
            ,[role_Id]
@@ -143,6 +144,7 @@ BEGIN
      VALUES
            (@user_NombreUsuario
            ,HASHBYTES('SHA2_512',@user_Contrasena)
+		   ,@user_Correo
            ,@user_EsAdmin
 		   ,@user_Image
            ,@role_Id
@@ -577,57 +579,172 @@ END
 GO
 
 --Ingredientes
---CREATE OR ALTER PROCEDURE rest.UDP_tbIngredinetes_Insert
---	@ingr_Nombre Nvarchar(200),
---	@ingr_PrecioX100gr Decimal(18,2),
---	@prov_Id INT,
---	@ingr_UsuarioCreacion INT
---AS
---BEGIN
---	BEGIN TRY
+CREATE OR ALTER PROCEDURE rest.UDP_tbIngredinetes_Insert
+	@ingr_Nombre Nvarchar(200),
+	@ingr_PrecioX100gr Decimal(18,2),
+	@prov_Id INT,
+	@ingr_UsuarioCreacion INT
+AS
+BEGIN
+	BEGIN TRY
 
---		IF NOT EXISTS (SELECT * FROM rest.tbSucursales WHERE sucu_Nombre = @sucu_Nombre)		
---		BEGIN
+		IF NOT EXISTS (SELECT * FROM rest.tbIngredientes WHERE ingr_Nombre = @ingr_Nombre)		
+		BEGIN
 
---			INSERT INTO rest.tbSucursales
---					   (sucu_Nombre,
---						muni_Id,
---						sucu_Direccion,
---						sucu_UsuCreacion,
---						sucu_FechaCreacion,
---						sucu_UsuModificacion,
---						sucu_FechaModificacion,
---						sucu_Estado)
---				 VALUES
---					   (@sucu_Nombre
---					   ,@muni_Id
---					   ,@sucu_Direccion
---					   ,@sucu_UsuCreacion
---					   ,null
---					   ,null
---					   ,1)
+			INSERT INTO rest.tbIngredientes
+					   (ingr_Nombre,
+						ingr_PrecioX100gr,
+						prov_Id,
+						ingr_UsuCreacion,
+						ingr_FechaModificacion,
+						ingr_UsuModificacion,
+						ingr_Estado)
+				 VALUES
+					   (@ingr_Nombre
+					   ,@ingr_PrecioX100gr
+					   ,@prov_Id
+					   ,@ingr_UsuarioCreacion
+					   ,null
+					   ,null
+					   ,1)
 
---			SELECT 1 as Proceso
+			SELECT 1 as Proceso
 
---		END
---		ELSE IF EXISTS (SELECT * FROM rest.tbSucursales WHERE sucu_Nombre = @sucu_Nombre AND sucu_Estado = 1)
---			SELECT -2 as Proceso
---		ELSE 
---		BEGIN
+		END
+		ELSE IF EXISTS (SELECT * FROM rest.tbIngredientes WHERE ingr_Nombre = @ingr_Nombre AND ingr_Estado = 1)
+			SELECT -2 as Proceso
+		ELSE 
+		BEGIN
 
---			UPDATE rest.tbSucursales
---			SET sucu_Estado = 1
---			WHERE sucu_Nombre = @sucu_Nombre
+			UPDATE rest.tbIngredientes
+			SET ingr_Estado = 1
+			WHERE ingr_Nombre = @ingr_Nombre
 
---			SELECT 1 as Proceso
+			SELECT 1 as Proceso
 
---		END
+		END
 
---	END TRY
---	BEGIN CATCH
---		SELECT 0 as Proceso
---	END CATCH
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
 
+END
+GO
 
---END
---GO
+--Platillos
+CREATE OR ALTER PROCEDURE rest.UDP_tbPlatillos_Insert
+	@plat_Nombre Nvarchar(200),
+	@plat_Precio Decimal(18,2),
+	@cate_Id INT,
+	@plat_Imagen NVARCHAR(MAX),
+	@plat_UsuCreacion INT
+AS
+BEGIN
+	BEGIN TRY
+
+		IF NOT EXISTS (SELECT * FROM rest.tbPlatillos WHERE plat_Nombre = @plat_Nombre)		
+		BEGIN
+
+			INSERT INTO rest.tbPlatillos
+					   (plat_Nombre,
+						plat_Precio,
+						cate_Id,
+						plat_Imagen,
+						plat_UsuCreacion,
+						plat_FechaModificacion,
+						plat_UsuModificacion,
+						plat_Estado)
+				 VALUES
+					   (@plat_Nombre
+					   ,@plat_Precio
+					   ,@cate_Id
+					   ,@plat_Imagen
+					   ,@plat_UsuCreacion
+					   ,null
+					   ,null
+					   ,1)
+
+			SELECT 1 as Proceso
+
+		END
+		ELSE IF EXISTS (SELECT * FROM rest.tbPlatillos WHERE plat_Nombre = @plat_Nombre AND plat_Estado = 1)
+			SELECT -2 as Proceso
+		ELSE 
+		BEGIN
+
+			UPDATE rest.tbPlatillos
+			SET plat_Estado = 1
+			WHERE plat_Nombre = @plat_Nombre
+
+			SELECT 1 as Proceso
+
+		END
+
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+
+END
+GO
+
+--Proveedores
+CREATE OR ALTER PROCEDURE rest.UDP_tbProveedores_Insert
+	@prov_NombreEmpresa Nvarchar(150),
+	@prov_NombreContacto Nvarchar(150),
+	@prov_Telefono NVARCHAR(20),
+	@muni_Id INT,
+	@prov_DireccionExacta NVARCHAR(500),
+	@prov_UsuCreacion INT
+AS
+BEGIN
+	BEGIN TRY
+
+		IF NOT EXISTS (SELECT * FROM rest.tbProveedores WHERE prov_NombreEmpresa = @prov_NombreEmpresa)		
+		BEGIN
+
+			INSERT INTO rest.tbProveedores
+					   (prov_NombreEmpresa,
+						prov_NombreContacto,
+						prov_Telefono,
+						muni_Id,
+						prov_DireccionExacta,
+						prov_UsuCreacion,
+						prov_FechaModificacion,
+						prov_UsuModificacion,
+						prov_Estado)
+				 VALUES
+					   (@prov_NombreEmpresa
+					   ,@prov_NombreContacto
+					   ,@prov_Telefono
+					   ,@muni_Id
+					   ,@prov_DireccionExacta
+					   ,@prov_UsuCreacion
+					   ,null
+					   ,null
+					   ,1)
+
+			SELECT 1 as Proceso
+
+		END
+		ELSE IF EXISTS (SELECT * FROM rest.tbProveedores WHERE prov_NombreEmpresa = @prov_NombreEmpresa AND prov_Estado = 1)
+			SELECT -2 as Proceso
+		ELSE 
+		BEGIN
+
+			UPDATE rest.tbProveedores
+			SET prov_Estado = 1
+			WHERE prov_NombreEmpresa = @prov_NombreEmpresa
+
+			SELECT 1 as Proceso
+
+		END
+
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+
+END
+GO

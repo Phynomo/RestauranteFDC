@@ -31,6 +31,14 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(list);
         }
 
+        [HttpPost("Insertar")]
+        public IActionResult InsertarRoles(RolViewModel usuario)
+        {
+            var item = _mapper.Map<tbRoles>(usuario);
+            var response = _seguridadServivce.InsertarRoles(item);
+            return Ok(response);
+        }
+
         [HttpPut("Eliminar")]
         public IActionResult Delete(RolViewModel roles)
         {

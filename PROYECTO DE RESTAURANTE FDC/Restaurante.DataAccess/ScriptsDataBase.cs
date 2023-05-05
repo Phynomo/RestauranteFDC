@@ -119,6 +119,7 @@ namespace Restaurante.DataAccess
         #region Roles
 
         public static string UDP_Roles_List = "acce.UDP_tbRoles_Select";
+        public static string UPD_Roles_Insert = "acce.UDP_tbRoles_Insert";
         public static string UDP_Roles_Delete = "acce.UDP_tbRoles_Delete";
 
         #endregion
@@ -134,6 +135,7 @@ namespace Restaurante.DataAccess
         #region Usuarios
 
         public static string UDP_Usuarios_List = "acce.UDP_tbUsuarios_Select";
+        public static string UDP_Usuarios_Insert = "acce.UDP_tbusuarios_INSERT";
         public static string UDP_Usuarios_Delete = "acce.UDP_tbUsuario_Delete";
         public static string UDP_Login = "acce.UDP_Login";
         public static string UDP_Recuperar_Usuarios = "acce.UDP_RecuperarContrasenia";
