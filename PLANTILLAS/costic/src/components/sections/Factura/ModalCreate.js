@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import Breadcrumb from './Breadcrumb';
 import { Modal, Accordion, Card } from "react-bootstrap";
 import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
@@ -17,7 +17,6 @@ class ModalCreate extends Component {
             show: false,
             carg_Descripcion: '',
             validated: false,
-            inserto: false, // Agregamos el estado inserto con valor inicial false
         };
     }
 
@@ -34,7 +33,7 @@ class ModalCreate extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const form = event.currentTarget;
-    
+
         if (form.checkValidity() === false) {
             event.stopPropagation();
         } else {
@@ -45,32 +44,29 @@ class ModalCreate extends Component {
             console.log(data);
             axios.post('api/Cargos/Insertar', data, {
             })
-            .then(response => {
-                console.log('Respuesta de la API:', response);
-                if (response.data.message == "Exitoso") {
-                    alertSuccess("Listo", "El registro se realizo con exito", "2000");
-                    this.setState({
-                        validated: false,
-                        carg_Descripcion: null,
-                        inserto: true, // Cambiamos el valor de inserto a true
-                    });
-                    this.handleClose();
-                } else if (response.data.message == "YaExiste") {
-                    toastr.warning("Este cargo ya existe", "Cargo repetido");
-                } else {
-                    alertError("Error", "Ocurrio un error mientras se creaba el registro", "2000")
-                    this.setState({
-                        validated: false,
-                        carg_Descripcion: null,
-                        inserto: true, // Cambiamos el valor de inserto a false
-                    });
-                    this.handleClose();
-                }
-        
-            })
+                .then(response => {
+                    console.log('Respuesta de la API:', response);
+                    if (response.data.message == "Exitoso") {
+                        alertSuccess("Listo", "El registro se realizo con exito", "2000");
+                        this.state.validated = false;
+                        this.state.carg_Descripcion = null;
+                        this.handleClose();
+                    } else if (response.data.message == "YaExiste") {
+                        toastr.warning("Este cargo ya existe", "Cargo repetido");
+                    } else {
+                        alertError("Error", "Ocurrio un error mientras se creaba el registro", "2000")
+                        this.state.validated = false;
+                        this.state.carg_Descripcion = null;
+                        this.handleClose();
+                    }
+
+                })
+                .catch(error => {
+                    console.error('Error al enviar los datos:', error);
+                });
         }
-        this.state.inserto = true;
-        console.log(this.state.inserto);
+
+        this.setState({ validated: true });
     }
 
     handleInputChange(event) {

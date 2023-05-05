@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import { DataGrid, GridToolbar, esES } from '@mui/x-data-grid';
 import ModalEdit from './ModalsPut';
-import axios from 'axios';
+
 
 
 const DataTable = () => {
@@ -28,21 +28,22 @@ const DataTable = () => {
   ];
 
   useEffect(() => {
-    axios.get('https://localhost:44383/api/Cargos/Listado')
-  .then(response => {
-    const rows = response.data.data.map(item => {
-      return {
-        id: item.carg_Id,
-        carg_Id: item.carg_Id,
-        carg_Descripcion: item.carg_Descripcion
-      };
-    });
-    setRows(rows);
-    setIsLoading(false);
-  })
-  .catch(error => {
-    console.log('Error en la solicitud Axios:', error);
-  });
+    fetch('https://localhost:44383/api/Cargos/Listado')
+      .then(response => response.json())
+      .then(data => {
+        const rows = data.data.map(item => {
+          return {
+            id: item.carg_Id,
+            carg_Id: item.carg_Id,
+            carg_Descripcion: item.carg_Descripcion
+          }
+        });
+        setRows(rows);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.log("Error en la solicitud fetch:", error);
+      });
   }, [rows]);
 
   const handleSearch = e => {

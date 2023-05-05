@@ -73,6 +73,8 @@ import Cargos from './components/pages/Cargos';
 import EstadosCiviles from './components/pages/EstadosCiviles';
 import MetodosPago from './components/pages/MetodosPago';
 import Pruebas from './components/pages/pruebas';
+import Factura from './components/pages/Factura/Factura';
+import FacturaCreate from './components/pages/Factura/FacturaCreate';
 
 function App() {
   return (
@@ -81,6 +83,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={Dashboard} />
         <Route path="/pruebas" component={Pruebas} />
+        <Route path="/factura" component={Factura} />
+        <Route path="/factura_create" component={FacturaCreate} />
         <Route path="/accordions" component={Accordions} />
         <Route path="/departamentos" component={Departamentos} />
         <Route path="/estadosCiviles" component={EstadosCiviles} />

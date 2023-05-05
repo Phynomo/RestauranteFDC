@@ -9,9 +9,10 @@ const options = [
 ];
 
 const SelectMultiple = () => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([{label: 'Opción 2'}]);
 
   const handleChange = (selected) => {
+    console.log(selectedOptions);
     setSelectedOptions(selected);
   };
 
