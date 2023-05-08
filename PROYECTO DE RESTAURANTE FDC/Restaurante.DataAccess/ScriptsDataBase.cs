@@ -34,6 +34,7 @@ namespace Restaurante.DataAccess
         public static string InsertarClientes = "rest.UDP_InsertarCliente";
         public static string UDP_Clientes_Delete = "rest.UDP_tbClientes_Delete";
 
+        public static string CargarClientes = "rest.UDP_CargarDatosCliente";
         #endregion
 
         #region Departamentos
@@ -103,6 +104,8 @@ namespace Restaurante.DataAccess
         public static string UDP_Municipios_Update = "gral.UDP_tbMunicipios_Update";
         public static string InsertarMunicipio = "gral.UDP_tbMunicipios_Insert";
         public static string UDP_Municipios_Delete = "gral.UDP_tbMunicipios_Delete";
+
+        public static string CargarMunicipios = "rest.UDP_CargarMuniPorDep";
 
         #endregion
 

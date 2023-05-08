@@ -4,6 +4,7 @@ import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
 import $ from 'jquery';
 import Table from '../Empleados/table';
+import { Link } from 'react-router-dom';
 
 class Content extends Component {
     render() {
@@ -18,7 +19,9 @@ class Content extends Component {
                                 <hr></hr>
                                 <div className='row d-flex justify-content-center'>
                                     <div className='col-5'>
-                                        <button className='btn btn-primary btn-pill btn-block'>Nuevo registro</button>
+                                    <Link to="/crearEmpleado">
+                                    <button className="btn btn-primary btn-pill btn-block">NUEVO REGISTRO</button>
+                                    </Link>
                                     </div>
                                 </div>
                             </div>

@@ -48,11 +48,17 @@ namespace Restaurante.WEBUI.Controllers
         }
 
         [HttpPut("Eliminar")]
-        public IActionResult Delete(ClienteViewModel cliente)
+        public IActionResult Delete(int id)
         {
-            var item = _mapper.Map<tbClientes>(cliente);
-            var result = _restauranteServicio.EliminarClientes(item);
+            var result = _restauranteServicio.EliminarClientes(id);
             return Ok(result);
+        }
+
+        [HttpGet("CargarClientes")]
+        public IActionResult Cargar(int id)
+        {
+            var list = _restauranteServicio.CargarClientes(id);
+            return Ok(list);
         }
     }
 }

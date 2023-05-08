@@ -20,3 +20,4 @@ class Clientes extends Component {
 }
 
 export default Clientes;
+
