@@ -6,7 +6,7 @@ import toastr from 'toastr';
 import axios from 'axios';
 
 
-class ModalCreate41 extends Component {
+class ModalCreate extends Component {
     constructor(props, context) {
         super(props, context);
         this.handleCreate = this.handleCreate.bind(this);
@@ -15,7 +15,8 @@ class ModalCreate41 extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             show: false,
-            metp_Descripcion: '',
+            depa_Nombre: '',
+            depa_Codigo: '',
             validated: false,
         };
     }
@@ -36,21 +37,23 @@ class ModalCreate41 extends Component {
             event.stopPropagation();
         } else {
             let data = {
-                metp_Descripcion: this.state.metp_Descripcion,
-                metp_UsuCreacion: 1,
+                depa_Nombre: this.state.depa_Nombre,
+                depa_Codigo: this.state.depa_Codigo,
+                depa_UsuCreacion: 1,
             };
             console.log(data);
-            axios.post('api/MetodosPago/InsertarMetodoPago', data, {
+            axios.post('api/Departamentos/InsertarDepartamento', data, {
             })
                 .then(response => {
-                    this.state.metp_Descripcion = null;
+                    this.state.depa_Nombre = null;
+                    this.state.depa_Codigo = null;
                     this.state.validated = false;
                     console.log('Respuesta de la API:', response);
                     if (response.data.message == "Exitoso") {
                         alertSuccess("Listo", "El registro se realizo con exito", "2000");
                         this.handleClose();
                     } else if (response.data.message == "YaExiste") {
-                        toastr.warning("Este cargo ya existe", "Cargo repetido");
+                        toastr.warning("Este Departamento ya existe", "Departamento repetido");
                     } else {
                         alertError("Error", "Ocurrio un error mientras se creaba el registro", "2000")
                         this.handleClose();
@@ -83,16 +86,29 @@ class ModalCreate41 extends Component {
                 <Modal show={this.state.create} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
                     centered>
                     <Modal.Header>
-                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar un nuevo Metodo de Pago</h3>
+                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar un nuevo Departamento</h3>
                         <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
                     </Modal.Header>
                     <form onSubmit={this.handleSubmit} className={`needs-validation validation-fill ${this.state.validated ? 'was-validated' : ''}`} noValidate>
                         <Modal.Body>
-                            <div className="ms-form-group has-icon">
-                                <label htmlFor="validationCustom13">Ingresar estado civil</label>
-                                <div className="input-group">
-                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Metodo de Pago" name="metp_Descripcion" value={this.state.metp_Descripcion} onChange={this.handleInputChange} required />
-                                    <div className="invalid-feedback">Ingresar el metodo de pago es algo requerido</div>
+                            <div className='row'>
+                                <div className='col-6'>
+                                    <div className="ms-form-group has-icon">
+                                    <label htmlFor="validationCustom13">Ingresar Departamento</label>
+                                    <div className="input-group">
+                                        <input type="text" className="form-control" id="validationCustom13" placeholder="Nombre" name="depa_Nombre" value={this.state.depa_Nombre} onChange={this.handleInputChange} required />
+                                        <div className="invalid-feedback">Ingresar la departamento es algo requerido</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='col-6'>
+                                <div className="ms-form-group has-icon">
+                                    <label htmlFor="validationCustom13">Ingresar Codigo</label>
+                                    <div className="input-group">
+                                        <input type="text" className="form-control" id="validationCustom13" placeholder="Codigo" name="depa_Codigo" value={this.state.depa_Codigo} onChange={this.handleInputChange} required />
+                                        <div className="invalid-feedback">Ingresar el codigo es algo requerido</div>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
                         </Modal.Body>
@@ -106,4 +122,4 @@ class ModalCreate41 extends Component {
         );
     }
 }
-export default ModalCreate41;
+export default ModalCreate; 

@@ -26,7 +26,7 @@ class Content extends Component {
                             <div className="ms-panel-body">
                                 <div className="table-responsive">
                                     <Table/>
-                                </div>
+                                </div>  
                             </div>
                         </div>
                     </div>

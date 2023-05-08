@@ -4,7 +4,7 @@ import Topnavigation from '../layouts/Topnavigation';
 import Content from '../sections/Categorias/Content'
 import Quickbar from '../layouts/Quickbar';
 
-class Cargos extends Component {
+class Categorias extends Component {
     render() {
         return (
             <div className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
@@ -19,4 +19,4 @@ class Cargos extends Component {
     }
 }
 
-export default Cargos;
+export default Categorias;

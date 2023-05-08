@@ -17,7 +17,8 @@ class ModalsPut extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             show: false,
-            carg_Descripcion: this.props.data ? this.props.data.carg_Descripcion : '',
+            depa_Nombre: this.props.data ? this.props.data.depa_Nombre : '',
+            depa_Codigo: this.props.data ? this.props.data.depa_Codigo : '',
             validated: false,
         };
     }
@@ -43,11 +44,12 @@ class ModalsPut extends Component {
             event.stopPropagation();
         } else {
             const data = {
-                carg_Id: this.props.data.carg_Id,
-                carg_Descripcion: this.state.carg_Descripcion,
-                carg_UsuModificacion: 1,
+                depa_Id: this.props.data.depa_Id,
+                depa_Nombre: this.state.depa_Nombre,
+                depa_Codigo: this.state.depa_Codigo,
+                depa_UsuModificacion: 1,
             };
-            fetch('https://localhost:44383/api/Cargos/Insertar', {
+            fetch('https://localhost:44383/api/Departamentos/InsertarDepartamento', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -56,7 +58,8 @@ class ModalsPut extends Component {
             })
                 .then(response => response.json())
                 .then(data => {
-                    this.state.carg_Descripcion = null;
+                    this.state.depa_Nombre = null;
+                    this.state.depa_Codigo = null;
                     this.state.validated = false;
                     console.log('Respuesta de la API:', data);
                 })
@@ -71,10 +74,10 @@ class ModalsPut extends Component {
 
     handleSubmitDelete() {
             const data = {
-                carg_Id: this.props.data.carg_Id,
-                carg_UsuModificacion: 1,
+                depa_Id: this.props.data.depa_Id,
+                cate_UsuModificacion: 1,
             };
-            fetch('https://localhost:44383/api/Cargos/Insertar', {
+            fetch('https://localhost:44383/api/Categorias/InsertarCategoria', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -83,7 +86,7 @@ class ModalsPut extends Component {
             })
                 .then(response => response.json())
                 .then(data => {
-                    this.state.carg_Descripcion = null;
+                    this.state.cate_Descripcion = null;
                     this.state.validated = false;
                     console.log('Respuesta de la API:', data);
                 })
@@ -122,7 +125,7 @@ class ModalsPut extends Component {
                             <div className="ms-form-group has-icon">
                                 <label htmlFor="validationCustom13">Ingresar cargo</label>
                                 <div className="input-group">
-                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Cargo" name="carg_Descripcion" value={this.state.carg_Descripcion} onChange={this.handleInputChange} required />
+                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Categoria" name="cate_Descripcion" value={this.state.cate_Descripcion} onChange={this.handleInputChange} required />
                                     <div className="invalid-feedback">Ingresar el cargo es algo requerido</div>
                                 </div>
                             </div>
@@ -151,4 +154,4 @@ class ModalsPut extends Component {
         );
     }
 }
-        export default ModalsPut;
+export default ModalsPut;

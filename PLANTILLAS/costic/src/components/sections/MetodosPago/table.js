@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 //import { DataGrid } from '@mui/x-data-grid';
 import { DataGrid, GridToolbar,esES } from '@mui/x-data-grid';
-import ModalEdit4 from './ModalsPut2';
+import ModalEdit from './ModalsPut';
 
 
 const DataTable = () => {
@@ -12,7 +12,7 @@ const DataTable = () => {
 
 const columns = [
   { field: 'metp_Id', headerName: 'ID', flex: 1 },
-  { field: 'met_Descripcion', headerName: 'Metodo', flex: 1 },
+  { field: 'metp_Descripcion', headerName: 'Metodo', flex: 1 },
    {
      field: 'actions',
      headerName: 'Acciones',
@@ -21,20 +21,20 @@ const columns = [
      type: 'number',
      renderCell: (params) => (
       <div className='d-flex justify-content-center'>
-      <ModalEdit2 data={params.row} />
+      <ModalEdit data={params.row} />
     </div>
      ),
    },
 ];
 
 useEffect(() => {
-  fetch('https://localhost:44383/api/EstadosCiviles/Listado')
+  fetch('https://localhost:44383/api/MetodosPago/Listado')
     .then(response => response.json())
     .then(data => {
       const rows = data.data.map(item => {
         return {
-          id: item.eciv_Id,
-          metp_Id: item.mwtp_Id,
+          id: item.metp_Id,
+          metp_Id: item.metp_Id,
           metp_Descripcion: item.metp_Descripcion
         }
       });
@@ -74,7 +74,7 @@ return (
       :
       <div>
         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-          <h5 style={{ marginLeft: "5px" }} >Estados Civiles</h5>
+          <h5 style={{ marginLeft: "5px" }} >Metodos de Pago</h5>
           <div className="input-group" style={{ width: '250px', marginTop: '5px', marginRight: "5px", marginBottom: "-5px" }}>
             <div className="input-group-prepend"> <span className="input-group-text" id="inputGroupPrepend"><i className="flaticon-search" /></span>
             </div>

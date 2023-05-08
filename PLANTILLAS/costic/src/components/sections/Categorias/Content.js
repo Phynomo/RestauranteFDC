@@ -17,7 +17,7 @@ const Content = () => {
                     <Breadcrumb />
                     <div className="ms-panel">
                         <div className="ms-panel-header text-center">
-                            <h6>Listado de Departamentos</h6>
+                            <h6>Listado de Categorias</h6>
                             <hr></hr>
                             <div className='row d-flex justify-content-center'>
                                 <div className='col-5'>

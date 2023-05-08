@@ -6,7 +6,7 @@ import axios from 'axios';
 import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
 import toastr from 'toastr';
 
-class ModalsPut4 extends Component {
+class ModalsPut2 extends Component {
     constructor(props, context) {
         super(props, context);
         this.handleEdit = this.handleEdit.bind(this);
@@ -17,7 +17,7 @@ class ModalsPut4 extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             show: false,
-            metp_Descripcion: this.props.data ? this.props.data.metp_Descripcion : '',
+            cate_Descripcion: this.props.data ? this.props.data.cate_Descripcion : '',
             validated: false,
         };
     }
@@ -43,12 +43,12 @@ class ModalsPut4 extends Component {
             event.stopPropagation();
         } else {
             let data = {
-                metp_Id: this.props.data.metp_Id,
-                metp_Descripcion: this.state.metp_Descripcion,
-                metp_UsuModificacion: 1,
+                cate_Id: this.props.data.cate_Id,
+                cate_Descripcion: this.state.cate_Descripcion,
+                cate_UsuModificacion: 1,
             };
 
-            axios.put('api/MetodosPago/EditarMetodoPago', data)
+            axios.put('api/Categorias/EditarCategoria', data)
             .then(response => {
                 console.log(response.data);
                 if (response.data.message == "Exitoso") {
@@ -56,7 +56,7 @@ class ModalsPut4 extends Component {
                     this.state.validated = false;
                     this.handleClose();
                 } else if (response.data.message == "YaExiste") {
-                    toastr.warning("Este metodo ya existe", "Metodo de Pago repetido");
+                    toastr.warning("Esta Categoria ya existe", "Categoria repetida");
                 } else {
                     alertError("Error", "Ocurrio un error mientras se editaba el registro", "2000")
                     this.state.validated = false;
@@ -73,10 +73,10 @@ class ModalsPut4 extends Component {
     
     handleSubmitDelete() {
         let data = {
-            metp_Id: this.props.data.metp_Id,
-            metp_UsuModificacion: 1,
+            cate_Id: this.props.data.cate_Id,
+            cate_UsuModificacion: 1,
         };
-        axios.put('/api/MetodosPago/Eliminar', data)
+        axios.put('/api/Categorias/Eliminar', data)
         .then(response => {
             console.log(response.data);
             if (response.data.message == "Registro eliminado") {
@@ -124,16 +124,16 @@ handleInputChange(event) {
                 <Modal show={this.state.Edit} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
                     centered>
                     <Modal.Header>
-                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Editar Metodo de Pago</h3>
+                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Editar Categoria</h3>
                         <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
                     </Modal.Header>
                     <form onSubmit={this.handleSubmit} className={`needs-validation validation-fill ${this.state.validated ? 'was-validated' : ''}`} noValidate>
                         <Modal.Body>
                             <div className="ms-form-group has-icon">
-                                <label htmlFor="validationCustom13">Ingresar Metodo de pago</label>
+                                <label htmlFor="validationCustom13">Ingresar Categoria</label>
                                 <div className="input-group">
-                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Metodo de Pago" name="metp_Descripcion" value={this.state.metp_Descripcion} onChange={this.handleInputChange} required />
-                                    <div className="invalid-feedback">Ingresar el Meodo de Pago es algo requerido</div>
+                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Categoria" name="cate_Descripcion" value={this.state.cate_Descripcion} onChange={this.handleInputChange} required />
+                                    <div className="invalid-feedback">Ingresar la categoria es algo requerido</div>
                                 </div>
                             </div>
                         </Modal.Body>
@@ -161,4 +161,4 @@ handleInputChange(event) {
         );
     }
 };
-export default ModalsPut4;
+export default ModalsPut2;

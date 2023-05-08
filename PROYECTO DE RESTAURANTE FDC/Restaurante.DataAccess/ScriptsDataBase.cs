@@ -21,7 +21,7 @@ namespace Restaurante.DataAccess
         #region Categorias
 
         public static string UDP_Categorias_List = "acce.UDP_tbCategorias_Select";
-        public static string UDP_Categorias_Update = "acce.UDP_tbCategorias_Update";
+        public static string UDP_Categorias_Update = "gral.UDP_tbCategorias_Update";
         public static string InsertarCategoria = "gral.UDP_tbCategorias_Insert";
         public static string UDP_Categorias_Delete = "gral.UDP_tbCategorias_Delete";
 

@@ -32,7 +32,7 @@ namespace Restaurante.WEBUI.Controllers
         }
 
         [HttpPost("InsertarMetodoPago")]
-        public IActionResult InsertarCargo(MetodoPagoViewModel metodos)
+        public IActionResult InsertarMetodoPago(MetodoPagoViewModel metodos)
         {
             var item = _mapper.Map<tbMetodosPago>(metodos);
             var response = _generalServivce.InsertarMetodos(item);

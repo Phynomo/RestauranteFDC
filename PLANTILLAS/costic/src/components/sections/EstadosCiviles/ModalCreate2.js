@@ -15,7 +15,7 @@ class ModalCreate2 extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             show: false,
-            carg_Descripcion: '',
+            eciv_Descripcion: '',
             validated: false,
         };
     }
@@ -50,7 +50,7 @@ class ModalCreate2 extends Component {
                         alertSuccess("Listo", "El registro se realizo con exito", "2000");
                         this.handleClose();
                     } else if (response.data.message == "YaExiste") {
-                        toastr.warning("Este cargo ya existe", "Cargo repetido");
+                        toastr.warning("Este Estado Civil ya existe", "Estado Civil  repetido");
                     } else {
                         alertError("Error", "Ocurrio un error mientras se creaba el registro", "2000")
                         this.handleClose();
