@@ -20,8 +20,8 @@ namespace Restaurante.DataAccess
 
         #region Categorias
 
-        public static string UDP_Categorias_List = "acce.UDP_tbCategorias_Select";
-        public static string UDP_Categorias_Update = "acce.UDP_tbCategorias_Update";
+        public static string UDP_Categorias_List = "gral.UDP_tbCategorias_Select";
+        public static string UDP_Categorias_Update = "gral.UDP_tbCategorias_Update";
         public static string InsertarCategoria = "gral.UDP_tbCategorias_Insert";
         public static string UDP_Categorias_Delete = "gral.UDP_tbCategorias_Delete";
 
@@ -66,10 +66,12 @@ namespace Restaurante.DataAccess
         #region Facturas
 
         public static string UDP_Facturas_List = "rest.UDP_tbFacturas_Select";
+        public static string UDP_Facturas_ListDetalles = "rest.UDP_tbFacturasDetalles_Select";
         public static string UDP_Facturas_Update = "rest.UDP_tbFacturas_Update";
         public static string InsertarFactura = "rest.UDP_InsertarFactura";
         public static string InsertarFacturaDetalle = "rest.UDP_tbFacturasDetalles_Insert";
         public static string DeleteFacturaDetalle = "rest.UDP_tbFacturasDetalles_Delete";
+        public static string UpdateFacturaDetalle = "rest.UDP_tbFacturaDetalles_Update";
         public static string UDP_Facturas_Delete = "rest.UDP_tbFacturas_Delete";
 
         #endregion

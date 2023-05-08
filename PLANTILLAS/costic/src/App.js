@@ -75,6 +75,8 @@ import MetodosPago from './components/pages/MetodosPago';
 import Pruebas from './components/pages/pruebas';
 import Factura from './components/pages/Factura/Factura';
 import FacturaCreate from './components/pages/Factura/FacturaCreate';
+import FacturaEdit from './components/pages/Factura/FacturaEdit';
+import FacturaDetails from './components/pages/Factura/FacturaDetails';
 
 function App() {
   return (
@@ -85,6 +87,8 @@ function App() {
         <Route path="/pruebas" component={Pruebas} />
         <Route path="/factura" component={Factura} />
         <Route path="/factura_create" component={FacturaCreate} />
+        <Route path="/factura_edit" component={FacturaEdit} />
+        <Route path="/factura_details" component={FacturaDetails} />
         <Route path="/accordions" component={Accordions} />
         <Route path="/departamentos" component={Departamentos} />
         <Route path="/estadosCiviles" component={EstadosCiviles} />

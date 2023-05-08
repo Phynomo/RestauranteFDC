@@ -30,6 +30,13 @@ namespace Restaurante.WEBUI.Controllers
             var list = _restauranteServicio.ListadoFacturas();
             return Ok(list);
         }
+        
+        [HttpGet("ListadoDetalles")]
+        public IActionResult ListadoDetalles(int id)
+        {
+            var list = _restauranteServicio.ListadoFacturasDetalles(id);
+            return Ok(list);
+        }
 
         [HttpPut("EditarFactura")]
         public IActionResult Edit(FacturaViewModel factura)
@@ -66,6 +73,13 @@ namespace Restaurante.WEBUI.Controllers
         {
             var item = _mapper.Map<tbFacturasDetalles>(facturas);
             var result = _restauranteServicio.EliminarFacturaDetalle(item);
+            return Ok(result);
+        }
+        [HttpPut("ActualizaFacturaDetalle")]
+        public IActionResult UpdateDetalle(FacturaViewModel facturas)
+        {
+            var item = _mapper.Map<tbFacturasDetalles>(facturas);
+            var result = _restauranteServicio.ActualizaFacturaDetalle(item);
             return Ok(result);
         }
     }

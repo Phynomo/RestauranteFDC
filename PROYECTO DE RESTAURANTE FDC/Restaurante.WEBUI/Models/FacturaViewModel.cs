@@ -48,5 +48,6 @@ namespace Restaurante.WEBUI.Models
         public DateTime? fade_FechaModificacion { get; set; }
         public int? fade_UsuModificacion { get; set; }
         public bool fade_Estado { get; set; }
+
     }
 }

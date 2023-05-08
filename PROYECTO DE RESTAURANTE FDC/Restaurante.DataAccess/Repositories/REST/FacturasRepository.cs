@@ -77,7 +77,7 @@ namespace Restaurante.DataAccess.Repositories.REST
             parametros.Add("@clie_Id", item.clie_Id, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@empe_Id", item.empe_Id, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@metp_Id", item.metp_Id, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@fact_Cerrada", item.fact_Cerrada, DbType.Boolean, ParameterDirection.Input);
+            parametros.Add("@fact_Cerrada", item.fact_Cerrada, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@fact_UsuModificacion", item.fact_UsuModificacion, DbType.Int32, ParameterDirection.Input);
 
             var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_Facturas_Update, parametros, commandType: System.Data.CommandType.StoredProcedure);
@@ -119,6 +119,30 @@ namespace Restaurante.DataAccess.Repositories.REST
 
             return reques;
         }
+        public RequestStatus UpdateFacturaDetalle(tbFacturasDetalles item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@fade_Id", item.fade_Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@fade_Cantidad", item.fade_Cantidad, DbType.Int32, ParameterDirection.Input);
 
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.UpdateFacturaDetalle, parameters, commandType: CommandType.StoredProcedure);
+
+            RequestStatus reques = new()
+            {
+                CodeStatus = result,
+            };
+
+            return reques;
+        }
+
+        public IEnumerable<VW_tbFacturaDetalles> ListDetalles(int id)
+        {
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@fact_Id", id, DbType.Int32, ParameterDirection.Input);
+
+            return db.Query<VW_tbFacturaDetalles>(ScriptsDataBase.UDP_Facturas_ListDetalles, parametros, commandType: CommandType.StoredProcedure);
+        }
     }
 }

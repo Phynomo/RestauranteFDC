@@ -2,17 +2,40 @@ import React, { useState, useEffect } from 'react';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import { DataGrid, GridToolbar, esES } from '@mui/x-data-grid';
 import ModalEdit from './ModalsPut';
-
+import { useHistory, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import toastr from 'toastr';
 
 
 const DataTable = () => {
   const [searchText, setSearchText] = useState('');
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const history = useHistory();
+
+  async function eliminarDetalle(item) {
+    if(!item.fact_Cerrada){
+      history.push({
+            pathname: '/factura_edit',
+            state: { data: item }
+          });
+    }else{
+      toastr.error("Esta factura ya esta cerrada", "Denegado");
+    }
+   
+};
+  async function facturaDetails(item) {
+      history.push({
+            pathname: '/factura_details',
+            state: { data: item }
+          });
+};
 
   const columns = [
-    { field: 'carg_Id', headerName: 'ID', flex: 1 },
-    { field: 'carg_Descripcion', headerName: 'Cargo', flex: 1 },
+    { field: 'fact_Id', headerName: 'ID', flex: 1 },
+    { field: 'clie_NombreCompleto', headerName: 'Cliente', flex: 2 },
+    { field: 'fact_Cerrada', headerName: 'Estado', flex: 1 },
+    { field: 'fact_Fecha', headerName: 'Fecha', flex: 1 },
     {
       field: 'actions',
       headerName: 'Acciones',
@@ -20,9 +43,10 @@ const DataTable = () => {
       flex: 1,
       type: 'number',
       renderCell: (params) => (
-        <div className='d-flex justify-content-center'>
-          <ModalEdit data={params.row} />
-        </div>
+        <div className=''>
+                        <a style={{ margin: "5px" }} onClick={() => eliminarDetalle(params.row)}><i class='fas fa-pencil-alt text-secondary'></i></a>
+                        <a style={{ margin: "5px" }} onClick={() => facturaDetails(params.row)}><i class='fas flaticon-list text-info'></i></a>
+                    </div>
       ),
     },
   ];
@@ -30,30 +54,37 @@ const DataTable = () => {
   useEffect(() => {
     console.log(1);
     const fetchData = () => {
-      fetch('https://localhost:44383/api/Cargos/Listado')
-        .then(response => response.json())
-        .then(data => {
-          const rows = data.data.map(item => {
+      axios.get("api/Facturas/Listado")
+        .then(response => {
+          const rows = response.data.data.map(item => {
+            const date = new Date(item.fact_Fecha);
+            const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
             return {
-              id: item.carg_Id,
-              carg_Id: item.carg_Id,
-              carg_Descripcion: item.carg_Descripcion
-            }
+              id: item.fact_Id,
+              fact_Id: item.fact_Id,
+              clie_NombreCompleto: item.clie_NombreCompleto,
+              fact_Cerrada: item.fact_Cerrada,
+              clie_Id: item.clie_Id,
+              metp_Id: item.metp_Id,
+              sucu_Direccion: item.sucu_Direccion,
+              sucu_Nombre: item.sucu_Nombre,
+              fact_Fecha: formattedDate,
+            };
           });
           setRows(rows);
           setIsLoading(false);
         })
         .catch(error => {
-          console.log("Error en la solicitud fetch:", error);
+          console.log('Error en la solicitud Axios:', error);
         });
     };
-  
+
     fetchData(); // llamada inicial
-  
+
     const interval = setInterval(() => {
       fetchData(); // llamada cada 3 segundos
     }, 3000);
-  
+
     return () => clearInterval(interval); // limpiar intervalo al desmontar el componente
   }, []);
 

@@ -56,7 +56,7 @@ WHERE [carg_Estado] = 1
 END
 GO
 --Categorias
-CREATE OR ALTER PROCEDURE acce.UDP_tbCategorias_Select
+CREATE OR ALTER PROCEDURE gral.UDP_tbCategorias_Select
 AS
 BEGIN
 SELECT * FROM gral.VW_tbCategorias
@@ -129,9 +129,10 @@ END
 GO
 --FacturaDetalles
 CREATE OR ALTER PROCEDURE rest.UDP_tbFacturasDetalles_Select
+@fact_Id INT
 AS
 BEGIN
 SELECT * FROM rest.VW_tbFacturaDetalles
-WHERE [fade_Estado] = 1
+WHERE [fade_Estado] = 1 AND @fact_Id = fact_Id
 END
 GO

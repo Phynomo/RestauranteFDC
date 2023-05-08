@@ -317,7 +317,7 @@ CREATE OR ALTER PROCEDURE rest.UDP_tbFacturas_Update
 @clie_Id INT,
 @empe_Id INT,
 @metp_Id INT,
-@fact_Cerrada BIT,
+@fact_Cerrada INT,
 @fact_UsuModificacion INT
 AS
 BEGIN

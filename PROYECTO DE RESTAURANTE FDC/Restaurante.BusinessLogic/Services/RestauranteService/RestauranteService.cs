@@ -255,6 +255,20 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
                 return result.Error(e.Message);
             }
         }
+        
+        public ServiceResult ListadoFacturasDetalles(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturasRepository.ListDetalles(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
 
         public ServiceResult InsertarFactura(tbFacturas item)
         {
@@ -264,7 +278,7 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
                 var list = _facturasRepository.NewBill(item);
                 if (list.CodeStatus > 0)
                 {
-                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                    return result.SetMessage(list.CodeStatus.ToString(), ServiceResultType.Success);
                 }
                 else if (list.CodeStatus == -2)
                 {
@@ -370,6 +384,34 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             try
             {
                 var list = _facturasRepository.DeleteFacturaDetalle(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -4)
+                {
+                    return result.SetMessage("SinStock", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+                return result.Error(xe.Message);
+            }
+        }
+        public ServiceResult ActualizaFacturaDetalle(tbFacturasDetalles item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _facturasRepository.UpdateFacturaDetalle(item);
                 if (list.CodeStatus > 0)
                 {
                     return result.SetMessage("Exitoso", ServiceResultType.Success);
