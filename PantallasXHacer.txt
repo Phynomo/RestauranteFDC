@@ -1,11 +1,11 @@
-Roles
+Roles--
 Usuarios
 Departamentos
 Municipios
 Estados Civiles --
-Metodo de Pago
+Metodo de Pago --
 Cargos --
-Categorias
+Categorias --
 Sucursales
 Ingredientes
 

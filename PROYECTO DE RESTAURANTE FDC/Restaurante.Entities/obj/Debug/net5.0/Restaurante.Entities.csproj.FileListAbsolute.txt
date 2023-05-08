@@ -34,3 +34,15 @@ C:\Users\LAB01\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Resta
 C:\Users\LAB01\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\Restaurante.Entities.dll
 C:\Users\LAB01\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\ref\Restaurante.Entities.dll
 C:\Users\LAB01\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\Restaurante.Entities.pdb
+C:\Users\Auxiliar.Operaciones\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\bin\Debug\net5.0\Restaurante.Entities.deps.json
+C:\Users\Auxiliar.Operaciones\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\bin\Debug\net5.0\Restaurante.Entities.dll
+C:\Users\Auxiliar.Operaciones\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\bin\Debug\net5.0\ref\Restaurante.Entities.dll
+C:\Users\Auxiliar.Operaciones\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\bin\Debug\net5.0\Restaurante.Entities.pdb
+C:\Users\Auxiliar.Operaciones\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\Restaurante.Entities.csproj.AssemblyReference.cache
+C:\Users\Auxiliar.Operaciones\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\Restaurante.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Auxiliar.Operaciones\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\Restaurante.Entities.AssemblyInfoInputs.cache
+C:\Users\Auxiliar.Operaciones\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\Restaurante.Entities.AssemblyInfo.cs
+C:\Users\Auxiliar.Operaciones\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\Restaurante.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Auxiliar.Operaciones\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\Restaurante.Entities.dll
+C:\Users\Auxiliar.Operaciones\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\ref\Restaurante.Entities.dll
+C:\Users\Auxiliar.Operaciones\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\Restaurante.Entities.pdb
