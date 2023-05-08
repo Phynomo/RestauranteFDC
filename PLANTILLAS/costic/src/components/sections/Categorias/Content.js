@@ -4,8 +4,6 @@ import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
 import { DataGrid, GridToolbar,esES } from '@mui/x-data-grid';
 import $ from 'jquery';
-import Example from '../Departamentos/prueba';
-import { Link } from 'react-router-dom';
 import Table from './table';
 import ModalCreate from './ModalCreate';
 
@@ -19,7 +17,7 @@ const Content = () => {
                     <Breadcrumb />
                     <div className="ms-panel">
                         <div className="ms-panel-header text-center">
-                            <h6>Listado de Departamentos</h6>
+                            <h6>Listado de Categorias</h6>
                             <hr></hr>
                             <div className='row d-flex justify-content-center'>
                                 <div className='col-5'>

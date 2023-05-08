@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from './Breadcrumb';
 import { Modal, Accordion, Card } from "react-bootstrap";
-import axios from 'axios';
-import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
-import toastr from 'toastr';
+
+
 
 
 class ModalsPut extends Component {
@@ -18,7 +17,8 @@ class ModalsPut extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             show: false,
-            carg_Descripcion: this.props.data ? this.props.data.carg_Descripcion : '',
+            depa_Nombre: this.props.data ? this.props.data.depa_Nombre : '',
+            depa_Codigo: this.props.data ? this.props.data.depa_Codigo : '',
             validated: false,
         };
     }
@@ -43,54 +43,56 @@ class ModalsPut extends Component {
         if (form.checkValidity() === false) {
             event.stopPropagation();
         } else {
-            let data = {
-                carg_Id: this.props.data.carg_Id,
-                carg_Descripcion: this.state.carg_Descripcion,
-                carg_UsuModificacion: 1,
+            const data = {
+                depa_Id: this.props.data.depa_Id,
+                depa_Nombre: this.state.depa_Nombre,
+                depa_Codigo: this.state.depa_Codigo,
+                depa_UsuModificacion: 1,
             };
-
-            axios.put('api/Cargos/Editar', data)
-            .then(response => {
-                console.log(response.data);
-                if (response.data.message == "Exitoso") {
-                    alertSuccess("Listo", "El registro se edito con exito", "2000");
-                    this.state.validated = false;
-                    this.handleClose();
-                } else if (response.data.message == "YaExiste") {
-                    toastr.warning("Este cargo ya existe", "Cargo repetido");
-                } else {
-                    alertError("Error", "Ocurrio un error mientras se editaba el registro", "2000")
-                    this.state.validated = false;
-                    this.handleClose();
-                }
+            fetch('https://localhost:44383/api/Departamentos/InsertarDepartamento', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
             })
-            .catch(error => {
-                console.log(error);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    this.state.depa_Nombre = null;
+                    this.state.depa_Codigo = null;
+                    this.state.validated = false;
+                    console.log('Respuesta de la API:', data);
+                })
+                .catch(error => {
+                    console.error('Error al enviar los datos:', error);
+                });
+            this.handleClose();
         }
 
         this.setState({ validated: true });
     }
 
     handleSubmitDelete() {
-            let data = {
-                carg_Id: this.props.data.carg_Id,
-                carg_UsuModificacion: 1,
+            const data = {
+                depa_Id: this.props.data.depa_Id,
+                cate_UsuModificacion: 1,
             };
-            axios.put('api/Cargos/Eliminar', data)
-            .then(response => {
-                console.log(response.data);
-                if (response.data.message == "Registro eliminado") {
-                    alertSuccess("Listo", "El registro se elimino con exito", "2000");
-                    this.handleClose();
-                }else {
-                    alertError("Error", "Ocurrio un error mientras se eliminaba el registro", "2000")
-                    this.handleClose();
-                }
+            fetch('https://localhost:44383/api/Categorias/InsertarCategoria', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
             })
-            .catch(error => {
-                console.log(error);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    this.state.cate_Descripcion = null;
+                    this.state.validated = false;
+                    console.log('Respuesta de la API:', data);
+                })
+                .catch(error => {
+                    console.error('Error al enviar los datos:', error);
+                });
             this.handleClose();
         this.setState({ validated: true });
     }
@@ -123,7 +125,7 @@ class ModalsPut extends Component {
                             <div className="ms-form-group has-icon">
                                 <label htmlFor="validationCustom13">Ingresar cargo</label>
                                 <div className="input-group">
-                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Cargo" name="carg_Descripcion" value={this.state.carg_Descripcion} onChange={this.handleInputChange} required />
+                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Categoria" name="cate_Descripcion" value={this.state.cate_Descripcion} onChange={this.handleInputChange} required />
                                     <div className="invalid-feedback">Ingresar el cargo es algo requerido</div>
                                 </div>
                             </div>
@@ -152,4 +154,4 @@ class ModalsPut extends Component {
         );
     }
 }
-        export default ModalsPut;
+export default ModalsPut;

@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import Breadcrumb from './Breadcrumb';
 import { Modal, Accordion, Card } from "react-bootstrap";
 import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
@@ -15,15 +15,12 @@ class ModalCreate extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             show: false,
-            carg_Descripcion: '',
+            cate_Descripcion: '',
             validated: false,
-            inserto: false, // Agregamos el estado inserto con valor inicial false
         };
     }
 
     handleCreate() {
-        this.state.validated = false;
-        this.state.carg_Descripcion = null;
         this.setState({ create: true });
     }
 
@@ -34,43 +31,38 @@ class ModalCreate extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const form = event.currentTarget;
-    
+
         if (form.checkValidity() === false) {
             event.stopPropagation();
         } else {
             let data = {
-                carg_Descripcion: this.state.carg_Descripcion,
-                carg_UsuCreacion: 1,
+                cate_Descripcion: this.state.cate_Descripcion,
+                cate_UsuCreacion: 1,
             };
             console.log(data);
-            axios.post('api/Cargos/Insertar', data, {
+            axios.post('api/Categorias/InsertarCategoria', data, {
             })
-            .then(response => {
-                console.log('Respuesta de la API:', response);
-                if (response.data.message == "Exitoso") {
-                    alertSuccess("Listo", "El registro se realizo con exito", "2000");
-                    this.setState({
-                        validated: false,
-                        carg_Descripcion: null,
-                        inserto: true, // Cambiamos el valor de inserto a true
-                    });
-                    this.handleClose();
-                } else if (response.data.message == "YaExiste") {
-                    toastr.warning("Este cargo ya existe", "Cargo repetido");
-                } else {
-                    alertError("Error", "Ocurrio un error mientras se creaba el registro", "2000")
-                    this.setState({
-                        validated: false,
-                        carg_Descripcion: null,
-                        inserto: true, // Cambiamos el valor de inserto a false
-                    });
-                    this.handleClose();
-                }
-        
-            })
+                .then(response => {
+                    this.state.cate_Descripcion = null;
+                    this.state.validated = false;
+                    console.log('Respuesta de la API:', response);
+                    if (response.data.message == "Exitoso") {
+                        alertSuccess("Listo", "El registro se realizo con exito", "2000");
+                        this.handleClose();
+                    } else if (response.data.message == "YaExiste") {
+                        toastr.warning("Esta C  ategoria ya existe", "Categoria repetida");
+                    } else {
+                        alertError("Error", "Ocurrio un error mientras se creaba el registro", "2000")
+                        this.handleClose();
+                    }
+
+                })
+                .catch(error => {
+                    console.error('Error al enviar los datos:', error);
+                });
         }
-        this.state.inserto = true;
-        console.log(this.state.inserto);
+
+        this.setState({ validated: true });
     }
 
     handleInputChange(event) {
@@ -97,10 +89,10 @@ class ModalCreate extends Component {
                     <form onSubmit={this.handleSubmit} className={`needs-validation validation-fill ${this.state.validated ? 'was-validated' : ''}`} noValidate>
                         <Modal.Body>
                             <div className="ms-form-group has-icon">
-                                <label htmlFor="validationCustom13">Ingresar cargo</label>
+                                <label htmlFor="validationCustom13">Ingresar Categoria</label>
                                 <div className="input-group">
-                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Cargo" name="carg_Descripcion" value={this.state.carg_Descripcion} onChange={this.handleInputChange} required />
-                                    <div className="invalid-feedback">Ingresar el cargo es algo requerido</div>
+                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Categoria" name="cate_Descripcion" value={this.state.cate_Descripcion} onChange={this.handleInputChange} required />
+                                    <div className="invalid-feedback">Ingresar la categoria es algo requerido</div>
                                 </div>
                             </div>
                         </Modal.Body>

@@ -132,6 +132,7 @@ BEGIN
 				INSERT INTO [acce].[tbUsuarios]
            ([user_NombreUsuario]
            ,[user_Contrasena]
+		   ,[user_Correo]
            ,[user_EsAdmin]
 		   ,[user_Image]
            ,[role_Id]
@@ -145,6 +146,7 @@ BEGIN
      VALUES
            (@user_NombreUsuario
            ,HASHBYTES('SHA2_512',@user_Contrasena)
+		   ,@user_Correo
            ,@user_EsAdmin
 		   ,@user_Image
            ,@role_Id

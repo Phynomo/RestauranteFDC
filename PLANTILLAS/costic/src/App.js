@@ -83,6 +83,8 @@ import EditarCliente from './components/sections/Clientes/Editar';
 import CrearEmpleado from './components/sections/Empleados/Crear';
 import EditarEmpleado from './components/sections/Empleados/Editar';
 
+import Roles from './components/pages/Roles';
+import Categorias from './components/pages/Categorias';
 
 function App() {
   return (
@@ -106,7 +108,8 @@ function App() {
         <Route path="/editarCliente/:clie_Id" component={EditarCliente} />
         <Route path="/crearEmpleado" component={CrearEmpleado}></Route>
         <Route path="/editarEmpleado/:empe_Id" component={EditarEmpleado} />
-
+        <Route path="/roles" component={Roles} />
+        <Route path="/categorias" component={Categorias} />
         <Route path="/add-product" component={Addproduct} />
         <Route path="/alerts" component={Alerts} />
         <Route path="/animations" component={Animations} />

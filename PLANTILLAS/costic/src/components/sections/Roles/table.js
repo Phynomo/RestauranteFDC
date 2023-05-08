@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 //import { DataGrid } from '@mui/x-data-grid';
 import { DataGrid, GridToolbar,esES } from '@mui/x-data-grid';
-import ModalEdit2 from './ModalsPut2';
+import ModalEdit2 from './ModalsPut3';
 
 
 const DataTable = () => {
@@ -11,8 +11,8 @@ const DataTable = () => {
   const [isLoading, setIsLoading] = useState(true);
 
 const columns = [
-  { field: 'eciv_Id', headerName: 'ID', flex: 1 },
-  { field: 'eciv_Descripcion', headerName: 'Estado', flex: 1 },
+  { field: 'role_Id', headerName: 'ID', flex: 1 },
+  { field: 'role_Nombre', headerName: 'Rol', flex: 1 },
    {
      field: 'actions',
      headerName: 'Acciones',
@@ -28,14 +28,14 @@ const columns = [
 ];
 
 useEffect(() => {
-  fetch('https://localhost:44383/api/EstadosCiviles/Listado')
+  fetch('https://localhost:44383/api/Roles/Listado')
     .then(response => response.json())
     .then(data => {
       const rows = data.data.map(item => {
         return {
-          id: item.eciv_Id,
-          eciv_Id: item.eciv_Id,
-          eciv_Descripcion: item.eciv_Descripcion
+          id: item.role_Id,
+          role_Id: item.role_Id,
+          role_Nombre: item.role_Nombre
         }
       });
       setRows(rows);
@@ -74,7 +74,7 @@ return (
       :
       <div>
         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-          <h5 style={{ marginLeft: "5px" }} >Estados Civiles</h5>
+          <h5 style={{ marginLeft: "5px" }} >Roles</h5>
           <div className="input-group" style={{ width: '250px', marginTop: '5px', marginRight: "5px", marginBottom: "-5px" }}>
             <div className="input-group-prepend"> <span className="input-group-text" id="inputGroupPrepend"><i className="flaticon-search" /></span>
             </div>

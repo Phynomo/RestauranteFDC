@@ -57,7 +57,26 @@ namespace Restaurante.DataAccess.Repositories.ACCE
 
         public RequestStatus Insert(tbUsuarios item)
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            RequestStatus result = new RequestStatus();
+
+            var parametros = new DynamicParameters();
+            parametros.Add("@user_NombreUsuario", item.user_NombreUsuario, DbType.String, ParameterDirection.Input);
+            parametros.Add("@user_Contrasena", item.user_Contrasena, DbType.String, ParameterDirection.Input);
+            parametros.Add("@user_Correo", item.user_Correo, DbType.String, ParameterDirection.Input);
+            parametros.Add("@user_Image", item.user_Image, DbType.String, ParameterDirection.Input);
+            parametros.Add("@user_EsAdmin", item.user_EsAdmin, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@role_Id", item.role_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@empe_Id", item.empe_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@clie_Id", item.clie_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@user_UsuCreacion", item.user_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+
+
+
+            var respuesta = db.QueryFirst<int>(ScriptsDataBase.UDP_Usuarios_Insert, parametros, commandType: System.Data.CommandType.StoredProcedure);
+
+            result.CodeStatus = respuesta;
+            return result;
         }
 
         public IEnumerable<VW_tbUsuarios> List()

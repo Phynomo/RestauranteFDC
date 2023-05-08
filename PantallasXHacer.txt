@@ -1,0 +1,12 @@
+Roles--
+Usuarios
+Departamentos
+Municipios
+Estados Civiles --
+Metodo de Pago --
+Cargos --
+Categorias --
+Sucursales
+Ingredientes
+
+5 Formularios

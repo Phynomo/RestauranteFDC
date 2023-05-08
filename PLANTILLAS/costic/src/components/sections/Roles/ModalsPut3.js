@@ -6,8 +6,7 @@ import axios from 'axios';
 import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
 import toastr from 'toastr';
 
-
-class ModalsPut extends Component {
+class ModalsPut3 extends Component {
     constructor(props, context) {
         super(props, context);
         this.handleEdit = this.handleEdit.bind(this);
@@ -18,7 +17,7 @@ class ModalsPut extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             show: false,
-            carg_Descripcion: this.props.data ? this.props.data.carg_Descripcion : '',
+            role_Nombre: this.props.data ? this.props.data.role_Nombre : '',
             validated: false,
         };
     }
@@ -44,12 +43,12 @@ class ModalsPut extends Component {
             event.stopPropagation();
         } else {
             let data = {
-                carg_Id: this.props.data.carg_Id,
-                carg_Descripcion: this.state.carg_Descripcion,
-                carg_UsuModificacion: 1,
+                role_Id: this.props.data.role_Id,
+                role_Nombre: this.state.role_Nombre,
+                role_UsuModificacion: 1,
             };
 
-            axios.put('api/Cargos/Editar', data)
+            axios.put('api/Roles/EditarRol', data)
             .then(response => {
                 console.log(response.data);
                 if (response.data.message == "Exitoso") {
@@ -71,29 +70,39 @@ class ModalsPut extends Component {
 
         this.setState({ validated: true });
     }
-
+    
     handleSubmitDelete() {
-            let data = {
-                carg_Id: this.props.data.carg_Id,
-                carg_UsuModificacion: 1,
-            };
-            axios.put('api/Cargos/Eliminar', data)
-            .then(response => {
-                console.log(response.data);
-                if (response.data.message == "Registro eliminado") {
-                    alertSuccess("Listo", "El registro se elimino con exito", "2000");
-                    this.handleClose();
-                }else {
-                    alertError("Error", "Ocurrio un error mientras se eliminaba el registro", "2000")
-                    this.handleClose();
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
-            this.handleClose();
-        this.setState({ validated: true });
-    }
+        let data = {
+            role_Id: this.props.data.role_Id,
+            role_UsuModificacion: 1,
+        };
+        axios.put('api/Roles/Eliminar', data)
+        .then(response => {
+            console.log(response.data);
+            if (response.data.message == "Registro eliminado") {
+                alertSuccess("Listo", "El registro se elimino con exito", "2000");
+                this.handleClose();
+            }else {
+                alertError("Error", "Ocurrio un error mientras se eliminaba el registro", "2000")
+                this.handleClose();
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+        this.handleClose();
+    this.setState({ validated: true });
+}
+
+handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+        [name]: value
+    });
+}
 
     handleInputChange(event) {
         const target = event.target;
@@ -115,16 +124,16 @@ class ModalsPut extends Component {
                 <Modal show={this.state.Edit} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
                     centered>
                     <Modal.Header>
-                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Editar cargo</h3>
+                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Editar Rol</h3>
                         <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
                     </Modal.Header>
                     <form onSubmit={this.handleSubmit} className={`needs-validation validation-fill ${this.state.validated ? 'was-validated' : ''}`} noValidate>
                         <Modal.Body>
                             <div className="ms-form-group has-icon">
-                                <label htmlFor="validationCustom13">Ingresar cargo</label>
+                                <label htmlFor="validationCustom13">Ingresar Rol</label>
                                 <div className="input-group">
-                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Cargo" name="carg_Descripcion" value={this.state.carg_Descripcion} onChange={this.handleInputChange} required />
-                                    <div className="invalid-feedback">Ingresar el cargo es algo requerido</div>
+                                    <input type="text" className="form-control" id="validationCustom13" placeholder="Rol" name="role_Nombre" value={this.state.role_Nombre} onChange={this.handleInputChange} required />
+                                    <div className="invalid-feedback">Ingresar el rol es algo requerido</div>
                                 </div>
                             </div>
                         </Modal.Body>
@@ -151,5 +160,5 @@ class ModalsPut extends Component {
             </div>
         );
     }
-}
-        export default ModalsPut;
+};
+export default ModalsPut3;
