@@ -1,0 +1,17 @@
+-Daniel
+Update en sql y api
+Login en react (1/2)
+Crud cargos y facturas
+
+
+-Francisco
+UDP DELETE, Login, Restaurar
+DELETE en Api
+Crud categorias, metodos pago, roles(1/2), departamentos
+
+-Karla
+Buscar Plantilla
+Insert en Sql y en api 
+CRUD Cliente y empleados 
+
+
