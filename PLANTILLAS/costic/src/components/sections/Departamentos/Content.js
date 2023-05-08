@@ -4,6 +4,7 @@ import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
 import $ from 'jquery';
 import Example from '../Departamentos/prueba';
+import { Link } from 'react-router-dom';
 
 class Content extends Component {
     render() {

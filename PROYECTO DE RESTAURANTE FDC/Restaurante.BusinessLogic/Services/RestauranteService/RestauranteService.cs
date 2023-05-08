@@ -118,13 +118,27 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
-        public ServiceResult EliminarClientes(tbClientes item)
+        public ServiceResult CargarClientes(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _clienteRepository.MostarDatos(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        public ServiceResult EliminarClientes(int id)
         {
             var result = new ServiceResult();
 
             try
             {
-                var insert = _clienteRepository.Delete(item);
+                var insert = _clienteRepository.Delete(id);
 
                 if (insert.CodeStatus == 1)
                     return result.SetMessage("Registro eliminado", ServiceResultType.Success);

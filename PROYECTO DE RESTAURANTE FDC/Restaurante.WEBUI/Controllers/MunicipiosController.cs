@@ -54,5 +54,12 @@ namespace Restaurante.WEBUI.Controllers
             var result = _generalServivce.EliminarMunicipios(item);
             return Ok(result);
         }
+
+        [HttpGet("CargarMunicipios")]
+        public IActionResult Cargar(int id)
+        {
+            var list = _generalServivce.CargarMunicipios(id);
+            return Ok(list);
+        }
     }
 }

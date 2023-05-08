@@ -77,6 +77,12 @@ import Factura from './components/pages/Factura/Factura';
 import FacturaCreate from './components/pages/Factura/FacturaCreate';
 import FacturaEdit from './components/pages/Factura/FacturaEdit';
 import FacturaDetails from './components/pages/Factura/FacturaDetails';
+import Clientes from './components/pages/Clientes';
+import CrearCliente from './components/sections/Clientes/Crear';
+import EditarCliente from './components/sections/Clientes/Editar';
+import CrearEmpleado from './components/sections/Empleados/Crear';
+import EditarEmpleado from './components/sections/Empleados/Editar';
+
 
 function App() {
   return (
@@ -95,6 +101,12 @@ function App() {
         <Route path="/metodosPago" component={MetodosPago} />
         <Route path="/empleados" component={Empleados} />
         <Route path="/cargos" component={Cargos} />
+        <Route path="/clientes" component={Clientes}></Route>
+        <Route path="/crearCliente" component={CrearCliente}></Route>
+        <Route path="/editarCliente/:clie_Id" component={EditarCliente} />
+        <Route path="/crearEmpleado" component={CrearEmpleado}></Route>
+        <Route path="/editarEmpleado/:empe_Id" component={EditarEmpleado} />
+
         <Route path="/add-product" component={Addproduct} />
         <Route path="/alerts" component={Alerts} />
         <Route path="/animations" component={Animations} />

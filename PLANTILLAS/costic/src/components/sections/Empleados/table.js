@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 //import { DataGrid } from '@mui/x-data-grid';
 import { DataGrid, GridToolbar,esES } from '@mui/x-data-grid';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 const columns = [
   { field: 'empe_Id', headerName: 'ID', flex: 1 },
@@ -15,12 +18,13 @@ const columns = [
      flex: 1,
      type: 'number',
      renderCell: (params) => (
-       <div>
-         <a href="a" style={{ margin: "5px" }}><i class='fas fa-pencil-alt text-secondary'></i></a>
-         <a style={{ margin: "5px" }}><i class='far fa-trash-alt ms-text-danger'></i></a>
-
-       </div>
-     ),
+      <div>
+        <Link to={`/editarEmpleado${params.row.empe_Id}`} style={{ margin: "5px" }}><i className='fas fa-pencil-alt text-secondary'></i></Link>
+      { /* <button style={{ margin: "5px" }} onClick={() => handleDeleteClick(params.row.clie_Id)} className='btn btn-square'>
+          <i className='far fa-trash-alt ms-text-danger'></i>
+        </button>*/}
+      </div>
+    ),
    },
 ];
 

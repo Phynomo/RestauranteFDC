@@ -54,6 +54,8 @@ namespace Restaurante.DataAccess.Repositories.GRAL
 
             return reques;
         }
+
+
         public IEnumerable<VW_tbMunicipios> List()
         {
             using var db = new SqlConnection(RestauranteCon.ConnectionString);
@@ -78,6 +80,15 @@ namespace Restaurante.DataAccess.Repositories.GRAL
             result.CodeStatus = resultado;
 
             return result;
+        }
+
+        public IEnumerable<tbMunicipios> CargarMunis(int id)
+        {
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@dept_Id", id, DbType.Int32, ParameterDirection.Input);
+            return db.Query<tbMunicipios>(ScriptsDataBase.CargarMunicipios, parametros, commandType: CommandType.StoredProcedure);
         }
     }
 }

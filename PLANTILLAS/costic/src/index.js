@@ -13,11 +13,16 @@ import './assets/vendors/iconic-fonts/cryptocoins/cryptocoins-colors.css';
 import './assets/css/animate.min.css';
 import './assets/css/style.css';
 
+//solo prueba, luego elimino
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 axios.defaults.baseURL = process.env.REACT_APP_API_URL
 
 
 ReactDOM.render(
   <BrowserRouter basename={'/themes/themeforest/react/costic'}>
+     <ToastContainer />
     <App />
   </BrowserRouter>,
   document.getElementById('costic')
