@@ -11,8 +11,9 @@ const DataTable = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const columns = [
-    { field: 'cate_Id', headerName: 'ID', flex: 1 },
-    { field: 'cate_Descripcion', headerName: 'Categoria', flex: 1 },
+    { field: 'depa_Id', headerName: 'ID', flex: 1 },
+    { field: 'depa_Nombre', headerName: 'Departamento', flex: 1 },
+    { field: 'depa_Codigo', headerName: 'Codigo', flex: 1 },
     {
       field: 'actions',
       headerName: 'Acciones',
@@ -28,14 +29,15 @@ const DataTable = () => {
   ];
 
   useEffect(() => {
-    fetch('https://localhost:44383/api/Categorias/Listado')
+    fetch('https://localhost:44383/api/Departamentos/Listado')
       .then(response => response.json())
       .then(data => {
         const rows = data.data.map(item => {
           return {
-            id: item.cate_Id,
-            cate_Id: item.cate_Id,
-            cate_Descripcion: item.cate_Descripcion
+            id: item.depa_Id,
+            depa_Id: item.depa_Id,
+            depa_Nombre: item.depa_Nombre,
+            depa_Codigo: item.depa_Codigo
           }
         });
         setRows(rows);
@@ -74,7 +76,7 @@ const DataTable = () => {
         :
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-            <h5 style={{ marginLeft: "5px" }} >Categoria</h5>
+            <h5 style={{ marginLeft: "5px" }} >Departamento</h5>
             <div className="input-group" style={{ width: '250px', marginTop: '5px', marginRight: "5px", marginBottom: "-5px" }}>
               <div className="input-group-prepend"> <span className="input-group-text" id="inputGroupPrepend"><i className="flaticon-search" /></span>
               </div>
