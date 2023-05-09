@@ -20,3 +20,4 @@ FacturasDetalle
 PlatilllosHistorial X
 IngredientesHistorial X
 Reservaciones X
+prueba
