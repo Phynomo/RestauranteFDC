@@ -59,6 +59,14 @@ namespace Restaurante.DataAccess.Repositories.GRAL
 
             return db.Query<VW_tbMetodosPago>(ScriptsDataBase.UDP_MetodosPago_List, null, commandType: CommandType.StoredProcedure);
         }
+        
+        public IEnumerable<VW_tbMetodosPago> Chart()
+        {
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+
+            return db.Query<VW_tbMetodosPago>(ScriptsDataBase.UDP_MetodosPago_Chart, null, commandType: CommandType.StoredProcedure);
+        }
 
         public RequestStatus Update(tbMetodosPago item)
         {

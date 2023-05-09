@@ -36,6 +36,7 @@ namespace Restaurante.WEBUI.Models
         public bool fact_Estado { get; set; }
         public int fade_Id { get; set; }
         public int plat_Id { get; set; }
+        public int CantidadFacturas { get; set; }
         public string plat_Nombre { get; set; }
         public decimal plat_Precio { get; set; }
         public string plat_Imagen { get; set; }

@@ -10,6 +10,7 @@ namespace Restaurante.Entities.Entities
     {
         public int fact_Id { get; set; }
         public int clie_Id { get; set; }
+        public int CantidadFacturas { get; set; }
         public string clie_Nombres { get; set; }
         public string clie_Apellidos { get; set; }
         public string clie_NombreCompleto { get; set; }

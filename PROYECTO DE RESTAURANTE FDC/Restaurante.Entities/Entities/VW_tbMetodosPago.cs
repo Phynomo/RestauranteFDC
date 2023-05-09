@@ -9,6 +9,7 @@ namespace Restaurante.Entities.Entities
     public partial class VW_tbMetodosPago
     {
         public int metp_Id { get; set; }
+        public int CatidadMetodosPago { get; set; }
         public string metp_Descripcion { get; set; }
         public int metp_UsuCreacion { get; set; }
         public string user_NombreUsuCreacion { get; set; }

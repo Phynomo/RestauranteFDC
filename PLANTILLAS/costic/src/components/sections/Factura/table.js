@@ -34,7 +34,7 @@ const DataTable = () => {
   const columns = [
     { field: 'fact_Id', headerName: 'ID', flex: 1 },
     { field: 'clie_NombreCompleto', headerName: 'Cliente', flex: 2 },
-    { field: 'fact_Cerrada', headerName: 'Estado', flex: 1 },
+    { field: 'estado', headerName: 'Estado', flex: 1 },
     { field: 'fact_Fecha', headerName: 'Fecha', flex: 1 },
     {
       field: 'actions',
@@ -64,6 +64,7 @@ const DataTable = () => {
               fact_Id: item.fact_Id,
               clie_NombreCompleto: item.clie_NombreCompleto,
               fact_Cerrada: item.fact_Cerrada,
+              estado: item.fact_Cerrada ? "Cerrado" : "Abierto",
               clie_Id: item.clie_Id,
               metp_Id: item.metp_Id,
               sucu_Direccion: item.sucu_Direccion,

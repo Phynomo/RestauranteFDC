@@ -30,6 +30,12 @@ namespace Restaurante.WEBUI.Controllers
             var list = _generalServivce.ListadoMetodosPago();
             return Ok(list);
         }
+        [HttpGet("MetodoPagoChart")]
+        public IActionResult Grafica()
+        {
+            var list = _generalServivce.ChartMetodoPago();
+            return Ok(list);
+        }
 
         [HttpPost("InsertarMetodoPago")]
         public IActionResult InsertarMetodoPago(MetodoPagoViewModel metodos)

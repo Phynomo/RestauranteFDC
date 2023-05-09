@@ -31,6 +31,13 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(list);
         }
         
+        [HttpGet("FacturasPorSucursalChart")]
+        public IActionResult Grafica()
+        {
+            var list = _restauranteServicio.GraficaFactura();
+            return Ok(list);
+        }
+        
         [HttpGet("ListadoDetalles")]
         public IActionResult ListadoDetalles(int id)
         {

@@ -63,6 +63,14 @@ namespace Restaurante.DataAccess.Repositories.REST
 
             return db.Query<VW_tbPlatillos>(ScriptsDataBase.UDP_Platillos_List, null, commandType: CommandType.StoredProcedure);
         }
+        
+        public IEnumerable<VW_tbPlatillos> Grafica()
+        {
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+
+            return db.Query<VW_tbPlatillos>(ScriptsDataBase.UDP_Platillos_Chart, null, commandType: CommandType.StoredProcedure);
+        }
 
         public RequestStatus Update(tbPlatillos item)
         {

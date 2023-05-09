@@ -441,6 +441,20 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
                 return result.Error(e.Message);
             }
         }
+        
+        public ServiceResult ChartMetodoPago()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _metodosPagoRepository.Chart();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
 
         public ServiceResult InsertarMetodos(tbMetodosPago item)
         {

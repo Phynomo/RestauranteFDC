@@ -15,6 +15,7 @@ namespace Restaurante.WEBUI.Models
         public string cate_Descripcion { get; set; }
         public DateTime plat_FechaCreacion { get; set; }
         public int plat_UsuCreacion { get; set; }
+        public int CantidadPlatillos { get; set; }
         public string user_NombreUsuCreacion { get; set; }
         public DateTime? plat_FechaModificacion { get; set; }
         public int? plat_UsuModificacion { get; set; }

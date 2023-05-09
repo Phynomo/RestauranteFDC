@@ -10,6 +10,7 @@ namespace Restaurante.WEBUI.Models
         public int metp_Id { get; set; }
         public string metp_Descripcion { get; set; }
         public int metp_UsuCreacion { get; set; }
+        public int CatidadMetodosPago { get; set; }
         public string user_NombreUsuCreacion { get; set; }
         public DateTime metp_FechaCreacion { get; set; }
         public int? metp_UsuModificacion { get; set; }

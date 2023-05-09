@@ -270,6 +270,20 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
         
+        public ServiceResult GraficaFactura()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturasRepository.Chart();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+        
         public ServiceResult ListadoFacturasDetalles(int id)
         {
             var result = new ServiceResult();
@@ -568,6 +582,19 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
+        public ServiceResult GraficasPlatillos()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _platillosRepository.Grafica();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
 
         public ServiceResult InsertarPlatillos(tbPlatillos item)
         {
