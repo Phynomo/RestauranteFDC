@@ -61,7 +61,7 @@ AS
 BEGIN
 BEGIN TRY
 	SELECT [empe_Nombres], [empe_Apellidos], [empe_Identidad], empe_FechaNacimiento,empe_DireccionExacta,
-	[empe_Sexo], [empe_Telefono],sucu_Id, e.muni_Id,d.depa_Id, d.depa_Nombre, eciv_Id, carg_Id 
+	[empe_Sexo], [empe_Telefono],sucu_Id, e.muni_Id,d.depa_Id, d.depa_Nombre, eciv_Id, carg_Id,[empe_CorreoElectronico]
 	FROM rest.tbEmpleados e
 	INNER JOIN [gral].[tbMunicipios] m ON e.muni_Id = m.muni_Id 
 	INNER JOIN gral.tbDepartamentos d ON m.depa_Id = d.depa_Id

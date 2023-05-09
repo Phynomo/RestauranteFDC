@@ -13,12 +13,39 @@ const Crear = ({ match }) => {
     const [estadosCiviles, setEstadosCiviles] = useState([]);
     const [sucursales, setSucursales] = useState([]);
     const [departamentos, setDepartamentos] = useState([]);
-    const [municipios, setMunicipios] = useState([]);
     const [cargos, setCargos] = useState([]);
 
 
-    const [selectedDepartamento, setSelectedDepartamento] = useState('');
-    const [Municipio, setMunicipio] = useState('');
+    const [municipios, setMunicipios] = useState([]);
+
+    const [Municipio, setMunicipio] = useState('')
+  const [selectedDepartamento, setSelectedDepartamento] = useState('');
+
+
+
+  const handleDepartamentoChange = (event) => {
+    const selectedDepa_Id = event.target.value;
+    setSelectedDepartamento(selectedDepa_Id);
+    setEmpleado({
+      ...empleado,
+      depa_Id: selectedDepa_Id,
+      muni_Id: '' // reset municipio
+    });
+  };
+  
+
+  /*
+    const [submitted, setSubmitted] = useState(false);
+    const [MunicipioSubmited, setMunicipioSubmited] = useState(false);
+
+    const [DepartaemntoDDL, setDepartamentoDDL] = useState([]);//ddl Departemento 
+    const [Deparatemento, setDepartamento] = useState('');//almacena el valor seleccionado del ddl 
+
+    
+    const [MunicipioDDL, setMunicipioDDL] = useState([]);//ddl Municipios
+    const [Municipio, setMunicipio] = useState(''); // alamcena el valor del ddl
+    const [MunicipioActivated, setMunicipioActivated] = useState(true);// almacena si el ddl esta activado*/
+
 
 
 
@@ -48,6 +75,11 @@ const Crear = ({ match }) => {
       .then((response) => {
         const empleado2 = response.data.data[0];
         const fechaNacimiento = new Date(empleado2.empe_FechaNacimiento);
+        
+        /*//depto
+        var codeDepto = {code: empleado2.depa_Id, name: empleado2.depa_Nombre}
+        setDepartamento(codeDepto);*/
+
 
         console.log(fechaNacimiento);
 
@@ -82,25 +114,25 @@ const Crear = ({ match }) => {
     muni_Id: empleado.muni_Id,
     eciv_Id: empleado.eciv_Id,
     empe_UsuModificacion: "1",
-    empe_FechaNacimiento: new Date(empleado.empe_FechaNacimiento),
+    empe_FechaNacimiento: empleado.empe_FechaNacimiento,
     empe_Id: empe_Id,
-    depa_Id: empleado.depa_Id
-    
+    empe_CorreoElectronico: empleado.empe_CorreoElectronico
     };
-console.log(formData.empe_FechaNacimiento + "holaaaaaaaa");
-console.log(formData.empe_Apellidos + "holaaaaaaaa");
-console.log(formData.empe_Nombres + "holaaaaaaaa");
-console.log(formData.empe_Id + "holaaaaaaaa");
-console.log(formData.empe_Identidad + "holaaaaaaaa");
-console.log(formData.empe_DireccionExacta + "holaaaaaaaa");
-console.log(formData.empe_Sexo + "holaaaaaaaa");
-console.log(formData.empe_Telefono + "holaaaaaaaa");
-console.log(formData.sucu_Id + "holaaaaaaaa");
-console.log(formData.carg_Id + "holaaaaaaaa");
-console.log(formData.muni_Id + "holaaaaaaaa");
-console.log(formData.eciv_Id + "holaaaaaaaa");
-console.log(formData.empe_UsuModificacion + "holaaaaaaaa");
-console.log(formData.depa_Id + "holaaaaaaaa");
+
+console.log(formData.empe_FechaNacimiento + "  FECHA NACIMIENTO");
+console.log(formData.empe_Apellidos + "    APELLIDOS");
+console.log(formData.empe_Nombres + "   NOMBRE");
+console.log(formData.empe_Id + " ID");
+console.log(formData.empe_Identidad + " DNI");
+console.log(formData.empe_DireccionExacta + "   DIRECCION");
+console.log(formData.empe_Sexo + "  SEXO");
+console.log(formData.empe_Telefono + "  TELEFONO");
+console.log(formData.sucu_Id + "    SUCURSAL ID");
+console.log(formData.carg_Id + "    CARGO ID");
+console.log(formData.muni_Id + " MUNI ID");
+console.log(formData.eciv_Id + "    ESTADO CIVIL ID");
+console.log(formData.empe_UsuModificacion + " USUARIO MODF");
+console.log(formData.empe_CorreoElectronico + " CORREO");
 
 
 
@@ -125,7 +157,7 @@ console.log(formData.depa_Id + "holaaaaaaaa");
       axios
         .put(`api/Empleados/EditarEmpleado`, formData)
         .then((response) => {
-            console.log(formData + "LISTA QUE NEVIO");
+          
           console.log(response);
           console.log(response.data.message);
           console.log("Respuesta de la API:", response);
@@ -186,7 +218,15 @@ console.log(formData.depa_Id + "holaaaaaaaa");
         console.error('Error fetching data from API:', error);
       });
 
-    axios.get('api/Departamentos/Listado')
+
+      /*
+      axios.get('api/Departamentos/Listado')
+      .then(response => response.data)
+      .then((data) => setDepartamentoDDL( data.data.map((c) => ({ code: c.depa_Id, name: c.depa_Nombre }))))
+      .catch(error => console.error(error))
+      */
+
+      axios.get('api/Departamentos/Listado')
       .then(response => {
         setDepartamentos(response.data.data);
         console.log(response.data.data);
@@ -194,9 +234,10 @@ console.log(formData.depa_Id + "holaaaaaaaa");
       .catch(error => {
         console.error('Error fetching data from API:', error);
       });
-  }, []);
+      
+     }, []);
 
-  useEffect(() => {
+ /* useEffect(() => {
     if (selectedDepartamento) {
       axios.get(`api/Municipios/CargarMunicipios?id=${selectedDepartamento}`)
         .then(response => {
@@ -208,13 +249,52 @@ console.log(formData.depa_Id + "holaaaaaaaa");
         });
     }
   }, [selectedDepartamento]);
+*/
 
-  function handleDepartamentoChange(event) {
+
+
+  useEffect(() => {
+    if (selectedDepartamento) {
+      axios.get(`api/Municipios/CargarMunicipios?id=${selectedDepartamento}`)
+        .then((response) => {
+          setMunicipios(response.data.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [selectedDepartamento]);
+  
+
+ /* function handleDepartamentoChange(event) {
     setSelectedDepartamento(event.target.value);
     setMunicipios([]);
-  }
+  }*/
   
-    
+    /* //cargar
+     const AsiganrlevalorMunicipioDDL = (depa_Id, datos) => 
+     {
+         setMunicipioActivated(false);
+         axios.put('api/Municipios/CargarMunicipios?id='+ depa_Id)
+         .then(response => response.data)
+         .then((data) => setMunicipioDDL( data.data.map((c) => ({ code: c.muni_Id, name: c.muni_Nombre }))))
+         .catch(error => console.error(error))
+ 
+         var codeMuni  = {code: datos.muni_Id, name: datos.muni_Nombre}
+         setMunicipio(codeMuni);
+     }
+ 
+ 
+     //onchange
+     const ActivarMunicipioDDl = (depa_Id) => {
+ 
+         setMunicipioActivated(false);
+         axios.put('api/Municipios/CargarMunicipios?id='+ depa_Id)
+         .then(response => response.data)
+         .then((data) => setMunicipioDDL( data.data.map((c) => ({ code: c.muni_Id, name: c.muni_Nombre }))))
+         .catch(error => console.error(error))
+     }
+     */
   
     return (
       <div className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
@@ -285,41 +365,25 @@ console.log(formData.depa_Id + "holaaaaaaaa");
                       className="form-control"
                     />
                   </div>
-  
+
+                     
                   <div className="col-md-6">
-                  <br></br>
-                    <label htmlFor="empe_DireccionExacta" className="form-label">
-                    Direccion:
+                    <br />
+                    <label htmlFor="Identidad" className="form-label">
+                        Fecha de Nacimiento:
                     </label>
+                    <br />
                     <input
-                      type="text"
-                      name="empe_DireccionExacta"
-                      id="empe_DireccionExacta"
-                      value={empleado.empe_DireccionExacta}
-                      onChange={(event) => {
-                        setEmpleado({ ...empleado, empe_DireccionExacta: event.target.value });
-                      }}
-                      className="form-control"
+                        type="Date"
+                        className="form-control"
+                        value={empleado.empe_FechaNacimiento}
+                        onChange={(event) => {
+                            setEmpleado({ ...empleado, empe_FechaNacimiento: event.target.value });
+                        }}
                     />
+                    
                   </div>
-  
-                  <div className="col-md-6">
-                  <br></br>
-                    <label htmlFor="Telefono" className="form-label">
-                      Teléfono:
-                    </label>
-                    <input
-                      type="text"
-                      name="empe_Telefono"
-                      id="empe_Telefono"
-                      value={empleado.empe_Telefono}
-                      onChange={(event) => {
-                        setEmpleado({ ...empleado, empe_Telefono: event.target.value });
-                      }}
-                      className="form-control"
-                      />
-                      </div>
-  
+
                   <div className="col-md-6">
                       <br></br>
                   <label htmlFor="sexo" className="form-label">
@@ -360,25 +424,8 @@ console.log(formData.depa_Id + "holaaaaaaaa");
                 </div>
                 </div>
 
-                    
-                  <div className="col-md-6">
-                    <br />
-                    <label htmlFor="Identidad" className="form-label">
-                        Fecha de Nacimiento:
-                    </label>
-                    <br />
-                    <input
-                        type="Date"
-                        className="form-control"
-                        value={empleado.empe_FechaNacimiento}
-                        onChange={(event) => {
-                            setEmpleado({ ...empleado, empe_FechaNacimiento: event.target.value });
-                        }}
-                    />
-                    
-                  </div>
                 
-                  <div className="col-md-6">
+                <div className="col-md-6">
                  <br></br>
                   <label htmlFor="EstadoCivil" className="form-label">
                     Estado Civil:
@@ -393,6 +440,98 @@ console.log(formData.depa_Id + "holaaaaaaaa");
                    ))}
                   </select>
                   </div>
+
+                    
+                  <div className="col-md-6">
+                  <br></br>
+                    <label htmlFor="Telefono" className="form-label">
+                      Teléfono:
+                    </label>
+                    <input
+                      type="text"
+                      name="empe_Telefono"
+                      id="empe_Telefono"
+                      value={empleado.empe_Telefono}
+                      onChange={(event) => {
+                        setEmpleado({ ...empleado, empe_Telefono: event.target.value });
+                      }}
+                      className="form-control"
+                      />
+                      </div>
+
+
+                            
+                 <div className="col-md-6">
+                 <br></br>
+                  <label htmlFor="Correo" className="form-label">
+                    Correo Electrónico:
+                  </label>
+                  <input
+                    type="email"
+                    name="Correo"
+                    id="Correo"
+                    value={empleado.empe_CorreoElectronico}
+                    onChange={(event) => {
+                        setEmpleado({ ...empleado, empe_CorreoElectronico: event.target.value });
+                      }}
+                    className="form-control"
+                    />
+                 </div>
+              
+
+
+                  <div className="col-md-6">
+                  <br></br>
+                    <label htmlFor="empe_DireccionExacta" className="form-label">
+                    Direccion:
+                    </label>
+                    <input
+                      type="text"
+                      name="empe_DireccionExacta"
+                      id="empe_DireccionExacta"
+                      value={empleado.empe_DireccionExacta}
+                      onChange={(event) => {
+                        setEmpleado({ ...empleado, empe_DireccionExacta: event.target.value });
+                      }}
+                      className="form-control"
+                    />
+                  </div>
+  
+                
+
+                      
+                <div className="col-md-6">
+                 <br></br>
+                  <label htmlFor="departamento" className="form-label">
+                  Departamentos:
+                  </label>
+                  <select id="departamento" value={empleado.depa_Id} onChange={handleDepartamentoChange} className="form-control">                 
+                  {departamentos.map(departamento => (
+                  <option key={departamento.depa_Id} value={departamento.depa_Id}>{departamento.depa_Nombre}</option>
+                   ))}
+                  </select>
+                  </div>
+
+
+                  <div className="col-md-6">
+                 <br></br>
+                  <label htmlFor="municipio" className="form-label">
+                  Municipios:
+                  </label>
+                  <select 
+                    id="municipio" 
+                    value={empleado.muni_Id} 
+                    onChange={(event) => setEmpleado({...empleado, muni_Id: event.target.value})} 
+                    className="form-control">
+                         <option value="" hidden>Seleccione un municipio</option>
+                    {municipios.map((Municipio) => (
+                        <option key={Municipio.muni_Id} value={Municipio.muni_Id}>{Municipio.muni_Nombre}</option>
+                    ))}
+                    </select>
+
+                  </div>
+                
+
 
                   <div className="col-md-6">
                  <br></br>
@@ -409,10 +548,6 @@ console.log(formData.depa_Id + "holaaaaaaaa");
                    ))}
                   </select>
                   </div>
-
-
-
-
 
                   <div className="col-md-6">
                  <br></br>
@@ -431,36 +566,42 @@ console.log(formData.depa_Id + "holaaaaaaaa");
                   </div>
 
 
+
+           
+
+
+                 {/*       
                   <div className="col-md-6">
                  <br></br>
                   <label htmlFor="departamento" className="form-label">
                   Departamentos:
                   </label>
+                  <select optionLabel="name" 
+                            placeholder="Seleccionar" 
+                            options={DepartaemntoDDL} 
+                            value={Deparatemento} 
+                            onChange={(e) => { 
+                                setDepartamento(e.value); ActivarMunicipioDDl(e.value.code); }}
+                               
+                  className="form-control"/>                
+                    </div>
 
-                  <select id="departamento" value={selectedDepartamento} onChange={handleDepartamentoChange} className="form-control">                 
-                  <option value="" hidden>Seleccione un Departamento</option>
-                  {departamentos.map(departamento => (
-                  <option key={departamento.depa_Id} value={departamento.depa_Id}>{departamento.depa_Nombre}</option>
-                   ))}
-                  </select>
-                  </div>
 
-
-                  <div className="col-md-6">
-                 <br></br>
-                  <label htmlFor="municipio" className="form-label">
-                  Municipios:
-                  </label>
-
-                  <select id="municipio" value={Municipio} onChange={(event) => setMunicipio(event.target.value)} className="form-control">                 
-                  <option value="" hidden>Seleccione un Municipio</option>
-                  {municipios.map(Municipio => (
-                  <option key={Municipio.muni_Id} value={Municipio.muni_Id}>{Municipio.muni_Nombre}</option>
-                   ))}
-                  </select>
-                  </div>
-           
-
+                    <div className="col-md-6">
+                     <br></br>
+                     <label htmlFor="municipio" className="form-label">
+                    Municipios:
+                    </label>
+                            <select optionLabel="name" 
+                            placeholder="Selecionar" 
+                            options={MunicipioDDL} 
+                            value={Municipio} 
+                            onChange={(e) => setMunicipio(e.value)} 
+                            disabled={MunicipioActivated} 
+                             className="form-control"/>
+                        
+                     </div>
+                            */}
 
                       {/* Centrar boton*/}
                                       
