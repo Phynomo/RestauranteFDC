@@ -97,5 +97,14 @@ namespace Restaurante.DataAccess.Repositories.REST
 
             return result;
         }
+
+        public IEnumerable<tbEmpleados> MostarDatos(int id)
+        {
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@empe_Id", id, DbType.Int32, ParameterDirection.Input);
+            return db.Query<tbEmpleados>(ScriptsDataBase.CargarDatosEmpleados, parametros, commandType: CommandType.StoredProcedure);
+        }
     }
 }

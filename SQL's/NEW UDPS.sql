@@ -60,10 +60,12 @@ CREATE OR ALTER PROCEDURE rest.UDP_CargarDatosEmpleado
 AS
 BEGIN
 BEGIN TRY
-
 	SELECT [empe_Nombres], [empe_Apellidos], [empe_Identidad], empe_FechaNacimiento,empe_DireccionExacta,
-	[empe_Sexo], [empe_Telefono],sucu_Id, muni_Id, eciv_Id, carg_Id FROM rest.tbEmpleados
-	WHERE (empe_Id = @empe_Id AND empe_Estado = 1)
+	[empe_Sexo], [empe_Telefono],sucu_Id, e.muni_Id,d.depa_Id, d.depa_Nombre, eciv_Id, carg_Id 
+	FROM rest.tbEmpleados e
+	INNER JOIN [gral].[tbMunicipios] m ON e.muni_Id = m.muni_Id 
+	INNER JOIN gral.tbDepartamentos d ON m.depa_Id = d.depa_Id
+	WHERE (empe_Id = @empe_Id )
 	select 1
 		
 END TRY
@@ -74,3 +76,11 @@ BEGIN CATCH
 END CATCH
 END
 GO
+
+rest.UDP_CargarDatosEmpleado 1
+
+select*from rest.tbEmpleados
+
+GO
+
+

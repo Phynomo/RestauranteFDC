@@ -252,6 +252,20 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
+        public ServiceResult CargarEmpleados(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _empleadosRepository.MostarDatos(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
         #endregion
 
         #region Facturas

@@ -7,10 +7,11 @@ import Sidenavigation from '../../layouts/Sidenavigation';
 import Topnavigation from '../../layouts/Topnavigation';
 import Quickbar from '../../layouts/Quickbar';
 
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-
-
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 
 
@@ -32,21 +33,30 @@ const Crear = () => {
   const [Sucursal, setSucursal] = useState('');
   const [Cargo, setCargo] = useState('');
 
-
-
   const [Telefono, setTelefono] = useState('');
   const [UsuarioCrea, setUsuarioCrea] = useState('1');
+
   const [validationErrors, setValidationErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  //...........................
+  /*const [selectedDate, setSelectedDate] = useState(new Date());
 
-  
+  const fechaFormateada = selectedDate.toISOString().slice(0, 10);
+  console.log(fechaFormateada); // '2005-02-01'*/
+
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  /*const fechaFormateada = selectedDate.toISOString().slice(0, 10);
+ console.log(fechaFormateada); // '2005-02-01'
+  console.log(selectedDate);*/
+  /*const [selectedDate, setSelectedDate] = useState(new Date());
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
-  };
+  };*/
 
-
+  console.log(selectedDate);
 
    const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -226,21 +236,22 @@ const Crear = () => {
 
 
 
-                  <div className="col-md-6">
-                    <br />
-                    <label htmlFor="Identidad" className="form-label">
-                        Fecha de Nacimiento:
-                    </label>
-                    <br />
-                    <input
+                        <div className="col-md-6">
+                        <br />
+                        <label htmlFor="Identidad" className="form-label">
+                            Fecha de Nacimiento:
+                        </label>
+                      <input
                         type="date"
-                        className="form-control"
+                        name="selectedDate"
+                        id="selectedDate"
                         value={selectedDate}
-                        onChange={handleDateChange}
-                    />
-                    
-                 </div>
-              
+                        onChange={(event) => {
+                          setSelectedDate(event.target.value);
+                        }}
+                        className="form-control"
+                      />
+                        </div>
 
 
 
@@ -252,7 +263,7 @@ const Crear = () => {
                     Dirección:
                   </label>
                   <input
-                    type="textArea"
+                    type="text"
                     name="Direccion"
                     id="Direccion"
                     value={Direccion}

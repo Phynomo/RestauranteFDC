@@ -53,6 +53,8 @@ namespace Restaurante.DataAccess
         public static string InsertarEmpleados = "rest.UDP_InsertarEmpleados";
         public static string UDP_Empleados_Delete = "rest.UDP_tbEmpleados_Delete";
 
+        public static string CargarDatosEmpleados = "rest.UDP_CargarDatosEmpleado";
+
         #endregion
 
         #region Estados Civiles
