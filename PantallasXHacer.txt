@@ -1,13 +1,13 @@
 Roles--
 Usuarios Dani
 Departamentos --
-Municipios --
+Municipios 
 Estados Civiles --
 Metodo de Pago --
 Cargos --
 Categorias --
 Sucursales
 Ingredientes
-K sueño dog
 
+https://jakezatecky.github.io/react-dual-listbox/
 5 Formularios

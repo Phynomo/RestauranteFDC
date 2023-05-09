@@ -136,3 +136,12 @@ SELECT * FROM rest.VW_tbFacturaDetalles
 WHERE [fade_Estado] = 1 AND @fact_Id = fact_Id
 END
 GO
+
+CREATE OR ALTER PROCEDURE rest.UDP_CargarDepartamentos
+@dept_Id	INT
+AS
+BEGIN
+ SELECT [depa_Id],[depa_Nombre] FROM [gral].[tbDepartamentos] depa 
+ WHERE depa.depa_Id = @dept_Id
+ END
+ GO

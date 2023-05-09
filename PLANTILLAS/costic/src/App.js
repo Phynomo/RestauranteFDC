@@ -82,7 +82,7 @@ import CrearCliente from './components/sections/Clientes/Crear';
 import EditarCliente from './components/sections/Clientes/Editar';
 import CrearEmpleado from './components/sections/Empleados/Crear';
 import EditarEmpleado from './components/sections/Empleados/Editar';
-
+import Sucursales from './components/pages/Sucursales';
 import Roles from './components/pages/Roles';
 import Categorias from './components/pages/Categorias';
 
@@ -101,6 +101,7 @@ function App() {
         <Route path="/departamentos" component={Departamentos} />
         <Route path="/estadosCiviles" component={EstadosCiviles} />
         <Route path="/metodosPago" component={MetodosPago} />
+        <Route path="/sucursales" component={Sucursales} />
         <Route path="/empleados" component={Empleados} />
         <Route path="/cargos" component={Cargos} />
         <Route path="/clientes" component={Clientes}></Route>

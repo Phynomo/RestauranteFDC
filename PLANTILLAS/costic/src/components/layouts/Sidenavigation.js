@@ -75,6 +75,8 @@ class Sidenavigation extends Component {
                                 </li>
                                 <li> <Link to="/departamentos">Departamentos</Link>
                                 </li>
+                                <li> <Link to="/sucursales">Sucursales</Link>
+                                </li>
                             </ul>
                         </li>
                         {/* /Dashboard */}

@@ -132,6 +132,20 @@ namespace Restaurante.BusinessLogic.Services.GeneralService
             }
         }
 
+        public ServiceResult CargarDepartamentos(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _departamentosRepository.CargarDepas(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
         #endregion
 
         #region Cargos
