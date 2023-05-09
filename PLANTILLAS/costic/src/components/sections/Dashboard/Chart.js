@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Line as LineChart } from 'react-chartjs-2';
+import axios from 'axios';
 
 
 // Line chart 1
@@ -109,7 +110,7 @@ function chartData4() {
             fill: true,
             backgroundColor: "rgba(255, 0, 24, 0.11)",
             borderWidth: 2,
-            data: [1,4,7,3,5,7,6,5,8,3,5,5,4,3,7]
+            data: [1,4,7,3,5,7,6,5,8,5,5,6,5,4,7]
         }]
     }
 }
@@ -122,19 +123,48 @@ class Chart extends Component {
             data2: chartData2(),
             data3: chartData3(),
             data4: chartData4(),
+            cantidadEmpleados : 0,
+            platillosPedidos : 0,
+            FacturasTotales : 0,
+            IngresosTotales : 0,
             open: true,
         }
     };
+
+    async componentDidMount() {
+        try {
+          const response = await axios.get('api/Empleados/CantidadEmpleados');
+          const { data } = response;
+          this.setState({
+            cantidadEmpleados: data.data[0].totalEmpleados,
+          });
+          const response2 = await axios.get('api/Platillos/PlatillosPedidosGraficos');
+          this.setState({
+            platillosPedidos: response2.data.data[0].cantidadPlatillos,
+          });
+          const response3 = await axios.get('api/Facturas/CantidadFacturas');
+          this.setState({
+            FacturasTotales: response3.data.data[0].cantidadFacturas,
+          });
+          const response4 = await axios.get('api/Facturas/IngresosFacturas');
+          this.setState({
+            IngresosTotales: response4.data.data[0].cantidadFacturas,
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      
+
     render() {
         return (
             <div className="row">
                 <div className="col-xl-3 col-lg-6 col-md-6">
                     <div className="ms-card ms-widget has-graph-full-width ms-infographics-widget">
-                        <span className="ms-chart-label bg-black"><i className="material-icons">arrow_upward</i> 3.2%</span>
                         <div className="ms-card-body media">
                             <div className="media-body">
-                                <span className="black-text"><strong>Sells Graph</strong></span>
-                                <h2>$8,451</h2>
+                                <span className="black-text"><strong>Cantidad de Empleados</strong></span>
+                                <h2>{this.state.cantidadEmpleados}</h2>
                             </div>
                         </div>
                         <LineChart data={this.state.data1} options={options} />
@@ -142,11 +172,10 @@ class Chart extends Component {
                 </div>
                 <div className="col-xl-3 col-lg-6 col-md-6">
                     <div className="ms-card ms-widget has-graph-full-width ms-infographics-widget">
-                        <span className="ms-chart-label bg-red"><i className="material-icons">arrow_downward</i> 4.5%</span>
                         <div className="ms-card-body media">
                             <div className="media-body">
-                                <span className="black-text"><strong>Total Visitors</strong></span>
-                                <h2>3,973</h2>
+                                <span className="black-text"><strong>Platillos pedidos</strong></span>
+                                <h2>{this.state.platillosPedidos}</h2>
                             </div>
                         </div>
                         <LineChart data={this.state.data2} options={options} />
@@ -154,11 +183,10 @@ class Chart extends Component {
                 </div>
                 <div className="col-xl-3 col-lg-6 col-md-6">
                     <div className="ms-card ms-widget has-graph-full-width ms-infographics-widget">
-                        <span className="ms-chart-label bg-black"><i className="material-icons">arrow_upward</i> 12.5%</span>
                         <div className="ms-card-body media">
                             <div className="media-body">
-                                <span className="black-text"><strong>New Users</strong></span>
-                                <h2>7,333</h2>
+                                <span className="black-text"><strong>Facturas realizadas</strong></span>
+                                <h2>{this.state.FacturasTotales}</h2>
                             </div>
                         </div>
                         <LineChart data={this.state.data3} options={options} />
@@ -166,11 +194,10 @@ class Chart extends Component {
                 </div>
                 <div className="col-xl-3 col-lg-6 col-md-6">
                     <div className="ms-card ms-widget has-graph-full-width ms-infographics-widget">
-                        <span className="ms-chart-label bg-red"><i className="material-icons">arrow_upward</i> 9.5%</span>
                         <div className="ms-card-body media">
                             <div className="media-body">
-                                <span className="black-text"><strong>Total Orders</strong></span>
-                                <h2>48,973</h2>
+                                <span className="black-text"><strong>Ingresos semanales</strong></span>
+                                <h2>{this.state.IngresosTotales}000 Lps</h2>
                             </div>
                         </div>
                         <LineChart data={this.state.data4} options={options} />

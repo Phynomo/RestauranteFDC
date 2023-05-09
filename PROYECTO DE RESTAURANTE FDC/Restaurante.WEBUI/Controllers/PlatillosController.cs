@@ -37,6 +37,13 @@ namespace Restaurante.WEBUI.Controllers
             var list = _restauranteServicio.GraficasPlatillos();
             return Ok(list);
         }
+        
+        [HttpGet("PlatillosPedidosGraficos")]
+        public IActionResult GraficasPedidos()
+        {
+            var list = _restauranteServicio.GraficasPlatillosPedidos();
+            return Ok(list);
+        }
 
 
         [HttpPut("EditarPlatillo")]

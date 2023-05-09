@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import img1 from '../../../assets/img/costic/food-5.jpg';
 import img2 from '../../../assets/img/costic/food-2.jpg';
@@ -41,28 +42,46 @@ const trendfood = [
 ]
 
 class Trendingorder extends Component {
+
+    state = {
+        rows: []
+      }
+
+      async componentDidMount() {
+        try {
+          const response = await axios.get('api/Platillos/PlatillosGraficos');
+          this.setState({
+            rows: response.data.data,
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+
+
     render() {
         return (
             <div className="ms-panel">
                 <div className="ms-panel-header">
-                    <h6>Trending Orders</h6>
+                    <h6>Platillos mas vendidos</h6>
                 </div>
                 <div className="ms-panel-body">
                     <div className="row">
-                        {trendfood.map((item, i) => (
-                            <div key={i} className={item.resposnivecls}>
+                        {this.state.rows.map((item, i) => (
+                            <div key={i} className='col-xl-3 col-lg-6 col-md-6 col-sm-6'>
                                 <div className="ms-card no-margin">
                                     <div className="ms-card-img">
-                                        <img src={item.photo} alt="card_img" />
+                                        <img src='https://statics-cuidateplus.marca.com/cms/styles/natural/azblob/hamburguesas.jpg.webp?itok=4airsSTm' alt="card_img" />
                                     </div>
                                     <div className="ms-card-body">
                                         <div className="ms-card-heading-title">
-                                            <h6>{item.title}</h6>
-                                            <span className="green-text"><strong>{item.price}</strong></span>
+                                            <h6>{item.plat_Nombre.slice(0,14)}...</h6>
+                                            <span className="green-text"><strong>{item.plat_Precio} Lps</strong></span>
                                         </div>
                                         <div className="ms-card-heading-title">
-                                            <p>Orders <span className="red-text">{item.order}</span></p>
-                                            <p>Income <span className="red-text">{item.income}</span></p>
+                                            <p>Ordenes <span className="red-text">{item.cantidadPlatillos}</span></p>
+                                            <p>Renta <span className="red-text">{item.plat_Precio * item.cantidadPlatillos} Lps</span></p>
                                         </div>
                                     </div>
                                 </div>

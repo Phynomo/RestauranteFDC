@@ -170,6 +170,20 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
                 return result.Error(e.Message);
             }
         }
+        
+        public ServiceResult CantidadEmpleados()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _empleadosRepository.CantidadEmpelados();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
 
         public ServiceResult InsertarEmpleados(tbEmpleados item)
         {
@@ -276,6 +290,32 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             try
             {
                 var list = _facturasRepository.Chart();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+        public ServiceResult GraficaFacturaCantidad()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturasRepository.ChartCantidad();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+        public ServiceResult GraficaFacturaIngresos()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturasRepository.ChartIngresos();
                 return result.Ok(list);
             }
             catch (Exception e)
@@ -588,6 +628,20 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             try
             {
                 var list = _platillosRepository.Grafica();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+        
+        public ServiceResult GraficasPlatillosPedidos()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _platillosRepository.GraficaPedidos();
                 return result.Ok(list);
             }
             catch (Exception e)

@@ -136,3 +136,14 @@ SELECT * FROM rest.VW_tbFacturaDetalles
 WHERE [fade_Estado] = 1 AND @fact_Id = fact_Id
 END
 GO
+----Factura Tuneada
+--CREATE OR ALTER PROCEDURE rest.UDP_tbFacturas_Select
+--AS
+--BEGIN
+--SELECT *,
+--		(SELECT SUM(T2.fade_Cantidad * T2.fade_Precio) FROM rest.tbFacturasDetalles T2 WHERE T2.fact_Id = T1.fact_Id ) as subtotal
+--FROM rest.VW_tbFacturas T1
+--WHERE [fact_Estado] = 1
+--END
+--GO
+

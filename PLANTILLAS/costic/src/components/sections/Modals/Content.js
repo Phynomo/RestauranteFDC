@@ -106,7 +106,7 @@ class Content extends Component {
                                         <h6 className="section-title">Important Notice</h6>
                                         <button className="btn btn-primary" onClick={this.handleShow1}> Click Me </button>
                                     </div>
-                                    <Modal show={this.state.show1} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
+                                    <Modal size="lg" show={this.state.show1} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
                                         centered>
                                         <Modal.Header>
                                             <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-alert-1 bg-primary text-white" /> Important Notice!</h3>

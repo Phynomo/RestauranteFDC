@@ -31,6 +31,13 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(list);
         }
 
+        [HttpGet("CantidadEmpleados")]
+        public IActionResult EmpleadosTotales()
+        {
+            var list = _restauranteServicio.CantidadEmpleados();
+            return Ok(list);
+        }
+
         [HttpPut("EditarEmpleado")]
         public IActionResult Edit(EmpleadoViewModel empleado)
         {
