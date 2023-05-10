@@ -55,7 +55,7 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("CargarDepartamentos")]
+        [HttpGet("BuscarDepartamento")]
         public IActionResult Cargar(int id)
         {
             var list = _generalServivce.CargarDepartamentos(id);

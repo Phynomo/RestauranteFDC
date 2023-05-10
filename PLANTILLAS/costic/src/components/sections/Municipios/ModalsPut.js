@@ -16,15 +16,12 @@ class ModalsPut extends Component {
         this.handleCargarDepartamentos = this.handleCargarDepartamentos.bind(this);
         this.handleSubmitDelete = this.handleSubmitDelete.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handlePrimerCargarMunicipios = this.handlePrimerCargarMunicipios.bind(this);
         this.state = {
             show: false,
-            sucu_Nombre: this.props.data ? this.props.data.sucu_Nombre : '',
-            muni_Id: this.props.data ? this.props.data.muni_Id : '',
+            muni_Nombre: this.props.data ? this.props.data.muni_Nombre : '',
+            muni_Codigo: this.props.data ? this.props.data.muni_Codigo : '',
             depa_Id: this.props.data ? this.props.data.depa_Id : '',
-            sucu_Direccion: this.props.data ? this.props.data.sucu_Direccion : '',
             departamentos: [],
-            municipios: [],
             validated: false,
         };
     }
@@ -53,37 +50,12 @@ class ModalsPut extends Component {
             console.error('Error al cargar los departamentos:', error);
             });
         }
-        async handleCargarMunicipios(event) {
-            const target = event.target;
-            const value = target.value;
-            const name = target.name;
-            await axios.get('api/Municipios/CargarMunicipios?id='+ value)
-            .then(response => {
-            this.setState({
-                depa_Id: value,
-                municipios: response.data.data
-            });
-            })
-            .catch(error => {
-                console.error('Error al cargar los municipios:', error);
-            });
-        }
+        
 
-        async handlePrimerCargarMunicipios() {
-            await axios.get('api/Municipios/CargarMunicipios?id='+ this.state.depa_Id)
-            .then(response => {
-            this.setState({
-                municipios: response.data.data
-            });
-            })
-            .catch(error => {
-                console.error('Error al cargar los municipios:', error);
-            });
-        }
+        
 
         componentDidMount() {
             this.handleCargarDepartamentos();
-            this.handlePrimerCargarMunicipios();
         }
 
     handleSubmit(event) {
@@ -94,13 +66,12 @@ class ModalsPut extends Component {
             event.stopPropagation();
         } else {
             let data = {
-                sucu_Id: this.props.data.sucu_Id,
-                sucu_Nombre: this.state.sucu_Nombre,
+                muni_Id: this.props.data.muni_Id,
+                muni_Nombre: this.state.muni_Nombre,
+                muni_Codigo: this.state.muni_Codigo,
                 depa_Id: this.state.depa_Id,
                 departamentos: this.state.departamentos,
-                muni_Id: this.state.muni_Id,
-                sucu_Direccion: this.state.sucu_Direccion,
-                sucu_UsuModificacion: 1,
+                muni_UsuModificacion: 1,
             };
 
             axios.put('/api/Sucursales/EditarSucursal', data)
@@ -111,7 +82,7 @@ class ModalsPut extends Component {
                     this.state.validated = false;
                     this.handleClose();
                 } else if (response.data.message == "YaExiste") {
-                    toastr.warning("Esta Sucursal ya existe", "Sucursal repetida");
+                    toastr.warning("Este Municipio ya existe", "Municipio repetida");
                 } else {
                     alertError("Error", "Ocurrio un error mientras se editaba el registro", "2000")
                     this.state.validated = false;
@@ -128,10 +99,10 @@ class ModalsPut extends Component {
     
     handleSubmitDelete() {
         let data = {
-            sucu_Id: this.props.data.sucu_Id,
-            sucu_UsuModificacion: 1,
+            muni_Id: this.props.data.muni_Id,
+            muni_UsuModificacion: 1,
         };
-        axios.put('api/Sucursales/Eliminar', data)
+        axios.put('api/Municipios/Eliminar', data)
         .then(response => {
             console.log(response.data);
             if (response.data.message == "Registro eliminado") {
@@ -179,7 +150,7 @@ handleInputChange(event) {
                 <Modal show={this.state.Edit} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
                     centered>
                     <Modal.Header>
-                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Editar Sucursal</h3>
+                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Editar Municipio</h3>
                         <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
                     </Modal.Header>
                     <form onSubmit={this.handleSubmit} className={`needs-validation validation-fill ${this.state.validated ? 'was-validated' : ''}`} noValidate>
@@ -187,49 +158,35 @@ handleInputChange(event) {
                             <div className='row'>
                                 <div className='col-6'>
                                     <div className="ms-form-group has-icon">
-                                    <label htmlFor="validationCustom13">Ingresar Sucursal</label>
+                                    <label htmlFor="validationCustom13">Ingresar Municipio</label>
                                     <div className="input-group">
-                                        <input type="text" className="form-control" id="validationCustom13" placeholder="Nombre" name="sucu_Nombre" value={this.state.sucu_Nombre} onChange={this.handleInputChange} required />
-                                        <div className="invalid-feedback">Ingresar la sucursal es algo requerido</div>
+                                        <input type="text" className="form-control" id="validationCustom13" placeholder="Municipio" name="muni_Nombre" value={this.state.muni_Nombre} onChange={this.handleInputChange} required />
+                                        <div className="invalid-feedback">Ingresar el Municipio es algo requerido</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className='col-6'>
-                                <div className="ms-form-group has-icon">
-                                <label htmlFor="validationCustom13">Seleccionar Departamento</label>
-                                    <div className="input-group">
-                                    <select className='form-control' id="validationCustom13" name="depa_Id" value={this.state.depa_Id} onChange={this.handleCargarMunicipios} required>
-                                        <option value="">Seleccionar departamento</option>
-                                        {this.state.departamentos.map(departamento =>
-                                            <option key={departamento.depa_Id} value={departamento.depa_Id}>{departamento.depa_Nombre}</option>
-                                        )}
-                                        </select>
-                                        <div className="invalid-feedback">Seleccionar un departamento es obligatorio</div>
+                                <div className='col-6'>
+                                        <div className="ms-form-group has-icon">
+                                        <label htmlFor="validationCustom13">Ingresar Codigo</label>
+                                            <div className="input-group">
+                                            <input type="text" className="form-control" id="validationCustom13" placeholder="Codigo" name="muni_Codigo" value={this.state.muni_Codigo} onChange={this.handleInputChange} required />
+                                            <div className="invalid-feedback">Ingresar el Codigo es algo requerido</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                             <div className='row'>
-                            <div className='col-6'>
-                                <div className="ms-form-group has-icon">
-                                <label htmlFor="validationCustom13">Seleccionar municipio</label>
-                                    <div className="input-group">
-                                    <select className="form-control" id="validationCustom13" name="muni_Id" value={this.state.muni_Id} onChange={this.handleInputChange} required>
-                                        <option value="">Seleccione un municipio</option>
-                                        {this.state.municipios.map(municipio =>
-                                            <option key={municipio.muni_Id} value={municipio.muni_Id}>{municipio.muni_Nombre}</option>
-                                        )}
-                                    </select>
-                                        <div className="invalid-feedback">Seleccionar un municipio es obligatorio</div>
-                                    </div>
-                                </div>
-                            </div>
                                 <div className='col-6'>
-                                            <div className="ms-form-group has-icon">
-                                            <label htmlFor="validationCustom13">Ingresar Direccion</label>
-                                            <div className="input-group">
-                                            <input type="text" className="form-control" id="validationCustom13" placeholder="Direccion" name="sucu_Direccion" value={this.state.sucu_Direccion} onChange={this.handleInputChange} required />
-                                            <div className="invalid-feedback">Ingresar la Direccion es algo requerido</div>
+                                    <div className="ms-form-group has-icon">
+                                    <label htmlFor="validationCustom13">Seleccionar Departamento</label>
+                                        <div className="input-group">
+                                        <select className='form-control' id="validationCustom13" name="depa_Id" value={this.state.depa_Id} onChange={this.handleInputChange} required>
+                                            <option value="">Seleccionar departamento</option>
+                                            {this.state.departamentos.map(departamento =>
+                                                <option key={departamento.depa_Id} value={departamento.depa_Id}>{departamento.depa_Nombre}</option>
+                                            )}
+                                            </select>
+                                            <div className="invalid-feedback">Seleccionar un departamento es obligatorio</div>
                                         </div>
                                     </div>
                                 </div>

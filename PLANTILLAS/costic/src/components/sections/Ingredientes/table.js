@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import { DataGrid, GridToolbar, esES } from '@mui/x-data-grid';
 import ModalEdit from './ModalsPut';
-import axios from 'axios';
+
 
 
 const DataTable = () => {
@@ -11,8 +11,10 @@ const DataTable = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const columns = [
-    { field: 'carg_Id', headerName: 'ID', flex: 1 },
-    { field: 'carg_Descripcion', headerName: 'Cargo', flex: 1 },
+    { field: 'ingr_Id', headerName: 'ID', flex: 1 },
+    { field: 'ingr_Nombre', headerName: 'Nombre', flex: 1 },
+    { field: 'ingr_PrecioX100gr', headerName: 'PrecioX100g', flex: 1 },
+    { field: 'prov_Id', headerName: 'Proveedor', flex: 1 },
     {
       field: 'actions',
       headerName: 'Acciones',
@@ -27,38 +29,27 @@ const DataTable = () => {
     },
   ];
 
-
   useEffect(() => {
-    
-    const fetchData = () => {
-      axios.get('https://localhost:44383/api/Cargos/Listado')
-  .then(response => {
-    
     console.log("*gemidos*");
-    const rows = response.data.data.map(item => {
-      return {
-        id: item.carg_Id,
-        carg_Id: item.carg_Id,
-        carg_Descripcion: item.carg_Descripcion
-      };
-    });
-    setRows(rows);
-    setIsLoading(false);
-  })
-  .catch(error => {
-    console.log('Error en la solicitud Axios:', error);
-  });
-    };
-  
-    fetchData(); // llamada inicial
-  
-    const interval = setInterval(() => {
-      fetchData(); // llamada cada 3 segundos
-    }, 3000);
-  
-    return () => clearInterval(interval); // limpiar intervalo al desmontar el componente
-  }, []);
-
+    fetch('https://localhost:44383/api/Ingredientes/Listado')
+      .then(response => response.json())
+      .then(data => {
+        const rows = data.data.map(item => {
+          return {
+            id: item.ingr_Id,
+            ingr_Id: item.ingr_Id,
+            ingr_Nombre: item.ingr_Nombre,
+            ingr_PrecioX100gr: item.ingr_PrecioX100gr,
+            prov_Id: item.prov_NombreEmpresa,
+          }
+        });
+        setRows(rows);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.log("Error en la solicitud fetch:", error);
+      });
+  }, [rows]);
 
   const handleSearch = e => {
     setSearchText(e.target.value);
@@ -88,7 +79,7 @@ const DataTable = () => {
         :
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-            <h5 style={{ marginLeft: "5px" }} >Cargos</h5>
+            <h5 style={{ marginLeft: "5px" }} >Ingredientes</h5>
             <div className="input-group" style={{ width: '250px', marginTop: '5px', marginRight: "5px", marginBottom: "-5px" }}>
               <div className="input-group-prepend"> <span className="input-group-text" id="inputGroupPrepend"><i className="flaticon-search" /></span>
               </div>

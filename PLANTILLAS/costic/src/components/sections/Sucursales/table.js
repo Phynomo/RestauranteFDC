@@ -13,7 +13,7 @@ const DataTable = () => {
   const columns = [
     { field: 'sucu_Id', headerName: 'ID', flex: 1 },
     { field: 'sucu_Nombre', headerName: 'Sucursal', flex: 1 },
-    { field: 'muni_Id', headerName: 'Municipio', flex: 1 },
+    { field: 'muni_Nombre', headerName: 'Municipio', flex: 1 },
     { field: 'sucu_Direccion', headerName: 'Direccion', flex: 1 },
     {
       field: 'actions',
@@ -30,6 +30,7 @@ const DataTable = () => {
   ];
 
   useEffect(() => {
+    console.log("*gemidos*");
     fetch('https://localhost:44383/api/Sucursales/Listado')
       .then(response => response.json())
       .then(data => {
@@ -38,8 +39,10 @@ const DataTable = () => {
             id: item.sucu_Id,
             sucu_Id: item.sucu_Id,
             sucu_Nombre: item.sucu_Nombre,
-            muni_Id: item.sucu_Id,
-            sucu_Direccion: item.sucu_Direccion
+            muni_Nombre: item.muni_Nombre,
+            sucu_Direccion: item.sucu_Direccion,
+            depa_Id: item.depa_Id,
+            muni_Id: item.muni_Id,
           }
         });
         setRows(rows);
