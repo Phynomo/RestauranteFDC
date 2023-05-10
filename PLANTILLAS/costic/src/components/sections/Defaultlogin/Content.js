@@ -43,7 +43,7 @@ function Login() {
                     localStorage.setItem('token', JSON.stringify(r.data.data[0]))
                     
                     //Para recuperar la info luego
-                    // const storedArray = JSON.parse(localStorage.getItem('myArray'));
+                    // const storedArray = JSON.parse(localStorage.getItem('token'));
                     // console.log(storedArray);
 
                     navigate.push('/');

@@ -77,7 +77,7 @@ class Todolist extends Component {
             <Scrollbar className="ms-quickbar-container ms-todo-list-container ms-scrollable">
                 <form className="ms-add-task-block">
                     <div className="form-group mx-3 mt-0  fs-14 clearfix">
-                        <input type="text" className="form-control fs-14 float-left" id="task-block" name="todo-block" placeholder="Add Task Block" />
+                        <input type="text" className="form-control fs-14 float-left" id="task-block" name="todo-block" placeholder="Añadir tarea" />
                         <button type="submit" className="ms-btn-icon bg-primary float-right"><i className="material-icons text-disabled">add</i>
                         </button>
                     </div>
@@ -85,7 +85,7 @@ class Todolist extends Component {
                 <ul className="ms-todo-list">
                     <li className="ms-card ms-qa-card ms-deletable">
                         <div className="ms-card-header clearfix">
-                            <h6 className="ms-card-title">Task Block Title</h6>
+                            <h6 className="ms-card-title">Tareas diarias</h6>
                             <OverlayTrigger placement="left" overlay={adddatatip}>
                                 <button className="ms-add-task-to-block ms-btn-icon float-right"> <i className="material-icons text-disabled">add</i>
                                 </button>
@@ -96,14 +96,28 @@ class Todolist extends Component {
                                 <li className="ms-list-item ms-to-do-task ms-deletable">
                                     <label className="ms-checkbox-wrap ms-todo-complete">
                                         <input type="checkbox" defaultValue /> <i className="ms-checkbox-check" />
-                                    </label> <span> Task to do </span>
+                                    </label> <span> Despertar </span>
                                     <button type="submit" className="close"><i className="flaticon-trash ms-delete-trigger"> </i>
                                     </button>
                                 </li>
                                 <li className="ms-list-item ms-to-do-task ms-deletable">
                                     <label className="ms-checkbox-wrap ms-todo-complete">
                                         <input type="checkbox" defaultValue /> <i className="ms-checkbox-check" />
-                                    </label> <span>Task to do</span>
+                                    </label> <span>Programar</span>
+                                    <button type="submit" className="close"><i className="flaticon-trash ms-delete-trigger"> </i>
+                                    </button>
+                                </li>
+                                <li className="ms-list-item ms-to-do-task ms-deletable">
+                                    <label className="ms-checkbox-wrap ms-todo-complete">
+                                        <input type="checkbox" defaultValue /> <i className="ms-checkbox-check" />
+                                    </label> <span>Comer</span>
+                                    <button type="submit" className="close"><i className="flaticon-trash ms-delete-trigger"> </i>
+                                    </button>
+                                </li>
+                                <li className="ms-list-item ms-to-do-task ms-deletable">
+                                    <label className="ms-checkbox-wrap ms-todo-complete">
+                                        <input type="checkbox" defaultValue /> <i className="ms-checkbox-check" />
+                                    </label> <span>Dormir (opcional)</span>
                                     <button type="submit" className="close"><i className="flaticon-trash ms-delete-trigger"> </i>
                                     </button>
                                 </li>
@@ -111,8 +125,7 @@ class Todolist extends Component {
                             </ul>
                         </div>
                         <div className="ms-card-footer clearfix">
-                            <Link to="#" className="text-disabled mr-2"> <i className="flaticon-archive"> </i> Archive</Link>
-                            <Link to="#" className="text-disabled  ms-delete-trigger float-right"> <i className="flaticon-trash"> </i> Delete</Link>
+                            <Link to="#" className="text-disabled  ms-delete-trigger float-right"> <i className="flaticon-trash"> </i> Eliminar</Link>
                         </div>
                     </li>
                 </ul>

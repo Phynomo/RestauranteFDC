@@ -13,17 +13,17 @@ import Settings from './Quickbar/Settings';
 
 const todotip = (
     <Tooltip>
-        Launch To-do-list
+        Tareas
     </Tooltip>
 );
 const reminderstip = (
     <Tooltip>
-        Launch Reminders
+        Recordatorios
     </Tooltip>
 );
 const notestip = (
     <Tooltip>
-        Launch Notes
+        Creadores
     </Tooltip>
 );
 const memberstip = (
@@ -33,12 +33,12 @@ const memberstip = (
 );
 const settingstip = (
     <Tooltip>
-        Settings
+        Ajustes
     </Tooltip>
 );
 const hammertip = (
     <Tooltip>
-        Configure Quick Access
+        Configurar menu rapido
     </Tooltip>
 );
 
@@ -106,14 +106,14 @@ class Quickbar extends Component {
                         </OverlayTrigger>
                         <OverlayTrigger placement="left" overlay={notestip}>
                             <Nav.Item className="ms-quick-bar-item ms-has-qa" onClick={this.quickbarbtn}onChange={this.handleOnChange}>
-                                <Nav.Link eventKey="qa-notes" ref="removequicktab2"><i className="flaticon-pencil" /></Nav.Link>
+                                <Nav.Link eventKey="qa-notes" ref="removequicktab2"><i className="flaticon-network" /></Nav.Link>
                             </Nav.Item>
                         </OverlayTrigger>
-                        <OverlayTrigger placement="left" overlay={memberstip}>
+                        {/* <OverlayTrigger placement="left" overlay={memberstip}>
                             <Nav.Item className="ms-quick-bar-item ms-has-qa" onClick={this.quickbarbtn}onChange={this.handleOnChange}>
                                 <Nav.Link eventKey="qa-invite" ref="removequicktab3"><i className="flaticon-share-1" /></Nav.Link>
                             </Nav.Item>
-                        </OverlayTrigger>
+                        </OverlayTrigger> */}
                         <OverlayTrigger placement="left" overlay={settingstip}>
                             <Nav.Item className="ms-quick-bar-item ms-has-qa" onClick={this.quickbarbtn}onChange={this.handleOnChange}>
                                 <Nav.Link eventKey="qa-settings" ref="removequicktab4"><i className="flaticon-gear" /></Nav.Link>
@@ -129,7 +129,7 @@ class Quickbar extends Component {
                     {/* Quick bar Content */}
                     <div className="ms-quick-bar-content">
                         <div className="ms-quick-bar-header clearfix">
-                            <h5 className="ms-quick-bar-title float-left" ref="quickbartext">Title</h5>
+                            <h5 className="ms-quick-bar-title float-left" ref="quickbartext">Menu rapido</h5>
                             <button type="button" className="close ms-toggler" onClick={this.removequickbarbtn} data-target="#ms-quick-bar" data-toggle="hideQuickBar" aria-label="Close"><span aria-hidden="true">×</span>
                             </button>
                         </div>

@@ -18,6 +18,11 @@ class Topnavigation extends Component {
     }
 
     render() {
+        const storedArray = JSON.parse(localStorage.getItem('token'));
+        const defautImage = "https://i.ibb.co/NTYrJXY/Imagen-de-Whats-App-2023-04-23-a-las-12-47-54.jpg";
+        const handleOutLog = () => {
+            localStorage.clear();
+          };
         return (
             <nav className="navbar ms-navbar">
                 <div className="ms-aside-toggler ms-toggler pl-0" onClick={this.addsidenavigation}>
@@ -29,14 +34,14 @@ class Topnavigation extends Component {
                     <Link className="pl-0 ml-0 text-center navbar-brand mr-0" to="/"><img src={costiclogo} alt="logo" /> </Link>
                 </div>
                 <ul className="ms-nav-list ms-inline mb-0" id="ms-nav-options">
-                    <li className="ms-nav-item ms-search-form pb-0 py-0">
+                    {/* <li className="ms-nav-item ms-search-form pb-0 py-0">
                         <form className="ms-form" method="post">
                             <div className="ms-form-group my-0 mb-0 has-icon fs-14">
                                 <input type="search" className="ms-form-input" name="search" placeholder="Search here..." /> <i className="flaticon-search text-disabled" />
                             </div>
                         </form>
-                    </li>
-                    <li className="ms-nav-item dropdown">
+                    </li> */}
+                    {/* <li className="ms-nav-item dropdown">
                         <Dropdown className="custom-dropdown">
 
                             <Dropdown.Toggle as={NavLink} className="text-disabled ms-has-notification p-0" ><i className="flaticon-mail" /></Dropdown.Toggle>
@@ -77,8 +82,8 @@ class Topnavigation extends Component {
                             </Dropdown.Menu>
 
                         </Dropdown>
-                    </li>
-                    <li className="ms-nav-item dropdown">
+                    </li> */}
+                    {/* <li className="ms-nav-item dropdown">
                         <Dropdown className="custom-dropdown">
                             <Dropdown.Toggle as={NavLink} className="text-disabled ms-has-notification p-0"><i className="flaticon-bell" /></Dropdown.Toggle>
                             <Dropdown.Menu className="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
@@ -113,32 +118,30 @@ class Topnavigation extends Component {
                                 </div>
                             </Dropdown.Menu>
                         </Dropdown>
-                    </li>
+                    </li> */}
                     <li className="ms-nav-item ms-nav-user dropdown">
                         <Dropdown className="custom-dropdown">
                             <Dropdown.Toggle as={NavLink} id="userDropdown" className="p-0">
-                                <img className="ms-user-img ms-img-round" src="assets/img/costic/customer-6.jpg" alt="people" />
+                            <img className="ms-user-img ms-img-round" src={storedArray?.user_Image === null ? defautImage : storedArray?.user_Image} alt="people" />
                             </Dropdown.Toggle>
                             <Dropdown.Menu className="dropdown-menu dropdown-menu-right user-dropdown" aria-labelledby="userDropdown">
                                 <div className="dropdown-menu-header">
-                                    <h6 className="dropdown-header ms-inline m-0"><span className="text-disabled">Welcome, Anny Farisha</span></h6>
+                                    <h6 className="dropdown-header ms-inline m-0"><span className="text-disabled">Bienvenide, {storedArray?.empe_NombreCompleto}</span></h6>
                                 </div>
                                 <div className="dropdown-divider" />
                                 <div className="ms-dropdown-list">
-                                    <Link className="media fs-14 p-2" to="/user-profiles"> <span><i className="flaticon-user mr-2" /> Profile</span>
+                                    <Link className="media fs-14 p-2" to="/user-profile"> <span><i className="flaticon-user mr-2" /> Profile</span>
                                     </Link>
-                                    <Link className="media fs-14 p-2" to="/email"> <span><i className="flaticon-mail mr-2" /> Inbox</span> <span className="badge badge-pill badge-info">3</span>
-                                    </Link>
-                                    <Link className="media fs-14 p-2" to="/user-profiles"> <span><i className="flaticon-gear mr-2" /> Account Settings</span>
+                                    <Link className="media fs-14 p-2" to="/email"> <span></span>
                                     </Link>
                                 </div>
                                 <div className="dropdown-divider" />
                                 <div className="dropdown-menu-footer">
-                                    <Link className="media fs-14 p-2" to="/lockscreen"> <span><i className="flaticon-security mr-2" /> Lock</span>
+                                    <Link className="media fs-14 p-2" to="/lock-screen"> <span><i className="flaticon-security mr-2" /> Lock</span>
                                     </Link>
                                 </div>
                                 <div className="dropdown-menu-footer">
-                                    <Link className="media fs-14 p-2" to="/default-login"> <span><i className="flaticon-shut-down mr-2" /> Logout</span>
+                                    <Link onClick={handleOutLog} className="media fs-14 p-2" to="/default-login"> <span><i className="flaticon-shut-down mr-2" /> Logout</span>
                                     </Link>
                                 </div>
                             </Dropdown.Menu>

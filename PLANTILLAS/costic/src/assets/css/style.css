@@ -969,7 +969,7 @@ html{
 }
 .side-nav .logo-sn a{
   display: block;
-  padding: 17px 0;
+  padding: 0px 0;
 }
 .logo-sn a img {
   max-width: 150px;
@@ -5508,11 +5508,11 @@ a.ms-g-plus,
   position: relative;
   display: flex;
   align-items: flex-end;
-  background-image: url('../img/costic/banner-1000x370.jpg');
+  background-image: url('https://i.ibb.co/k4qsdKY/pexels-robin-stickel-70497.jpg');
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
-  height: 87%;
+  height: 100%;
   width: 100%;
   padding: 1.5rem;
   padding-bottom: 0;
@@ -5530,13 +5530,13 @@ a.ms-g-plus,
 }
 .ms-profile-cover img{
   width: 200px;
-  margin-bottom: -35px;
+  margin-bottom: 15px;
   border: 3px solid #fff;
   border-radius: 5px;
 }
 .ms-profile-user-info,
 .ms-profile-user-buttons{
-  padding: 0 0 1.5rem 1.5rem;
+  padding: 0 0 3rem 1.5rem;
 }
 .ms-profile-user-buttons{
   flex: 1 1 auto;

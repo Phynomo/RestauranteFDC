@@ -41,9 +41,10 @@ class Sidenavigation extends Component {
                 <div className="ms-aside-overlay ms-overlay-right ms-toggler"></div>
                 <Scrollbar id="ms-side-nav" className="side-nav fixed ms-aside-scrollable ms-aside-left">
                     {/* Logo */}
-                    <div className="logo-sn ms-d-block-lg">
-                        <Link className="pl-0 ml-0 text-center" to="/">
-                            <img src={logo} alt="logo" />
+                    <div className="logo-sn ">
+                        <Link className="text-center" to="/">
+                            <img src='https://i.ibb.co/9GcKFNs/FDCNegro.png' style={{height:"75px"}} alt="logo" />
+                            <img src="https://i.ibb.co/fQ52ntR/FDC.png" alt="FDC" style={{height:"75px"}} border="3"></img>
                         </Link>
                     </div>
                     {/* Navigation */}
@@ -53,7 +54,7 @@ class Sidenavigation extends Component {
                             <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16" >dashboard</i>Dashboard </span>
                             </Link>
                             <ul id="dashboard" className="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">
-                                <li> <Link to="/">Costic</Link>
+                                <li> <Link to="/">Home</Link>
                                 </li>
                                 <li> <Link to="/departamentos">Departamentos</Link>
                                 </li>
@@ -75,11 +76,13 @@ class Sidenavigation extends Component {
                                 </li>
                                 <li> <Link to="/departamentos">Departamentos</Link>
                                 </li>
+                                <li> <Link to="/default-login">Default Login</Link>
+                                        </li>
                             </ul>
                         </li>
                         {/* /Dashboard */}
                         {/* product */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="#" className="has-chevron"> <span><i className="fa fa-archive fs-16" />Menus </span>
                             </Link>
                             <ul id="product" className="collapse" aria-labelledby="product" data-parent="#side-nav-accordion">
@@ -94,22 +97,22 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/product-detail" >Product Detail</Link>
                                 </li >
                             </ul >
-                        </li >
+                        </li > */}
                         {/* product end */}
                         {/* orders */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="/orders"> <span><i className="fas fa-clipboard-list fs-16" />Orders</span>
                             </Link>
-                        </li >
+                        </li > */}
                         {/* orders end */}
                         {/* restaurants */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="/restaurant-list"> <span><i className="fa fa-tasks fs-16" />Restaurants List</span>
                             </Link>
-                        </li >
+                        </li > */}
                         {/* restaurants end */}
                         {/* Invoice */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="#" className="has-chevron"> <span><i className="fas fa-file-invoice fs-16" />Invoice </span>
                             </Link>
                             <ul id="invoice" className="collapse" aria-labelledby="invoice" data-parent="#side-nav-accordion">
@@ -118,10 +121,10 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/invoice-list" >Invoice List</Link>
                                 </li>
                             </ul >
-                        </li >
+                        </li > */}
                         {/* Invoice end */}
                         {/* customers*/}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="#" className="has-chevron"> <span><i className="fas fa-user-friends fs-16" />Customers </span>
                             </Link>
                             <ul id="customer" className="collapse" aria-labelledby="customer" data-parent="#side-nav-accordion">
@@ -132,20 +135,20 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/social-activity" >Social Activity</Link>
                                 </li >
                             </ul >
-                        </li >
+                        </li > */}
                         {/* Customers  end */}
                         {/* sales */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="/sales" > <span><i className="fa fa-briefcase fs-16" />Sales</span>
                             </Link>
-                        </li >
+                        </li > */}
                         {/* sales end  */}
-                        < li className="menu-item" >
+                        {/* < li className="menu-item" >
                             <Link to="/widgets"> <span><i className="material-icons fs-16">widgets</i>Widgets</span>
                             </Link>
-                        </li >
+                        </li > */}
                         {/* Basic UI Elements */}
-                        <li className="menu-item" >
+                        {/* <li className="menu-item" >
                             <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">filter_list</i>Basic UI Elements</span>
                             </Link>
                             <ul id="basic-elements" className="collapse" aria-labelledby="basic-elements" data-parent="#side-nav-accordion">
@@ -172,10 +175,10 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/typography" >Typography</Link>
                                 </li >
                             </ul >
-                        </li >
+                        </li > */}
                         {/* /Basic UI Elements */}
                         {/* Advanced UI Elements */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">code</i>Advanced UI Elements</span>
                             </Link>
                             <ul id="advanced-elements" className="collapse" aria-labelledby="advanced-elements" data-parent="#side-nav-accordion">
@@ -194,14 +197,14 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/range-slider" >Range Slider</Link>
                                 </li >
                             </ul >
-                        </li >
+                        </li > */}
                         {/* /Advanced UI Elements */}
-                        <li className="menu-item" >
+                        {/* <li className="menu-item" >
                             <Link to="/animations"> <span><i className="material-icons fs-16">format_paint</i>Animations</span>
                             </Link>
-                        </li>
+                        </li> */}
                         {/* Form Elements */}
-                        < li className="menu-item" >
+                        {/* < li className="menu-item" >
                             <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Form Elements</span>
                             </Link>
                             <ul id="form-elements" className="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
@@ -214,10 +217,10 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/form-wizard" >Form Wizard</Link>
                                 </li >
                             </ul >
-                        </li >
+                        </li > */}
                         {/* /Form Elements */}
                         {/* Charts */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">equalizer</i>Charts</span>
                             </Link>
                             <ul id="charts" className="collapse" aria-labelledby="charts" data-parent="#side-nav-accordion">
@@ -226,10 +229,10 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/google-chart" >Google Chart</Link>
                                 </li>
                             </ul >
-                        </li >
+                        </li > */}
                         {/* /Charts */}
                         {/* Tables */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">tune</i>Tables</span>
                             </Link>
                             <ul id="tables" className="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
@@ -238,10 +241,10 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/data-tables" >Data tables</Link>
                                 </li>
                             </ul >
-                        </li >
+                        </li > */}
                         {/* /Tables */}
                         {/* Popups */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">message</i>Popups</span>
                             </Link>
                             <ul id="popups" className="collapse" aria-labelledby="popups" data-parent="#side-nav-accordion">
@@ -250,10 +253,10 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/toast" >Toast</Link>
                                 </li>
                             </ul >
-                        </li >
+                        </li > */}
                         {/* /Popups */}
                         {/* Icons */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">border_color</i>Icons</span>
                             </Link>
                             <ul id="icons" className="collapse" aria-labelledby="icons" data-parent="#side-nav-accordion">
@@ -264,10 +267,10 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/materialize" >Materialize</Link>
                                 </li >
                             </ul >
-                        </li >
+                        </li > */}
                         {/* /Icons */}
                         {/* Maps */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">map</i>Maps</span>
                             </Link>
                             <ul id="maps" className="collapse" aria-labelledby="maps" data-parent="#side-nav-accordion">
@@ -276,9 +279,9 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/vector-maps" >Vector Maps</Link>
                                 </li>
                             </ul >
-                        </li >
+                        </li > */}
                         {/* /Maps */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="#" className="has-chevron" data-toggle="collapse" data-target="#bonuspages" aria-expanded="false" aria-controls="bonuspages"> <span><i className="material-icons fs-16">insert_drive_file</i> Bonus Pages</span>
                             </Link>
                             <ul id="bonuspages" className="collapse" aria-labelledby="bonuspages" data-parent="#side-nav-accordion">
@@ -289,10 +292,10 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/client-management">Client Management</Link>
                                 </li>
                             </ul>
-                        </li>
+                        </li> */}
                         {/* / bonus Pages */}
                         {/* Pages */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="#" className="has-chevron" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages"> <span><i className="material-icons fs-16">insert_drive_file</i>Pages</span>
                             </Link>
                             <ul id="pages" className="collapse" aria-labelledby="pages" data-parent="#side-nav-accordion">
@@ -323,9 +326,9 @@ class Sidenavigation extends Component {
                                 <li className="menu-item"> <Link to="/invoice"> Invoice </Link>
                                 </li >
                             </ul >
-                        </li >
+                        </li > */}
                         {/* Apps */}
-                        < li className="menu-item" >
+                        {/* < li className="menu-item" >
                             <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">phone_iphone</i>Apps</span>
                             </Link>
                             <ul id="apps" className="collapse" aria-labelledby="apps" data-parent="#side-nav-accordion">
@@ -336,7 +339,7 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/todo-list" >To-do List</Link>
                                 </li >
                             </ul >
-                        </li >
+                        </li > */}
                         {/* /Apps */}
                         <li className="menu-item" >
                             <Link to="/pruebas"> <span><i className="material-icons fs-16">format_paint</i>Pruebazzz</span>

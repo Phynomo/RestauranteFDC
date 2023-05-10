@@ -46,29 +46,16 @@ class Reminder extends Component {
             <div className="ms-quickbar-container ms-reminders">
                 <ul className="ms-qa-options">
                     <li>
-                        <Link to="#" onClick={this.onOpenModal}> <i className="flaticon-bell" /> New Reminder</Link>
+                        <Link to="#" onClick={this.onOpenModal}> <i className="flaticon-bell" /> Nuevo recordatorio</Link>
                     </li>
                 </ul>
                 <Scrollbar className="ms-quickbar-container ms-scrollable">
                     <div className="ms-card ms-qa-card ms-deletable">
                         <div className="ms-card-body">
-                            <p>Developer Meeting in Block B</p> <span className="text-disabled fs-12"><i className="material-icons fs-14">access_time</i> Today - 3:45 pm</span>
+                            <p>Programar</p> <span className="text-disabled fs-12"><i className="material-icons fs-14">access_time</i> 8:00 am - 2:00 am</span>
                         </div>
                         <div className="ms-card-footer clearfix">
                             <div className="ms-note-editor float-right">
-                                <Link to="#" className="text-disabled mr-2" onClick={this.onOpenModal}> <i className="flaticon-pencil"> </i> Edit</Link>
-                                <Link to="#" className="text-disabled  ms-delete-trigger" onClick={this.deletecardbtn}> <i className="flaticon-trash"> </i> Delete</Link>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="ms-card ms-qa-card ms-deletable">
-                        <div className="ms-card-body">
-                            <p>Start adding change log to version 2</p> <span className="text-disabled fs-12"><i className="material-icons fs-14">access_time</i> Tomorrow - 12:00 pm</span>
-                        </div>
-                        <div className="ms-card-footer clearfix">
-                            <div className="ms-note-editor float-right">
-                                <Link to="#" className="text-disabled mr-2" onClick={this.onOpenModal}> <i className="flaticon-pencil"> </i> Edit</Link>
-                                <Link to="#" className="text-disabled  ms-delete-trigger" onClick={this.deletecardbtn}> <i className="flaticon-trash"> </i> Delete</Link>
                             </div>
                         </div>
                     </div>

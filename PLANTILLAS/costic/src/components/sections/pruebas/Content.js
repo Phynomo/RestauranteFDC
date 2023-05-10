@@ -16,8 +16,8 @@ class Content extends Component {
                                 <h6>Reporte</h6>
                             </div>
                             <div className="ms-panel-body">
-                                {/* <PDFDocument></PDFDocument> */}
-                                 <Select></Select> 
+                                 <PDFDocument></PDFDocument> 
+                                 {/* <Select></Select>  */}
                             </div>
                         </div>
                     </div>

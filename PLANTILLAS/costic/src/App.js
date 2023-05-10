@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {useHistory, Redirect,  BrowserRouter  as Router, Route, Switch } from 'react-router-dom';
 import Preloader from './components/layouts/Preloader';
 import Dashboard from './components/pages/Dashboard';
 import Accordions from './components/pages/Accordions';
@@ -87,11 +87,20 @@ import Roles from './components/pages/Roles';
 import Categorias from './components/pages/Categorias';
 
 function App() {
+  const history = useHistory();
+
+  // useEffect(() => {
+  //   const isAuthenticated = localStorage.getItem('token');
+  //   if (!isAuthenticated) {
+  //     history.push('/default-login');
+  //   }
+  // }, [history]);
   return (
     <Router basename={'/themes/themeforest/react/costic/'}>
       <Preloader />
       <Switch>
-        <Route exact path="/" component={Dashboard} />
+        <Route path="/default-login" component={Defaultlogin} />
+        <PrivateRoute  exact path="/" component={Dashboard} />
         <Route path="/pruebas" component={Pruebas} />
         <Route path="/factura" component={Factura} />
         <Route path="/factura_create" component={FacturaCreate} />
@@ -102,7 +111,7 @@ function App() {
         <Route path="/estadosCiviles" component={EstadosCiviles} />
         <Route path="/metodosPago" component={MetodosPago} />
         <Route path="/empleados" component={Empleados} />
-        <Route path="/cargos" component={Cargos} />
+        <PrivateRoute path="/cargos" component={Cargos} />
         <Route path="/clientes" component={Clientes}></Route>
         <Route path="/crearCliente" component={CrearCliente}></Route>
         <Route path="/editarCliente/:clie_Id" component={EditarCliente} />
@@ -162,7 +171,6 @@ function App() {
         <Route path="/widgets" component={Widgets} />
         <Route path="/client-management" component={Clientmanagement} />
         <Route path="/coming-soon" component={Comingsoon} />
-        <Route path="/default-login" component={Defaultlogin} />
         <Route path="/default-register" component={Defaultregister} />
         <Route path="/error" component={Error} />
         <Route path="/faq" component={Faq} />
@@ -179,5 +187,23 @@ function App() {
 
   );
 }
+
+function PrivateRoute({ component: Component, ...rest }) {
+  const isAuthenticated = localStorage.getItem('token');
+
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/default-login" />
+        )
+      }
+    />
+  );
+}
+
 
 export default App;
