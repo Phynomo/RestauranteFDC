@@ -85,6 +85,8 @@ import EditarEmpleado from './components/sections/Empleados/Editar';
 import Sucursales from './components/pages/Sucursales';
 import Roles from './components/pages/Roles';
 import Categorias from './components/pages/Categorias';
+import Municipios from './components/pages/Municipios';
+import Ingredientes from './components/pages/Ingredientes';
 
 function App() {
   return (
@@ -103,6 +105,8 @@ function App() {
         <Route path="/metodosPago" component={MetodosPago} />
         <Route path="/sucursales" component={Sucursales} />
         <Route path="/empleados" component={Empleados} />
+        <Route path="/municipios" component={Municipios} />
+        <Route path="/ingredientes" component={Ingredientes} />
         <Route path="/cargos" component={Cargos} />
         <Route path="/clientes" component={Clientes}></Route>
         <Route path="/crearCliente" component={CrearCliente}></Route>
