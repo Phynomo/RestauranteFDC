@@ -44,7 +44,6 @@ BEGIN
  GO
 
  rest.UDP_CargarMuniPorDep 1
-	
 
 	select*from gral.tbEstadosCiviles
 		select*from rest.tbSucursales
@@ -84,3 +83,24 @@ select*from rest.tbEmpleados
 GO
 
 
+CREATE OR ALTER PROCEDURE rest.UDP_DetallesEmpleados
+@empe_Id	INT
+AS
+BEGIN
+
+SELECT*FROM [rest].[VW_tbEmpleados] WHERE [empe_Id] = @empe_Id
+END
+GO
+rest.UDP_DetallesEmpleados 1
+
+GO
+
+CREATE OR ALTER PROCEDURE rest.UDP_DetallesCliente
+@clie_Id	INT
+AS
+BEGIN
+
+SELECT*FROM [rest].[VW_tbClientes] WHERE clie_Id = @clie_Id
+END
+GO
+rest.UDP_DetallesCliente 1

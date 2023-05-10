@@ -19,8 +19,11 @@ const columns = [
      type: 'number',
      renderCell: (params) => (
       <div>
+       
         <Link to={`/editarEmpleado/${params.row.empe_Id}`} style={{ margin: "5px" }}><i className='fas fa-pencil-alt text-secondary'></i></Link>
+        <Link to={`/detallesEmpleado/${params.row.empe_Id}`} style={{ margin: "5px" }}><i className="fas fa-align-justify"></i></Link>
       </div>
+      
     ),
    },
 ];

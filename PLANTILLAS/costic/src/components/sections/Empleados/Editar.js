@@ -63,7 +63,8 @@ const Crear = ({ match }) => {
     eciv_Id: "",
     empe_UsuCreacion: "",
     empe_FechaNacimiento: useState(new Date()),
-    depa_Id: ""
+    depa_Id: "",
+    empe_CorreoElectronico: ""
 
   });
 

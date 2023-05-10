@@ -95,6 +95,14 @@ namespace Restaurante.DataAccess.Repositories.REST
             return db.Query<tbClientes>(ScriptsDataBase.CargarClientes, parametros, commandType: CommandType.StoredProcedure);
         }
 
+        public IEnumerable<VW_tbClientes> Detalles(int id)
+        {
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@clie_Id", id, DbType.Int32, ParameterDirection.Input);
+            return db.Query<VW_tbClientes>(ScriptsDataBase.DetallesClientes, parametros, commandType: CommandType.StoredProcedure);
+        }
         public RequestStatus Delete(tbClientes item)
         {
             throw new NotImplementedException();

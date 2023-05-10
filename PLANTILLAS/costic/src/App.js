@@ -77,6 +77,8 @@ import CrearCliente from './components/sections/Clientes/Crear';
 import EditarCliente from './components/sections/Clientes/Editar';
 import CrearEmpleado from './components/sections/Empleados/Crear';
 import EditarEmpleado from './components/sections/Empleados/Editar';
+import DetallesEmpleado from './components/sections/Empleados/Detalles'
+import DetallesCliente from './components/sections/Clientes/Detalles'
 
 
 function App() {
@@ -96,6 +98,8 @@ function App() {
         <Route path="/editarCliente/:clie_Id" component={EditarCliente} />
         <Route path="/crearEmpleado" component={CrearEmpleado}></Route>
         <Route path="/editarEmpleado/:empe_Id" component={EditarEmpleado} />
+        <Route path="/detallesEmpleado/:empe_Id" component={DetallesEmpleado} />
+        <Route path="/detallesCliente/:clie_Id" component={DetallesCliente} />
 
         <Route path="/add-product" component={Addproduct} />
         <Route path="/alerts" component={Alerts} />

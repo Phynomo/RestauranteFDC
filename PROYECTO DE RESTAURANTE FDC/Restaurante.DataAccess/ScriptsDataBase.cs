@@ -35,6 +35,7 @@ namespace Restaurante.DataAccess
         public static string UDP_Clientes_Delete = "rest.UDP_tbClientes_Delete";
 
         public static string CargarClientes = "rest.UDP_CargarDatosCliente";
+        public static string DetallesClientes = "rest.UDP_DetallesCliente";
         #endregion
 
         #region Departamentos
@@ -54,7 +55,7 @@ namespace Restaurante.DataAccess
         public static string UDP_Empleados_Delete = "rest.UDP_tbEmpleados_Delete";
 
         public static string CargarDatosEmpleados = "rest.UDP_CargarDatosEmpleado";
-
+        public static string DetallesEmpleados = "rest.UDP_DetallesEmpleados";
         #endregion
 
         #region Estados Civiles

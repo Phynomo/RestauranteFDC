@@ -106,5 +106,16 @@ namespace Restaurante.DataAccess.Repositories.REST
             parametros.Add("@empe_Id", id, DbType.Int32, ParameterDirection.Input);
             return db.Query<tbEmpleados>(ScriptsDataBase.CargarDatosEmpleados, parametros, commandType: CommandType.StoredProcedure);
         }
+
+        public IEnumerable<VW_tbEmpleados> Detalles(int id)
+        {
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@empe_Id", id, DbType.Int32, ParameterDirection.Input);
+            return db.Query<VW_tbEmpleados>(ScriptsDataBase.DetallesEmpleados, parametros, commandType: CommandType.StoredProcedure);
+        }
+
+
     }
 }
