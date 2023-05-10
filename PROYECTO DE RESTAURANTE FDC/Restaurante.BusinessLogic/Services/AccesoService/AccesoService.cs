@@ -66,6 +66,34 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
 
                 return result.Error(x.Message);
             }
+        }public ServiceResult EditarUsuarios(tbUsuarios item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _usuariosRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInesperado", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInesperado", ServiceResultType.Error);
+                }
+            }
+            catch (Exception x)
+            {
+
+                return result.Error(x.Message);
+            }
         }
         public ServiceResult EliminarUsuarios(tbUsuarios item)
         {

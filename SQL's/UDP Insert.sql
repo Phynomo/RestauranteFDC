@@ -117,7 +117,6 @@ CREATE OR ALTER PROCEDURE acce.UDP_tbusuarios_INSERT
  @user_EsAdmin BIT,
  @role_Id INT,
  @empe_Id INT,
- @clie_Id INT,
  @user_UsuCreacion INT
 AS
 BEGIN
@@ -137,7 +136,6 @@ BEGIN
 		   ,[user_Image]
            ,[role_Id]
            ,[empe_Id]
-           ,[clie_Id]
            ,[user_UsuCreacion]
            ,[user_FechaCreacion]
            ,[user_UsuModificacion]
@@ -151,7 +149,6 @@ BEGIN
 		   ,@user_Image
            ,@role_Id
            ,@empe_Id
-           ,@clie_Id
            ,@user_UsuCreacion
            ,GETDATE()
            ,NULL

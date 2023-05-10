@@ -1,6 +1,10 @@
 --Usuarios
 CREATE OR ALTER PROCEDURE acce.UDP_tbUsuarios_Update
 	@user_Id INT,
+	@user_Correo     NVARCHAR(200),
+	@user_Image NVARCHAR(MAX),
+	@user_EsAdmin BIT,
+	@role_Id INT,
 	@empe_Id int,
 	@usuModificacion int
 AS
@@ -16,6 +20,10 @@ BEGIN
 
 			UPDATE [acce].[tbUsuarios]
 			   SET [empe_Id] = @empe_Id
+				  ,[user_Correo] = @user_Correo
+				  ,[user_Image] = @user_Image
+				  ,[user_EsAdmin] = @user_EsAdmin
+				  ,[role_Id] = @role_Id
 				  ,[user_UsuModificacion] = @usuModificacion
 				  ,[user_FechaModificacion] = GETDATE()
 				  ,[user_Estado] = 1

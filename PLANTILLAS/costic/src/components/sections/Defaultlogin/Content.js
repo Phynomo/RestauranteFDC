@@ -10,6 +10,8 @@ function Login() {
     const [password, setPassword] = useState("")
     const [validationErrors, setValidationErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [validado, setValidado] = useState(false);
+
 
     useEffect(() => {
         if (localStorage.getItem('token') != "" && localStorage.getItem('token') != null) {
@@ -22,6 +24,11 @@ function Login() {
         setValidationErrors({})
         e.preventDefault();
         setIsSubmitting(true)
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            setValidado(true);
+            e.stopPropagation();
+        }else{
         let payload = {
             usua_Usuario: email,
             usua_Clave: password,
@@ -29,11 +36,16 @@ function Login() {
         console.log(payload);
         axios.get('api/Usuarios/Login?usuario='+email+'&contrasena='+password)
             .then((r) => {
-                console.log(r["data"]);
-                if (r.data != null) {
+                console.log('lamao',r.data.data);
+                if (r.data.data != null && r.data.data.length > 0) {
                     //si existe el usuario entra aca 
                     setIsSubmitting(false)
-                    localStorage.setItem('token', "si")
+                    localStorage.setItem('token', JSON.stringify(r.data.data[0]))
+                    
+                    //Para recuperar la info luego
+                    // const storedArray = JSON.parse(localStorage.getItem('myArray'));
+                    // console.log(storedArray);
+
                     navigate.push('/');
                 } else {
                     //si no existe el usuario entra aca 
@@ -45,6 +57,7 @@ function Login() {
             .catch((e) => {
                 console.log(e);
             });
+        }
     }
 
 
@@ -56,35 +69,28 @@ function Login() {
                     </div>
                     <div className="ms-auth-col">
                         <div className="ms-auth-form">
-                            <form onSubmit={(e) => { loginAction(e) }}>
-                                <h3>Login to Account</h3>
-                                <p>Please enter your email and password to continue</p>
+                            <form onSubmit={(e) => { loginAction(e) }} className={`needs-validation validation-fill ${validado ? 'was-validated' : ''}`} noValidate >
+                                <h3>Inicio de sesión</h3>
+                                <p>Ingresa tu usuario y contraseña</p>
                                 {Object.keys(validationErrors).length != 0 &&
                                 <p className='text-center '><small className='text-danger'>Incorrect Email or Password</small></p>
                             }
                                 <div className="mb-3">
-                                    <label htmlFor="validationCustom08">Email Address</label>
+                                    <label htmlFor="validationCustom08">Usuario</label>
                                     <div className="input-group">
                                         <input type="text" className="form-control" id="email" name="email" value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder='usuario' required />
-                                        <div className="invalid-feedback">Please provide a valid email.</div>
+                                        <div className="invalid-feedback">Llena este campo.</div>
                                     </div>
                                 </div>
                                 <div className="mb-2">
-                                    <label htmlFor="validationCustom09">Password</label>
+                                    <label htmlFor="validationCustom09">Contraseña</label>
                                     <div className="input-group">
-                                        <input type="password" className="form-control" id="password" name="password" value={password} onChange={(e) => { setPassword(e.target.value) }} required/>
-                                        <div className="invalid-feedback">Please provide a password.</div>
+                                        <input type="password" placeholder='Contraseña' className="form-control" id="password" name="password" value={password} onChange={(e) => { setPassword(e.target.value) }} required/>
+                                        <div className="invalid-feedback">Llena este campo.</div>
                                     </div>
                                 </div>
-                                <div className="form-group">
-                                    <label className="ms-checkbox-wrap">
-                                        <input className="form-check-input" type="checkbox" defaultValue /> <i className="ms-checkbox-check" />
-                                    </label> <span> Remember Password </span>
-                                    {/* <label className="d-block mt-3"><Link to="/default-login" className="btn-link" onClick={this.handleShow1}>Forgot Password?</Link>
-                                    </label> */}
-                                </div>
-                                <button className="btn btn-primary mt-4 d-block w-100" type="submit">Sign In</button>
-                                <p className="mb-0 mt-3 text-center">Don't have an account? <Link className="btn-link" to="/default-register">Create Account</Link>
+                                <button className="btn btn-primary mt-4 d-block w-100" type="submit">Iniciar</button>
+                                <p className="mb-0 mt-3 text-center">¿No recuerdas tu contraseña?<Link className="btn-link" to="/default-register">¡Recuperala!</Link>
                                 </p>
                             </form>
                         </div>

@@ -47,6 +47,16 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(result);
         }
 
+        [HttpPut("Editar")]
+        public IActionResult Update(UsuarioViewModel usuarios)
+        {
+            var item = _mapper.Map<tbUsuarios>(usuarios);
+            var result = _seguridadServivce.EditarUsuarios(item);
+            return Ok(result);
+        }
+
+
+
         [HttpGet("Login")]
         public IActionResult Login(string usuario, string contrasena)
         {

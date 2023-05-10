@@ -126,7 +126,7 @@ class Chart extends Component {
             cantidadEmpleados : 0,
             platillosPedidos : 0,
             FacturasTotales : 0,
-            IngresosTotales : 0,
+            IngresosTotales : 0.0,
             open: true,
         }
     };
@@ -147,6 +147,7 @@ class Chart extends Component {
             FacturasTotales: response3.data.data[0].cantidadFacturas,
           });
           const response4 = await axios.get('api/Facturas/IngresosFacturas');
+          console.log(response4)
           this.setState({
             IngresosTotales: response4.data.data[0].cantidadFacturas,
           });
@@ -197,7 +198,7 @@ class Chart extends Component {
                         <div className="ms-card-body media">
                             <div className="media-body">
                                 <span className="black-text"><strong>Ingresos semanales</strong></span>
-                                <h2>{this.state.IngresosTotales}000 Lps</h2>
+                                <h2>{this.state.IngresosTotales} Lps</h2>
                             </div>
                         </div>
                         <LineChart data={this.state.data4} options={options} />

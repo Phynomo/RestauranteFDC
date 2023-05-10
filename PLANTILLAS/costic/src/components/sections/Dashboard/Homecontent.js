@@ -71,16 +71,16 @@ class Homecontent extends Component {
                             <div className="ms-panel-header">
                                 <div className="d-flex justify-content-between">
                                     <div className="align-self-center align-left">
-                                        <h6>Platillos mas pedidos</h6>
+                                        <h6>Facturas de cada Sucursal</h6>
                                     </div>
                                 </div>
                             </div>
                             <div className="ms-panel-body">
                                 <GoogleChart
-                                    height={'350px'}
+                                    height={'300px'}
                                     width={"100%"}
                                     chartType="BarChart"
-                                    loader={<div>Loading Chart</div>}
+                                    loader={<div>Cargando datos</div>}
                                     data={[['Sucursal', 'Cantidad de Facturas'], ...data]}
                                     options={{
                                         isStacked: true,
@@ -100,15 +100,16 @@ class Homecontent extends Component {
                             </div>
                             <div className="ms-panel-body">
                                 <GoogleChart
-                                    height={'350px'}
+                                    height={'300px'}
+                                    width={"100%"}
                                     chartType="PieChart"
-                                    loader={<div>Loading Chart</div>}
+                                    loader={<div>Cargano datos</div>}
                                     data={[['Metodo de pago', 'Pagos hechos'], ...data2]}
                                     options={{
                                         legend: { position: 'none' },
                                         // Just add this option
                                         pieHole: 0.6,
-                                        colors: ['#0b62a4', '#3980b5', '#679dc6'],
+                                        colors: ['#ED2939', '#FF0800', '#B80F0A'],
                                     }}
                                     rootProps={{ 'data-testid': '3' }}
                                 />

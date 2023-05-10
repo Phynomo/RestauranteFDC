@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PDFDocument from './pdf'
+import Select from './select'
 //import ColumnChart from './graficas'
 
 class Content extends Component {
@@ -16,7 +17,7 @@ class Content extends Component {
                             </div>
                             <div className="ms-panel-body">
                                 {/* <PDFDocument></PDFDocument> */}
-                                {/* <ColumnChart></ColumnChart> */}
+                                 <Select></Select> 
                             </div>
                         </div>
                     </div>
