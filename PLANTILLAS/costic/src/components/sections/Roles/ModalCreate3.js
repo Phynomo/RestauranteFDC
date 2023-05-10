@@ -80,7 +80,7 @@ class ModalCreate3 extends Component {
             <div>
                 <button onClick={this.handleCreate} className='btn btn-primary btn-pill btn-block'>Nuevo registro</button>
 
-                <Modal show={this.state.create} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
+                <Modal size='lg' show={this.state.create} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
                     centered>
                     <Modal.Header>
                         <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar un nuevo Rol</h3>
@@ -95,6 +95,9 @@ class ModalCreate3 extends Component {
                                     <div className="invalid-feedback">Ingresar el rol es algo requerido</div>
                                 </div>
                             </div>
+                            <>
+                            
+                            </>
                         </Modal.Body>
                         <Modal.Footer>
                             <button type="button" className="btn btn-light btn-sm" onClick={this.handleClose}>Cancelar</button>
