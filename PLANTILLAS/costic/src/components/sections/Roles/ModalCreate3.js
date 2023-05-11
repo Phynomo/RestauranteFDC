@@ -4,6 +4,9 @@ import { Modal, Accordion, Card } from "react-bootstrap";
 import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
 import toastr from 'toastr';
 import axios from 'axios';
+import DualListBox from 'react-dual-listbox';
+import 'react-dual-listbox/lib/react-dual-listbox.css';
+import Duallist from './duallist.js';
 
 
 class ModalCreate3 extends Component {
@@ -88,16 +91,16 @@ class ModalCreate3 extends Component {
                     </Modal.Header>
                     <form onSubmit={this.handleSubmit} className={`needs-validation validation-fill ${this.state.validated ? 'was-validated' : ''}`} noValidate>
                         <Modal.Body>
-                            <div className="ms-form-group has-icon">
+                            <div className="ms-form-group has-icon" style={{padding: "1.5rem"}}>
                                 <label htmlFor="validationCustom13">Ingresar rol</label>
                                 <div className="input-group">
                                     <input type="text" className="form-control" id="validationCustom13" placeholder="Rol" name="role_Nombre" value={this.state.role_Nombre} onChange={this.handleInputChange} required />
                                     <div className="invalid-feedback">Ingresar el rol es algo requerido</div>
                                 </div>
                             </div>
-                            <>
-                            
-                            </>
+                            <div className="ms-content-wrapper">
+                                <Duallist></Duallist>
+                            </div>
                         </Modal.Body>
                         <Modal.Footer>
                             <button type="button" className="btn btn-light btn-sm" onClick={this.handleClose}>Cancelar</button>
