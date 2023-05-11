@@ -624,8 +624,21 @@ VALUES ('Harina de trigo', 2.50, 1, 1),
 --**************************************************************************-
 
 
---************************************* Proveedores **************************-
-
+--************************************* Pantallas **************************-
+INSERT INTO acce.tbPantallas(pant_Nombre, pant_Url, pant_Menu, pant_HtmlId, pant_UsuCreacion)
+VALUES ('Roles','/Roles','acceso','RolesItem',1),
+	   ('Usuario','/usuario','acceso','UsuarioItem',1),
+	   ('Cargos','/cargos','general','cargosItem',1),
+	   ('Categorias','/categorias','general','CategoriasItem',1),
+       ('Departamentos','/departamentos','general','DepartamentosItem',1),
+	   ('EstadosCiviles','/estadosCiviles','general','EstadosCivilesItem',1),
+	   ('MetodosPago','/metodosPago','general','MetodosPagoItem',1),
+	   ('Municipios','/municipios','general','MunicipiosItem',1),
+	   ('Clientes','/clientes','restaurante','ClientesItem',1),
+	   ('Empleados','/empleados','restaurante','EmpleadosItem',1),
+	   ('Factura','/factura','restaurante','FacturasItem',1),
+	   ('Ingredientes','/ingredientes','restaurante','IngredientesItem',1),
+	   ('Sucursales','/sucursales','restarante','SucursalesItem',1)
 
 
 --**************************************************************************-

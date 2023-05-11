@@ -13,14 +13,34 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
     {
         private readonly UsuariosRepository _usuariosRepository;
         private readonly RolesRepository _rolesRepository;
+        private readonly PantallasRepository _pantallasRepository;
 
         public AccesoService(   UsuariosRepository usuarioRepository,
-                                RolesRepository rolesRepository 
+                                RolesRepository rolesRepository,
+                                PantallasRepository pantallasRepository
             )
         {
             _usuariosRepository = usuarioRepository;
             _rolesRepository = rolesRepository;
+            _pantallasRepository = pantallasRepository;
         }
+
+        #region Pantallas
+
+        public ServiceResult ListadoPantallas()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _pantallasRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+        #endregion
 
         #region Usuarios
 

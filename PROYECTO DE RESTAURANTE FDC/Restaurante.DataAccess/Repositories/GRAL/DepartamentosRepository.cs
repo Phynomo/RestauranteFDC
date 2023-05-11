@@ -80,5 +80,14 @@ namespace Restaurante.DataAccess.Repositories.GRAL
 
             return result;
         }
+
+        public IEnumerable<tbDepartamentos> CargarDepas(int id)
+        {
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@dept_Id", id, DbType.Int32, ParameterDirection.Input);
+            return db.Query<tbDepartamentos>(ScriptsDataBase.UDP_Departamentos_CargarDepa, parametros, commandType: CommandType.StoredProcedure);
+        }
     }
 }

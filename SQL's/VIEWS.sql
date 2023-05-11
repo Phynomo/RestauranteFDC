@@ -453,19 +453,8 @@ GO
 
 --que es un hook y sem y seo
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--Pantallas
+CREATE OR ALTER VIEW acce.VW_tbPantallas
+AS
+SELECT	pant_Id, pant_Nombre, pant_Url, pant_Menu, pant_HtmlId, pant_UsuCreacion, pant_FechaCreacion, pant_UsuModificacion, pant_FechaModificacion, pant_Estado
+FROM	[acce].[tbPantallas]

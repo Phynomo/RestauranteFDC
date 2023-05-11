@@ -1,4 +1,4 @@
---Procedimientos Select
+s--Procedimientos Select
 --Usuarios
 CREATE OR ALTER PROCEDURE acce.UDP_tbUsuarios_Select
 AS
@@ -147,3 +147,20 @@ GO
 --END
 --GO
 
+
+CREATE OR ALTER PROCEDURE rest.UDP_CargarDepartamentos
+@dept_Id	INT
+AS
+BEGIN
+ SELECT [depa_Id],[depa_Nombre] FROM [gral].[tbDepartamentos] depa 
+ WHERE depa.depa_Id = @dept_Id
+ END
+ GO
+
+ CREATE OR ALTER PROCEDURE acce.UDP_tbPantallas_Select
+ AS
+ BEGIN
+ SELECT * FROM acce.VW_tbPantallas
+ WHERE	pant_Estado = 1
+ END
+ GO

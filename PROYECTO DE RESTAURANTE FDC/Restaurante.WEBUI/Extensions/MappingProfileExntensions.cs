@@ -23,9 +23,11 @@ namespace Restaurante.WEBUI.Extensions
             CreateMap<FacturaViewModel,tbFacturas>().ReverseMap();
             CreateMap<FacturaViewModel,tbFacturasDetalles>().ReverseMap();
             CreateMap<IngredienteViewModel,tbIngredientes>().ReverseMap();
+            CreateMap<VW_tbPantallas,tbPantallas>().ReverseMap();
             CreateMap<PlatilloViewModel,tbPlatillos>().ReverseMap();
             CreateMap<ProveedorViewModel,tbProveedores>().ReverseMap();
             CreateMap<RolViewModel,tbRoles>().ReverseMap();
+            CreateMap<MunicipioViewModel,tbMunicipios>().ReverseMap();
             CreateMap<SucuarsalViewModel,tbSucursales>().ReverseMap();
             CreateMap<UsuarioViewModel,tbUsuarios>().ReverseMap();
       

@@ -29,11 +29,12 @@ const DataTable = () => {
 
 
   useEffect(() => {
+    
     const fetchData = () => {
       axios.get('https://localhost:44383/api/Cargos/Listado')
   .then(response => {
     
-    console.log("actualizo");
+    console.log("*gemidos*");
     const rows = response.data.data.map(item => {
       return {
         id: item.carg_Id,

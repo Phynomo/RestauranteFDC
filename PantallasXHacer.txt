@@ -1,7 +1,7 @@
 Roles--
-Usuarios
-Departamentos
-Municipios
+Usuarios Dani
+Departamentos --
+Municipios 
 Estados Civiles --
 Metodo de Pago --
 Cargos --
@@ -9,4 +9,5 @@ Categorias --
 Sucursales
 Ingredientes
 
+https://jakezatecky.github.io/react-dual-listbox/
 5 Formularios

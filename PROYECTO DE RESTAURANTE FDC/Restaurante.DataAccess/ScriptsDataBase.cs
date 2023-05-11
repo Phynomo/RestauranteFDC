@@ -44,6 +44,8 @@ namespace Restaurante.DataAccess
         public static string InsertarDepartamento = "gral.UDP_tbDepartamentos_Insert";
         public static string UDP_Departamentos_Delete = "gral.UDP_tbDepartamentos_Delete";
 
+        public static string UDP_Departamentos_CargarDepa = "rest.UDP_CargarDepartamentos";
+
         #endregion
 
         #region Empleados
@@ -116,6 +118,10 @@ namespace Restaurante.DataAccess
 
         public static string CargarMunicipios = "rest.UDP_CargarMuniPorDep";
 
+        #endregion
+
+        #region Pantallas
+        public static string UDP_Pantallas_List = "acce.UDP_tbPantallas_Select";
         #endregion
 
         #region Platillos

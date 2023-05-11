@@ -56,7 +56,7 @@ class ModalsPut2 extends Component {
                     this.state.validated = false;
                     this.handleClose();
                 } else if (response.data.message == "YaExiste") {
-                    toastr.warning("Este cargo ya existe", "Cargo repetido");
+                    toastr.warning("Este Estado Civil ya existe", "Estado Civil repetido");
                 } else {
                     alertError("Error", "Ocurrio un error mientras se editaba el registro", "2000")
                     this.state.validated = false;

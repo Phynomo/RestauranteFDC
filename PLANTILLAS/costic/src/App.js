@@ -86,9 +86,12 @@ import CrearCliente from './components/sections/Clientes/Crear';
 import EditarCliente from './components/sections/Clientes/Editar';
 import CrearEmpleado from './components/sections/Empleados/Crear';
 import EditarEmpleado from './components/sections/Empleados/Editar';
-
+import Sucursales from './components/pages/Sucursales';
 import Roles from './components/pages/Roles';
+import CrearRoles from './components/sections/Roles/Crear';
 import Categorias from './components/pages/Categorias';
+import Municipios from './components/pages/Municipios';
+import Ingredientes from './components/pages/Ingredientes';
 
 function App() {
   const history = useHistory();
@@ -118,14 +121,18 @@ function App() {
         <Route path="/departamentos" component={Departamentos} />
         <Route path="/estadosCiviles" component={EstadosCiviles} />
         <Route path="/metodosPago" component={MetodosPago} />
+        <Route path="/sucursales" component={Sucursales} />
         <Route path="/empleados" component={Empleados} />
         <PrivateRoute path="/cargos" component={Cargos} />
+        <Route path="/municipios" component={Municipios} />
+        <Route path="/ingredientes" component={Ingredientes} />
         <Route path="/clientes" component={Clientes}></Route>
         <Route path="/crearCliente" component={CrearCliente}></Route>
         <Route path="/editarCliente/:clie_Id" component={EditarCliente} />
         <Route path="/crearEmpleado" component={CrearEmpleado}></Route>
         <Route path="/editarEmpleado/:empe_Id" component={EditarEmpleado} />
         <Route path="/roles" component={Roles} />
+        <Route path="/crearRoles" component={CrearRoles} />
         <Route path="/categorias" component={Categorias} />
         <Route path="/add-product" component={Addproduct} />
         <Route path="/alerts" component={Alerts} />
