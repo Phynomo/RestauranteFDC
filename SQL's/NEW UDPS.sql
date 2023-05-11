@@ -194,6 +194,9 @@ rest.UDP_DetallesCliente 1
 --*********************************************
 
 
+
+
+
 --------------------------- ACTUALIZADO -------------------------------------------------
 GO
 CREATE OR ALTER   PROCEDURE [rest].[UDP_InsertarPlatillos] 
@@ -242,3 +245,19 @@ BEGIN TRY
 	END CATCH
 END
 GO
+
+
+CREATE OR ALTER PROCEDURE rest.UDP_IngredientesPlatillo
+   @plat_Id INT,
+   @ingr_Id INT,
+   @ingrplat_Gramos INT,
+   @ingrplat_UsuCreacion INT
+
+AS
+BEGIN
+
+	INSERT INTO [rest].[tbIngredientesXPlatillos]([plat_Id],[ingr_Id],[ingrplat_Gramos],[ingrplat_FechaCreacion])
+	VALUES(@plat_Id,@ingr_Id,@ingrplat_Gramos,@ingrplat_UsuCreacion)
+END
+GO
+
