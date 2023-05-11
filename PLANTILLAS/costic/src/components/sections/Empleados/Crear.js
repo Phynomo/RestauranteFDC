@@ -175,7 +175,7 @@ const Crear = () => {
     <main className="body-content">
         <Topnavigation />
         <div className="ms-content-wrapper">
-      <div className="row">
+       <div className="row">
          <div className="col-md-12">
              <Breadcrumb />
              <div className="ms-panel">

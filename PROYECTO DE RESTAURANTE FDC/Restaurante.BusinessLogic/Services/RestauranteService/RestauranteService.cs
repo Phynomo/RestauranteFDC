@@ -3,6 +3,7 @@ using Restaurante.DataAccess.Repositories.REST;
 using Restaurante.Entities.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -512,11 +513,12 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
         }
 
 
-        public ServiceResult InsertarPlatillos(tbPlatillos item)
+        public ServiceResult InsertarPlatillos(tbPlatillos item )
         {
             ServiceResult result = new ServiceResult();
             try
             {
+
                 var list = _platillosRepository.NewPlatillos(item);
                 if (list.CodeStatus > 0)
                 {

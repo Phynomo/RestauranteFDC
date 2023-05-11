@@ -1,22 +1,33 @@
-import React, { Component } from 'react';
+import toastr from 'toastr';
+import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
 import Breadcrumb from './Breadcrumb';
-import Productslider from './Productslider'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'
+import Sidenavigation from '../../layouts/Sidenavigation';
+import Topnavigation from '../../layouts/Topnavigation';
+import Quickbar from '../../layouts/Quickbar';
 
-class Addproductcontent extends Component {
-    render() {
+
+const Agregar = () => {
+    
         return (
+            <div className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+            <Sidenavigation />
+            <main className="body-content">
+                <Topnavigation />
+
+
             <div className="ms-content-wrapper">
                 <div className="row">
                     <div className="col-md-12">
                         <Breadcrumb/>
-                        <div className="alert alert-success" role="alert">
-                            <strong>Well done!</strong> You successfully read this important alert message.
-      </div>
+                       {/* espacio para alertas */}
+
                     </div>
                     <div className="col-xl-6 col-md-12">
                         <div className="ms-panel ms-panel-fh">
                             <div className="ms-panel-header">
-                                <h6>Add Product Form</h6>
+                                <h6>Nuevo Platillo</h6>
                             </div>
                             <div className="ms-panel-body">
                                 <form className="needs-validation clearfix" noValidate>
@@ -97,7 +108,8 @@ class Addproductcontent extends Component {
                             </div>
                         </div>
                     </div>
-                    
+
+
                     <div className="col-xl-6 col-md-12">
                         <div className="row">
                             <div className="col-md-12">
@@ -106,40 +118,29 @@ class Addproductcontent extends Component {
                                         <h6>Product </h6>
                                     </div>
                                     <div className="ms-panel-body">
-                                        <Productslider/>
+                                       {/*  AQUI DEBERIA MOSTRAR LA IMAGEN QUE EL USUARIO ESTA SUBIENDO */}
                                         
                                     </div>
+                                   
                                     <div className="ms-panel-header new">
-                                        <p className="medium">Status Available</p>
-                                        <div>
-                                            <label className="ms-switch">
-                                                <input type="checkbox" />
-                                                <span className="ms-switch-slider round" />
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div className="ms-panel-header new">
-                                        <p className="medium">Discount Active</p>
-                                        <div>
-                                            <label className="ms-switch">
-                                                <input type="checkbox" defaultChecked />
-                                                <span className="ms-switch-slider round" />
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div className="ms-panel-header new">
-                                        <button className="btn btn-secondary d-block" type="submit">Save</button>
-                                        <button className="btn btn-primary d-block" type="submit">Save and Add</button>
+                                      
+                                        <button className="btn btn-primary d-block" type="submit">Guardar</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
+
+            </main>
+                <Quickbar />
+            </div>
+
         );
-    }
+    
 }
 
-export default Addproductcontent;
+export default Agregar;

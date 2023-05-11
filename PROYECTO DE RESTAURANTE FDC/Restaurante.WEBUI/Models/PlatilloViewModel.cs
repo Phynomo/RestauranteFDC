@@ -20,5 +20,13 @@ namespace Restaurante.WEBUI.Models
         public int? plat_UsuModificacion { get; set; }
         public string user_NombreUsuModificacion { get; set; }
         public bool plat_Estado { get; set; }
+
+        public string[
+            
+        public int plat_Id { get; set; }
+        public int ingr_Id { get; set; }
+        public int ingrplat_Gramos { get; set; }
+        public int ingrplat_UsuCreacion { get; set; }
+        ] platillos {get; set }
     }
 }

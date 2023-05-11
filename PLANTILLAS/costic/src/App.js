@@ -73,13 +73,15 @@ import Cargos from './components/pages/Cargos';
 import EstadosCiviles from './components/pages/EstadosCiviles';
 import MetodosPago from './components/pages/MetodosPago';
 import Clientes from './components/pages/Clientes';
+import Platillos from './components/pages/Platillos';
+
 import CrearCliente from './components/sections/Clientes/Crear';
 import EditarCliente from './components/sections/Clientes/Editar';
 import CrearEmpleado from './components/sections/Empleados/Crear';
 import EditarEmpleado from './components/sections/Empleados/Editar';
-import DetallesEmpleado from './components/sections/Empleados/Detalles'
-import DetallesCliente from './components/sections/Clientes/Detalles'
-
+import DetallesEmpleado from './components/sections/Empleados/Detalles';
+import DetallesCliente from './components/sections/Clientes/Detalles';
+import CrearPlatillo from './components/sections/Platillos/Agregar';
 
 function App() {
   return (
@@ -100,6 +102,8 @@ function App() {
         <Route path="/editarEmpleado/:empe_Id" component={EditarEmpleado} />
         <Route path="/detallesEmpleado/:empe_Id" component={DetallesEmpleado} />
         <Route path="/detallesCliente/:clie_Id" component={DetallesCliente} />
+        <Route path="/platillos" component={Platillos}></Route>
+        <Route path="/crearPlatillo" component={CrearPlatillo}></Route>
 
         <Route path="/add-product" component={Addproduct} />
         <Route path="/alerts" component={Alerts} />
