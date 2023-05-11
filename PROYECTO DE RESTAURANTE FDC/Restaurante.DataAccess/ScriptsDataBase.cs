@@ -115,6 +115,10 @@ namespace Restaurante.DataAccess
 
         #endregion
 
+        #region Pantallas
+        public static string UDP_Pantallas_List = "acce.UDP_tbPantallas_Select";
+        #endregion
+
         #region Platillos
 
         public static string UDP_Platillos_List = "rest.UDP_tbPlatillos_Select";

@@ -3,10 +3,10 @@ import DualListBox from 'react-dual-listbox';
 import 'react-dual-listbox/lib/react-dual-listbox.css';
 
 const roles = [
-  { value: 'role1', label: 'Administrador' },
-  { value: 'role2', label: 'Invitado' },
-  { value: 'role3', label: 'Supervisor' },
-  { value: 'role4', label: 'Usuario' },
+  { value: 'role1', label: 'Departamentos' },
+  { value: 'role2', label: 'Cargos' },
+  { value: 'role3', label: 'Facturas' },
+  { value: 'role4', label: 'Usuarios' },
 ];
 
 const ScreenRoleDualListbox = () => {
@@ -14,6 +14,7 @@ const ScreenRoleDualListbox = () => {
 
   const handleRoleChange = (selected) => {
     setSelectedRoles(selected);
+    console.log(selectedRoles);
   };
 
   return (

@@ -145,3 +145,11 @@ BEGIN
  WHERE depa.depa_Id = @dept_Id
  END
  GO
+
+ CREATE OR ALTER PROCEDURE acce.UDP_tbPantallas_Select
+ AS
+ BEGIN
+ SELECT * FROM acce.VW_tbPantallas
+ WHERE	pant_Estado = 1
+ END
+ GO

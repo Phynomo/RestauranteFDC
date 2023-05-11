@@ -110,6 +110,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[acce].[VW_tbPantallas]",
+         "ObjectType": 3
+      },
+      {
          "Name": "[acce].[VW_tbRoles]",
          "ObjectType": 3
       },
@@ -178,7 +182,7 @@
          "ObjectType": 3
       }
    ],
-   "UiHint": "DESKTOP-E6OAL4S\\SERVIDORLOCALDM.dbRestaurante",
+   "UiHint": "DESKTOP-9N0AU71\\SERVIDORLOCAL.dbRestaurante",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,
