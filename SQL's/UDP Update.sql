@@ -6,7 +6,7 @@ CREATE OR ALTER PROCEDURE acce.UDP_tbUsuarios_Update
 	@user_EsAdmin BIT,
 	@role_Id INT,
 	@empe_Id int,
-	@usuModificacion int
+	@user_UsuModificacion int
 AS
 BEGIN
 	BEGIN TRY
@@ -24,7 +24,7 @@ BEGIN
 				  ,[user_Image] = @user_Image
 				  ,[user_EsAdmin] = @user_EsAdmin
 				  ,[role_Id] = @role_Id
-				  ,[user_UsuModificacion] = @usuModificacion
+				  ,[user_UsuModificacion] = @user_UsuModificacion
 				  ,[user_FechaModificacion] = GETDATE()
 				  ,[user_Estado] = 1
 			 WHERE [user_Id] = @user_Id

@@ -6,19 +6,22 @@ import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
 import toastr from 'toastr';
 
 function Content() {
+    //traer Datos
+    const location = useLocation();
+    const datosAntes = location.state?.data ?? "";
+
     const apikey = '81a91816c209f6d64dfd56aa803647e5';
     //Imagen
     const [image, setImage] = useState(null);
     const fileInputRef = useRef(null);
 
     //datos del Usuario
-    const [userNombreUsuario, setUserNombreUsuario] = useState('');
-    const [userContraesña, setUserContraseña] = useState('');
-    const [userCorreo, setUserCorreo] = useState('');
-    const [empeId, setEmpeId] = useState('');
-    const [roleId, setRoleId] = useState('');
-    const [userImage, setUserImage] = useState('https://i.ibb.co/9GcKFNs/FDCNegro.png');
-    const [userEsAdmin, setUserEsAdmin] = useState(false);
+    const [userId, setUserId] = useState(datosAntes.user_Id);
+    const [userCorreo, setUserCorreo] = useState(datosAntes.user_Correo);
+    const [empeId, setEmpeId] = useState(datosAntes.empe_Id);
+    const [roleId, setRoleId] = useState(datosAntes.role_Id);
+    const [userImage, setUserImage] = useState(datosAntes.user_Image);
+    const [userEsAdmin, setUserEsAdmin] = useState(datosAntes.user_EsAdmin);
     const history = useHistory();
     const [validated, setValidated] = useState(false);
 
@@ -92,24 +95,22 @@ function Content() {
             setUserImage(data.data.url);
       
             const userData = {
-              user_NombreUsuario: userNombreUsuario,
-              user_Contrasena: userContraesña,
+              user_Id: userId,
               user_Correo: userCorreo,
               user_Image: data.data.url,
               user_EsAdmin: userEsAdmin,
               role_Id: roleId,
               empe_Id: empeId,
-              user_UsuCreacion: 1,
+              user_UsuModificacion: 1,
             };
       
-            await axios.post('api/Usuarios/Insertar', userData)
+            await axios.put('api/Usuarios/Editar', userData)
               .then(response => {
                 console.log(response);
                 if (response.data.message == "Exitoso") {
-                    alertSuccess("Creado", "El usuario se creo con exito", "2000");
+                    alertSuccess("Editado", "El usuario se edito con exito", "2000");
                     history.push("/usuarios");
                 }else if(response.data.message == "YaExiste") {
-                    setUserNombreUsuario("");
                     toastr.warning("Este usuario ya existe, inserte otro", "Usuario existente");
                   }else{
                     toastr.error("Ocurrio un error inespero", "Inespero");
@@ -124,24 +125,22 @@ function Content() {
           }
         } else {
           const userData = {
-            user_NombreUsuario: userNombreUsuario,
-            user_Contrasena: userContraesña,
+            user_Id: userId,
             user_Correo: userCorreo,
             user_Image: userImage,
             user_EsAdmin: userEsAdmin,
             role_Id: roleId,
             empe_Id: empeId,
-            user_UsuCreacion: 1,
+            user_UsuModificacion: 1,
           };
       
-          await axios.post('api/Usuarios/Insertar', userData)
+          await axios.put('api/Usuarios/Editar', userData)
             .then(response => {
               console.log(response);
               if (response.data.message == "Exitoso") {
-                alertSuccess("Creado", "El usuario se creo con exito", "2000");
+                alertSuccess("Editado", "El usuario se edito con exito", "2000");
                 history.push("/usuarios");
               }else if(response.data.message == "YaExiste") {
-                setUserNombreUsuario("");
                 toastr.warning("Este usuario ya existe, inserte otro", "Usuario existente");
               }else{
                 toastr.error("Ocurrio un error inespero", "Inespero");
@@ -183,38 +182,18 @@ function Content() {
 
     return (
         <div className="ms-content-wrapper">
-            <div className='container-fluid '>
+            <div className='container-fluid'>
                 <div className='' style={{height:"50px"}}></div>
                 <form onSubmit={handleSubmit} className={`needs-validation validation-fill ${validated ? 'was-validated' : ''}`} noValidate>
                     <div class="card mt-4">
                         <div class="card-body">
                             <div className='little-profilePhynomo text-center'>
-                                <div class="pro-imgPhynomo"> {image == null ? <img src="https://i.ibb.co/9GcKFNs/FDCNegro.png" alt="user" /> : <img src={image} alt="uploaded image" />}   </div>
+                                <div class="pro-imgPhynomo"> {image == null ? <img src={userImage} alt="user" /> : <img src={image} alt="uploaded image" />}   </div>
                                 <button className="btn btn-primary" type='button' onClick={() => fileInputRef.current.click()}>Seleccionar imagen</button>
                                 <input type="file" accept="image/*" ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageChange} />
                             </div>
 
                             <div className='row mt-3'>
-                                <div className='col-6'>
-                                    <div className="form-group">
-                                        <label>Usuario</label>
-                                        <div className="input-group">
-                                            <input type="text" className="form-control" id="validationCustom1" placeholder="Nombre del usuario" name="user_UsuarioNombre" value={userNombreUsuario} onChange={(event) => handleInputChange(event, setUserNombreUsuario)} required />
-                                            <div className="invalid-feedback">Ingresa el nombre del usuario</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='col-6'>
-                                    <div className="form-group">
-                                        <label>Contraseña</label>
-                                        <div className="input-group">
-                                            <input type="password" className="form-control" id="validationCustom2" placeholder="Contraseña del usuario" name="user_Contraseña" value={userContraesña} onChange={(event) => handleInputChange(event, setUserContraseña)} required />
-                                            <div className="invalid-feedback">Ingresa la contraseña del usuario</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='row'>
                                 <div className='col-6'>
                                     <div className="form-group">
                                         <label>Empleado</label>

@@ -8,7 +8,7 @@ import toastr from 'toastr';
 
 function Content() {
     const location = useLocation();
-    const myData = location.state.data;
+    const myData = location.state?.data ?? "";
     const [subtotal, setSubtotal] = useState(0);
     const [rows, setRows] = useState([]);
     const [clientes, setClientes] = useState([]);

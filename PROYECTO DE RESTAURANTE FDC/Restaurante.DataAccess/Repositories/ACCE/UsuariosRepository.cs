@@ -90,6 +90,7 @@ namespace Restaurante.DataAccess.Repositories.ACCE
             RequestStatus result = new RequestStatus();
 
             var parametros = new DynamicParameters();
+            parametros.Add("@user_Id", item.user_Id, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@user_Correo", item.user_Correo, DbType.String, ParameterDirection.Input);
             parametros.Add("@user_Image", item.user_Image, DbType.String, ParameterDirection.Input);
             parametros.Add("@user_EsAdmin", item.user_EsAdmin, DbType.Int32, ParameterDirection.Input);
