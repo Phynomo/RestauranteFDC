@@ -34,6 +34,17 @@ namespace Restaurante.DataAccess.Repositories.ACCE
 
             return db.Query<VW_tbPantallas>(ScriptsDataBase.UDP_Pantallas_List, null, commandType: CommandType.StoredProcedure);
         }
+        
+        public IEnumerable<VW_tbPantallas> ListporRol(int rol, int esAdmin)
+        {
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+
+            parametros.Add("@role_Id", rol, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@esAdmin", esAdmin, DbType.Int32, ParameterDirection.Input);
+
+            return db.Query<VW_tbPantallas>(ScriptsDataBase.UDP_Pantallas_ListporRoles, parametros, commandType: CommandType.StoredProcedure);
+        }
 
         public RequestStatus Update(tbPantallas item)
         {

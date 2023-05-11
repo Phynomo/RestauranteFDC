@@ -3,10 +3,31 @@ import { Link } from 'react-router-dom'
 import $ from 'jquery';
 import Scrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css';
+import axios from 'axios';
 
 import logo from '../../assets/img/costic/costic-logo-216x62.png';
 
 class Sidenavigation extends Component {
+    constructor(props, context) {
+        super(props, context);
+        this.handleFetchData = this.handleFetchData.bind(this);
+        this.state = {
+            pantallas: [],
+        };
+    }
+
+    handleFetchData() {
+        axios.get('api/Pantallas/PantallasPorRol?rol=1&esAdmin=1')
+            .then(response => {
+                this.setState({
+                    pantallas: response.data.data
+                });
+                console.log(response.data.data)
+            })
+            .catch(error => {
+                console.error('Error al cargar los departamentos:', error);
+            });
+    }
 
     removeoverlay = () => {
         $('.ms-body').toggleClass('ms-aside-left-open');
@@ -33,6 +54,8 @@ class Sidenavigation extends Component {
             });
         }
         setActiveMenuItem();
+
+        this.handleFetchData();
     }
     render() {
         return (
@@ -43,14 +66,14 @@ class Sidenavigation extends Component {
                     {/* Logo */}
                     <div className="logo-sn ">
                         <Link className="text-center" to="/">
-                            <img src='https://i.ibb.co/9GcKFNs/FDCNegro.png' style={{height:"75px"}} alt="logo" />
-                            <img src="https://i.ibb.co/fQ52ntR/FDC.png" alt="FDC" style={{height:"75px"}} border="3"></img>
+                            <img src='https://i.ibb.co/9GcKFNs/FDCNegro.png' style={{ height: "75px" }} alt="logo" />
+                            <img src="https://i.ibb.co/fQ52ntR/FDC.png" alt="FDC" style={{ height: "75px" }} border="3"></img>
                         </Link>
                     </div>
                     {/* Navigation */}
                     <ul className="accordion ms-main-aside fs-14" id="side-nav-accordion">
                         {/* Dashboard */}
-                        <li className="menu-item">
+                        {/* <li className="menu-item">
                             <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16" >dashboard</i>Dashboard </span>
                             </Link>
                             <ul id="dashboard" className="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">
@@ -85,7 +108,7 @@ class Sidenavigation extends Component {
                                 <li> <Link to="/municipios">Municipios</Link>
                                 </li>
                             </ul>
-                        </li>
+                        </li> */}
                         {/* /Dashboard */}
                         {/* product */}
                         {/* <li className="menu-item">
@@ -348,7 +371,57 @@ class Sidenavigation extends Component {
                         </li > */}
                         {/* /Apps */}
                         <li className="menu-item" >
-                            <Link to="/pruebas"> <span><i className="material-icons fs-16">format_paint</i>Pruebazzz</span>
+                            <Link to="/"> <span><i className="flaticon-diamond"></i>Home</span>
+                            </Link>
+                        </li>
+                        <li className="menu-item" >
+                            <Link to="#" className="has-chevron"> <span><i className="flaticon-gear"></i>General</span>
+                            </Link>
+                            <ul id="basic-elements" className="collapse" aria-labelledby="basic-elements" data-parent="#side-nav-accordion">
+                                {this.state.pantallas.map(pantalla =>
+                                    <li className="menu-item" >
+                                        <Link to={pantalla.pant_Url}> <span><i className="material-icons fs-16"></i>{pantalla.pant_Nombre}</span>
+                                        </Link>
+                                    </li>
+                                )}
+                            </ul >
+                        </li >
+                        <li className="menu-item" >
+                            <Link to="#" className="has-chevron"> <span><i className="flaticon-grid"></i>Restaurante</span>
+                            </Link>
+                            <ul id="basic-elements" className="collapse" aria-labelledby="basic-elements" data-parent="#side-nav-accordion">
+                                {this.state.pantallas.map(pantalla =>
+                                    <li className="menu-item" >
+                                        <Link to={pantalla.pant_Url}> <span><i className="material-icons fs-16"></i>{pantalla.pant_Nombre}</span>
+                                        </Link>
+                                    </li>
+                                )}
+                            </ul >
+                        </li >
+                        <li className="menu-item" >
+                            <Link to="#" className="has-chevron"> <span><i className="flaticon-security"></i>Seguridad</span>
+                            </Link>
+                            <ul id="basic-elements" className="collapse" aria-labelledby="basic-elements" data-parent="#side-nav-accordion">
+                                {this.state.pantallas.map(pantalla =>
+                                    <li className="menu-item" >
+                                        <Link to={pantalla.pant_Url}> <span><i className="material-icons fs-16"></i>{pantalla.pant_Nombre}</span>
+                                        </Link>
+                                    </li>
+                                )}
+                            </ul >
+                        </li >
+
+                        {/* 
+                        {this.state.pantallas.map(pantalla =>
+                        <li className="menu-item" >
+                            <Link to={pantalla.pant_Url}> <span><i className="material-icons fs-16"></i>{pantalla.pant_Nombre}</span>
+                            </Link>
+                        </li>
+                        )} */}
+
+
+                        <li className="menu-item" >
+                            <Link to="/pruebas"> <span><i className="flaticon-pdf"></i>Pruebazzz</span>
                             </Link>
                         </li>
                     </ul >

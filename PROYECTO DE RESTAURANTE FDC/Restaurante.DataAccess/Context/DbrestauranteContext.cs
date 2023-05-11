@@ -1679,7 +1679,7 @@ namespace Restaurante.DataAccess.Context
 
                 entity.ToTable("tbRoles", "acce");
 
-                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82EBB5BC126")
+                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82EB924DAC3")
                     .IsUnique();
 
                 entity.Property(e => e.role_Estado)

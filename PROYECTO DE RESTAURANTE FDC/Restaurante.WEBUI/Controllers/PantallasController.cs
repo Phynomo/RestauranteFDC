@@ -27,5 +27,12 @@ namespace Restaurante.WEBUI.Controllers
             var list = _seguridadServivce.ListadoPantallas();
             return Ok(list);
         }
+
+        [HttpGet("PantallasPorRol")]
+        public IActionResult PantallasXRol(int rol, int esAdmin)
+        {
+            var list = _seguridadServivce.ListadoPantallasPorRol(rol, esAdmin);
+            return Ok(list);
+        }
     }
 }

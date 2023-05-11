@@ -182,7 +182,7 @@
          "ObjectType": 3
       }
    ],
-   "UiHint": "DESKTOP-9N0AU71\\SERVIDORLOCAL.dbRestaurante",
+   "UiHint": "DESKTOP-E6OAL4S\\SERVIDORLOCALDM.dbRestaurante",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,

@@ -40,6 +40,20 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
                 return result.Error(e.Message);
             }
         }
+        
+        public ServiceResult ListadoPantallasPorRol(int rol, int esAdmin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _pantallasRepository.ListporRol(rol, esAdmin);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
         #endregion
 
         #region Usuarios

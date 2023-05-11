@@ -1,4 +1,4 @@
-s--Procedimientos Select
+--Procedimientos Select
 --Usuarios
 CREATE OR ALTER PROCEDURE acce.UDP_tbUsuarios_Select
 AS
@@ -162,5 +162,25 @@ BEGIN
  BEGIN
  SELECT * FROM acce.VW_tbPantallas
  WHERE	pant_Estado = 1
+ END
+ GO
+
+ 
+ CREATE OR ALTER PROCEDURE acce.UDP_tbPantallasPorRoles
+ @role_Id INT,
+ @esAdmin INT
+ AS
+ BEGIN
+
+ IF(@esAdmin = 1)
+ BEGIN
+ SELECT * FROM acce.VW_tbPantallas
+ WHERE	pant_Estado = 1
+ END 
+ ELSE 
+ BEGIN
+ SELECT * FROM acce.VW_tbPantallas
+ WHERE	pant_Estado = 1 AND pant_Id in (select pant_Id from acce.tbPantallasPorRoles where role_Id = @role_Id)
+ END
  END
  GO
