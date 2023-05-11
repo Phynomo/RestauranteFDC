@@ -114,7 +114,7 @@ CREATE OR ALTER PROCEDURE acce.UDP_tbusuarios_INSERT
  @user_Contrasena NVARCHAR(MAX),
  @user_Correo     NVARCHAR(200),
  @user_Image NVARCHAR(MAX),
- @user_EsAdmin BIT,
+ @user_EsAdmin INT,
  @role_Id INT,
  @empe_Id INT,
  @user_UsuCreacion INT

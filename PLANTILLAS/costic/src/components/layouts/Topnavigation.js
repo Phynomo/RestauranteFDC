@@ -122,7 +122,7 @@ class Topnavigation extends Component {
                     <li className="ms-nav-item ms-nav-user dropdown">
                         <Dropdown className="custom-dropdown">
                             <Dropdown.Toggle as={NavLink} id="userDropdown" className="p-0">
-                            <img className="ms-user-img ms-img-round" src={storedArray?.user_Image === null ? defautImage : storedArray?.user_Image} alt="people" />
+                            <img className="ms-user-img ms-img-round" src={storedArray?.user_Image === null ? defautImage : storedArray?.user_Image} alt="people"  />
                             </Dropdown.Toggle>
                             <Dropdown.Menu className="dropdown-menu dropdown-menu-right user-dropdown" aria-labelledby="userDropdown">
                                 <div className="dropdown-menu-header">

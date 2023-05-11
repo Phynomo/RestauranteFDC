@@ -850,8 +850,10 @@ html{
 }
 .ms-navbar li.ms-nav-item .ms-user-img{
   display: block;
-  max-width: 40px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
+  object-fit: cover;
 }
 .ms-navbar .ms-nav-list li.ms-nav-item:last-child{
   padding-right: 0;
@@ -7690,3 +7692,19 @@ background-image: none;
 .ms-form-wizard.style3-wizard ul[role="tablist"] li>a:before{
   display: none;
 }
+
+
+.pro-imgPhynomo {
+  margin-top: -100px;
+  margin-bottom: 0px;
+}
+
+.little-profilePhynomo .pro-imgPhynomo img {
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  border-radius: 100%;
+  border: 7px solid white;
+  object-fit: cover;
+  clip-path: circle(50%);
+  }
