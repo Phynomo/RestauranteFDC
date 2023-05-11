@@ -1,0 +1,6 @@
+instalar esto para las fechas:
+npm install @material-ui/core @date-io/date-fns date-fns
+
+npm install react-paginate
+
+

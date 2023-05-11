@@ -247,6 +247,17 @@ END
 GO
 
 
+--Ingredientes
+CREATE OR ALTER   PROCEDURE [rest].[UDP_tbIngredientes_Select]
+AS
+BEGIN
+SELECT * FROM rest.VW_tbIngredientes WHERE [ingr_Estado] = 1
+END
+GO
+
+
+
+
 CREATE OR ALTER PROCEDURE rest.UDP_IngredientesPlatillo
    @plat_Id INT,
    @ingr_Id INT,
@@ -260,4 +271,86 @@ BEGIN
 	VALUES(@plat_Id,@ingr_Id,@ingrplat_Gramos,@ingrplat_UsuCreacion)
 END
 GO
+
+
+
+
+
+
+---PENDIENTE PROBAR ////NO FUNCIONO XD
+
+[rest].[UDP_InsertarPlatillos] 'OOJ',20,2,'HSGFD',1, 1,50,2
+SELECT*FROM [rest].[tbPlatillos]
+SELECT*FROM [rest].[tbIngredientesXPlatillos]
+
+
+GO
+CREATE OR ALTER   PROCEDURE [rest].[UDP_InsertarPlatillos] 
+@plat_Nombre			NVARCHAR(200), --campos para la tbala rest.tbPlatillos
+@plat_Precio			DECIMAL(18,2),
+@cate_Id				INT,
+@plat_Imagen			NVARCHAR(MAX), 
+@plat_UsuCreacion		INT,
+
+ @ingr_Id				INT, ------ CAMPOS PARA LA TABLA INGREDIENTES POR PLATILLOS, PERO PUEDEN SER DIFERENTES PLATILLOS Y VARIOS
+ @ingrplat_Gramos		INT,
+ @cantidad   			INT
+AS
+BEGIN
+BEGIN TRY
+	IF NOT EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre )
+			BEGIN
+			DECLARE  @ingrplat_UsuCreacion INT;
+		    DECLARE @plat_Id INT;
+
+				INSERT INTO [rest].tbPlatillos
+					   (plat_Nombre	
+					   ,plat_Precio	
+					   ,cate_Id		
+					   ,plat_Imagen	
+					   ,plat_UsuCreacion	
+					   ,plat_FechaCreacion
+					   ,plat_UsuModificacion
+					   ,plat_FechaModificacion
+					   ,plat_Estado)
+				 VALUES
+						(@plat_Nombre	
+						,@plat_Precio	
+						,@cate_Id		
+						,@plat_Imagen	
+						,@plat_UsuCreacion
+						,GETDATE()
+						,NULL 
+						,NULL 
+						,1);
+			
+				SET @plat_Id = SCOPE_IDENTITY();
+		        SET @ingrplat_UsuCreacion = @plat_UsuCreacion;
+
+		INSERT INTO [rest].[tbIngredientesXPlatillos]([plat_Id],[ingr_Id],[ingrplat_Gramos],[ingrplat_UsuCreacion])
+        VALUES( @plat_Id, @ingr_Id, @ingrplat_Gramos, @ingrplat_UsuCreacion );
+
+		DECLARE @contador INT = 1;
+		WHILE (@contador < @cantidad)
+		BEGIN
+			SET @ingrplat_UsuCreacion = @plat_UsuCreacion;
+			INSERT INTO [rest].[tbIngredientesXPlatillos]([plat_Id],[ingr_Id],[ingrplat_Gramos],[ingrplat_UsuCreacion])
+			VALUES( @plat_Id, @ingr_Id, @ingrplat_Gramos, @ingrplat_UsuCreacion );
+			SET @contador = @contador + 1;
+		END;
+
+		SELECT 1 as Proceso
+	END
+	ELSE IF EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre )
+	
+	SELECT -2 as Proceso
+	
+END TRY
+BEGIN CATCH
+	SELECT 0 as Proceso
+END CATCH
+END
+GO
+
+
 

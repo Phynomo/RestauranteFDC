@@ -60,6 +60,7 @@
     "react-jquery-datatables": "^1.0.0",
     "react-jqueryui-datepicker": "^1.0.3",
     "react-jvectormap": "0.0.16",
+    "react-paginate": "^8.2.0",
     "react-perfect-scrollbar": "^1.5.8",
     "react-responsive-modal": "^5.2.6",
     "react-route": "^1.0.3",
