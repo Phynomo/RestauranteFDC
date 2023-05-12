@@ -78,6 +78,7 @@ import FacturaCreate from './components/pages/Factura/FacturaCreate';
 import FacturaEdit from './components/pages/Factura/FacturaEdit';
 import FacturaDetails from './components/pages/Factura/FacturaDetails';
 import Clientes from './components/pages/Clientes';
+import Proveedores from './components/pages/Proveedores/Proveedores';
 import Usuarios from './components/pages/Usuarios/Usuario';
 import UsuariosCreate from './components/pages/Usuarios/UsuariosCreate';
 import UsuariosEdit from './components/pages/Usuarios/UsuariosEdit';
@@ -109,6 +110,7 @@ function App() {
         <Route path="/default-login" component={Defaultlogin} />
         <PrivateRoute  exact path="/" component={Dashboard} />
         <Route path="/pruebas" component={Pruebas} />
+        <Route path="/proveedores" component={Proveedores} />
         <Route path="/usuarios" component={Usuarios} />
         <Route path="/usuarios_create" component={UsuariosCreate} />
         <Route path="/usuarios_edit" component={UsuariosEdit} />
