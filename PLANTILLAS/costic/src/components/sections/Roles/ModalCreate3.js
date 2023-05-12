@@ -6,7 +6,6 @@ import toastr from 'toastr';
 import axios from 'axios';
 import DualListBox from 'react-dual-listbox';
 import 'react-dual-listbox/lib/react-dual-listbox.css';
-import Duallist from './duallist.js';
 
 
 class ModalCreate3 extends Component {
@@ -99,7 +98,7 @@ class ModalCreate3 extends Component {
                                 </div>
                             </div>
                             <div className="ms-content-wrapper">
-                                <Duallist></Duallist>
+                                {/* <Duallist></Duallist> */}
                             </div>
                         </Modal.Body>
                         <Modal.Footer>

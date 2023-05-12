@@ -18,12 +18,14 @@ class ModalsPut3 extends Component {
         this.state = {
             show: false,
             role_Nombre: this.props.data ? this.props.data.role_Nombre : '',
+            role_Id: this.props.data ? this.props.data.role_Id : '',
             validated: false,
         };
     }
 
     handleEdit() {
-        this.setState({ Edit: true });
+
+
     }
 
     handleDelete() {
@@ -118,7 +120,8 @@ handleInputChange(event) {
         return (
             <div>
                 {/* <button onClick={this.handleCreate} className='btn btn-primary btn-pill'>Nuevo registro</button> */}
-                <a style={{ margin: "5px" }} onClick={this.handleEdit}><i class='fas fa-pencil-alt text-secondary'></i></a>
+                <Link to={`/editarRoles/${this.state.role_Id}`} style={{ margin: "5px" }}><i className='fas fa-pencil-alt text-secondary'></i></Link>
+                {/* <a style={{ margin: "5px" }} onClick={this.handleEdit}><i class='fas fa-pencil-alt text-secondary'></i></a> */}
                 <a style={{ margin: "5px" }} onClick={this.handleDelete}><i class='far fa-trash-alt ms-text-danger'></i></a>
                 
                 <Modal show={this.state.Edit} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
@@ -143,20 +146,7 @@ handleInputChange(event) {
                         </Modal.Footer>
                     </form>
                 </Modal>
-                <Modal show={this.state.Delete} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
-                    centered>
-                    <Modal.Header className="bg-primary">
-                        <h3 className="modal-title has-icon ms-icon-round  text-white"><i className="flaticon-alert-1 bg-primary text-white" />¿Estas seguro?</h3>
-                        <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
-                    </Modal.Header>
-                    <Modal.Body className='text-center'>
-                        <h5>No podras recuperar este registro si lo eliminas</h5>
-                    </Modal.Body>
-                    <Modal.Footer className='d-flex justify-content-center'> 
-                        <button type="button" className="btn btn-light btn-sm" onClick={this.handleClose}>Cancelar</button>
-                        <button type="button" className="btn btn-primary shadow-none btn-sm" onClick={this.handleSubmitDelete}>Eliminar</button>
-                    </Modal.Footer>
-                </Modal>
+               
             </div>
         );
     }
