@@ -160,32 +160,33 @@ function App() {
 
   function canAccessPage(pageId) {
     return pantId.includes(pageId);
+    
   }
   return (
     <Router basename={'/themes/themeforest/react/costic/'}>
       <Preloader />
       <Switch>
-        <PrivateRoute path="/usuarios_create" component={UsuariosCreate} />
-        <PrivateRoute path="/usuarios_edit" component={UsuariosEdit} />
-        <PrivateRoute path="/usuarios_details" component={UsuariosDetails} />
-        <PrivateRoute path="/factura_create" component={FacturaCreate} />
-        <PrivateRoute path="/factura_edit" component={FacturaEdit} />
-        <PrivateRoute path="/factura_details" component={FacturaDetails} />
-        <PrivateRoute path="/crearCliente" component={CrearCliente} />
-        <PrivateRoute path="/crearRoles" component={CrearRoles} />
-        <PrivateRoute path="/editarCliente/:clie_Id" component={EditarCliente} />
-        <PrivateRoute path="/crearEmpleado" component={CrearEmpleado} />
-        <PrivateRoute path="/editarEmpleado/:empe_Id" component={EditarEmpleado} />
-        <PrivateRoute path="/pruebas" component={Pruebas} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/usuarios_create" component={UsuariosCreate} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/usuarios_edit" component={UsuariosEdit} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/usuarios_details" component={UsuariosDetails} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/factura_create" component={FacturaCreate} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/factura_edit" component={FacturaEdit} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/factura_details" component={FacturaDetails} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/crearCliente" component={CrearCliente} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/crearRoles" component={CrearRoles} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/editarCliente/:clie_Id" component={EditarCliente} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/crearEmpleado" component={CrearEmpleado} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/editarEmpleado/:empe_Id" component={EditarEmpleado} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/pruebas" component={Pruebas} />
         {rutas.map((ruta) =>
           canAccessPage(ruta.pant_Id) ? (
-            <PrivateRoute key={ruta.pant_Id} path={ruta.pant_Url} component={ruta.component} />
+            <PrivateRoute key={ruta.pant_Id} path={ruta.pant_Url} pantId={ruta.pant_Id} permitidas={pantId} component={ruta.component} />
           ) : (
             <Redirect key={ruta.pant_Id} to="/" />
           )
         )}
         <Route path="/default-login" component={Defaultlogin} />
-        <PrivateRoute key="home" exact path="/" component={Dashboard} />
+        <Route key="home" exact path="/" component={Dashboard} />
         {/* <Route path="/pruebas" component={Pruebas} />
         <Route path="/proveedores" component={Proveedores} />
         <Route path="/usuarios" component={Usuarios} />
@@ -283,17 +284,17 @@ function App() {
   );
 }
 
-function PrivateRoute({ component: Component, ...rest }) {
+function PrivateRoute({ permitidas:pant_per, pantId: pant_Id,component: Component, ...rest }) {
   const isAuthenticated = localStorage.getItem('token');
-
+  const pude = pant_per.includes(pant_Id);
   return (
     <Route
       {...rest}
       render={(props) =>
-        isAuthenticated ? (
+        isAuthenticated && pude? (
           <Component {...props} />
         ) : (
-          <Redirect to="/default-login" />
+          !isAuthenticated ? <Redirect to="/default-login" /> : <Redirect to="/" />
         )
       }
     />
