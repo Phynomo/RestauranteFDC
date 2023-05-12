@@ -26,7 +26,7 @@ class Sidenavigation extends Component {
           return;
         }
         
-        axios.get(`api/Pantallas/PantallasPorRol?rol=${JSON.parse(localStorage.getItem('token')).role_Id}&esAdmin=${JSON.parse(localStorage.getItem('token')).esAdmin ? 1 : 0}`)
+        axios.get(`api/Pantallas/PantallasPorRol?rol=1&esAdmin=1`)
           .then(response => {
                 const responseData = response.data.data;
 

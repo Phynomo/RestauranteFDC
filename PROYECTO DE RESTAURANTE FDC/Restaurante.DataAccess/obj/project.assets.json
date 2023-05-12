@@ -6610,11 +6610,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\LAB01\\Documents\\GitHub\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj",
       "projectName": "Restaurante.DataAccess",
-      "projectPath": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj",
+      "projectPath": "C:\\Users\\LAB01\\Documents\\GitHub\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\Restaurante.DataAccess.csproj",
       "packagesPath": "C:\\Users\\LAB01\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\obj\\",
+      "outputPath": "C:\\Users\\LAB01\\Documents\\GitHub\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LAB01\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6631,8 +6631,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj": {
-              "projectPath": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj"
+            "C:\\Users\\LAB01\\Documents\\GitHub\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj": {
+              "projectPath": "C:\\Users\\LAB01\\Documents\\GitHub\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.Entities\\Restaurante.Entities.csproj"
             }
           }
         }

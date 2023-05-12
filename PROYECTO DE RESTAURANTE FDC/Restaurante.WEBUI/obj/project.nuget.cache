@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NtfrKVS1isamdmtJ6kLXiigVesNvBqGlfglzRCnhL/4ZuxMxxOJRDME4r7UHNfcx63SXEPw71y0JET9tLz4F+A==",
+  "dgSpecHash": "syXeSnQMF+Fy7s9pf77Ndb2Ze7zZ6QuLni55blaP6H0TrVz4HTHD0SroFHvCUFzIaHdlac47LpheJFXQSjklmg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LAB01\\Desktop\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.WEBUI\\Restaurante.WEBUI.csproj",
+  "projectFilePath": "C:\\Users\\LAB01\\Documents\\GitHub\\RestauranteFDC\\PROYECTO DE RESTAURANTE FDC\\Restaurante.WEBUI\\Restaurante.WEBUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAB01\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\LAB01\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
