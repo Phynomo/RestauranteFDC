@@ -120,7 +120,11 @@ namespace Restaurante.DataAccess
         public static string InsertarPlatillos = "rest.UDP_InsertarPlatillos";
         public static string UDP_Platillos_Delete = "rest.UDP_tbPlatillos_Delete";
         #endregion
-        
+
+        #region Ingredientes Por PLatillos
+        public static string MostarIngredientesXplatillo = "rest.UDP_MostrarIngredientesXPlato";
+        #endregion
+
         #region Proveedores
 
         public static string UDP_Proveedores_List = "rest.UDP_tbProveedores_Select";

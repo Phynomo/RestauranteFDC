@@ -4,3 +4,5 @@ npm install @material-ui/core @date-io/date-fns date-fns
 npm install react-paginate
 
 
+Poner el [NotMapped] al campo (alias) que puse que retorne al insertar el platillo para poder usarlo en la pnatlla
+

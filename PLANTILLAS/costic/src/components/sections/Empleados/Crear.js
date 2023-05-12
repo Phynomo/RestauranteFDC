@@ -40,22 +40,8 @@ const Crear = () => {
   const [validationErrors, setValidationErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  //...........................
-  /*const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const fechaFormateada = selectedDate.toISOString().slice(0, 10);
-  console.log(fechaFormateada); // '2005-02-01'*/
-
-
   const [selectedDate, setSelectedDate] = useState(new Date());
-  /*const fechaFormateada = selectedDate.toISOString().slice(0, 10);
- console.log(fechaFormateada); // '2005-02-01'
-  console.log(selectedDate);*/
-  /*const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };*/
 
   console.log(selectedDate);
 
@@ -235,27 +221,24 @@ const Crear = () => {
                   />
                  </div>
 
+                  <div className="col-md-6">
+                  <br />
+                  <label htmlFor="Identidad" className="form-label">
+                      Fecha de Nacimiento:
+                  </label>
+                <input
+                  type="date"
+                  name="selectedDate"
+                  id="selectedDate"
+                  value={selectedDate}
+                  onChange={(event) => {
+                    setSelectedDate(event.target.value);
+                  }}
+                  className="form-control"
+                />
+                  </div>
 
-
-
-                        <div className="col-md-6">
-                        <br />
-                        <label htmlFor="Identidad" className="form-label">
-                            Fecha de Nacimiento:
-                        </label>
-                      <input
-                        type="date"
-                        name="selectedDate"
-                        id="selectedDate"
-                        value={selectedDate}
-                        onChange={(event) => {
-                          setSelectedDate(event.target.value);
-                        }}
-                        className="form-control"
-                      />
-                        </div>
-
-                        <div className="col-md-6">
+                  <div className="col-md-6">
                     <br></br>
                  <label htmlFor="sexo" className="form-label">
                     Sexo:

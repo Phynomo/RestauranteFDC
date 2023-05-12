@@ -199,50 +199,49 @@ rest.UDP_DetallesCliente 1
 
 --------------------------- ACTUALIZADO -------------------------------------------------
 GO
-CREATE OR ALTER   PROCEDURE [rest].[UDP_InsertarPlatillos] 
-@plat_Nombre			NVARCHAR(200), --campos para la tbala rest.tbPlatillos
-@plat_Precio			DECIMAL(18,2),
-@cate_Id				INT,
-@plat_Imagen			NVARCHAR(MAX), 
-@plat_UsuCreacion		INT
+CREATE OR ALTER PROCEDURE [rest].[UDP_InsertarPlatillos] 
+@plat_Nombre         NVARCHAR(200), --campos para la tabla rest.tbPlatillos
+@plat_Precio         DECIMAL(18,2),
+@cate_Id             INT,
+@plat_Imagen         NVARCHAR(MAX), 
+@plat_UsuCreacion    INT
 AS
 BEGIN
 BEGIN TRY
-	IF NOT EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre )
-			BEGIN
-		
+    IF NOT EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre )
+        BEGIN
 
-				INSERT INTO [rest].tbPlatillos
-					   (plat_Nombre	
-					   ,plat_Precio	
-					   ,cate_Id		
-					   ,plat_Imagen	
-					   ,plat_UsuCreacion	
-					   ,plat_FechaCreacion
-					   ,plat_UsuModificacion
-					   ,plat_FechaModificacion
-					   ,plat_Estado)
-				 VALUES
-						(@plat_Nombre	
-						,@plat_Precio	
-						,@cate_Id		
-						,@plat_Imagen	
-						,@plat_UsuCreacion
-						,GETDATE()
-						,NULL 
-						,NULL 
-						,1);
+            INSERT INTO [rest].tbPlatillos
+                   (plat_Nombre    
+                   ,plat_Precio    
+                   ,cate_Id        
+                   ,plat_Imagen    
+                   ,plat_UsuCreacion    
+                   ,plat_FechaCreacion
+                   ,plat_UsuModificacion
+                   ,plat_FechaModificacion
+                   ,plat_Estado)
+             VALUES
+                    (@plat_Nombre   
+                    ,@plat_Precio   
+                    ,@cate_Id       
+                    ,@plat_Imagen   
+                    ,@plat_UsuCreacion
+                    ,GETDATE()
+                    ,NULL 
+                    ,NULL 
+                    ,1);
 
-		SELECT 1 as Proceso
-		END
-		ELSE IF EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre )
-		
-		SELECT -2 as Proceso
-		
-	END TRY
-	BEGIN CATCH
-		SELECT 0 as Proceso
-	END CATCH
+            SELECT SCOPE_IDENTITY() as Proceso
+        END
+        ELSE IF EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre )
+        
+        SELECT -2 as Proceso
+        
+    END TRY
+    BEGIN CATCH
+        SELECT 0 as Proceso
+    END CATCH
 END
 GO
 
@@ -256,101 +255,89 @@ END
 GO
 
 
-
+-- INSERTAR INGREDIENTES DEL PLATILLO
 
 CREATE OR ALTER PROCEDURE rest.UDP_IngredientesPlatillo
-   @plat_Id INT,
-   @ingr_Id INT,
-   @ingrplat_Gramos INT,
-   @ingrplat_UsuCreacion INT
+   @plat_Id					INT,
+   @ingr_Id					INT,
+   @ingrplat_Gramos			INT,
+   @ingrplat_UsuCreacion	INT,
+   @cantidadGramos			INT
 
-AS
-BEGIN
-
-	INSERT INTO [rest].[tbIngredientesXPlatillos]([plat_Id],[ingr_Id],[ingrplat_Gramos],[ingrplat_FechaCreacion])
-	VALUES(@plat_Id,@ingr_Id,@ingrplat_Gramos,@ingrplat_UsuCreacion)
-END
-GO
-
-
-
-
-
-
----PENDIENTE PROBAR ////NO FUNCIONO XD
-
-[rest].[UDP_InsertarPlatillos] 'OOJ',20,2,'HSGFD',1, 1,50,2
-SELECT*FROM [rest].[tbPlatillos]
-SELECT*FROM [rest].[tbIngredientesXPlatillos]
-
-
-GO
-CREATE OR ALTER   PROCEDURE [rest].[UDP_InsertarPlatillos] 
-@plat_Nombre			NVARCHAR(200), --campos para la tbala rest.tbPlatillos
-@plat_Precio			DECIMAL(18,2),
-@cate_Id				INT,
-@plat_Imagen			NVARCHAR(MAX), 
-@plat_UsuCreacion		INT,
-
- @ingr_Id				INT, ------ CAMPOS PARA LA TABLA INGREDIENTES POR PLATILLOS, PERO PUEDEN SER DIFERENTES PLATILLOS Y VARIOS
- @ingrplat_Gramos		INT,
- @cantidad   			INT
 AS
 BEGIN
 BEGIN TRY
-	IF NOT EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre )
-			BEGIN
-			DECLARE  @ingrplat_UsuCreacion INT;
-		    DECLARE @plat_Id INT;
+ 
+	INSERT INTO [rest].[tbIngredientesXPlatillos]([plat_Id],[ingr_Id],[ingrplat_Gramos],[ingrplat_FechaCreacion])
+	VALUES(@plat_Id,@ingr_Id,@ingrplat_Gramos,@ingrplat_UsuCreacion)
 
-				INSERT INTO [rest].tbPlatillos
-					   (plat_Nombre	
-					   ,plat_Precio	
-					   ,cate_Id		
-					   ,plat_Imagen	
-					   ,plat_UsuCreacion	
-					   ,plat_FechaCreacion
-					   ,plat_UsuModificacion
-					   ,plat_FechaModificacion
-					   ,plat_Estado)
-				 VALUES
-						(@plat_Nombre	
-						,@plat_Precio	
-						,@cate_Id		
-						,@plat_Imagen	
-						,@plat_UsuCreacion
-						,GETDATE()
-						,NULL 
-						,NULL 
-						,1);
-			
-				SET @plat_Id = SCOPE_IDENTITY();
-		        SET @ingrplat_UsuCreacion = @plat_UsuCreacion;
-
-		INSERT INTO [rest].[tbIngredientesXPlatillos]([plat_Id],[ingr_Id],[ingrplat_Gramos],[ingrplat_UsuCreacion])
-        VALUES( @plat_Id, @ingr_Id, @ingrplat_Gramos, @ingrplat_UsuCreacion );
-
-		DECLARE @contador INT = 1;
-		WHILE (@contador < @cantidad)
-		BEGIN
-			SET @ingrplat_UsuCreacion = @plat_UsuCreacion;
-			INSERT INTO [rest].[tbIngredientesXPlatillos]([plat_Id],[ingr_Id],[ingrplat_Gramos],[ingrplat_UsuCreacion])
-			VALUES( @plat_Id, @ingr_Id, @ingrplat_Gramos, @ingrplat_UsuCreacion );
-			SET @contador = @contador + 1;
-		END;
-
-		SELECT 1 as Proceso
-	END
-	ELSE IF EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre )
-	
-	SELECT -2 as Proceso
-	
 END TRY
 BEGIN CATCH
-	SELECT 0 as Proceso
+
 END CATCH
 END
 GO
+
+
+
+--- VISTA INGREDIENTES X PLATILLOS
+CREATE OR ALTER   VIEW rest.VW_IngredientesXPlatillo
+AS
+SELECT [ingrplat_Id], 
+		pla.[plat_Id],
+		plat.plat_Nombre,
+		pla.[ingr_Id],
+		ing.ingr_Nombre,
+		[ingrplat_Gramos],
+		[ingrplat_FechaCreacion],
+		[ingrplat_UsuCreacion],
+		usu.user_NombreUsuario AS user_NombreUsuCreacion,
+		[ingrplat_FechaModificacion], 
+		[ingrplat_UsuModificacion],
+		usua.user_NombreUsuario AS user_NombreUsuModificacion,
+		[ingrplat_Estado] 
+		FROM [rest].[tbIngredientesXPlatillos] pla
+INNER JOIN [rest].[tbIngredientes] ing ON pla.ingr_Id = ing.ingr_Id
+INNER JOIN [rest].[tbPlatillos] plat ON plat.plat_Id = pla.plat_Id
+INNER JOIN [acce].[tbUsuarios] usu ON usu.user_Id = pla.ingrplat_UsuCreacion
+LEFT JOIN  [acce].[tbUsuarios] usua ON usua.user_Id = pla.ingrplat_UsuModificacion
+GO
+
+--SELECT*FROM [rest].[VW_IngredientesXPlatillo]
+
+
+--- MOSTRAR INGREDIENTES POR PLATILLOS (PROBAR)
+
+CREATE OR ALTER PROCEDURE rest.UDP_MostrarIngredientesXPlato
+@plat_Id	INT
+AS
+BEGIN
+	SELECT*FROM [rest].[VW_IngredientesXPlatillo] WHERE [plat_Id] = @plat_Id
+
+END
+GO
+--rest.UDP_MostrarIngredientesXPlato 27
+
+
+
+select*from rest.tbPlatillos
+
+
+---UDP PARA QUE EDITE  
+GO
+CREATE OR ALTER PROCEDURE rest.UDP_EditarCreatePlatillo
+@plat_Id			 INT,
+@plat_Nombre         NVARCHAR(200), 
+@cate_Id             INT,
+@plat_Imagen         NVARCHAR(MAX)
+AS
+BEGIN
+	UPDATE [rest].[tbPlatillos] SET [plat_Nombre] = @plat_Nombre, [cate_Id] = @cate_Id, [plat_Imagen] = @plat_Imagen
+	WHERE [plat_Id] = @plat_Id
+END
+GO
+
+
 
 
 

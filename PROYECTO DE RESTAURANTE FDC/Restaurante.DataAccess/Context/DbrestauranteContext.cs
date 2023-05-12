@@ -19,6 +19,7 @@ namespace Restaurante.DataAccess.Context
         {
         }
 
+        public virtual DbSet<VW_IngredientesXPlatillo> VW_IngredientesXPlatillo { get; set; }
         public virtual DbSet<VW_tbCargos> VW_tbCargos { get; set; }
         public virtual DbSet<VW_tbCategorias> VW_tbCategorias { get; set; }
         public virtual DbSet<VW_tbClientes> VW_tbClientes { get; set; }
@@ -63,7 +64,32 @@ namespace Restaurante.DataAccess.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
+            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<VW_IngredientesXPlatillo>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("VW_IngredientesXPlatillo", "rest");
+
+                entity.Property(e => e.ingr_Nombre)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.ingrplat_FechaCreacion).HasColumnType("datetime");
+
+                entity.Property(e => e.ingrplat_FechaModificacion).HasColumnType("datetime");
+
+                entity.Property(e => e.plat_Nombre)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.user_NombreUsuCreacion)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.user_NombreUsuModificacion).HasMaxLength(100);
+            });
 
             modelBuilder.Entity<VW_tbCargos>(entity =>
             {
@@ -755,6 +781,8 @@ namespace Restaurante.DataAccess.Context
 
                 entity.Property(e => e.user_Contrasena).IsRequired();
 
+                entity.Property(e => e.user_Correo).HasMaxLength(200);
+
                 entity.Property(e => e.user_FechaCreacion).HasColumnType("datetime");
 
                 entity.Property(e => e.user_FechaModificacion).HasColumnType("datetime");
@@ -1181,9 +1209,12 @@ namespace Restaurante.DataAccess.Context
 
             modelBuilder.Entity<tbIngredientesHistorial>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.ingr_Id)
+                    .HasName("PK_rest_tbIngredientesHistorial_ingr_Id");
 
                 entity.ToTable("tbIngredientesHistorial", "rest");
+
+                entity.Property(e => e.ingr_Id).ValueGeneratedNever();
 
                 entity.Property(e => e.ingr_Estado)
                     .IsRequired()
@@ -1484,9 +1515,12 @@ namespace Restaurante.DataAccess.Context
 
             modelBuilder.Entity<tbPlatillosHistorial>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.plat_Id)
+                    .HasName("PK_rest_tbPlatillosHistorial_plat_Id");
 
                 entity.ToTable("tbPlatillosHistorial", "rest");
+
+                entity.Property(e => e.plat_Id).ValueGeneratedNever();
 
                 entity.Property(e => e.plat_FechaCreacion).HasColumnType("datetime");
 
@@ -1502,7 +1536,7 @@ namespace Restaurante.DataAccess.Context
             modelBuilder.Entity<tbPlatillosHistorial2>(entity =>
             {
                 entity.HasKey(e => e.plat_Id)
-                    .HasName("PK_rest_tbPlatillosHistorial_plat_Id");
+                    .HasName("PK_rest_tbPlatillosHistorial2_plat_Id");
 
                 entity.ToTable("tbPlatillosHistorial2", "rest");
 
@@ -1528,18 +1562,18 @@ namespace Restaurante.DataAccess.Context
                     .WithMany(p => p.tbPlatillosHistorial2)
                     .HasForeignKey(d => d.cate_Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_rest_tbPlatillosHistorial_tbCategorias_cate_Id");
+                    .HasConstraintName("FK_rest_tbPlatillosHistorial2_tbCategorias_cate_Id");
 
                 entity.HasOne(d => d.plat_UsuarioCreacionNavigation)
                     .WithMany(p => p.tbPlatillosHistorial2plat_UsuarioCreacionNavigation)
                     .HasForeignKey(d => d.plat_UsuarioCreacion)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_rest_tbPlatillosHistorial_acce_tbUsuarios_role_UsuCreacion_user_Id");
+                    .HasConstraintName("FK_rest_tbPlatillosHistorial2_acce_tbUsuarios_role_UsuCreacion_user_Id");
 
                 entity.HasOne(d => d.plat_UsuarioModificacionNavigation)
                     .WithMany(p => p.tbPlatillosHistorial2plat_UsuarioModificacionNavigation)
                     .HasForeignKey(d => d.plat_UsuarioModificacion)
-                    .HasConstraintName("FK_rest_tbPlatillosHistorial_acce_tbUsuarios_role_UsuModificacion_user_Id");
+                    .HasConstraintName("FK_rest_tbPlatillosHistorial2_acce_tbUsuarios_role_UsuModificacion_user_Id");
             });
 
             modelBuilder.Entity<tbProveedores>(entity =>
@@ -1643,7 +1677,7 @@ namespace Restaurante.DataAccess.Context
 
                 entity.ToTable("tbRoles", "acce");
 
-                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82ED43FE55B")
+                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82ED041A677")
                     .IsUnique();
 
                 entity.Property(e => e.role_Estado)
@@ -1721,6 +1755,8 @@ namespace Restaurante.DataAccess.Context
                 entity.ToTable("tbUsuarios", "acce");
 
                 entity.Property(e => e.user_Contrasena).IsRequired();
+
+                entity.Property(e => e.user_Correo).HasMaxLength(200);
 
                 entity.Property(e => e.user_Estado)
                     .IsRequired()

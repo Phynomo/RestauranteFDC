@@ -54,5 +54,12 @@ namespace Restaurante.WEBUI.Controllers
             var result = _restauranteServicio.EliminarIngredientes(item);
             return Ok(result);
         }
+
+        [HttpGet("IngredientesXplatillos")]
+        public IActionResult IngredientesPlatillos(int id)
+        {
+            var list = _restauranteServicio.IngredientesXplatillo(id);
+            return Ok(list);
+        }
     }
 }

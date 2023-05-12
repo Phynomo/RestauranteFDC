@@ -28,7 +28,7 @@ const columns = [
    },
 ];
 
-const DataTable = () => {
+  const DataTable = () => {
   const [searchText, setSearchText] = useState('');
   const [rows, setRows] = useState([]);
 

@@ -34,6 +34,7 @@ namespace Restaurante.BusinessLogic
             service.AddScoped<ProveedoresRepository>();
             service.AddScoped<ReservacionesRepository>();
             service.AddScoped<SucursalesRepository>();
+            service.AddScoped<IngredientesXPlatillos>();
             RestauranteCon.BuildConnectionString(connectionString);
         }
         public static void BusinessLogic(this IServiceCollection service)
@@ -41,6 +42,7 @@ namespace Restaurante.BusinessLogic
             service.AddScoped<AccesoService>();
             service.AddScoped<GeneralService>();
             service.AddScoped<RestauranteService>();
+           
         }
 
     }

@@ -56,5 +56,7 @@ namespace Restaurante.WEBUI.Controllers
             var result = _restauranteServicio.EliminarPlatillos(item);
             return Ok(result);
         }
+
+       
     }
 }

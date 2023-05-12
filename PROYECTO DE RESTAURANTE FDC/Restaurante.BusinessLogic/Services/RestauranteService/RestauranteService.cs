@@ -21,6 +21,7 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
         private readonly ProveedoresRepository _proveedoresRepository;
         private readonly ReservacionesRepository _reservacionesRepository;
         private readonly SucursalesRepository _sucursalesRepository;
+        private readonly IngredientesXPlatillos _ingredientesXPlatillos;
 
         public RestauranteService(ClienteRepository clienteRepository,
                                   EmpleadosRepository empleadosRepository,
@@ -29,7 +30,8 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
                                   PlatillosRepository platillosRepository,
                                   ProveedoresRepository proveedoresRepository,
                                   ReservacionesRepository reservacionesRepository,
-                                  SucursalesRepository sucursalesRepository
+                                  SucursalesRepository sucursalesRepository,
+                                  IngredientesXPlatillos ingredientesXPlatillos
             )
         {
             _clienteRepository = clienteRepository;
@@ -40,6 +42,7 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             _proveedoresRepository = proveedoresRepository;
             _reservacionesRepository = reservacionesRepository;
             _sucursalesRepository = sucursalesRepository;
+            _ingredientesXPlatillos = ingredientesXPlatillos;
         }
 
 
@@ -818,6 +821,23 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
+        #endregion
+
+        #region IngredientesXPlatillos
+
+        public ServiceResult IngredientesXplatillo(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _ingredientesXPlatillos.List(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
         #endregion
     }
 

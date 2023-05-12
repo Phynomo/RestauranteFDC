@@ -8,7 +8,7 @@ namespace Restaurante.Entities.Entities
 {
     public partial class tbIngredientesHistorial
     {
-        public int? ingr_Id { get; set; }
+        public int ingr_Id { get; set; }
         public string ingr_Nombre { get; set; }
         public decimal ingr_PrecioX100gr { get; set; }
         public int prov_Id { get; set; }
