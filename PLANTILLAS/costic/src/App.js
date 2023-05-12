@@ -172,6 +172,7 @@ function App() {
         <PrivateRoute path="/factura_edit" component={FacturaEdit} />
         <PrivateRoute path="/factura_details" component={FacturaDetails} />
         <PrivateRoute path="/crearCliente" component={CrearCliente} />
+        <PrivateRoute path="/crearRoles" component={CrearRoles} />
         <PrivateRoute path="/editarCliente/:clie_Id" component={EditarCliente} />
         <PrivateRoute path="/crearEmpleado" component={CrearEmpleado} />
         <PrivateRoute path="/editarEmpleado/:empe_Id" component={EditarEmpleado} />
