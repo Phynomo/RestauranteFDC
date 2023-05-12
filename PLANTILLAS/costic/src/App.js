@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {useHistory, Redirect,  BrowserRouter  as Router, Route, Switch } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useHistory, Redirect, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Preloader from './components/layouts/Preloader';
 import Dashboard from './components/pages/Dashboard';
 import Accordions from './components/pages/Accordions';
@@ -93,23 +93,98 @@ import CrearRoles from './components/sections/Roles/Crear';
 import Categorias from './components/pages/Categorias';
 import Municipios from './components/pages/Municipios';
 import Ingredientes from './components/pages/Ingredientes';
+import axios from 'axios';
 
 function App() {
   const history = useHistory();
+  const [userRole, setUserRole] = useState('');
+  const [rutas, setRutas] = useState([]);
+  const [pantId, setpantId] = useState([]);
+  const usuarioData = JSON.parse(localStorage.getItem('token'));
 
-  // useEffect(() => {
-  //   const isAuthenticated = localStorage.getItem('token');
-  //   if (!isAuthenticated) {
-  //     history.push('/default-login');
-  //   }
-  // }, [history]);
+  const components = {
+    'Roles': Roles,
+    'Usuario': Usuarios,
+    'Cargos': Cargos,
+    'Categorias': Categorias,
+    'Departamentos': Departamentos,
+    'EstadosCiviles': EstadosCiviles,
+    'MetodosPago': MetodosPago,
+    'Municipios': Municipios,
+    'Clientes': Clientes,
+    'Empleados': Empleados,
+    'Factura': Factura,
+    'Ingredientes': Ingredientes,
+    'Sucursales': Sucursales,
+  };
+
+  async function fetchPermissionsForRole(role, admin) {
+    try {
+      const response = await axios.get(`api/Pantallas/PantallasPorRol?rol=${role}&esAdmin=${admin}`, {});
+      const pantIds = response.data.data.map(objeto => objeto.pant_Id);
+      setpantId(pantIds);
+      return pantIds;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  }
+
+  async function fetchPantallas(role, admin) {
+    try {
+      const response = await axios.get(`api/Pantallas/PantallasPorRol?rol=${role}&esAdmin=${admin}`)
+      const routes = response.data.data.map((ruta) => {
+        return { ...ruta, component: components[ruta.pant_Nombre] };
+      });
+      setRutas(routes);
+      return response.data.data;
+    } catch (error) {
+      console.error(error);
+      return []; // Devuelve un arreglo por defecto si hay algún error
+    }
+  }
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('token');
+    if (!isAuthenticated) {
+      history.push('/default-login');
+    } else {
+      const role = usuarioData.role_Id;
+      const admin = usuarioData.user_EsAdmin ? 1 : 0;
+      fetchPantallas(role, admin);
+      fetchPermissionsForRole(role, admin);
+    }
+  }, [history]);
+
+
+  function canAccessPage(pageId) {
+    return pantId.includes(pageId);
+  }
   return (
     <Router basename={'/themes/themeforest/react/costic/'}>
       <Preloader />
       <Switch>
+        <PrivateRoute path="/usuarios_create" component={UsuariosCreate} />
+        <PrivateRoute path="/usuarios_edit" component={UsuariosEdit} />
+        <PrivateRoute path="/usuarios_details" component={UsuariosDetails} />
+        <PrivateRoute path="/factura_create" component={FacturaCreate} />
+        <PrivateRoute path="/factura_edit" component={FacturaEdit} />
+        <PrivateRoute path="/factura_details" component={FacturaDetails} />
+        <PrivateRoute path="/crearCliente" component={CrearCliente} />
+        <PrivateRoute path="/editarCliente/:clie_Id" component={EditarCliente} />
+        <PrivateRoute path="/crearEmpleado" component={CrearEmpleado} />
+        <PrivateRoute path="/editarEmpleado/:empe_Id" component={EditarEmpleado} />
+        <PrivateRoute path="/pruebas" component={Pruebas} />
+        {rutas.map((ruta) =>
+          canAccessPage(ruta.pant_Id) ? (
+            <PrivateRoute key={ruta.pant_Id} path={ruta.pant_Url} component={ruta.component} />
+          ) : (
+            <Redirect key={ruta.pant_Id} to="/" />
+          )
+        )}
         <Route path="/default-login" component={Defaultlogin} />
-        <PrivateRoute  exact path="/" component={Dashboard} />
-        <Route path="/pruebas" component={Pruebas} />
+        <PrivateRoute key="home" exact path="/" component={Dashboard} />
+        {/* <Route path="/pruebas" component={Pruebas} />
         <Route path="/proveedores" component={Proveedores} />
         <Route path="/usuarios" component={Usuarios} />
         <Route path="/usuarios_create" component={UsuariosCreate} />
@@ -198,7 +273,7 @@ function App() {
         <Route path="/portfolio" component={Portfolio} />
         <Route path="/stock-management" component={Stockmanagement} />
         <Route path="/user-profile" component={Userprofile} />
-        <Route path="/web-analytics" component={Webanalytics} />
+        <Route path="/web-analytics" component={Webanalytics} /> */}
       </Switch>
     </Router>
 

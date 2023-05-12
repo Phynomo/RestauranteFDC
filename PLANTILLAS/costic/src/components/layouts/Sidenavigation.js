@@ -16,12 +16,18 @@ class Sidenavigation extends Component {
             seguridad: false,
             restaurante: false,
             general: false,
+            usuarioData : JSON.parse(localStorage.getItem('token')),
         };
     }
 
     handleFetchData() {
-        axios.get('api/Pantallas/PantallasPorRol?rol=1&esAdmin=0')
-            .then(response => {
+        if (!JSON.parse(localStorage.getItem('token'))) {
+            console.log("se queda aca",JSON.parse(localStorage.getItem('token')).role_Id);
+          return;
+        }
+        
+        axios.get(`api/Pantallas/PantallasPorRol?rol=${JSON.parse(localStorage.getItem('token')).role_Id}&esAdmin=${JSON.parse(localStorage.getItem('token')).esAdmin ? 1 : 0}`)
+          .then(response => {
                 const responseData = response.data.data;
 
                 responseData.forEach(item => {

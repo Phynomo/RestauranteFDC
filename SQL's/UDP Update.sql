@@ -10,13 +10,7 @@ CREATE OR ALTER PROCEDURE acce.UDP_tbUsuarios_Update
 AS
 BEGIN
 	BEGIN TRY
-	IF EXISTS (SELECT * FROM acce.tbUsuarios WHERE (empe_Id = @empe_Id AND [user_Id] != @user_Id))
-        BEGIN
-
-			SELECT -2 as Proceso
-		END
-		ELSE
-		BEGIN
+	
 
 			UPDATE [acce].[tbUsuarios]
 			   SET [empe_Id] = @empe_Id
@@ -30,7 +24,6 @@ BEGIN
 			 WHERE [user_Id] = @user_Id
 
 			SELECT 1 as Proceso
-		END
 
 	END TRY
 

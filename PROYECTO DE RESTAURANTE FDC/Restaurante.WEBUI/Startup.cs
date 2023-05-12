@@ -60,12 +60,12 @@ namespace Restaurante.WEBUI
 
                 options.SwaggerDoc(groupName, new OpenApiInfo
                 {
-                    Title = $"Foo {groupName}",
+                    Title = $"FCD {groupName}",
                     Version = groupName,
-                    Description = "Agence API",
+                    Description = "FCD API",
                     Contact = new OpenApiContact
                     {
-                        Name = "Agence Versailles",
+                        Name = "Restaurante FCD",
                         Email = string.Empty,
                         Url = new Uri("https://foo.com/"),
                     }
