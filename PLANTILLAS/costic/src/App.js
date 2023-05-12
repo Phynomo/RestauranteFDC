@@ -85,6 +85,7 @@ import EditarEmpleado from './components/sections/Empleados/Editar';
 import Sucursales from './components/pages/Sucursales';
 import Roles from './components/pages/Roles';
 import CrearRoles from './components/sections/Roles/Crear';
+import EditarRoles from './components/sections/Roles/Editar';
 import Categorias from './components/pages/Categorias';
 import Municipios from './components/pages/Municipios';
 import Ingredientes from './components/pages/Ingredientes';
@@ -116,6 +117,7 @@ function App() {
         <Route path="/editarEmpleado/:empe_Id" component={EditarEmpleado} />
         <Route path="/roles" component={Roles} />
         <Route path="/crearRoles" component={CrearRoles} />
+        <Route path="/editarRoles" component={EditarRoles} />
         <Route path="/categorias" component={Categorias} />
         <Route path="/add-product" component={Addproduct} />
         <Route path="/alerts" component={Alerts} />

@@ -377,13 +377,12 @@ GO
 
 --PantallasPorRoles
 CREATE OR ALTER PROCEDURE acce.UDP_tbPantallasPorRoles_Delete
-	@prol_Id INT
+	@role_Id INT
 AS
 BEGIN
 	BEGIN TRY
-	UPDATE [acce].[tbPantallasPorRoles]
-	SET [prol_Estado] = 0
-	WHERE [prol_Id] = @prol_Id
+	DELETE FROM [acce].[tbPantallasPorRoles]
+	WHERE [role_Id] = @role_Id
 		SELECT 1 AS Proceso
  END TRY
     BEGIN CATCH

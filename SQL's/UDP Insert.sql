@@ -581,6 +581,44 @@ BEGIN
 END
 GO
 
+--PantallasPorRoles
+CREATE OR ALTER PROCEDURE acce.UDP_tbPantallasPorRoles_Insert
+	@role_Id INT,
+	@pant_Id INT,
+	@prol_UsuCreacion INT
+AS
+BEGIN
+	BEGIN TRY
+
+			INSERT INTO acce.tbPantallasPorRoles
+					   (role_Id,
+						pant_Id,
+						prol_UsuCreacion,
+						prol_UsuModificacion,
+						prol_FechaModificacion,
+						prol_Estado)
+				 VALUES
+					   (@role_Id
+					   ,@pant_Id
+					   ,@prol_UsuCreacion
+					   ,null
+					   ,null
+					   ,1)
+
+			SELECT 1 as Proceso
+
+		
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+
+
+END
+GO
+
+
+
 --Ingredientes
 --CREATE OR ALTER PROCEDURE rest.UDP_tbIngredinetes_Insert
 --	@ingr_Nombre Nvarchar(200),

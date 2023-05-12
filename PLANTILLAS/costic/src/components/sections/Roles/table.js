@@ -2,13 +2,38 @@ import React, { useState, useEffect } from 'react';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 //import { DataGrid } from '@mui/x-data-grid';
 import { DataGrid, GridToolbar,esES } from '@mui/x-data-grid';
+import { Link } from 'react-router-dom';
 import ModalEdit2 from './ModalsPut3';
+import { Modal, Accordion, Card } from "react-bootstrap";
+import axios from 'axios';
+import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
+import toastr from 'toastr';
+import { param } from 'jquery';
+import { useHistory } from 'react-router-dom';
 
 
 const DataTable = () => {
   const [searchText, setSearchText] = useState('');
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [modalDelete, setModalDelete] = useState(false);
+  const [rolSelect, setRolSelect] = useState('');
+  const history = useHistory();
+
+
+  const handleDelete = (item) => {
+    setRolSelect(item.role_Id);
+    setModalDelete(true);
+  }
+  const handleEdit = (item) => {
+    history.push({
+      pathname: "/editarRoles",
+      state: {data:item}
+    })
+  }
+
+
+
 
 const columns = [
   { field: 'role_Id', headerName: 'ID', flex: 1 },
@@ -21,11 +46,42 @@ const columns = [
      type: 'number',
      renderCell: (params) => (
       <div className='d-flex justify-content-center'>
-      <ModalEdit2 data={params.row} />
+      
+      <a style={{ margin: "5px" }} onClick={()=>handleEdit(params.row)}><i class='faSS fa-pencil-alt text-secondary'></i></a>
+      <a style={{ margin: "5px" }} onClick={()=>handleDelete(params.row)}><i class='far fa-trash-alt ms-text-danger'></i></a>
     </div>
      ),
    },
 ];
+
+
+
+const handleClose = () => {
+  setModalDelete(false);
+}
+
+const handleSubmitDelete=(event) => {
+  let data = {
+    role_Id: rolSelect,
+    role_UsuModificacion: 1,
+};
+axios.put('api/Roles/Eliminar', data)
+.then(response => {
+    console.log(response.data);
+    if (response.data.message == "Registro eliminado") {
+        alertSuccess("Listo", "El registro se elimino con exito", "2000");
+        handleClose();
+    }else {
+        alertError("Error", "Ocurrio un error mientras se eliminaba el registro", "2000")
+        handleClose();
+    }
+})
+.catch(error => {
+    console.log(error);
+});
+
+handleClose();
+}
 
 useEffect(() => {
   fetch('https://localhost:44383/api/Roles/Listado')
@@ -95,6 +151,22 @@ return (
         />
       </div>
     }
+
+<Modal show={modalDelete} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter"
+                    centered>
+                    <Modal.Header className="bg-primary">
+                        <h3 className="modal-title has-icon ms-icon-round  text-white"><i className="flaticon-alert-1 bg-primary text-white" />¿Estas seguro?</h3>
+                        <button type="button" className="close" onClick={handleClose}><span aria-hidden="true">×</span></button>
+                    </Modal.Header>
+                    <Modal.Body className='text-center'>
+                        <h5>No podras recuperar este registro si lo eliminas</h5>
+                    </Modal.Body>
+                    <Modal.Footer className='d-flex justify-content-center'> 
+                        <button type="button" className="btn btn-light btn-sm" onClick={handleClose}>Cancelar</button>
+                        <button type="button" className="btn btn-primary shadow-none btn-sm" onClick={handleSubmitDelete}>Eliminar</button>
+                    </Modal.Footer>
+                </Modal>
+
   </div>
 );
 };

@@ -31,6 +31,7 @@ namespace Restaurante.BusinessLogic
             service.AddScoped<FacturasRepository>();
             service.AddScoped<IngredientesRepository>();
             service.AddScoped<PantallasRepository>();
+            service.AddScoped<PantallasPorRolesRepository>();
             service.AddScoped<PlatillosRepository>();
             service.AddScoped<ProveedoresRepository>();
             service.AddScoped<ReservacionesRepository>();

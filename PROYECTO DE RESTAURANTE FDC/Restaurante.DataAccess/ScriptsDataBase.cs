@@ -119,6 +119,10 @@ namespace Restaurante.DataAccess
         public static string UDP_Pantallas_List = "acce.UDP_tbPantallas_Select";
         #endregion
 
+        #region PantallasPorRoles
+        public static string UDP_PantallasPorRoles_Insert = "acce.UDP_tbPantallasPorRoles_Insert";
+        public static string UDP_PantallasPorRoles_Delete = "acce.UDP_tbPantallasPorRoles_Delete";
+        #endregion
         #region Platillos
 
         public static string UDP_Platillos_List = "rest.UDP_tbPlatillos_Select";
@@ -148,6 +152,8 @@ namespace Restaurante.DataAccess
         public static string UDP_Roles_Insert = "acce.UDP_tbRoles_Insert";
         public static string UDP_Roles_Update = "acce.UDP_tbRoles_Update";
         public static string UDP_Roles_Delete = "acce.UDP_tbRoles_Delete";
+
+        
 
         #endregion
 

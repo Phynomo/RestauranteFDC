@@ -14,15 +14,18 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
         private readonly UsuariosRepository _usuariosRepository;
         private readonly RolesRepository _rolesRepository;
         private readonly PantallasRepository _pantallasRepository;
+        private readonly PantallasPorRolesRepository _pantallasPorRolesRepository;
 
         public AccesoService(   UsuariosRepository usuarioRepository,
                                 RolesRepository rolesRepository,
-                                PantallasRepository pantallasRepository
+                                PantallasRepository pantallasRepository,
+                                PantallasPorRolesRepository pantallasPorRolesRepository
             )
         {
             _usuariosRepository = usuarioRepository;
             _rolesRepository = rolesRepository;
             _pantallasRepository = pantallasRepository;
+            _pantallasPorRolesRepository = pantallasPorRolesRepository;
         }
 
         #region Pantallas
@@ -172,7 +175,7 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
                 var list = _rolesRepository.Insert(item);
                 if (list.CodeStatus > 0)
                 {
-                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                    return result.SetMessage(list.CodeStatus.ToString(), ServiceResultType.Success);
                 }
                 else if (list.CodeStatus == -2)
                 {
@@ -232,6 +235,61 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
             try
             {
                 var insert = _rolesRepository.Delete(item);
+
+                if (insert.CodeStatus == 1)
+                    return result.SetMessage("Registro eliminado", ServiceResultType.Success);
+                else if (insert.CodeStatus == 0)
+                    return result.SetMessage("Error Inesperado", ServiceResultType.Error);
+                else
+                    return result.SetMessage("Conexión perdida", ServiceResultType.Error);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        #endregion
+
+        #region PantallasXRol
+
+        public ServiceResult InsertarPantallasPorRoles(tbPantallasPorRoles item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _pantallasPorRolesRepository.Insert(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInesperado", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInesperado", ServiceResultType.Error);
+                }
+            }
+            catch (Exception x)
+            {
+
+                return result.Error(x.Message);
+            }
+        }
+
+        public ServiceResult EliminarPantallasPorRoles(tbPantallasPorRoles item)
+        {
+            var result = new ServiceResult();
+
+            try
+            {
+                var insert = _pantallasPorRolesRepository.Delete(item);
 
                 if (insert.CodeStatus == 1)
                     return result.SetMessage("Registro eliminado", ServiceResultType.Success);

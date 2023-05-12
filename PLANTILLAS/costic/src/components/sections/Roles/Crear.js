@@ -6,16 +6,27 @@ import axios from 'axios'
 import Sidenavigation from '../../layouts/Sidenavigation';
 import Topnavigation from '../../layouts/Topnavigation';
 import Quickbar from '../../layouts/Quickbar';
-import DualListBox from 'react-dual-listbox';
 import { Link } from 'react-router-dom';
+import DualListBox from 'react-dual-listbox';
 import 'react-dual-listbox/lib/react-dual-listbox.css';
-import Duallist from './duallist.js';
+import { data } from 'jquery';
+
 
 const Crear = () => {
   const [Rol, setRol] = useState('');
   const [UsuarioCrea, setUsuarioCrea] = useState('1');
   const [validationErrors, setValidationErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+  const [selectedRoles, setSelectedRoles] = useState([]);
+  const [options, setOptions] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+
+  const handleRoleChange = (selected) => {
+    setSelectedRoles(selected);
+  };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -28,6 +39,7 @@ const Crear = () => {
     const errors = {};
     if (!Rol) {
         toastr.warning("Todos los campos son requeridos","Advertencia");
+        console.log(selectedRoles);
     }
    else {
       axios
@@ -35,10 +47,23 @@ const Crear = () => {
         .then((response) => {
           console.log(response);
           console.log('Respuesta de la API:', response);
-          if (response.data.message == "Exitoso") {
+          if (parseInt(response.data.message) > 0) {
               alertSuccess("Listo", "El registro se realizo con exito", "2000");
+              console.log(response.data.message)
+                
+               selectedRoles.forEach(element => {
+
+                 let data= {
+                   role_Id: response.data.message,
+                   pant_Id: element,
+                   prol_UsuCreacion: 1
+                 }
+                 axios.post('/api/PantallasPorRoles/Insertar', data)
+                 .then(response => console.log(response.data))
+                 .catch(error => console.error(error));
+               });
               setTimeout(function() {
-                window.location.href = "/roles"; // Redirecciono a la pagna clientes despues de 1 segundi
+                window.location.href = "/roles"; // Redirecciono a la pagina clientes despues de 1 segundo
               }, 1000);
           } else if (response.data.message == "YaExiste") {
               toastr.warning("Este Rol ya existe", "Rol repetido");
@@ -53,7 +78,29 @@ const Crear = () => {
     }
   };
   
+  useEffect(() => {
+    console.log("*gemidos*");
+    console.log(selectedRoles);
+    fetch('https://localhost:44383/api/Pantallas/Listado')
+      .then(response => response.json())
+      .then(data => {
+        const options = data.data.map(item => {
+          return {
+            id: item.pant_Id,
+            pant_Id: item.pant_Id,
+            pant_Nombre: item.pant_Nombre,
+          }
+        });
+        setOptions(options.map(option => ({ value: option.pant_Id, label: option.pant_Nombre})));
+        // setIsLoading(false);
+      })
+      .catch(error => {
+        console.log("Error en la solicitud fetch:", error);
+      });
+  }, []);
 
+  
+  
   return (
     <div className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
     <Sidenavigation />
@@ -88,13 +135,27 @@ const Crear = () => {
                 </div>
                 <div>
                 <div className="ms-content-wrapper text-center">
-                                <Duallist></Duallist>
-                            </div>
+                <DualListBox
+                    options={options}
+                    selected={selectedRoles}
+                    onChange={handleRoleChange}
+                    canFilter
+                    filterCallback={(option, filterInput) => {
+                      return option.label.toLowerCase().includes(filterInput.toLowerCase());
+                    }}
+                    icons={{ moveLeft: '<', moveAllLeft: '<<', moveRight: '>', moveAllRight: '>>' }}
+                    lang={{
+                      availableHeader: 'Roles disponibles',
+                      selectedHeader: 'Roles seleccionados',
+                      filterPlaceholder: 'Filtrar',
+                    }}
+                  />
+                </div>
                 </div>
                 {/* Centrar boton*/}
                   <div className="col-md-12 text-center">
                     <br></br>
-                    <button className='btn btn-primary btn-outline-state' type="submit">Agregar Rol</button> 
+                    <button className='btn btn-primary btn-outline-state' type="submit">Agregar Rol</button>
                     </div>
                   </form>
                   </div>
