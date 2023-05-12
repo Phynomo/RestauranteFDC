@@ -231,7 +231,7 @@ async function handleCreate() {
         const platData = {
           plat_Nombre : Nombre,          
           cate_Id: cateId,
-          plat_Precio : 0,
+          plat_Precio : 30,
           plat_Imagen: data.data.url,
           plat_UsuCreacion: UsuaCreacion 
 
