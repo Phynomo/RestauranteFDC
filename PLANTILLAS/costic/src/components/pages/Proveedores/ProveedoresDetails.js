@@ -4,7 +4,7 @@ import Topnavigation from '../../layouts/Topnavigation';
 import Quickbar from '../../layouts/Quickbar';
 import Content from '../../sections/UsuariosDetails/Content';
 
-class UsuariosDetails extends Component {
+class ProveedoresDetails extends Component {
     render() {
         return (
             <div className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
@@ -19,4 +19,4 @@ class UsuariosDetails extends Component {
     }
 }
 
-export default UsuariosDetails;
+export default ProveedoresDetails;

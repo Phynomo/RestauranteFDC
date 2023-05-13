@@ -109,7 +109,7 @@ function Content() {
                 console.log(response);
                 if (response.data.message == "Exitoso") {
                     alertSuccess("Editado", "El usuario se edito con exito", "2000");
-                    history.push("/usuarios");
+                    history.push("/usuario");
                 }else if(response.data.message == "YaExiste") {
                     toastr.warning("Este usuario ya existe, inserte otro", "Usuario existente");
                   }else{
@@ -139,7 +139,7 @@ function Content() {
               console.log(response);
               if (response.data.message == "Exitoso") {
                 alertSuccess("Editado", "El usuario se edito con exito", "2000");
-                history.push("/usuarios");
+                history.push("/usuario");
               }else if(response.data.message == "YaExiste") {
                 toastr.warning("Este usuario ya existe, inserte otro", "Usuario existente");
               }else{

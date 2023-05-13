@@ -638,8 +638,8 @@ VALUES ('Roles','/Roles','acceso','RolesItem',1),
 	   ('Empleados','/empleados','restaurante','EmpleadosItem',1),
 	   ('Factura','/factura','restaurante','FacturasItem',1),
 	   ('Ingredientes','/ingredientes','restaurante','IngredientesItem',1),
-	   ('Sucursales','/sucursales','restarante','SucursalesItem',1)
-
+	   ('Sucursales','/sucursales','restarante','SucursalesItem',1),
+	   ('Proveedores','/proveedores','restarante','ProveedoresItem',1)
 
 --**************************************************************************-
 

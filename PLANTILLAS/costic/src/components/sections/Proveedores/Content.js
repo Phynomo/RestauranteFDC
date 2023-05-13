@@ -7,7 +7,7 @@ function Content() {
     const history = useHistory();
 
     function handleCreate() {
-        history.push("/usuarios_create");
+        history.push("/proveedores_create");
     }
 
     return (

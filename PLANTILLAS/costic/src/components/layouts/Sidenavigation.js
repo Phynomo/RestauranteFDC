@@ -22,11 +22,10 @@ class Sidenavigation extends Component {
 
     handleFetchData() {
         if (!JSON.parse(localStorage.getItem('token'))) {
-            console.log("se queda aca",JSON.parse(localStorage.getItem('token')).role_Id);
           return;
         }
         
-        axios.get(`api/Pantallas/PantallasPorRol?rol=${JSON.parse(localStorage.getItem('token')).role_Id}&esAdmin=${JSON.parse(localStorage.getItem('token')).esAdmin ? 1 : 0}`)
+        axios.get(`api/Pantallas/PantallasPorRol?rol=${JSON.parse(localStorage.getItem('token')).role_Id}&esAdmin=${JSON.parse(localStorage.getItem('token')).user_EsAdmin ? 1 : 0}`)
           .then(response => {
                 const responseData = response.data.data;
 

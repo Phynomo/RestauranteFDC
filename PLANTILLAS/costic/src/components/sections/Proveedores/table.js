@@ -12,13 +12,13 @@ const DataTable = () => {
   const [searchText, setSearchText] = useState('');
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [usuarioSeleccionado, setUsuarioSeleccionado] = useState('');
+  const [proveedorSeleccionado, setProveedorSeleccionado] = useState('');
   const [modalDelete, setModalDelete] = useState(false);
   const history = useHistory();
 
   async function UsuariosEdit(item) {
     history.push({
-      pathname: '/usuarios_edit',
+      pathname: '/proveedores_edit',
       state: { data: item }
     });
   };
@@ -34,17 +34,17 @@ const DataTable = () => {
   }
 
 
-  const seleccionarUsuario = (id) => {
-    setUsuarioSeleccionado(id);
+  const seleccionarProveedor = (id) => {
+    setProveedorSeleccionado(id);
     setModalDelete(true);
   }
 
-  const handleEliminarUsuario = () => {
+  const handleEliminarProveedor = () => {
     let data = {
-      user_Id: usuarioSeleccionado,
-      user_UsuModificacion: 1,
+      prov_Id: proveedorSeleccionado,
+      prov_UsuModificacion: 1,
   };
-  axios.put('/api/Usuarios/Eliminar', data)
+  axios.put('/api/Proveedores/Eliminar', data)
   .then(response => {
       console.log(response.data);
       if (response.data.message == "Registro eliminado") {
@@ -78,7 +78,7 @@ const DataTable = () => {
         <div className=''>
           <a style={{ margin: "5px" }} onClick={() => UsuariosDetails(params.row)}><i class='fas flaticon-list text-info'></i></a>
           <a style={{ margin: "5px" }} onClick={() => UsuariosEdit(params.row)}><i class='fas fa-pencil-alt text-secondary'></i></a>
-          <a style={{ margin: "5px" }} onClick={() => seleccionarUsuario(params.row.user_Id)} ><i class='fas fa-trash-alt text-danger'></i></a>
+          <a style={{ margin: "5px" }} onClick={() => seleccionarProveedor(params.row.prov_Id)} ><i class='fas fa-trash-alt text-danger'></i></a>
         </div>
       ),
     },
@@ -182,7 +182,7 @@ const DataTable = () => {
         </Modal.Body>
         <Modal.Footer className='d-flex justify-content-center'>
           <button type="button" className="btn btn-light btn-sm" onClick={() => handleClose()} >Cancelar</button>
-          <button type="button" className="btn btn-primary shadow-none btn-sm" onClick={() => handleEliminarUsuario()} >Eliminar</button>
+          <button type="button" className="btn btn-primary shadow-none btn-sm" onClick={() => handleEliminarProveedor()} >Eliminar</button>
         </Modal.Footer>
       </Modal>
 

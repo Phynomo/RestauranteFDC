@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Sidenavigation from '../../layouts/Sidenavigation';
 import Topnavigation from '../../layouts/Topnavigation';
 import Quickbar from '../../layouts/Quickbar';
-import Content from '../../sections/UsuariosCreate/Content';
+import Content from '../../sections/ProveedoresCreate/Content';
 
-class UsuariosCreate extends Component {
+class ProveedoresCreate extends Component {
     render() {
         return (
             <div className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
@@ -19,4 +19,4 @@ class UsuariosCreate extends Component {
     }
 }
 
-export default UsuariosCreate;
+export default ProveedoresCreate;

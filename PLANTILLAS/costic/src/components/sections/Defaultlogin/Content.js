@@ -12,6 +12,20 @@ function Login() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [validado, setValidado] = useState(false);
 
+    async function fetchPermissionsForRole(role, admin) {
+        try {
+          const response = await axios.get(`api/Pantallas/PantallasPorRol?rol=${role}&esAdmin=${admin}`, {});
+          const pantIds = response.data.data.map(objeto => objeto.pant_Id);
+
+          localStorage.setItem('Pantallas', pantIds)
+          return pantIds;
+        } catch (error) {
+
+            localStorage.setItem('Pantallas', [])
+          return [];
+        }
+      }
+
 
     useEffect(() => {
         if (localStorage.getItem('token') != "" && localStorage.getItem('token') != null) {
@@ -36,12 +50,14 @@ function Login() {
         console.log(payload);
         axios.get('api/Usuarios/Login?usuario='+email+'&contrasena='+password)
             .then((r) => {
-                console.log('lamao',r.data.data);
                 if (r.data.data != null && r.data.data.length > 0) {
                     //si existe el usuario entra aca 
                     setIsSubmitting(false)
                     localStorage.setItem('token', JSON.stringify(r.data.data[0]))
                     
+
+                    fetchPermissionsForRole(r.data.data[0].role_Id, r.data.data[0].user_EsAdmin ? 1:0);
+
                     //Para recuperar la info luego
                     // const storedArray = JSON.parse(localStorage.getItem('token'));
                     // console.log(storedArray);

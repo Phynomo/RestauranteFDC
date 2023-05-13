@@ -107,7 +107,7 @@ function Content() {
                 console.log(response);
                 if (response.data.message == "Exitoso") {
                     alertSuccess("Creado", "El usuario se creo con exito", "2000");
-                    history.push("/usuarios");
+                    history.push("/usuario");
                 }else if(response.data.message == "YaExiste") {
                     setUserNombreUsuario("");
                     toastr.warning("Este usuario ya existe, inserte otro", "Usuario existente");
@@ -139,7 +139,7 @@ function Content() {
               console.log(response);
               if (response.data.message == "Exitoso") {
                 alertSuccess("Creado", "El usuario se creo con exito", "2000");
-                history.push("/usuarios");
+                history.push("/usuario");
               }else if(response.data.message == "YaExiste") {
                 setUserNombreUsuario("");
                 toastr.warning("Este usuario ya existe, inserte otro", "Usuario existente");
