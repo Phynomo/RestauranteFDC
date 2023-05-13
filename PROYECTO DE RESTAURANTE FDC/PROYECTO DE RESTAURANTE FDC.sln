@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33423.256
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurante.WEBUI", "Restaurante.WEBUI\Restaurante.WEBUI.csproj", "{0A39FF63-042A-45D0-8DE5-E5683DC44E34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurante.WEBUI", "Restaurante.WEBUI\Restaurante.WEBUI.csproj", "{0A39FF63-042A-45D0-8DE5-E5683DC44E34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurante.Entities", "Restaurante.Entities\Restaurante.Entities.csproj", "{53CBDA96-DB5B-4DF7-831D-56961E77C0CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurante.Entities", "Restaurante.Entities\Restaurante.Entities.csproj", "{53CBDA96-DB5B-4DF7-831D-56961E77C0CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurante.DataAccess", "Restaurante.DataAccess\Restaurante.DataAccess.csproj", "{B290087F-22FF-4937-A0FD-34E08DAFFECD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurante.DataAccess", "Restaurante.DataAccess\Restaurante.DataAccess.csproj", "{B290087F-22FF-4937-A0FD-34E08DAFFECD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurante.BusinessLogic", "Restaurante.BusinessLogic\Restaurante.BusinessLogic.csproj", "{FC9C809F-1945-48CD-BFCC-983C1BA5DFBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurante.BusinessLogic", "Restaurante.BusinessLogic\Restaurante.BusinessLogic.csproj", "{FC9C809F-1945-48CD-BFCC-983C1BA5DFBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

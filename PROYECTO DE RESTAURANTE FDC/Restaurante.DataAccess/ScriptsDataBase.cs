@@ -119,10 +119,15 @@ namespace Restaurante.DataAccess
         public static string UDP_IngredienteXPlatillos_Update = "rest.UDP_tbIngredientesXPlatillos_Update";
         public static string InsertarPlatillos = "rest.UDP_InsertarPlatillos";
         public static string UDP_Platillos_Delete = "rest.UDP_tbPlatillos_Delete";
+        public static string EditarCreatePlatillo = "rest.UDP_EditarCreatePlatillo";
+        public static string Precio = "rest.UDP_MostrarPrecio";
         #endregion
 
         #region Ingredientes Por PLatillos
         public static string MostarIngredientesXplatillo = "rest.UDP_MostrarIngredientesXPlato";
+        public static string AgregarIngredientePlatillo = "rest.UDP_IngredientesPlatillo";
+        public static string EliminarIngredientePlatillo = "rest.UDP_EliminarIngredientesPlatillos";
+      
         #endregion
 
         #region Proveedores

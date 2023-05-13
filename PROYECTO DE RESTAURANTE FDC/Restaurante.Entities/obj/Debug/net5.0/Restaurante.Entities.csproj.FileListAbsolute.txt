@@ -38,7 +38,6 @@ C:\Users\karla\OneDrive\Documents\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Res
 C:\Users\karla\OneDrive\Documents\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\bin\Debug\net5.0\Restaurante.Entities.dll
 C:\Users\karla\OneDrive\Documents\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\bin\Debug\net5.0\ref\Restaurante.Entities.dll
 C:\Users\karla\OneDrive\Documents\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\bin\Debug\net5.0\Restaurante.Entities.pdb
-C:\Users\karla\OneDrive\Documents\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\Restaurante.Entities.csproj.AssemblyReference.cache
 C:\Users\karla\OneDrive\Documents\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\Restaurante.Entities.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\karla\OneDrive\Documents\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\Restaurante.Entities.AssemblyInfoInputs.cache
 C:\Users\karla\OneDrive\Documents\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Debug\net5.0\Restaurante.Entities.AssemblyInfo.cs

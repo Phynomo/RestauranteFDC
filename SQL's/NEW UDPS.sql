@@ -143,7 +143,7 @@ BEGIN TRY
                     ,NULL 
                     ,1);
 
-            SELECT SCOPE_IDENTITY() as Proceso
+            SELECT SCOPE_IDENTITY() 
         END
         ELSE IF EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre )
         
@@ -156,9 +156,8 @@ BEGIN TRY
 END
 GO
 
-
 --Ingredientes
-CREATE OR ALTER   PROCEDURE [rest].[UDP_tbIngredientes_Select]
+CREATE OR ALTER PROCEDURE [rest].[UDP_tbIngredientes_Select]
 AS
 BEGIN
 SELECT * FROM rest.VW_tbIngredientes WHERE [ingr_Estado] = 1
@@ -198,11 +197,39 @@ END CATCH
 END
 GO
 
-rest.UDP_IngredientesPlatillo 23,2,150,1,5.50
+--ELIMINAR INGREDIENTES AL PLATILLO
+CREATE OR ALTER PROCEDURE rest.UDP_EliminarIngredientesPlatillos
+	@ingrplat_Id		INT,
+	@plat_Id			INT,
+	@ingr_Id			INT,
+	@ingrplat_Gramos	INT
+	AS
+	BEGIN
+	BEGIN TRY
+	BEGIN TRAN 
 
+	DELETE FROM [rest].[tbIngredientesXPlatillos] WHERE [ingrplat_Id] = @ingrplat_Id AND plat_Id = @plat_Id AND ingr_Id = @ingr_Id AND ingrplat_Gramos = @ingrplat_Gramos
+
+	UPDATE [rest].[tbPlatillos] SET [plat_Precio] = [plat_Precio] - (SELECT ([ingr_PrecioX100gr]/100)*@ingrplat_Gramos FROM [rest].[tbIngredientes] WHERE ingr_Id = @ingr_Id ) WHERE plat_Id = @plat_Id
+	SELECT 1
+	COMMIT
+END TRY
+BEGIN CATCH
+	SELECT 0
+	ROLLBACK
+END CATCH
+END
+GO
+
+--rest.UDP_EliminarIngredientesPlatillos 18,23,2,150
+--rest.UDP_IngredientesPlatillo 23,2,150,1,5.50
+
+SELECT*FROM [rest].[tbIngredientesXPlatillos]
 SELECT*FROM [rest].[tbPlatillos]
 SELECT*FROM [rest].[tbIngredientes]
-SELECT*FROM [rest].[tbIngredientesXPlatillos]
+
+
+
 GO
 
 
@@ -216,6 +243,7 @@ SELECT [ingrplat_Id],
 		plat.plat_Nombre,
 		pla.[ingr_Id],
 		ing.ingr_Nombre,
+		ing.ingr_PrecioX100gr,
 		[ingrplat_Gramos],
 		[ingrplat_FechaCreacion],
 		[ingrplat_UsuCreacion],
@@ -254,18 +282,38 @@ select*from rest.tbPlatillos
 ---UDP PARA QUE EDITE  
 GO
 CREATE OR ALTER PROCEDURE rest.UDP_EditarCreatePlatillo
-@plat_Id			 INT,
-@plat_Nombre         NVARCHAR(200), 
-@cate_Id             INT,
-@plat_Imagen         NVARCHAR(MAX)
-AS
-BEGIN
-	UPDATE [rest].[tbPlatillos] SET [plat_Nombre] = @plat_Nombre, [cate_Id] = @cate_Id, [plat_Imagen] = @plat_Imagen
-	WHERE [plat_Id] = @plat_Id
+	@plat_Id			 INT,
+	@plat_Nombre         NVARCHAR(200), 
+	@cate_Id             INT,
+	@plat_Imagen         NVARCHAR(MAX)
+	AS
+	BEGIN
+	BEGIN TRY
+	IF NOT EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre )
+        BEGIN
+		UPDATE [rest].[tbPlatillos] SET [plat_Nombre] = @plat_Nombre, [cate_Id] = @cate_Id, [plat_Imagen] = @plat_Imagen
+		WHERE [plat_Id] = @plat_Id
+
+	SELECT 1 AS Proceso
+	END
+	 ELSE IF EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre )      
+     SELECT -2 as Proceso
+
+END TRY
+BEGIN CATCH
+	SELECT 0
+END CATCH 
 END
 GO
 
 
 
-
+--- UDP MOSTRAR PRECIO
+CREATE OR ALTER PROCEDURE rest.UDP_MostrarPrecio
+@plat_Id	INT
+AS
+BEGIN
+SELECT * FROM [rest].[tbPlatillos] WHERE [plat_Id] = @plat_Id
+END
+GO
 

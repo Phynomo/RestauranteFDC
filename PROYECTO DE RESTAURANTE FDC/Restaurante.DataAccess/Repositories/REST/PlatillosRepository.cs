@@ -102,5 +102,33 @@ namespace Restaurante.DataAccess.Repositories.REST
 
             return result;
         }
+
+
+        public RequestStatus ActualizarCrea(tbPlatillos item)
+        {
+            RequestStatus result = new RequestStatus();
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@plat_Id", item.plat_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@plat_Nombre", item.plat_Nombre, DbType.String, ParameterDirection.Input);
+            parametros.Add("@cate_Id", item.cate_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@plat_Imagen", item.plat_Imagen, DbType.String, ParameterDirection.Input);
+
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.EditarCreatePlatillo, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            result.CodeStatus = resultado;
+
+            return result;
+        }
+
+        public IEnumerable<VW_tbPlatillos> LitaPrecio(int Id)
+        {
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@plat_Id", Id, DbType.Int32, ParameterDirection.Input);
+
+            return db.Query<VW_tbPlatillos>(ScriptsDataBase.Precio, parametros, commandType: CommandType.StoredProcedure);
+        }
+
     }
 }

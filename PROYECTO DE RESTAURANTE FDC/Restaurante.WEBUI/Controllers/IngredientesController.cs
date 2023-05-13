@@ -61,5 +61,19 @@ namespace Restaurante.WEBUI.Controllers
             var list = _restauranteServicio.IngredientesXplatillo(id);
             return Ok(list);
         }
+
+        [HttpPost("AgregarIngredientesPlat")]
+        public IActionResult Agregar(int plat_Id, int ingr_Id, int gramos, int usuario, decimal precio)
+        {
+            var response = _restauranteServicio.Agregar(plat_Id, ingr_Id, gramos, usuario, precio);
+            return Ok(response);
+        }
+
+        [HttpPost("EliminarIngredientesPlat")]
+        public IActionResult Eliminar(int ingrplat_Id, int ingr_Id, int ingrplat_Gramos, int plat_Id)
+        {
+            var response = _restauranteServicio.Eliminar(ingrplat_Id, ingr_Id, ingrplat_Gramos, plat_Id);
+            return Ok(response);
+        }
     }
 }

@@ -6,3 +6,7 @@ npm install react-paginate
 
 Poner el [NotMapped] al campo (alias) que puse que retorne al insertar el platillo para poder usarlo en la pnatlla
 
+agregar el [NotMapped] a empleados del dep_Id (por si acaso)
+
+
+***** crague de nuevo las entities en mi version *****

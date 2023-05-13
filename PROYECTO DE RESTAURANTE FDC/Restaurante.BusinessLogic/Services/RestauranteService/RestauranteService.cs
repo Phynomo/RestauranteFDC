@@ -600,6 +600,52 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
+        public ServiceResult EditCrearPlatillo(tbPlatillos item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _platillosRepository.ActualizarCrea(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+
+        }
+
+
+        public ServiceResult Precio(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _platillosRepository.LitaPrecio(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
         #endregion
 
         #region Proveedores
@@ -836,6 +882,60 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             catch (Exception e)
             {
                 return result.Error(e.Message);
+            }
+        }
+
+        public ServiceResult Agregar(int plat_Id, int ingr_Id, int gramos, int usuario, decimal precio)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+
+                var list = _ingredientesXPlatillos.AgregarIngPLat(plat_Id, ingr_Id, gramos, usuario, precio);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
+
+        public ServiceResult Eliminar(int ingrplat_Id, int ingr_Id, int ingrplat_Gramos, int plat_Id)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+
+                var list = _ingredientesXPlatillos.EliminarIngPLat(ingrplat_Id, ingr_Id, ingrplat_Gramos, plat_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
             }
         }
         #endregion

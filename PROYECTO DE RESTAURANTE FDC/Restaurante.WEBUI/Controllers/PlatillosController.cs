@@ -57,6 +57,22 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(result);
         }
 
-       
+        [HttpGet("Precio")]
+        public IActionResult Precio(int id)
+        {
+            var list = _restauranteServicio.Precio(id);
+            return Ok(list);
+        }
+
+        [HttpPut("EditCrearPlatillo")]
+        public IActionResult editarC(PlatilloViewModel plato)
+        {
+            var item = _mapper.Map<tbPlatillos>(plato);
+            var response = _restauranteServicio.EditCrearPlatillo(item);
+            return Ok(response);
+        }
+
+
+
     }
 }
