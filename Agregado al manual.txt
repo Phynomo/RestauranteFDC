@@ -1,0 +1,19 @@
+Categoria	SIUD UDPs
+Roles 		SIUD UDPs
+Usuarios 	SIUD UDPs
+Cargos		SIUD UDPs
+Departamentos	SIUD UDPs
+Estados Civiles	SIUD UDPs
+Metodos de Pago	SIUD UDPs
+Municipios	SIUD UDPs
+Empleados	SIUD UDPs
+Facturas	SIUD UDPs
+FacturasDetalle	S
+Ingredientes	SIUD UDPs
+Platillos	SIUD UDPs
+Proveedores	SIUD UDPs
+Sucursales	SIUD UDPs
+Clientes	SIUD UDPs
+Reservaciones	S
+Pantallas	S
+PantallasPorRol  I D UDPs	 	
