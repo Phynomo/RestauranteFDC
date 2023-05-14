@@ -626,7 +626,7 @@ VALUES ('Harina de trigo', 2.50, 1, 1),
 
 --************************************* Pantallas **************************-
 INSERT INTO acce.tbPantallas(pant_Nombre, pant_Url, pant_Menu, pant_HtmlId, pant_UsuCreacion)
-VALUES ('Roles','/Roles','acceso','RolesItem',1),
+VALUES ('Roles','/roles','acceso','RolesItem',1),
 	   ('Usuario','/usuario','acceso','UsuarioItem',1),
 	   ('Cargos','/cargos','general','cargosItem',1),
 	   ('Categorias','/categorias','general','CategoriasItem',1),

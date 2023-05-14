@@ -280,6 +280,8 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
 
                 if (insert.CodeStatus == 1)
                     return result.SetMessage("Registro eliminado", ServiceResultType.Success);
+                else if (insert.CodeStatus == -2)
+                    return result.SetMessage("enuso", ServiceResultType.Success);
                 else if (insert.CodeStatus == 0)
                     return result.SetMessage("Error Inesperado", ServiceResultType.Error);
                 else

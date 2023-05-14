@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 function Content() {
     //traer Datos
@@ -10,18 +11,14 @@ function Content() {
     //Imagen
 
     //datos del Usuario
-    const [userNombreUsuario, setUserNombreUsuario] = useState(datosAntes.user_NombreUsuario);
-    const [empeCargo, setUserId] = useState(datosAntes.carg_Descripcion);
-    const [userCorreo, setUserCorreo] = useState(datosAntes.user_Correo);
-    const [empeNombre, setEmpeId] = useState(datosAntes.empe_NombreCompleto);
-    const [roleNombre, setRoleId] = useState(datosAntes.role_Nombre);
-    const [userImage, setUserImage] = useState(datosAntes.user_Image);
-    const [userEsAdmin, setUserEsAdmin] = useState(datosAntes.admin);
+    const roleId = datosAntes.role_Id;
+    const roleNombre = datosAntes.role_Nombre;
     const UsuarioCreacion = datosAntes.user_NombreUsuCreacion;
     const FechaCreacion = new Date(datosAntes.user_FechaCreacion);
     const UsuarioModificacion = datosAntes.user_NombreUsuModificacion;
     const FechaModificacion = datosAntes.user_FechaModificacion == null? "" : new Date(datosAntes.user_FechaModificacion);
     const history = useHistory();
+    const [options, setOptions] = useState([]);
     const formatoFecha = { 
         year: 'numeric', 
         month: 'numeric', 
@@ -32,61 +29,74 @@ function Content() {
         hour12: false
       };
 
-
-    //Listados para los select
-
-    //Enviando info
+      const handleFetchPantallasSeleccionadas = async () => {
+        try {
+            const response = await axios.get(`api/Pantallas/PantallasPorRol?rol=${roleId}&esAdmin=0`);
+            const options = response.data.data.map(item => {
+                return {
+                    id: item.pant_Id,
+                    pant_Id: item.pant_Id,
+                    pant_Nombre: item.pant_Nombre,
+                    pant_Menu: item.pant_Menu
+                }
+            });
+            setOptions(options);
+        } catch (error) {
+            console.log("Error en la solicitud axios:", error);
+        }
+    };
+    
+    useEffect(() => {
+        handleFetchPantallasSeleccionadas();
+    }, []);
 
     ///////////////////////////////////////////////////////
-
-
 
     return (
         <div className="ms-content-wrapper">
             <div className='container-fluid'>
                 <div className='' style={{ height: "50px" }}></div>
-                <div class="card mt-4">
+                <div className="card mt-4">
+                    <div className='card-header'>
+                        <h3>Detalles del rol</h3>
+                    </div>
                     <div class="card-body">
-                        <div className='little-profilePhynomo text-center'>
-                            <div class="pro-imgPhynomo"> <img src={userImage} alt="user" /> </div>
-                        </div>
-
                         <div className='mt-4 px-5'>
 
                             <div className='row'>
                                 <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Nombre del usuario: </strong>{userNombreUsuario}</label>
+                                    <label style={{ fontSize: "1.2em" }}><strong>Id del rol: </strong>{roleId}</label>
                                 </div>
                                 <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Contraseña del usuario: </strong>**********</label>
+                                    <label style={{ fontSize: "1.2em" }}><strong>Nombre del rol: </strong>{roleNombre}</label>
                                 </div>
                             </div>
-                            <div className='row mt-3'>
-                                <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Correo del usuario: </strong>{userCorreo}</label>
-                                </div>
-                                <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Es administrador: </strong>{userEsAdmin}</label>
-                                </div>
-                            </div>
-                            <div className='row mt-3'>
-                                <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Rol del usuario: </strong>{roleNombre}</label>
-                                </div>
-                                <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Empleado del usuario: </strong>{empeNombre}</label>
-                                </div>
-                            </div>
-                            <div className='row mt-3'>
-                                <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Cargo del empleado: </strong>{empeCargo}</label>
-                                </div>
-                                <div className='col-6'>
-
-                                </div>
-                            </div>
-
+                            
+                            
                             <div className="table-responsive mt-4">
+                                <label style={{ fontSize: "1.2em" }}><strong>Pantallas asignadas</strong></label>
+                                    <table className="table table-hover thead-dark" style={{}}>
+                                <thead>
+                                    <tr>
+                                        <th style={{ fontSize: "1.2em" }} scope="col">Menu</th>
+                                        <th style={{ fontSize: "1.2em" }} scope="col">Pantalla</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {options.map((option) => (
+                                        <tr>
+                                           <td>{option.pant_Menu}</td>
+                                           <td>{option.pant_Nombre}</td>
+                                       </tr>
+                                        ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                             
+                          
+                            <div className="table-responsive mt-5">
+                                <h5><strong>Auditoría</strong></h5>     
                                     <table className="table thead-primary">
                                 <thead>
                                     <tr>

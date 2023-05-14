@@ -13,7 +13,7 @@ namespace Restaurante.DataAccess.Repositories.ACCE
     public class PantallasPorRolesRepository : IRepository<tbPantallasPorRoles, tbPantallasPorRoles>
     {
         public RequestStatus Delete(tbPantallasPorRoles item)
-        {
+        { 
             RequestStatus result = new RequestStatus();
 
             using var db = new SqlConnection(RestauranteCon.ConnectionString);

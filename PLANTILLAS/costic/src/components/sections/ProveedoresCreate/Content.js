@@ -116,11 +116,12 @@ function Content() {
         <div className="ms-content-wrapper">
             <div className='container-fluid '>
                 <form onSubmit={handleSubmit} className={`needs-validation validation-fill ${validated ? 'was-validated' : ''}`} noValidate>
-                    <div class="card">
-                        <div className='card-header'>
-                            <h3>Insertar proveedor</h3>
-                        </div>
-                        <div class="card-body">
+                    <div class="ms-panel">
+                        <div className="ms-panel-header text-center">
+                  <h6>Registrar proveedor</h6>
+              
+                  </div>
+                        <div class="ms-panel-body">
                             <div className='row mt-3'>
                                 <div className='col-6'>
                                     <div className="form-group">
@@ -192,7 +193,11 @@ function Content() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='d-flex justify-content-end'>
+                            {/* <div className="col-md-12 text-center">
+                    <br></br>
+                    <button type='submit' disabled={botonEnviar} className='btn btn-danger btn-pill btn-block' >Enviar</button>
+                                            </div> */}
+                            <div className='d-flex justify-content-center'>
                                 <div className='col-4'>
                                     <button type='submit' disabled={botonEnviar} className='btn btn-danger btn-pill btn-block' >Enviar</button>
                                 </div>

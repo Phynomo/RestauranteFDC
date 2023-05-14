@@ -45,11 +45,11 @@ function Content() {
     return (
         <div className="ms-content-wrapper">
             <div className='container-fluid'>
-                <div className="card mt-3">
-                    <div className='card-header'>
-                        <h3>Detalles del proveedor</h3>
+                <div className="ms-panel mt-3">
+                    <div className='ms-panel-header text-center'>
+                        <h6>Detalles del proveedor</h6>
                     </div>
-                    <div className="card-body">
+                    <div className="ms-panel-body">
                         <div className='mt-4 px-5'>
                             <div className='row'>
                                 <div className='col-6'>

@@ -94,9 +94,10 @@ import ReporteFacturas from './components/pages/Reportes/ReporteFacturas';
 import ReporteEmpleados from './components/pages/Reportes/ReporteEmpleados';
 import ReportePlatillos from './components/pages/Reportes/ReportePlatillos';
 import Sucursales from './components/pages/Sucursales';
-import Roles from './components/pages/Roles';
-import CrearRoles from './components/sections/Roles/Crear';
-import EditarRoles from './components/sections/Roles/Editar';
+import Roles from './components/pages/Roles/Roles';
+import CrearRoles from './components/pages/Roles/RolesCreate';
+import EditarRoles from './components/pages/Roles/RolesEdit';
+import DetallesRoles from './components/pages/Roles/RolesDetails';
 import Categorias from './components/pages/Categorias';
 import Municipios from './components/pages/Municipios';
 import Ingredientes from './components/pages/Ingredientes';
@@ -210,6 +211,7 @@ function App() {
         <PrivateRoute pantId={1}  path="/roles" component={Roles} />
         <PrivateRoute pantId={1}  path="/crearRoles" component={CrearRoles} />
         <PrivateRoute pantId={1}  path="/editarRoles" component={EditarRoles} />
+        <PrivateRoute pantId={1}  path="/detallesRoles" component={DetallesRoles} />
 
         {/* Usuarios id:2 */}
         <PrivateRoute pantId={2}  path="/usuario" component={Usuarios} />

@@ -23,11 +23,19 @@ CREATE OR ALTER PROCEDURE acce.UDP_tbRoles_Delete
 	@role_Id INT
 AS
 BEGIN
-	BEGIN TRY
+BEGIN TRY
+	if(EXISTS (SELECT * FROM acce.tbUsuarios where @role_Id = role_Id))
+	BEGIN
+	 select -2
+	END
+	ELSE
+	BEGIN
 	UPDATE [acce].[tbRoles]
 	SET [role_Estado] = 0
 	WHERE [role_Id] = @role_Id
 		SELECT 1 AS Proceso
+	END
+	
  END TRY
     BEGIN CATCH
         SELECT 0 as Proceso
