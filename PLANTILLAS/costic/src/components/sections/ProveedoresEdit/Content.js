@@ -72,7 +72,7 @@ function Content() {
             prov_Telefono: telefono,
             muni_Id: muniId,
             prov_DireccionExacta: direccionExacta,
-            UsuModificacion: 1,		
+            prov_UsuModificacion: 1,		
           };
       
           await axios.put('api/Proveedores/EditarProveedores', provData)

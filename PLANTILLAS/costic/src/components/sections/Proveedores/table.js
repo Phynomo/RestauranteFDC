@@ -16,15 +16,15 @@ const DataTable = () => {
   const [modalDelete, setModalDelete] = useState(false);
   const history = useHistory();
 
-  async function UsuariosEdit(item) {
+  async function ProveedorEdit(item) {
     history.push({
       pathname: '/proveedores_edit',
       state: { data: item }
     });
   };
-  async function UsuariosDetails(item) {
+  async function ProveedorDetails(item) {
     history.push({
-      pathname: '/usuarios_details',
+      pathname: '/proveedores_details',
       state: { data: item }
     });
   };
@@ -76,8 +76,8 @@ const DataTable = () => {
       type: 'number',
       renderCell: (params) => (
         <div className=''>
-          <a style={{ margin: "5px" }} onClick={() => UsuariosDetails(params.row)}><i class='fas flaticon-list text-info'></i></a>
-          <a style={{ margin: "5px" }} onClick={() => UsuariosEdit(params.row)}><i class='fas fa-pencil-alt text-secondary'></i></a>
+          <a style={{ margin: "5px" }} onClick={() => ProveedorDetails(params.row)}><i class='fas flaticon-list text-info'></i></a>
+          <a style={{ margin: "5px" }} onClick={() => ProveedorEdit(params.row)}><i class='fas fa-pencil-alt text-secondary'></i></a>
           <a style={{ margin: "5px" }} onClick={() => seleccionarProveedor(params.row.prov_Id)} ><i class='fas fa-trash-alt text-danger'></i></a>
         </div>
       ),
@@ -99,7 +99,11 @@ const DataTable = () => {
             depa_Nombre: item.depa_Nombre,
             prov_DireccionExacta: item.prov_DireccionExacta,
             muni_Id: item.muni_Id,
-            depa_Id: item.depa_Id
+            depa_Id: item.depa_Id,
+            prov_NombreUsuCreacion: item.user_NombreUsuCreacion,
+            prov_NombreUsuModificacion: item.user_NombreUsuModificacion,
+            prov_FechaCreacion: item.prov_FechaCreacion,
+            prov_FechaModificacion: item.prov_FechaModificacion
           };
         });
         setRows(rows);

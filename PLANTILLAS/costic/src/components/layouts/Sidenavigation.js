@@ -16,6 +16,7 @@ class Sidenavigation extends Component {
             seguridad: false,
             restaurante: false,
             general: false,
+            reportes: false,
             usuarioData : JSON.parse(localStorage.getItem('token')),
         };
     }
@@ -28,7 +29,7 @@ class Sidenavigation extends Component {
         axios.get(`api/Pantallas/PantallasPorRol?rol=${JSON.parse(localStorage.getItem('token')).role_Id}&esAdmin=${JSON.parse(localStorage.getItem('token')).user_EsAdmin ? 1 : 0}`)
           .then(response => {
                 const responseData = response.data.data;
-
+// console.log("pantallas", response.data.data)
                 responseData.forEach(item => {
 
                     if (item.pant_Menu.includes("acceso")) {
@@ -42,6 +43,10 @@ class Sidenavigation extends Component {
                     } else if (item.pant_Menu.includes("general")) {
                         this.setState({
                             general: true
+                        });
+                    } else if (item.pant_Menu.includes("reportes")) {
+                        this.setState({
+                            reportes: true
                         });
                     }
 
@@ -161,10 +166,29 @@ class Sidenavigation extends Component {
                             </Link>
                         </li>
                         }
+                        {this.state.reportes? 
                         <li className="menu-item" >
-                            <Link to="/pruebas"> <span><i className="flaticon-pdf"></i>Pruebazzz</span>
+                        <Link to="#" className="has-chevron"> <span><i className="flaticon-pdf"></i>Reportes</span>
+                        </Link>
+                        <ul id="basic-elements" className="collapse" aria-labelledby="basic-elements" data-parent="#side-nav-accordion">
+                            {this.state.pantallas.map(pantalla =>
+                                 pantalla.pant_Menu == "reportes"? <li className="menu-item" >
+                                 <Link to={pantalla.pant_Url}> <span><i className="material-icons fs-16"></i>{pantalla.pant_Nombre}</span>
+                                 </Link>
+                             </li> : <></>
+                            )}
+                        </ul >
+                        </li >
+                        :
+                        <li className="menu-item" style={{display: "none"}} >
+                            <Link to="/"> <span><i className="flaticon-pdf"></i>Pruebazzz</span>
                             </Link>
                         </li>
+                        }
+                        {/* <li className="menu-item" >
+                            <Link to="/pruebas"> <span><i className="flaticon-pdf"></i>Pruebazzz</span>
+                            </Link>
+                        </li> */}
                     </ul >
                 </Scrollbar >
             </div >

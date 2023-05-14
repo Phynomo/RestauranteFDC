@@ -11,18 +11,23 @@ class ModalsPut extends Component {
         super(props, context);
         this.handleEdit = this.handleEdit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleStockModal = this.handleStockModal.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit2 = this.handleSubmit2.bind(this);
         this.handleCargarProveedores = this.handleCargarProveedores.bind(this);
         this.handleSubmitDelete = this.handleSubmitDelete.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleInputChangeStock = this.handleInputChangeStock.bind(this);
         this.state = {
             show: false,
             ingr_Nombre: this.props.data ? this.props.data.ingr_Nombre : '',
+            ingr_Stock: this.props.data ? this.props.data.stock : '',    
             ingr_PrecioX100gr: this.props.data ? this.props.data.ingr_PrecioX100gr : '',
             prov_Id: this.props.data ? this.props.data.prov_Id : '',
             proveedores: [],
             validated: false,
+            StockModal: false,
         };
     }
 
@@ -33,10 +38,15 @@ class ModalsPut extends Component {
     handleDelete() {
         this.setState({ Delete: true });
     }
+   
+    handleStockModal() {
+        this.setState({ StockModal: true });
+    }
 
     handleClose() {
         this.setState({ Delete: false });
         this.setState({ Edit: false });
+        this.setState({ StockModal: false });
     }
 
     handleCargarProveedores() {
@@ -74,11 +84,74 @@ class ModalsPut extends Component {
                 ingr_UsuModificacion: 1,
             };
 
-            axios.put('/api/Ingredientes/EditarIngrediente', data)
+            axios.put('api/Ingredientes/EditarIngrediente', data)
             .then(response => {
                 console.log(response.data);
                 if (response.data.message == "Exitoso") {
                     alertSuccess("Listo", "El registro se edito con exito", "2000");
+                    this.state.validated = false;
+
+                    let data2 = {
+                        ingr_Id: this.props.data.ingr_Id,
+                        ingrsucu_StockEnGramos: this.state.ingr_Stock,
+                        sucu_Id: JSON.parse(localStorage.getItem('token')).sucu_Id,
+                        ingr_UsuCreacion: 1,
+                    };
+                    
+                    axios.post('api/Ingredientes/InsertarIngredienteStock', data2)
+                    .then(response => {
+                        console.log(response.data);
+                        if (response.data.message == "Exitoso") {
+                            alertSuccess("Listo", "El registro se edito con exito", "2000");
+                            this.state.validated = false;
+                            this.handleClose();
+                        } else if (response.data.message == "YaExiste") {
+                            toastr.warning("Este Ingrediente ya existe", "Ingrediente repetida");
+                        } else {
+                            alertError("Error", "Ocurrio un error mientras se editaba el registro", "2000")
+                            this.state.validated = false;
+                            this.handleClose();
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+
+                } else if (response.data.message == "YaExiste") {
+                    toastr.warning("Este Ingrediente ya existe", "Ingrediente repetida");
+                } else {
+                    alertError("Error", "Ocurrio un error mientras se editaba el registro", "2000")
+                    this.state.validated = false;
+                    this.handleClose();
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
+
+        this.setState({ validated: true });
+    }
+
+    handleSubmit2(event) {
+        event.preventDefault();
+        const form = event.currentTarget;
+
+        if (form.checkValidity() === false && !this.ingr_Stock >= 0) {
+            event.stopPropagation();
+        } else {
+            let data = {
+                ingr_Id: this.props.data.ingr_Id,
+                ingrsucu_StockEnGramos: this.state.ingr_Stock,
+                sucu_Id: JSON.parse(localStorage.getItem('token')).sucu_Id,
+                ingr_UsuCreacion: 1,
+            };
+            
+            axios.post('api/Ingredientes/InsertarIngredienteStock', data)
+            .then(response => {
+                console.log(response.data);
+                if (response.data.message == "Exitoso") {
+                    alertSuccess("Listo", "El stock se edito con exito", "2000");
                     this.state.validated = false;
                     this.handleClose();
                 } else if (response.data.message == "YaExiste") {
@@ -96,6 +169,7 @@ class ModalsPut extends Component {
 
         this.setState({ validated: true });
     }
+
     
     handleSubmitDelete() {
         let data = {
@@ -130,25 +204,29 @@ handleInputChange(event) {
     });
 }
 
-    handleInputChange(event) {
+    handleInputChangeStock(event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
+        
+        if(value >= 0){
 
-        this.setState({
-            [name]: value
-        });
+            this.setState({
+                [name]: value
+            });
+
+        }
     }
 
     render() {
         return (
             <div>
                 {/* <button onClick={this.handleCreate} className='btn btn-primary btn-pill'>Nuevo registro</button> */}
+                <a style={{ margin: "5px" }} onClick={this.handleStockModal}><i className='fas flaticon-layers text-success'></i></a>
                 <a style={{ margin: "5px" }} onClick={this.handleEdit}><i className='fas fa-pencil-alt text-secondary'></i></a>
                 <a style={{ margin: "5px" }} onClick={this.handleDelete}><i className='far fa-trash-alt ms-text-danger'></i></a>
                 
-                <Modal show={this.state.Edit} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
-                    centered>
+                <Modal show={this.state.Edit} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header>
                         <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Editar Ingrediente</h3>
                         <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
@@ -190,6 +268,15 @@ handleInputChange(event) {
                                         </div>
                                     </div>
                                 </div>
+                                <div className='col-6'>
+                                    <div className="ms-form-group has-icon">
+                                    <label htmlFor="validationCustom13">Ingresar stock</label>
+                                    <div className="input-group">
+                                        <input type="number" className="form-control" id="validationCustom13" placeholder="Stock" name="ingr_Stock" value={this.state.ingr_Stock} onChange={this.handleInputChangeStock} required />
+                                        <div className="invalid-feedback">Ingresar el stock es algo requerido</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </Modal.Body>
                         <Modal.Footer>
@@ -211,6 +298,31 @@ handleInputChange(event) {
                         <button type="button" className="btn btn-light btn-sm" onClick={this.handleClose}>Cancelar</button>
                         <button type="button" className="btn btn-primary shadow-none btn-sm" onClick={this.handleSubmitDelete}>Eliminar</button>
                     </Modal.Footer>
+                </Modal>
+                <Modal show={this.state.StockModal} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
+                    <Modal.Header>
+                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-layers bg-primary text-white" />Ingresar el stock</h3>
+                        <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
+                    </Modal.Header>
+                    <form onSubmit={this.handleSubmit2} className={`needs-validation validation-fill ${this.state.validated ? 'was-validated' : ''}`} noValidate>
+                        <Modal.Body>
+                            <div className='row'>
+                                <div className='col-12'>
+                                    <div className="ms-form-group has-icon">
+                                    <label htmlFor="validationCustom13">Ingresar stock</label>
+                                    <div className="input-group">
+                                        <input type="number" className="form-control" id="validationCustom13" placeholder="Stock" name="ingr_Stock" value={this.state.ingr_Stock} onChange={this.handleInputChangeStock} required />
+                                        <div className="invalid-feedback">Ingresar el stock es algo requerido</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <button type="button" className="btn btn-light btn-sm" onClick={this.handleClose}>Cancelar</button>
+                            <button type="submit" className="btn btn-primary shadow-none btn-sm">Guardar</button>
+                        </Modal.Footer>
+                    </form>
                 </Modal>
             </div>
         );

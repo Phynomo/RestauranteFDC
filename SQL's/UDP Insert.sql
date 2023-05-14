@@ -615,6 +615,61 @@ END
 GO
 
 
+--Stock de ingredientes
+CREATE OR ALTER PROCEDURE rest.UDP_tbIngredientesXSucursales_Insert
+	@ingr_Id INT,
+	@sucu_Id INT,
+	@ingrsucu_StockEnGramos DECIMAL(18,2),
+	@ingrsucu_UsuCreacion INT
+AS
+BEGIN
+	BEGIN TRY
+
+		IF NOT EXISTS (SELECT * FROM [rest].[tbIngredientesXSucursal] WHERE ingr_Id = @ingr_Id AND @sucu_Id = sucu_Id)		
+		BEGIN
+
+INSERT INTO [rest].[tbIngredientesXSucursal]
+           ([ingr_Id]
+           ,[sucu_Id]
+           ,[ingrsucu_StockEnGramos]
+           ,[ingrsucu_FechaCreacion]
+           ,[ingrsucu_UsuCreacion]
+           ,[ingrsucu_FechaModificacion]
+           ,[ingrsucu_UsuModificacion]
+           ,[ingrsucu_Estado])
+     VALUES
+           (@ingr_Id
+           ,@sucu_Id
+           ,@ingrsucu_StockEnGramos
+           ,GETDATE()
+           ,@ingrsucu_UsuCreacion
+           ,null
+           ,null
+           ,1)
+
+			SELECT 1 as Proceso
+
+		END
+		ELSE 
+		BEGIN
+
+			UPDATE rest.[tbIngredientesXSucursal]
+			SET [ingrsucu_StockEnGramos] = @ingrsucu_StockEnGramos 
+			WHERE ingr_Id = @ingr_Id AND @sucu_Id = sucu_Id
+			
+			SELECT 1 as Proceso
+
+		END
+
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+
+
+END
+GO
+
 
 --Ingredientes
 --CREATE OR ALTER PROCEDURE rest.UDP_tbIngredinetes_Insert

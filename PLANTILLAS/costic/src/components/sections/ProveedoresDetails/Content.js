@@ -10,17 +10,18 @@ function Content() {
     //Imagen
 
     //datos del Usuario
-    const [userNombreUsuario, setUserNombreUsuario] = useState(datosAntes.user_NombreUsuario);
-    const [empeCargo, setUserId] = useState(datosAntes.carg_Descripcion);
-    const [userCorreo, setUserCorreo] = useState(datosAntes.user_Correo);
-    const [empeNombre, setEmpeId] = useState(datosAntes.empe_NombreCompleto);
-    const [roleNombre, setRoleId] = useState(datosAntes.role_Nombre);
-    const [userImage, setUserImage] = useState(datosAntes.user_Image);
-    const [userEsAdmin, setUserEsAdmin] = useState(datosAntes.admin);
-    const UsuarioCreacion = datosAntes.user_NombreUsuCreacion;
-    const FechaCreacion = new Date(datosAntes.user_FechaCreacion);
-    const UsuarioModificacion = datosAntes.user_NombreUsuModificacion;
-    const FechaModificacion = datosAntes.user_FechaModificacion == null? "" : new Date(datosAntes.user_FechaModificacion);
+    const [provId, setProvId]= useState(datosAntes.prov_Id);
+    const [nombreEmpresa, setNombreEmpresa]= useState(datosAntes.prov_NombreEmpresa);
+    const [nombreContacto, setNombreContato]= useState(datosAntes.prov_NombreContacto);
+    const [telefono, setTelefono]= useState(datosAntes.prov_Telefono);
+    const [depa, setDepa]= useState(datosAntes.depa);
+    const [depaId, setDepaId]= useState(datosAntes.depa_Nombre);
+    const [muniId, setMuniId]= useState(datosAntes.muni_Nombre);
+    const [direccionExacta, setDireccionExacta]= useState(datosAntes.prov_DireccionExacta);
+    const UsuarioCreacion = datosAntes.prov_NombreUsuCreacion;
+    const FechaCreacion = new Date(datosAntes.prov_FechaCreacion);
+    const UsuarioModificacion = datosAntes.prov_NombreUsuModificacion;
+    const FechaModificacion = datosAntes.prov_FechaModificacion == null? "" : new Date(datosAntes.prov_FechaModificacion);
     const history = useHistory();
     const formatoFecha = { 
         year: 'numeric', 
@@ -44,45 +45,39 @@ function Content() {
     return (
         <div className="ms-content-wrapper">
             <div className='container-fluid'>
-                <div className='' style={{ height: "50px" }}></div>
-                <div class="card mt-4">
-                    <div class="card-body">
-                        <div className='little-profilePhynomo text-center'>
-                            <div class="pro-imgPhynomo"> <img src={userImage} alt="user" /> </div>
-                        </div>
-
+                <div className="card mt-3">
+                    <div className='card-header'>
+                        <h3>Detalles del proveedor</h3>
+                    </div>
+                    <div className="card-body">
                         <div className='mt-4 px-5'>
-
                             <div className='row'>
                                 <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Nombre del usuario: </strong>{userNombreUsuario}</label>
+                                    <label style={{ fontSize: "1.2em" }}><strong>ID de la empresa: </strong>{provId}</label>
                                 </div>
                                 <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Contraseña del usuario: </strong>**********</label>
-                                </div>
-                            </div>
-                            <div className='row mt-3'>
-                                <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Correo del usuario: </strong>{userCorreo}</label>
-                                </div>
-                                <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Es administrador: </strong>{userEsAdmin}</label>
+                                    <label style={{ fontSize: "1.2em" }}><strong>Nombre de la emppresa: </strong>{nombreEmpresa}</label>
                                 </div>
                             </div>
                             <div className='row mt-3'>
                                 <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Rol del usuario: </strong>{roleNombre}</label>
+                                    <label style={{ fontSize: "1.2em" }}><strong>Nombre del contacto: </strong>{nombreContacto}</label>
                                 </div>
                                 <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Empleado del usuario: </strong>{empeNombre}</label>
+                                    <label style={{ fontSize: "1.2em" }}><strong>Telefono del contacto: </strong>{telefono}</label>
                                 </div>
                             </div>
                             <div className='row mt-3'>
                                 <div className='col-6'>
-                                    <label style={{ fontSize: "1.2em" }}><strong>Cargo del empleado: </strong>{empeCargo}</label>
+                                    <label style={{ fontSize: "1.2em" }}><strong>Municipio de la empresa </strong>{muniId}</label>
                                 </div>
                                 <div className='col-6'>
-
+                                    <label style={{ fontSize: "1.2em" }}><strong>Departamento de la empresa: </strong>{depaId}</label>
+                                </div>
+                            </div>
+                            <div className='row mt-3'>
+                                <div className='col-12'>
+                                    <label style={{ fontSize: "1.2em" }}><strong>Direccion exacta de la empresa: </strong>{direccionExacta}</label>
                                 </div>
                             </div>
 

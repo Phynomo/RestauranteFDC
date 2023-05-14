@@ -14,11 +14,13 @@ class ModalCreate extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCargarProveedores = this.handleCargarProveedores.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleInputChangeStock = this.handleInputChangeStock.bind(this);
         this.state = {
             show: false,
             ingr_Nombre: '',
             ingr_PrecioX100gr: '',
             prov_Id: '',
+            ingr_Stock: 0,    
             proveedores: [],
             validated: false,
         };
@@ -64,13 +66,40 @@ class ModalCreate extends Component {
             axios.post('api/Ingredientes/InsertarIngrediente', data, {
             })
                 .then(response => {
-                    if (response.data.message == "Exitoso") {
-                        alertSuccess("Listo", "El registro se realizo con exito", "2000");
-                        this.state.ingr_Nombre = null;
-                        this.state.ingr_PrecioX100gr = null;
-                        this.state.prov_Id = null;
-                        this.state.validated = false;
-                        this.handleClose();
+                    if (parseInt(response.data.message) > 0 ) {
+
+
+
+                        let data2 = {
+                            ingr_Id: parseInt(response.data.message),
+                            ingrsucu_StockEnGramos: this.state.ingr_Stock,
+                            sucu_Id: JSON.parse(localStorage.getItem('token')).sucu_Id,
+                            ingr_UsuCreacion: 1,
+                        };
+                        
+                        axios.post('api/Ingredientes/InsertarIngredienteStock', data2)
+                        .then(response => {
+                            console.log(response.data);
+                            if (response.data.message == "Exitoso") {
+                                
+                                alertSuccess("Listo", "El registro se realizo con exito", "2000");
+                                this.state.ingr_Nombre = null;
+                                this.state.ingr_PrecioX100gr = null;
+                                this.state.prov_Id = null;
+                                this.state.validated = false;
+                                this.handleClose();
+                            } else if (response.data.message == "YaExiste") {
+                                toastr.warning("Este Ingrediente ya existe", "Ingrediente repetida");
+                            } else {
+                                alertError("Error", "Ocurrio un error mientras se editaba el registro", "2000")
+                                this.state.validated = false;
+                                this.handleClose();
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+
                     } else if (response.data.message == "YaExiste") {
                         toastr.warning("Este Ingrediente ya existe", "Ingrediente repetido");
                     } else {
@@ -100,6 +129,20 @@ class ModalCreate extends Component {
                 [name]: value
             });
     }
+    handleInputChangeStock(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        
+        if(value >= 0){
+
+            this.setState({
+                [name]: value
+            });
+
+        }
+    }
+
 
 
     render() {
@@ -149,6 +192,15 @@ class ModalCreate extends Component {
                                         <div className="invalid-feedback">Seleccionar un proveedor es obligatorio</div>
                                     </div>
                                 </div>
+                                </div>
+                                <div className='col-6'>
+                                    <div className="ms-form-group has-icon">
+                                    <label htmlFor="validationCustom13">Ingresar stock</label>
+                                    <div className="input-group">
+                                        <input type="number" className="form-control" id="validationCustom13" placeholder="Stock" name="ingr_Stock" value={this.state.ingr_Stock} onChange={this.handleInputChangeStock} required />
+                                        <div className="invalid-feedback">Ingresar el stock es algo requerido</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </Modal.Body>

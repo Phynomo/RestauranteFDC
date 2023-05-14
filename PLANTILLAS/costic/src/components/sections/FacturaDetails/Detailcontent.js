@@ -8,16 +8,11 @@ import imagen from '../../../assets/img/FDCNegro.png';
 
 function Detailcontent() {
     const location = useLocation();
-    const myData = location.state.data;
+    const myData = location.state?.data ?? "";
     const [subtotal, setSubtotal] = useState(0);
     const [rows, setRows] = useState([]);
     const [facturaImpresa , setFacturaImpresa ] = useState(false);
 
-
-    const style = {
-        backgroundImage: imagen,
-        opacity: 0.5
-      };
 
     const fetchData = () => {
         axios.get('api/Facturas/ListadoDetalles?id=' + String(myData.fact_Id))

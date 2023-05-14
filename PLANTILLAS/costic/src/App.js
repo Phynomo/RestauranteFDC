@@ -90,6 +90,9 @@ import CrearCliente from './components/sections/Clientes/Crear';
 import EditarCliente from './components/sections/Clientes/Editar';
 import CrearEmpleado from './components/sections/Empleados/Crear';
 import EditarEmpleado from './components/sections/Empleados/Editar';
+import ReporteFacturas from './components/pages/Reportes/ReporteFacturas';
+import ReporteEmpleados from './components/pages/Reportes/ReporteEmpleados';
+import ReportePlatillos from './components/pages/Reportes/ReportePlatillos';
 import Sucursales from './components/pages/Sucursales';
 import Roles from './components/pages/Roles';
 import CrearRoles from './components/sections/Roles/Crear';
@@ -196,11 +199,11 @@ function App() {
             )
           )} */}
         {/* paginas por defecto */}
-        <Route path="/lock-screen" component={Lockscreen} />
+        <GeneralRoute path="/lock-screen" component={Lockscreen} />
         <Route path="/default-login" component={Defaultlogin} />
-        <Route key="home" exact path="/" component={Dashboard} />
-        <Route path="/user-profile" component={Userprofile} />
-        <Route path="/error" component={Error} />
+        <GeneralRoute key="home" exact path="/" component={Dashboard} />
+        <GeneralRoute path="/user-profile" component={Userprofile} />
+        <GeneralRoute path="/error" component={Error} />
         
 
         {/* Roles id:1 */}
@@ -259,6 +262,12 @@ function App() {
         <PrivateRoute pantId={14}  path="/proveedores_create" component={ProveedoresCreate} />
         <PrivateRoute pantId={14}  path="/proveedores_edit" component={ProveedoresEdit} />
         <PrivateRoute pantId={14}  path="/proveedores_details" component={ProveedoresDetails} />
+        
+        
+        {/* Reportes id:15 - 17 */}
+        <PrivateRoute pantId={15}  path="/reportes_factura" component={ReporteFacturas} />
+        <PrivateRoute pantId={16}  path="/reportes_empleados" component={ReporteEmpleados} />
+        <PrivateRoute pantId={17}  path="/reportes_platillos" component={ReportePlatillos} />
 
         {/* <PrivateRoute pantId={1} permitidas={pantId} path="/pruebas" component={Pruebas} />
         <PrivateRoute pantId={1} permitidas={pantId} path="/accordions" component={Accordions} />
@@ -331,8 +340,8 @@ function App() {
 function PrivateRoute({pantId: pant_Id,component: Component, ...rest }) {
   const isAuthenticated = localStorage.getItem('token');
   const pant_per = localStorage.getItem('Pantallas');
-  console.log(pant_per);
-  const pude = pant_per.includes(pant_Id);
+
+  const pude = pant_per != null? pant_per.includes(pant_Id) : false;
   return (
     <Route
       {...rest}
@@ -347,5 +356,20 @@ function PrivateRoute({pantId: pant_Id,component: Component, ...rest }) {
   );
 }
 
+function GeneralRoute({component: Component, ...rest }) {
+  const isAuthenticated = localStorage.getItem('token');
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          !isAuthenticated ? <Redirect to="/default-login" /> : <Redirect to="/" />
+        )
+      }
+    />
+  );
+}
 
 export default App;

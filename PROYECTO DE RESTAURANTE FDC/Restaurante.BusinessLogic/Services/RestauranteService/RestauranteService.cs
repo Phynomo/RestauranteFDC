@@ -171,6 +171,20 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
         
+        public ServiceResult ReportesEmpleados(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _empleadosRepository.Reporte(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+        
         public ServiceResult CantidadEmpleados()
         {
             var result = new ServiceResult();
@@ -276,6 +290,19 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             try
             {
                 var list = _facturasRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+        public ServiceResult ReporteFacturas(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturasRepository.Reporte(id);
                 return result.Ok(list);
             }
             catch (Exception e)
@@ -521,6 +548,20 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
+        public ServiceResult ListadoIngredientes(int sucu_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _ingredientesRepository.List(sucu_Id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
 
         public ServiceResult InsertarIngrediente(tbIngredientes item)
         {
@@ -528,6 +569,36 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             try
             {
                 var list = _ingredientesRepository.NewIngrediente(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage(list.CodeStatus.ToString(), ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
+
+        public ServiceResult InsertarIngredienteStock(tbIngredientes item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _ingredientesRepository.NewIngredienteStock(item);
                 if (list.CodeStatus > 0)
                 {
                     return result.SetMessage("Exitoso", ServiceResultType.Success);
@@ -614,6 +685,20 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             try
             {
                 var list = _platillosRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        public ServiceResult ReportePlatillos(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _platillosRepository.Reporte(id);
                 return result.Ok(list);
             }
             catch (Exception e)

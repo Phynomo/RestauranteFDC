@@ -319,7 +319,7 @@ BEGIN TRY
 						,NULL 
 						,NULL 
 						,1);
-			SELECT 1 as Proceso
+			SELECT SCOPE_IDENTITY() as Proceso
 	END TRY
 	BEGIN CATCH
 		SELECT 0 as Proceso

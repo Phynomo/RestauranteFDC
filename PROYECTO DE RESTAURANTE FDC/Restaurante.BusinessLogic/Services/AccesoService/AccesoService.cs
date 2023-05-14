@@ -160,12 +160,12 @@ namespace Restaurante.BusinessLogic.Services.AccesoService
             {
                 var insert = _usuariosRepository.Recuperar(item);
 
-                if (insert.MessageStatus == "usuario recuperado")
-                    return result.SetMessage(insert.MessageStatus, ServiceResultType.Success);
-                else if (insert.MessageStatus == "usuario errado")
-                    return result.Conflict(insert.MessageStatus);
-                else if (insert.MessageStatus == "error en operacion")
-                    return result.Error("Algun dato ha sido enviado de forma incorrecta");
+                if (insert.CodeStatus > 0)
+                    return result.SetMessage("exito", ServiceResultType.Success);
+                else if (insert.CodeStatus == -2)
+                    return result.Conflict("error");
+                else if (insert.CodeStatus == 0)
+                    return result.Error("trono");
                 else
                     return result.SetMessage("Conexión perdida", ServiceResultType.Error);
             }

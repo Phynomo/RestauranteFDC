@@ -31,6 +31,13 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(list);
         }
 
+        [HttpGet("Listado_sucu")]
+        public IActionResult IndexSucu(int sucu_Id)
+        {
+            var list = _restauranteServicio.ListadoIngredientes(sucu_Id);
+            return Ok(list);
+        }
+
         [HttpPut("EditarIngrediente")]
         public IActionResult Edit(IngredienteViewModel ingrediente)
         {
@@ -46,7 +53,16 @@ namespace Restaurante.WEBUI.Controllers
             var response = _restauranteServicio.InsertarIngrediente(item);
             return Ok(response);
         }
-        
+
+        [HttpPost("InsertarIngredienteStock")]
+        public IActionResult InsertarIngredientesStock(IngredienteViewModel ingrediente)
+        {
+            var item = _mapper.Map<tbIngredientes>(ingrediente);
+            var response = _restauranteServicio.InsertarIngredienteStock(item);
+            return Ok(response);
+        }
+
+
         [HttpPut("Eliminar")]
         public IActionResult Delete(IngredienteViewModel ingredientes)
         {

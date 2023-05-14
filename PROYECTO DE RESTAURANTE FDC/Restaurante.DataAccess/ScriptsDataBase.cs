@@ -51,6 +51,7 @@ namespace Restaurante.DataAccess
         #region Empleados
 
         public static string UDP_Empleados_List = "rest.UDP_tbEmpleados_Select";
+        public static string UDP_Empleados_Reporte = "rest.UDP_tbEmpleados_SelectReportes";
         public static string UDP_Empleados_Cantidad = "dbo.UDP_TotalEmpleados_Chart";
         public static string UDP_Empleados_Update = "rest.UDP_tbEmpleados_Update";
         public static string InsertarEmpleados = "rest.UDP_InsertarEmpleados";
@@ -70,6 +71,7 @@ namespace Restaurante.DataAccess
         #region Facturas
 
         public static string UDP_Facturas_List = "rest.UDP_tbFacturas_Select";
+        public static string UDP_Facturas_Reporte = "rest.UDP_tbFacturas_SelectReporte";
         public static string UDP_Facturas_Chart = "dbo.UDP_FacturasPorSucursal_Chart";
         public static string UDP_Facturas_ChartCantidad = "dbo.UDP_TotalFacturas_Chart";
         public static string UDP_Facturas_ChartIngresos= "dbo.UDP_IngresosTotales_Chart";
@@ -93,8 +95,10 @@ namespace Restaurante.DataAccess
         #region Ingredientes
 
         public static string UDP_Ingredientes_List = "rest.UDP_tbIngredientes_Select";
+        public static string UDP_Ingredientes_ListSucu = "rest.UDP_tbIngredientes_SelectSucu";
         public static string UDP_Ingredientes_Update = "rest.UDP_tbIngredientes_Update";
         public static string InsertarIngredientes = "rest.UDP_InsertarIngedientes";
+        public static string InsertarIngredientesStock = "rest.UDP_tbIngredientesXSucursales_Insert";
         public static string UDP_Ingredientes_Delete = "rest.UDP_tbIngredientes_Delete";
 
         #endregion
@@ -132,6 +136,7 @@ namespace Restaurante.DataAccess
         #region Platillos
 
         public static string UDP_Platillos_List = "rest.UDP_tbPlatillos_Select";
+        public static string UDP_Platillos_Reporte = "rest.UDP_tbPlatillos_Select_Reporte";
         public static string UDP_Platillos_Chart = "dbo.UDP_Platillos_Chart";
         public static string UDP_Platillos_ChartPedidos = "dbo.UDP_PlatillosPedidos_Chart";
         public static string UDP_Platillos_Update = "rest.UDP_tbPlatillos_Update";
