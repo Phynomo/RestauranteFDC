@@ -525,7 +525,7 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
                 var list = _platillosRepository.NewPlatillos(item);
                 if (list.CodeStatus > 0)
                 {
-                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                    return result.SetMessage(list.CodeStatus.ToString()+".Exitoso", ServiceResultType.Success);
                 }
                 else if (list.CodeStatus == -2)
                 {
@@ -885,20 +885,20 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
-        public ServiceResult Agregar(int plat_Id, int ingr_Id, int gramos, int usuario, decimal precio)
+        public ServiceResult Agregar(tbIngredientesXPlatillos ing)
         {
             ServiceResult result = new ServiceResult();
             try
             {
 
-                var list = _ingredientesXPlatillos.AgregarIngPLat(plat_Id, ingr_Id, gramos, usuario, precio);
+                var list = _ingredientesXPlatillos.AgregarIngPLat(ing);
                 if (list.CodeStatus > 0)
                 {
-                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                    return result.SetMessage("Exitoso", ServiceResultType.Success); ;
                 }
                 else if (list.CodeStatus == 0)
                 {
-                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                    return result.SetMessage("Error", ServiceResultType.Error);
                 }
                 else
                 {
@@ -912,13 +912,13 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
-        public ServiceResult Eliminar(int ingrplat_Id, int ingr_Id, int ingrplat_Gramos, int plat_Id)
+        public ServiceResult Eliminar(tbIngredientesXPlatillos ingred)
         {
             ServiceResult result = new ServiceResult();
             try
             {
 
-                var list = _ingredientesXPlatillos.EliminarIngPLat(ingrplat_Id, ingr_Id, ingrplat_Gramos, plat_Id);
+                var list = _ingredientesXPlatillos.EliminarIngPLat(ingred);
                 if (list.CodeStatus > 0)
                 {
                     return result.SetMessage("Exitoso", ServiceResultType.Success);

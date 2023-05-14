@@ -12,6 +12,7 @@ namespace Restaurante.WEBUI.Models
         public string plat_Nombre { get; set; }
         public int ingr_Id { get; set; }
         public string ingr_Nombre { get; set; }
+        public decimal ingr_PrecioX100gr { get; set; }
         public int ingrplat_Gramos { get; set; }
         public DateTime ingrplat_FechaCreacion { get; set; }
         public int ingrplat_UsuCreacion { get; set; }

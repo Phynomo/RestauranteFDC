@@ -63,16 +63,18 @@ namespace Restaurante.WEBUI.Controllers
         }
 
         [HttpPost("AgregarIngredientesPlat")]
-        public IActionResult Agregar(int plat_Id, int ingr_Id, int gramos, int usuario, decimal precio)
+        public IActionResult Agregar(IngredientePlatilloViewModel ingredientes)
         {
-            var response = _restauranteServicio.Agregar(plat_Id, ingr_Id, gramos, usuario, precio);
+            var x = _mapper.Map<tbIngredientesXPlatillos>(ingredientes);
+            var response = _restauranteServicio.Agregar(x);
             return Ok(response);
         }
 
         [HttpPost("EliminarIngredientesPlat")]
-        public IActionResult Eliminar(int ingrplat_Id, int ingr_Id, int ingrplat_Gramos, int plat_Id)
+        public IActionResult Eliminar(IngredientePlatilloViewModel ingredientes)
         {
-            var response = _restauranteServicio.Eliminar(ingrplat_Id, ingr_Id, ingrplat_Gramos, plat_Id);
+            var x = _mapper.Map<tbIngredientesXPlatillos>(ingredientes);
+            var response = _restauranteServicio.Eliminar(x);
             return Ok(response);
         }
     }

@@ -9,4 +9,46 @@ Poner el [NotMapped] al campo (alias) que puse que retorne al insertar el platil
 agregar el [NotMapped] a empleados del dep_Id (por si acaso)
 
 
-***** crague de nuevo las entities en mi version *****
+***** crague de nuevo las entities en mi version por la nueva vista *****
+
+
+"message": "34.Exitoso",
+
+
+onClick={handleEdit}
+
+
+
+
+
+  await axios.post('api/Platillos/InsertarPlatillos', platData)
+          .then(response => {
+            console.log(response);
+            console.log(response.data.message);
+            const splitMessage = response.data.message.split(".");
+            if (splitMessage[1] == "Exitoso") { /* pendiente probar */
+
+                if (splitMessage.length > 1) {
+                const id = splitMessage[0];
+                setPlatilloId(id);
+                console.log(id + "holaaa");
+
+                alertSuccess("Creado", "El platillo se creó exitosamente", "2000");
+                setShowEditButton(true); 
+                setShowGuardarButton(false);
+                } else {
+                toastr.error("Ocurrio un error inespero", "Inespero");
+                setShowEditButton(false);
+                }
+              }else if(response.data.message == "YaExiste") {
+              
+                toastr.warning("Este Platillo, inserte otro", "Platillo Existente");
+                setShowEditButton(false);
+              }else{
+                toastr.error("Ocurrio un error inespero", "Inespero");
+                setShowEditButton(false);
+              }
+          })
+          .catch(error => {
+            console.log('Error en la solicitud Axios:', error);
+          });

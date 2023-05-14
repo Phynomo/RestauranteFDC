@@ -76,6 +76,8 @@ namespace Restaurante.DataAccess.Context
                     .IsRequired()
                     .HasMaxLength(200);
 
+                entity.Property(e => e.ingr_PrecioX100gr).HasColumnType("decimal(18, 2)");
+
                 entity.Property(e => e.ingrplat_FechaCreacion).HasColumnType("datetime");
 
                 entity.Property(e => e.ingrplat_FechaModificacion).HasColumnType("datetime");
