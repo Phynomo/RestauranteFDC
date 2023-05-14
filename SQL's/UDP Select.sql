@@ -136,6 +136,16 @@ SELECT * FROM rest.VW_tbFacturaDetalles
 WHERE [fade_Estado] = 1 AND @fact_Id = fact_Id
 END
 GO
+--Pantallas
+CREATE OR ALTER PROCEDURE acce.UDP_tbPantallas_Select
+AS
+BEGIN
+SELECT * FROM acce.VW_tbPantallas
+WHERE	pant_Estado = 1
+END
+GO
+
+
 ----Factura Tuneada
 --CREATE OR ALTER PROCEDURE rest.UDP_tbFacturas_Select
 --AS
@@ -147,7 +157,6 @@ GO
 --END
 --GO
 
-
 CREATE OR ALTER PROCEDURE rest.UDP_CargarDepartamentos
 @dept_Id	INT
 AS
@@ -157,15 +166,6 @@ BEGIN
  END
  GO
 
- CREATE OR ALTER PROCEDURE acce.UDP_tbPantallas_Select
- AS
- BEGIN
- SELECT * FROM acce.VW_tbPantallas
- WHERE	pant_Estado = 1
- END
- GO
-
- 
  CREATE OR ALTER PROCEDURE acce.UDP_tbPantallasPorRoles
  @role_Id INT,
  @esAdmin INT
