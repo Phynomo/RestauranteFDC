@@ -101,6 +101,97 @@ class Sidenavigation extends Component {
                     {/* Navigation */}
                     <ul className="accordion ms-main-aside fs-14" id="side-nav-accordion">
                         
+                        {/* Dashboard */}
+                        <li className="menu-item">
+                            <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16" >dashboard</i>Dashboard </span>
+                            </Link>
+                            <ul id="dashboard" className="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">
+                                <li> <Link to="/">Costic</Link>
+                                </li>
+                                <li> <Link to="/departamentos">Departamentos</Link>
+                                </li>
+                                <li> <Link to="/empleados">Empleados</Link>
+                                </li>
+                                <li> <Link to="/cargos">Cargos</Link>
+                                </li>
+                                <li> <Link to="/estadosCiviles">Estados Civiles</Link>
+                                </li>
+                                <li> <Link to="/metodosPago">Metodos de pago</Link>
+                                </li>
+                                <li> <Link to="/clientes">Clientes</Link>
+                                </li>
+                                <li> <Link to="/platillos">Platillos</Link>
+                                </li>
+                            </ul>
+                        </li>
+                        {/* /Dashboard */}
+                        {/* product */}
+                        <li className="menu-item">
+                            <Link to="#" className="has-chevron"> <span><i className="fa fa-archive fs-16" />Menus </span>
+                            </Link>
+                            <ul id="product" className="collapse" aria-labelledby="product" data-parent="#side-nav-accordion">
+                                <li> <Link to="/menu-catalogue" >Menu Catalogue</Link>
+                                </li>
+                                <li> <Link to="/menu-list" >Menu List</Link>
+                                </li>
+                                <li> <Link to="/menu-grid" >Menu Grid</Link>
+                                </li>
+                                <li> <Link to="/add-product" >Add Product</Link>
+                                </li >
+                                <li> <Link to="/product-detail" >Product Detail</Link>
+                                </li >
+                            </ul >
+                        </li >
+                        {/* product end */}
+                        {/* orders */}
+                        <li className="menu-item">
+                            <Link to="/orders"> <span><i className="fas fa-clipboard-list fs-16" />Orders</span>
+                            </Link>
+                        </li >
+                        {/* orders end */}
+                        {/* restaurants */}
+                        <li className="menu-item">
+                            <Link to="/restaurant-list"> <span><i className="fa fa-tasks fs-16" />Restaurants List</span>
+                            </Link>
+                        </li >
+                        {/* restaurants end */}
+                        {/* Invoice */}
+                        <li className="menu-item">
+                            <Link to="#" className="has-chevron"> <span><i className="fas fa-file-invoice fs-16" />Invoice </span>
+                            </Link>
+                            <ul id="invoice" className="collapse" aria-labelledby="invoice" data-parent="#side-nav-accordion">
+                                <li> <Link to="/invoice-detail" >Invoice Detail</Link>
+                                </li>
+                                <li> <Link to="/invoice-list" >Invoice List</Link>
+                                </li>
+                            </ul >
+                        </li >
+                        {/* Invoice end */}
+                        {/* customers*/}
+                        <li className="menu-item">
+                            <Link to="#" className="has-chevron"> <span><i className="fas fa-user-friends fs-16" />Customers </span>
+                            </Link>
+                            <ul id="customer" className="collapse" aria-labelledby="customer" data-parent="#side-nav-accordion">
+                                <li> <Link to="/customer-review" >Customers Review</Link>
+                                </li>
+                                <li> <Link to="/customer-list" >Customers List</Link>
+                                </li>
+                                <li> <Link to="/social-activity" >Social Activity</Link>
+                                </li >
+                            </ul >
+                        </li >
+                        {/* Customers  end */}
+                        {/* sales */}
+                        <li className="menu-item">
+                            <Link to="/sales" > <span><i className="fa fa-briefcase fs-16" />Sales</span>
+                            </Link>
+                        </li >
+                        {/* sales end  */}
+                        < li className="menu-item" >
+                            <Link to="/widgets"> <span><i className="material-icons fs-16">widgets</i>Widgets</span>
+                            </Link>
+                        </li >
+                        {/* Basic UI Elements */}
                         <li className="menu-item" >
                             <Link to="/"> <span><i className="flaticon-diamond"></i>Home</span>
                             </Link>

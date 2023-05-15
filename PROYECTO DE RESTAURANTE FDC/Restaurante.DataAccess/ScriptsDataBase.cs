@@ -35,6 +35,7 @@ namespace Restaurante.DataAccess
         public static string UDP_Clientes_Delete = "rest.UDP_tbClientes_Delete";
 
         public static string CargarClientes = "rest.UDP_CargarDatosCliente";
+        public static string DetallesClientes = "rest.UDP_DetallesCliente";
         #endregion
 
         #region Departamentos
@@ -56,6 +57,8 @@ namespace Restaurante.DataAccess
         public static string InsertarEmpleados = "rest.UDP_InsertarEmpleados";
         public static string UDP_Empleados_Delete = "rest.UDP_tbEmpleados_Delete";
 
+        public static string CargarDatosEmpleados = "rest.UDP_CargarDatosEmpleado";
+        public static string DetallesEmpleados = "rest.UDP_DetallesEmpleados";
         #endregion
 
         #region Estados Civiles
@@ -138,8 +141,19 @@ namespace Restaurante.DataAccess
         public static string UDP_IngredienteXPlatillos_Update = "rest.UDP_tbIngredientesXPlatillos_Update";
         public static string InsertarPlatillos = "rest.UDP_InsertarPlatillos";
         public static string UDP_Platillos_Delete = "rest.UDP_tbPlatillos_Delete";
+        public static string EditarCreatePlatillo = "rest.UDP_EditarCreatePlatillo";
+        public static string Precio = "rest.UDP_MostrarPrecio";
+        public static string PlatillosXcate = "rest.UDP_MostrarPlatillosCate";
+        public static string Datos = "rest.UDP_CargarDatosPlatillo";
         #endregion
-        
+
+        #region Ingredientes Por PLatillos
+        public static string MostarIngredientesXplatillo = "rest.UDP_MostrarIngredientesXPlato";
+        public static string AgregarIngredientePlatillo = "rest.UDP_IngredientesPlatillo";
+        public static string EliminarIngredientePlatillo = "rest.UDP_EliminarIngredientesPlatillos";
+      
+        #endregion
+
         #region Proveedores
 
         public static string UDP_Proveedores_List = "rest.UDP_tbProveedores_Select";

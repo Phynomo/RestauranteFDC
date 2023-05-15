@@ -60,5 +60,13 @@ namespace Restaurante.WEBUI.Controllers
             var list = _restauranteServicio.CargarClientes(id);
             return Ok(list);
         }
+
+
+        [HttpGet("DetallesCliente")]
+        public IActionResult Detalles(int id)
+        {
+            var list = _restauranteServicio.DetallesClientes(id);
+            return Ok(list);
+        }
     }
 }

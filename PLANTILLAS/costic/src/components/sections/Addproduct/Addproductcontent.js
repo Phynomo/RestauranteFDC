@@ -97,6 +97,7 @@ class Addproductcontent extends Component {
                             </div>
                         </div>
                     </div>
+                    
                     <div className="col-xl-6 col-md-12">
                         <div className="row">
                             <div className="col-md-12">

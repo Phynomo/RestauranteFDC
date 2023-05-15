@@ -88,10 +88,10 @@ namespace Restaurante.DataAccess.Repositories.REST
             parametros.Add("@empe_Nombres", item.empe_Nombres, DbType.String, ParameterDirection.Input);
             parametros.Add("@empe_Apellidos", item.empe_Apellidos, DbType.String, ParameterDirection.Input);
             parametros.Add("@empe_Identidad", item.empe_Identidad, DbType.String, ParameterDirection.Input);
-            parametros.Add("@empe_FechaCreacion", item.empe_FechaCreacion, DbType.Date, ParameterDirection.Input);
             parametros.Add("@empe_Sexo", item.empe_Sexo, DbType.String, ParameterDirection.Input);
             parametros.Add("@eciv_Id", item.eciv_Id, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@muni_Id", item.muni_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@empe_FechaNacimiento", item.empe_FechaNacimiento, DbType.Date, ParameterDirection.Input);
             parametros.Add("@empe_DireccionExacta", item.empe_DireccionExacta, DbType.String, ParameterDirection.Input);
             parametros.Add("@empe_Telefono", item.empe_Telefono, DbType.String, ParameterDirection.Input);
             parametros.Add("@empe_CorreoElectronico", item.empe_CorreoElectronico, DbType.String, ParameterDirection.Input);
@@ -104,5 +104,25 @@ namespace Restaurante.DataAccess.Repositories.REST
 
             return result;
         }
+
+        public IEnumerable<tbEmpleados> MostarDatos(int id)
+        {
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@empe_Id", id, DbType.Int32, ParameterDirection.Input);
+            return db.Query<tbEmpleados>(ScriptsDataBase.CargarDatosEmpleados, parametros, commandType: CommandType.StoredProcedure);
+        }
+
+        public IEnumerable<VW_tbEmpleados> Detalles(int id)
+        {
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@empe_Id", id, DbType.Int32, ParameterDirection.Input);
+            return db.Query<VW_tbEmpleados>(ScriptsDataBase.DetallesEmpleados, parametros, commandType: CommandType.StoredProcedure);
+        }
+
+
     }
 }

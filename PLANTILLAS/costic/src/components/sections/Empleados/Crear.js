@@ -7,10 +7,11 @@ import Sidenavigation from '../../layouts/Sidenavigation';
 import Topnavigation from '../../layouts/Topnavigation';
 import Quickbar from '../../layouts/Quickbar';
 
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-
-
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 
 
@@ -31,22 +32,18 @@ const Crear = () => {
   const [Direccion, setDireccion] = useState('');
   const [Sucursal, setSucursal] = useState('');
   const [Cargo, setCargo] = useState('');
-
-
+  const [Correo, setCorreo] = useState('');
 
   const [Telefono, setTelefono] = useState('');
   const [UsuarioCrea, setUsuarioCrea] = useState('1');
+
   const [validationErrors, setValidationErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
 
-
+  console.log(selectedDate);
 
    const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -63,13 +60,14 @@ const Crear = () => {
       muni_Id: Municipio,
       eciv_Id: EstadoCivil,
       empe_UsuCreacion: UsuarioCrea,
-      empe_FechaNacimiento: selectedDate
+      empe_FechaNacimiento: selectedDate,
+      empe_CorreoElectronico: Correo
 
     };
   
     // Validar campos
     const errors = {};
-    if (!Nombres || !Apellidos || !Identidad || !Direccion || !Sexo || !Telefono || !Sucursal || !Cargo|| !Municipio || !EstadoCivil || !selectedDate ) {
+    if (!Nombres || !Apellidos || !Identidad || !Direccion || !Sexo || !Telefono || !Sucursal || !Cargo|| !Municipio || !EstadoCivil || !selectedDate || !Correo ) {
         toastr.warning("Todos los campos son requeridos","Advertencia");
     }
    else {
@@ -163,7 +161,7 @@ const Crear = () => {
     <main className="body-content">
         <Topnavigation />
         <div className="ms-content-wrapper">
-      <div className="row">
+       <div className="row">
          <div className="col-md-12">
              <Breadcrumb />
              <div className="ms-panel">
@@ -223,64 +221,24 @@ const Crear = () => {
                   />
                  </div>
 
-
-
+                  <div className="col-md-6">
+                  <br />
+                  <label htmlFor="Identidad" className="form-label">
+                      Fecha de Nacimiento:
+                  </label>
+                <input
+                  type="date"
+                  name="selectedDate"
+                  id="selectedDate"
+                  value={selectedDate}
+                  onChange={(event) => {
+                    setSelectedDate(event.target.value);
+                  }}
+                  className="form-control"
+                />
+                  </div>
 
                   <div className="col-md-6">
-                    <br />
-                    <label htmlFor="Identidad" className="form-label">
-                        Fecha de Nacimiento:
-                    </label>
-                    <br />
-                    <input
-                        type="date"
-                        className="form-control"
-                        value={selectedDate}
-                        onChange={handleDateChange}
-                    />
-                    
-                 </div>
-              
-
-
-
-
-
-                 <div className="col-md-6">
-                 <br></br>
-                  <label htmlFor="Direccion" className="form-label">
-                    Dirección:
-                  </label>
-                  <input
-                    type="textArea"
-                    name="Direccion"
-                    id="Direccion"
-                    value={Direccion}
-                    onChange={(event) => {
-                      setDireccion(event.target.value);
-                    }}
-                    className="form-control"
-                  />
-                 </div>
-
-                 <div className="col-md-6">
-                 <br></br>
-                  <label htmlFor="Telefono" className="form-label">
-                    Teléfono:
-                  </label>
-                  <input
-                    type="text"
-                    name="Telefono"
-                    id="Telefono"
-                    value={Telefono}
-                    onChange={(event) => { 
-                        setTelefono(event.target.value) 
-                    }}
-                    className="form-control"
-                    />
-                 </div>
-
-                 <div className="col-md-6">
                     <br></br>
                  <label htmlFor="sexo" className="form-label">
                     Sexo:
@@ -334,6 +292,89 @@ const Crear = () => {
                    ))}
                   </select>
                   </div>
+                    
+                 <div className="col-md-6">
+                 <br></br>
+                  <label htmlFor="Telefono" className="form-label">
+                    Teléfono:
+                  </label>
+                  <input
+                    type="text"
+                    name="Telefono"
+                    id="Telefono"
+                    value={Telefono}
+                    onChange={(event) => { 
+                        setTelefono(event.target.value) 
+                    }}
+                    className="form-control"
+                    />
+                 </div>
+
+                 <div className="col-md-6">
+                 <br></br>
+                  <label htmlFor="Correo" className="form-label">
+                    Correo Electrónico:
+                  </label>
+                  <input
+                    type="email"
+                    name="Correo"
+                    id="Correo"
+                    value={Correo}
+                    onChange={(event) => { 
+                        setCorreo(event.target.value) 
+                    }}
+                    className="form-control"
+                    />
+                 </div>
+
+
+                 <div className="col-md-6">
+                 <br></br>
+                  <label htmlFor="departamento" className="form-label">
+                  Departamentos:
+                  </label>
+
+                  <select id="departamento" value={selectedDepartamento} onChange={handleDepartamentoChange} className="form-control">                 
+                  <option value="" hidden>Seleccione un Departamento</option>
+                  {departamentos.map(departamento => (
+                  <option key={departamento.depa_Id} value={departamento.depa_Id}>{departamento.depa_Nombre}</option>
+                   ))}
+                  </select>
+                  </div>
+
+                  <div className="col-md-6">
+                 <br></br>
+                  <label htmlFor="municipio" className="form-label">
+                  Municipios:
+                  </label>
+
+                  <select id="municipio" value={Municipio} onChange={(event) => setMunicipio(event.target.value)} className="form-control">                 
+                  <option value="" hidden>Seleccione un Municipio</option>
+                  {municipios.map(Municipio => (
+                  <option key={Municipio.muni_Id} value={Municipio.muni_Id}>{Municipio.muni_Nombre}</option>
+                   ))}
+                  </select>
+                  </div>
+
+                 <div className="col-md-6">
+                 <br></br>
+                  <label htmlFor="Direccion" className="form-label">
+                    Dirección:
+                  </label>
+                  <input
+                    type="text"
+                    name="Direccion"
+                    id="Direccion"
+                    value={Direccion}
+                    onChange={(event) => {
+                      setDireccion(event.target.value);
+                    }}
+                    className="form-control"
+                  />
+                 </div>
+   
+
+                 
 
                   <div className="col-md-6">
                  <br></br>
@@ -363,33 +404,7 @@ const Crear = () => {
                   </select>
                   </div>
 
-                  <div className="col-md-6">
-                 <br></br>
-                  <label htmlFor="departamento" className="form-label">
-                  Departamentos:
-                  </label>
-
-                  <select id="departamento" value={selectedDepartamento} onChange={handleDepartamentoChange} className="form-control">                 
-                  <option value="" hidden>Seleccione un Departamento</option>
-                  {departamentos.map(departamento => (
-                  <option key={departamento.depa_Id} value={departamento.depa_Id}>{departamento.depa_Nombre}</option>
-                   ))}
-                  </select>
-                  </div>
-
-                  <div className="col-md-6">
-                 <br></br>
-                  <label htmlFor="municipio" className="form-label">
-                  Municipios:
-                  </label>
-
-                  <select id="municipio" value={Municipio} onChange={(event) => setMunicipio(event.target.value)} className="form-control">                 
-                  <option value="" hidden>Seleccione un Municipio</option>
-                  {municipios.map(Municipio => (
-                  <option key={Municipio.muni_Id} value={Municipio.muni_Id}>{Municipio.muni_Nombre}</option>
-                   ))}
-                  </select>
-                  </div>
+              
            
                  {/* Centrar boton*/}
                     

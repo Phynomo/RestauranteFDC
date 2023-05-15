@@ -61,5 +61,19 @@ namespace Restaurante.WEBUI.Controllers
             var result = _restauranteServicio.EliminarEmpleados(item);
             return Ok(result);
         }
+
+        [HttpGet("CargarEmpleados")]
+        public IActionResult Cargar(int id)
+        {
+            var list = _restauranteServicio.CargarEmpleados(id);
+            return Ok(list);
+        }
+
+        [HttpGet("DetallesEmpleados")]
+        public IActionResult Detalles(int id)
+        {
+            var list = _restauranteServicio.DetallesEmpleados(id);
+            return Ok(list);
+        }
     }
 }

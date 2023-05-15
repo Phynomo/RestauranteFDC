@@ -19,16 +19,16 @@ const columns = [
      type: 'number',
      renderCell: (params) => (
       <div>
-        <Link to={`/editarEmpleado${params.row.empe_Id}`} style={{ margin: "5px" }}><i className='fas fa-pencil-alt text-secondary'></i></Link>
-      { /* <button style={{ margin: "5px" }} onClick={() => handleDeleteClick(params.row.clie_Id)} className='btn btn-square'>
-          <i className='far fa-trash-alt ms-text-danger'></i>
-        </button>*/}
+       
+        <Link to={`/editarEmpleado/${params.row.empe_Id}`} style={{ margin: "5px" }}><i className='fas fa-pencil-alt text-secondary'></i></Link>
+        <Link to={`/detallesEmpleado/${params.row.empe_Id}`} style={{ margin: "5px" }}><i className="fas fa-align-justify"></i></Link>
       </div>
+      
     ),
    },
 ];
 
-const DataTable = () => {
+  const DataTable = () => {
   const [searchText, setSearchText] = useState('');
   const [rows, setRows] = useState([]);
 

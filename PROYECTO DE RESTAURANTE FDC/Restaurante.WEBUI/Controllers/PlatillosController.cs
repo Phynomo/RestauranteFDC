@@ -6,6 +6,7 @@ using Restaurante.Entities.Entities;
 using Restaurante.WEBUI.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -69,5 +70,38 @@ namespace Restaurante.WEBUI.Controllers
             var result = _restauranteServicio.EliminarPlatillos(item);
             return Ok(result);
         }
+
+        [HttpGet("Precio")]
+        public IActionResult Precio(int id)
+        {
+            var list = _restauranteServicio.Precio(id);
+            return Ok(list);
+        }
+
+        [HttpPut("EditCrearPlatillo")]
+        public IActionResult editarC(PlatilloViewModel plato)
+        {
+            var item = _mapper.Map<tbPlatillos>(plato);
+            var response = _restauranteServicio.EditCrearPlatillo(item);
+            return Ok(response);
+        }
+
+
+        [HttpGet("ListaPlatillosCate")]
+        public IActionResult Platos(int id)
+        {
+            var list = _restauranteServicio.PlatillosCate(id);
+            return Ok(list);
+        }
+
+        [HttpGet("DatosPlatillos")]
+        public IActionResult Datos(int id)
+        {
+            var list = _restauranteServicio.DatosPlat(id);
+            return Ok(list);
+        }
+
+
+
     }
 }

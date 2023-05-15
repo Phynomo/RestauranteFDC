@@ -56,6 +56,8 @@ const DataTable = () => {
       renderCell: (params) => (
         <div>
           <Link to={`/editarCliente/${params.row.clie_Id}`} style={{ margin: "5px" }}><i className='fas fa-pencil-alt text-secondary'></i></Link>
+          <Link to={`/detallesCliente/${params.row.clie_Id}`} style={{ margin: "5px" }}><i className="fas fa-align-justify"></i></Link>
+
           <button style={{ margin: "5px" }} onClick={() => handleDeleteClick(params.row.clie_Id)} className='btn btn-square'>
             <i className='far fa-trash-alt ms-text-danger'></i>
           </button>

@@ -3,6 +3,7 @@ using Restaurante.DataAccess.Repositories.REST;
 using Restaurante.Entities.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
         private readonly ProveedoresRepository _proveedoresRepository;
         private readonly ReservacionesRepository _reservacionesRepository;
         private readonly SucursalesRepository _sucursalesRepository;
+        private readonly IngredientesXPlatillos _ingredientesXPlatillos;
 
         public RestauranteService(ClienteRepository clienteRepository,
                                   EmpleadosRepository empleadosRepository,
@@ -28,7 +30,8 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
                                   PlatillosRepository platillosRepository,
                                   ProveedoresRepository proveedoresRepository,
                                   ReservacionesRepository reservacionesRepository,
-                                  SucursalesRepository sucursalesRepository
+                                  SucursalesRepository sucursalesRepository,
+                                  IngredientesXPlatillos ingredientesXPlatillos
             )
         {
             _clienteRepository = clienteRepository;
@@ -39,6 +42,7 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             _proveedoresRepository = proveedoresRepository;
             _reservacionesRepository = reservacionesRepository;
             _sucursalesRepository = sucursalesRepository;
+            _ingredientesXPlatillos = ingredientesXPlatillos;
         }
 
 
@@ -153,6 +157,20 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
+        public ServiceResult DetallesClientes(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _clienteRepository.Detalles(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
         #endregion
 
         #region Empleados
@@ -263,6 +281,34 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             catch (Exception ex)
             {
                 return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult CargarEmpleados(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _empleadosRepository.MostarDatos(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        public ServiceResult DetallesEmpleados(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _empleadosRepository.Detalles(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
             }
         }
 
@@ -650,15 +696,16 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
-        public ServiceResult InsertarPlatillos(tbPlatillos item)
+        public ServiceResult InsertarPlatillos(tbPlatillos item )
         {
             ServiceResult result = new ServiceResult();
             try
             {
+
                 var list = _platillosRepository.NewPlatillos(item);
                 if (list.CodeStatus > 0)
                 {
-                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                    return result.SetMessage(list.CodeStatus.ToString()+".Exitoso", ServiceResultType.Success);
                 }
                 else if (list.CodeStatus == -2)
                 {
@@ -730,6 +777,79 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             catch (Exception ex)
             {
                 return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult EditCrearPlatillo(tbPlatillos item)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                var list = _platillosRepository.ActualizarCrea(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == -2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+
+        }
+
+
+        public ServiceResult Precio(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _platillosRepository.LitaPrecio(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        public ServiceResult PlatillosCate(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _platillosRepository.ListaPlatosCate(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+        public ServiceResult DatosPlat(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _platillosRepository.DatosPlat(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
             }
         }
 
@@ -954,6 +1074,77 @@ namespace Restaurante.BusinessLogic.Services.RestauranteService
             }
         }
 
+        #endregion
+
+        #region IngredientesXPlatillos
+
+        public ServiceResult IngredientesXplatillo(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _ingredientesXPlatillos.List(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        public ServiceResult Agregar(tbIngredientesXPlatillos ing)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+
+                var list = _ingredientesXPlatillos.AgregarIngPLat(ing);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success); ;
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("Error", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
+
+        public ServiceResult Eliminar(tbIngredientesXPlatillos ingred)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+
+                var list = _ingredientesXPlatillos.EliminarIngPLat(ingred);
+                if (list.CodeStatus > 0)
+                {
+                    return result.SetMessage("Exitoso", ServiceResultType.Success);
+                }
+                else if (list.CodeStatus == 0)
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("ErrorInespero", ServiceResultType.Error);
+                }
+            }
+            catch (Exception xe)
+            {
+
+                return result.Error(xe.Message);
+            }
+        }
         #endregion
     }
 

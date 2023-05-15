@@ -146,6 +146,10 @@
          "ObjectType": 3
       },
       {
+         "Name": "[rest].[VW_IngredientesXPlatillo]",
+         "ObjectType": 3
+      },
+      {
          "Name": "[rest].[VW_tbClientes]",
          "ObjectType": 3
       },
@@ -182,7 +186,7 @@
          "ObjectType": 3
       }
    ],
-   "UiHint": "DESKTOP-E6OAL4S\\SERVIDORLOCALDM.dbRestaurante",
+   "UiHint": "LAPTOP-64AJM339.dbRestaurante",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,

@@ -83,6 +83,8 @@ import Usuarios from './components/pages/Usuarios/Usuario';
 import UsuariosCreate from './components/pages/Usuarios/UsuariosCreate';
 import UsuariosEdit from './components/pages/Usuarios/UsuariosEdit';
 import UsuariosDetails from './components/pages/Usuarios/UsuariosDetails';
+import Platillos from './components/pages/Platillos';
+
 import CrearCliente from './components/sections/Clientes/Crear';
 import EditarCliente from './components/sections/Clientes/Editar';
 import CrearEmpleado from './components/sections/Empleados/Crear';
@@ -95,6 +97,11 @@ import Categorias from './components/pages/Categorias';
 import Municipios from './components/pages/Municipios';
 import Ingredientes from './components/pages/Ingredientes';
 import axios from 'axios';
+import DetallesEmpleado from './components/sections/Empleados/Detalles';
+import DetallesCliente from './components/sections/Clientes/Detalles';
+import CrearPlatillo from './components/sections/Platillos/Agregar';
+import ListaPlatillos from './components/sections/Platillos/table';
+import EditarPlatillos from './components/sections/Platillos/EditarPlatillo';
 
 function App() {
   const history = useHistory();
@@ -215,6 +222,15 @@ function App() {
         <Route path="/crearRoles" component={CrearRoles} />
         <Route path="/editarRoles" component={EditarRoles} />
         <Route path="/categorias" component={Categorias} />
+        <Route path="/detallesEmpleado/:empe_Id" component={DetallesEmpleado} />
+        <Route path="/detallesCliente/:clie_Id" component={DetallesCliente} />
+        <Route path="/platillos" component={Platillos}></Route>
+        <Route path="/crearPlatillo" component={CrearPlatillo}></Route>
+        <Route path="/listaPlatillos/:cate_Id" component={ListaPlatillos} />
+        <Route path="/editarPlatillos/:plat_Id" component={EditarPlatillos} />
+
+
+
         <Route path="/add-product" component={Addproduct} />
         <Route path="/alerts" component={Alerts} />
         <Route path="/animations" component={Animations} />
