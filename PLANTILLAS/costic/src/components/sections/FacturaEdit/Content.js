@@ -213,7 +213,6 @@ function Content() {
         }
         await axios.post('api/Facturas/InsertarFactura', data)
             .then(response => {
-                console.log(response);
                 if (parseInt(response.data.message) > 0) {
                     setFacturaId(parseInt(response.data.message))
                     toastr.success("Ya puedes ingresar platillos", "Factura creada");
@@ -238,7 +237,6 @@ function Content() {
         }
         await axios.post('/api/Facturas/InsertarFacturaDetalle', data)
             .then(response => {
-                console.log(response);
                 if (response.data.message == "Exitoso") {
                     setSelectedPlatillo("");
                     setCantidad(1);
@@ -287,7 +285,6 @@ function Content() {
         }
         await axios.put('api/Facturas/EditarFactura', data)
             .then(response => {
-                console.log(response);
                 history.push("/factura");
             })
             .catch(error => {
@@ -308,7 +305,6 @@ function Content() {
         fetchClientes();
         fetchMetodoPago();
         fetchPlatillos();
-        console.log(myData);
     }, []);
 
     return (

@@ -6,43 +6,39 @@ import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
 import toastr from 'toastr';
 
 function Content() {
-    const apikey = '81a91816c209f6d64dfd56aa803647e5';
-    //Imagen
-    const [image, setImage] = useState(null);
-    const fileInputRef = useRef(null);
 
-    //datos del Usuario
-    const [userNombreUsuario, setUserNombreUsuario] = useState('');
-    const [userContraesña, setUserContraseña] = useState('');
-    const [userCorreo, setUserCorreo] = useState('');
-    const [empeId, setEmpeId] = useState('');
-    const [roleId, setRoleId] = useState('');
-    const [userImage, setUserImage] = useState('https://i.ibb.co/9GcKFNs/FDCNegro.png');
-    const [userEsAdmin, setUserEsAdmin] = useState(false);
+    //datos del Proveedor
+    const [nombreEmpresa, setNombreEmpresa]= useState("");
+    const [nombreContato, setNombreContato]= useState("");
+    const [telefono, setTelefono]= useState("");
+    const [depaId, setDepaId]= useState("");
+    const [muniId, setMuniId]= useState("");
+    const [direccionExacta, setDireccionExacta]= useState("");
+
     const history = useHistory();
     const [validated, setValidated] = useState(false);
 
     //Listados para los select
-    const [empleadosList, setEmpleadosList] = useState([]);
-    const [rolesList, setRolesList] = useState([]);
+    const [departamentosList, setDepartamentosList] = useState([]);
+    const [municipiosList, setMunicipiosList] = useState([]);
 
     //Enviando info
     const [botonEnviar, setBotonEnviar] = useState(false);
 
-    const fetchEmpleados = () => {
-        axios.get('api/Empleados/Listado')
+    const fetchDepartamentos = () => {
+        axios.get('api/Departamentos/Listado')
             .then(response => {
-                setEmpleadosList(response.data.data);
+                setDepartamentosList(response.data.data);
             })
             .catch(error => {
                 console.log('Error en la solicitud Axios:', error);
             });
     };
 
-    const fetchRoles = () => {
-        axios.get('api/Roles/Listado')
+    const fetchMunicipios = (id) => {
+        axios.get(`api/Municipios/CargarMunicipios?id=${id}`)
             .then(response => {
-                setRolesList(response.data.data);
+                setMunicipiosList(response.data.data);
             })
             .catch(error => {
                 console.log('Error en la solicitud Axios:', error);
@@ -51,98 +47,29 @@ function Content() {
 
 
     useEffect(() => {
-        fetchEmpleados();
-        fetchRoles();
+        fetchDepartamentos();
     }, []);
-
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                setImage(reader.result);
-            };
-        } else {
-            toastr.warning("El archivo tiene que ser una imagen", "Seleciona una imagen");
-        }
-    };
 
 
     async function handleCreate() {
         setBotonEnviar(true);
-        if (image != null) {
-          const base64Image = image.split(',')[1]; // obtener la cadena Base64 sin el prefijo "data:image/png;base64,"
-          const url = `https://api.imgbb.com/1/upload?key=${apikey}`;
-          const body = new FormData();
-          body.append('image', base64Image);
-      
-          try {
-            const response = await fetch(url, {
-              method: 'POST',
-              body: body
-            });
-      
-            if (!response.ok) {
-              throw new Error('Error al enviar la imagen');
-            }
-      
-            const data = await response.json();
-            setUserImage(data.data.url);
-      
-            const userData = {
-              user_NombreUsuario: userNombreUsuario,
-              user_Contrasena: userContraesña,
-              user_Correo: userCorreo,
-              user_Image: data.data.url,
-              user_EsAdmin: userEsAdmin,
-              role_Id: roleId,
-              empe_Id: empeId,
-              user_UsuCreacion: 1,
-            };
-      
-            await axios.post('api/Usuarios/Insertar', userData)
-              .then(response => {
-                console.log(response);
-                if (response.data.message == "Exitoso") {
-                    alertSuccess("Creado", "El usuario se creo con exito", "2000");
-                    history.push("/usuarios");
-                }else if(response.data.message == "YaExiste") {
-                    setUserNombreUsuario("");
-                    toastr.warning("Este usuario ya existe, inserte otro", "Usuario existente");
-                  }else{
-                    toastr.error("Ocurrio un error inespero", "Inespero");
-                  }
-              })
-              .catch(error => {
-                console.log('Error en la solicitud Axios:', error);
-              });
-      
-          } catch (error) {
-            console.log('Error al enviar la imagen: ', error);
-          }
-        } else {
-          const userData = {
-            user_NombreUsuario: userNombreUsuario,
-            user_Contrasena: userContraesña,
-            user_Correo: userCorreo,
-            user_Image: userImage,
-            user_EsAdmin: userEsAdmin,
-            role_Id: roleId,
-            empe_Id: empeId,
-            user_UsuCreacion: 1,
+          let provData = {
+            prov_NombreEmpresa: nombreEmpresa,
+            prov_NombreContacto: nombreContato,
+            prov_Telefono: telefono,
+            muni_Id: muniId,
+            prov_DireccionExacta: direccionExacta,
+            prov_UsuCreacion: 1,		
           };
       
-          await axios.post('api/Usuarios/Insertar', userData)
+          await axios.post('api/Proveedores/InsertarProveedores', provData)
             .then(response => {
-              console.log(response);
               if (response.data.message == "Exitoso") {
-                alertSuccess("Creado", "El usuario se creo con exito", "2000");
-                history.push("/usuarios");
+                alertSuccess("Creado", "El proveedor se registro con exito", "2000");
+                history.push("/proveedores");
               }else if(response.data.message == "YaExiste") {
-                setUserNombreUsuario("");
-                toastr.warning("Este usuario ya existe, inserte otro", "Usuario existente");
+                setNombreEmpresa("");
+                toastr.warning("Este proveedor ya existe, inserte otro", "Proveedor existente");
               }else{
                 toastr.error("Ocurrio un error inespero", "Inespero");
               }
@@ -150,7 +77,7 @@ function Content() {
             .catch(error => {
               console.log('Error en la solicitud Axios:', error);
             });
-        }
+
         setBotonEnviar(false);
       }
       
@@ -166,14 +93,17 @@ function Content() {
             handleCreate();
         }
     };
+
+
     function handleInputChange(event, setState) {
         setState(event.target.value);
     }
-
-    function handleInputCheck(event) {
-        const value = event.target.checked;
-        setUserEsAdmin(value);
+    
+    function handleInputChangeDepa(event, setState) {
+        fetchMunicipios(event.target.value);
+        setState(event.target.value);
     }
+
 
     ///////////////////////////////////////////////////////
 
@@ -184,32 +114,29 @@ function Content() {
     return (
         <div className="ms-content-wrapper">
             <div className='container-fluid '>
-                <div className='' style={{height:"50px"}}></div>
                 <form onSubmit={handleSubmit} className={`needs-validation validation-fill ${validated ? 'was-validated' : ''}`} noValidate>
-                    <div class="card mt-4">
-                        <div class="card-body">
-                            <div className='little-profilePhynomo text-center'>
-                                <div class="pro-imgPhynomo"> {image == null ? <img src="https://i.ibb.co/9GcKFNs/FDCNegro.png" alt="user" /> : <img src={image} alt="uploaded image" />}   </div>
-                                <button className="btn btn-primary" type='button' onClick={() => fileInputRef.current.click()}>Seleccionar imagen</button>
-                                <input type="file" accept="image/*" ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageChange} />
-                            </div>
-
+                    <div class="ms-panel">
+                        <div className="ms-panel-header text-center">
+                  <h6>Registrar proveedor</h6>
+              
+                  </div>
+                        <div class="ms-panel-body">
                             <div className='row mt-3'>
                                 <div className='col-6'>
                                     <div className="form-group">
-                                        <label>Usuario</label>
+                                        <label>Nomrbe de la proveedor</label>
                                         <div className="input-group">
-                                            <input type="text" className="form-control" id="validationCustom1" placeholder="Nombre del usuario" name="user_UsuarioNombre" value={userNombreUsuario} onChange={(event) => handleInputChange(event, setUserNombreUsuario)} required />
-                                            <div className="invalid-feedback">Ingresa el nombre del usuario</div>
+                                            <input type="text" className="form-control" id="validationCustom1" placeholder="Nombre del proveedor" name="prov_NombreEmpresa" value={nombreEmpresa} onChange={(event) => handleInputChange(event, setNombreEmpresa)} required />
+                                            <div className="invalid-feedback">Ingresa el nombre del proveedor</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className='col-6'>
                                     <div className="form-group">
-                                        <label>Contraseña</label>
+                                        <label>Nombre del contacto</label>
                                         <div className="input-group">
-                                            <input type="password" className="form-control" id="validationCustom2" placeholder="Contraseña del usuario" name="user_Contraseña" value={userContraesña} onChange={(event) => handleInputChange(event, setUserContraseña)} required />
-                                            <div className="invalid-feedback">Ingresa la contraseña del usuario</div>
+                                            <input type="text" className="form-control" id="validationCustom2" placeholder="Nombre del contacto" name="prov_NombreContacto" value={nombreContato} onChange={(event) => handleInputChange(event, setNombreContato)} required />
+                                            <div className="invalid-feedback">Ingresa el nombre del contacto</div>
                                         </div>
                                     </div>
                                 </div>
@@ -217,12 +144,12 @@ function Content() {
                             <div className='row'>
                                 <div className='col-6'>
                                     <div className="form-group">
-                                        <label>Empleado</label>
+                                        <label>Departamento</label>
                                         <div className='input-group'>
-                                            <select value={empeId} onChange={(event) => handleInputChange(event, setEmpeId)} className="form-control" id="validationCustom3" required>
-                                                <option value="">Selecciona un empleado</option>
-                                                {empleadosList.map((option) => (
-                                                    <option key={option.empe_Id} value={option.empe_Id}>{option.empe_NombreCompleto}</option>
+                                            <select value={depaId} onChange={(event) => handleInputChangeDepa(event, setDepaId)} className="form-control" id="validationCustom3" required>
+                                                <option value="">Selecciona un departamento</option>
+                                                {departamentosList.map((option) => (
+                                                    <option key={option.depa_Id} value={option.depa_Id}>{option.depa_Nombre}</option>
                                                 ))}
                                             </select>
                                             <div className="invalid-feedback">Selecciona un empleado para el usuario</div>
@@ -232,12 +159,12 @@ function Content() {
                                 </div>
                                 <div className='col-6'>
                                     <div className="form-group">
-                                        <label>Rol</label>
+                                        <label>Municipio</label>
                                         <div className='input-group'>
-                                            <select value={roleId} onChange={(event) => handleInputChange(event, setRoleId)} className="form-control" id="validationCustom4" required>
-                                                <option value="">Selecciona un rol</option>
-                                                {rolesList.map((option) => (
-                                                    <option key={option.role_Id} value={option.role_Id}>{option.role_Nombre}</option>
+                                            <select value={muniId} onChange={(event) => handleInputChange(event, setMuniId)} className="form-control" id="validationCustom4" required>
+                                                <option value="">Selecciona un municipio</option>
+                                                {municipiosList.map((option) => (
+                                                    <option key={option.muni_Id} value={option.muni_Id}>{option.muni_Nombre}</option>
                                                 ))}
                                             </select>
                                             <div className="invalid-feedback">Selecciona un rol para el usuario</div>
@@ -248,27 +175,28 @@ function Content() {
                             <div className='row'>
                                 <div className='col-8'>
                                     <div className="form-group">
-                                        <label>Correo</label>
+                                        <label>Direccion Exacta</label>
                                         <div className="input-group">
-                                            <input type="mail" className="form-control" id="validationCustom5" placeholder="Correo del usuario" name="user_Correo" value={userCorreo} onChange={(event) => handleInputChange(event, setUserCorreo)} required />
-                                            <div className="invalid-feedback">Ingresa el correo del usuario</div>
+                                            <input type="mail" className="form-control" id="validationCustom5" placeholder="Direccion del proveedor" name="prov_DireccionExacta" value={direccionExacta} onChange={(event) => handleInputChange(event, setDireccionExacta)} required />
+                                            <div className="invalid-feedback">Ingresa la direccion del proveedor</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className='col-4 text-center'>
+                                <div className='col-4'>
                                     <div className="form-group">
-                                        <label>¿Es administrador?</label>
-                                        <div className="form-group">
-                                            <span> No </span>
-                                            <label className="ms-switch">
-                                                <input type="checkbox" checked={userEsAdmin} onChange={handleInputCheck} /> <span className="ms-switch-slider ms-switch-primary round" />
-                                            </label>
-                                            <span> Si </span>
+                                        <label>Telefono</label>
+                                        <div className="input-group">
+                                            <input type="text" className="form-control" id="validationCustom1" placeholder="Telefono del contacto" name="prov_TelefonoContato" value={telefono} onChange={(event) => handleInputChange(event, setTelefono)} required />
+                                            <div className="invalid-feedback">Ingresa el telefono del contacto</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className='d-flex justify-content-end'>
+                            {/* <div className="col-md-12 text-center">
+                    <br></br>
+                    <button type='submit' disabled={botonEnviar} className='btn btn-danger btn-pill btn-block' >Enviar</button>
+                                            </div> */}
+                            <div className='d-flex justify-content-center'>
                                 <div className='col-4'>
                                     <button type='submit' disabled={botonEnviar} className='btn btn-danger btn-pill btn-block' >Enviar</button>
                                 </div>

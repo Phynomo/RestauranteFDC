@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import { DataGrid, GridToolbar, esES } from '@mui/x-data-grid';
 import ModalEdit from './ModalsPut';
-
+import axios from 'axios';
 
 
 const DataTable = () => {
@@ -14,7 +14,8 @@ const DataTable = () => {
     { field: 'ingr_Id', headerName: 'ID', flex: 1 },
     { field: 'ingr_Nombre', headerName: 'Nombre', flex: 1 },
     { field: 'ingr_PrecioX100gr', headerName: 'PrecioX100g', flex: 1 },
-    { field: 'prov_Id', headerName: 'Proveedor', flex: 1 },
+    { field: 'prov_NombreEmpresa', headerName: 'Proveedor', flex: 1 },
+    { field: 'stock', headerName: 'Stock', flex: 1 },
     {
       field: 'actions',
       headerName: 'Acciones',
@@ -29,27 +30,42 @@ const DataTable = () => {
     },
   ];
 
-  useEffect(() => {
-    console.log("*gemidos*");
-    fetch('https://localhost:44383/api/Ingredientes/Listado')
-      .then(response => response.json())
-      .then(data => {
-        const rows = data.data.map(item => {
+
+  const fetchData = () => {
+    axios.get('api/Ingredientes/Listado_sucu?sucu_Id=' + JSON.parse(localStorage.getItem('token')).sucu_Id)
+      .then(response => {
+
+        const rows = response.data.data.map(item => {
           return {
             id: item.ingr_Id,
             ingr_Id: item.ingr_Id,
             ingr_Nombre: item.ingr_Nombre,
             ingr_PrecioX100gr: item.ingr_PrecioX100gr,
-            prov_Id: item.prov_NombreEmpresa,
+            prov_Id: item.prov_Id,
+            prov_NombreEmpresa: item.prov_NombreEmpresa,
+            stock: item.ingrsucu_StockEnGramos,
           }
         });
         setRows(rows);
         setIsLoading(false);
       })
       .catch(error => {
-        console.log("Error en la solicitud fetch:", error);
+        console.log('Error en la solicitud Axios:', error);
       });
-  }, [rows]);
+  };
+
+
+  useEffect(() => {
+
+    fetchData(); // llamada inicial
+
+    const interval = setInterval(() => {
+      fetchData(); // llamada cada 3 segundos
+    }, 3000);
+
+    return () => clearInterval(interval); // limpiar intervalo al desmontar el componente
+  }, []);
+
 
   const handleSearch = e => {
     setSearchText(e.target.value);

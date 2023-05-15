@@ -70,6 +70,14 @@ namespace Restaurante.DataAccess.Repositories.REST
 
             return db.Query<VW_tbEmpleados>(ScriptsDataBase.UDP_Empleados_List, null, commandType: CommandType.StoredProcedure);
         }
+        public IEnumerable<VW_tbEmpleados> Reporte(int id)
+        {
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@sucu_Id", id, DbType.Int32, ParameterDirection.Input);
+
+            return db.Query<VW_tbEmpleados>(ScriptsDataBase.UDP_Empleados_Reporte, parametros, commandType: CommandType.StoredProcedure);
+        }
         public IEnumerable<VW_tbEmpleados> CantidadEmpelados()
         {
             using var db = new SqlConnection(RestauranteCon.ConnectionString);

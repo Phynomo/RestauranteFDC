@@ -79,6 +79,9 @@ import FacturaEdit from './components/pages/Factura/FacturaEdit';
 import FacturaDetails from './components/pages/Factura/FacturaDetails';
 import Clientes from './components/pages/Clientes';
 import Proveedores from './components/pages/Proveedores/Proveedores';
+import ProveedoresCreate from './components/pages/Proveedores/ProveedoresCreate';
+import ProveedoresEdit from './components/pages/Proveedores/ProveedoresEdit';
+import ProveedoresDetails from './components/pages/Proveedores/ProveedoresDetails';
 import Usuarios from './components/pages/Usuarios/Usuario';
 import UsuariosCreate from './components/pages/Usuarios/UsuariosCreate';
 import UsuariosEdit from './components/pages/Usuarios/UsuariosEdit';
@@ -89,10 +92,14 @@ import CrearCliente from './components/sections/Clientes/Crear';
 import EditarCliente from './components/sections/Clientes/Editar';
 import CrearEmpleado from './components/sections/Empleados/Crear';
 import EditarEmpleado from './components/sections/Empleados/Editar';
+import ReporteFacturas from './components/pages/Reportes/ReporteFacturas';
+import ReporteEmpleados from './components/pages/Reportes/ReporteEmpleados';
+import ReportePlatillos from './components/pages/Reportes/ReportePlatillos';
 import Sucursales from './components/pages/Sucursales';
-import Roles from './components/pages/Roles';
-import CrearRoles from './components/sections/Roles/Crear';
-import EditarRoles from './components/sections/Roles/Editar';
+import Roles from './components/pages/Roles/Roles';
+import CrearRoles from './components/pages/Roles/RolesCreate';
+import EditarRoles from './components/pages/Roles/RolesEdit';
+import DetallesRoles from './components/pages/Roles/RolesDetails';
 import Categorias from './components/pages/Categorias';
 import Municipios from './components/pages/Municipios';
 import Ingredientes from './components/pages/Ingredientes';
@@ -128,12 +135,19 @@ function App() {
 
   async function fetchPermissionsForRole(role, admin) {
     try {
+      if(localStorage.getItem('Pantallas') == null){
+
       const response = await axios.get(`api/Pantallas/PantallasPorRol?rol=${role}&esAdmin=${admin}`, {});
       const pantIds = response.data.data.map(objeto => objeto.pant_Id);
+
       setpantId(pantIds);
+      localStorage.setItem('Pantallas', pantIds)
+
       return pantIds;
+      }
     } catch (error) {
-      console.error(error);
+
+        localStorage.setItem('Pantallas', [])
       return [];
     }
   }
@@ -167,33 +181,31 @@ function App() {
 
   function canAccessPage(pageId) {
     return pantId.includes(pageId);
+    
   }
   return (
     <Router basename={'/themes/themeforest/react/costic/'}>
       <Preloader />
       <Switch>
-        <PrivateRoute path="/usuarios_create" component={UsuariosCreate} />
-        <PrivateRoute path="/usuarios_edit" component={UsuariosEdit} />
-        <PrivateRoute path="/usuarios_details" component={UsuariosDetails} />
-        <PrivateRoute path="/factura_create" component={FacturaCreate} />
-        <PrivateRoute path="/factura_edit" component={FacturaEdit} />
-        <PrivateRoute path="/factura_details" component={FacturaDetails} />
-        <PrivateRoute path="/crearCliente" component={CrearCliente} />
-        <PrivateRoute path="/crearRoles" component={CrearRoles} />
-        <PrivateRoute path="/editarRoles" component={EditarRoles} />
-        <PrivateRoute path="/editarCliente/:clie_Id" component={EditarCliente} />
-        <PrivateRoute path="/crearEmpleado" component={CrearEmpleado} />
-        <PrivateRoute path="/editarEmpleado/:empe_Id" component={EditarEmpleado} />
-        <PrivateRoute path="/pruebas" component={Pruebas} />
-        {rutas.map((ruta) =>
+        {/* <PrivateRoute pantId={1} permitidas={pantId} path="/usuarios_create" component={UsuariosCreate} /> */}
+        {/* <PrivateRoute pantId={1} permitidas={pantId} path="/usuarios_edit" component={UsuariosEdit} /> */}
+        {/* <PrivateRoute pantId={1} permitidas={pantId} path="/usuarios_details" component={UsuariosDetails} /> */}
+        {/* <PrivateRoute pantId={1} permitidas={pantId} path="/factura_create" component={FacturaCreate} /> */}
+        {/* <PrivateRoute pantId={1} permitidas={pantId} path="/factura_edit" component={FacturaEdit} /> */}
+        {/* <PrivateRoute pantId={1} permitidas={pantId} path="/factura_details" component={FacturaDetails} /> */}
+        {/* <PrivateRoute pantId={1} permitidas={pantId} path="/crearCliente" component={CrearCliente} /> */}
+        {/* <PrivateRoute pantId={1} permitidas={pantId} path="/crearRoles" component={CrearRoles} /> */}
+        {/* <PrivateRoute pantId={1} permitidas={pantId} path="/editarCliente/:clie_Id" component={EditarCliente} /> */}
+        {/* <PrivateRoute pantId={1} permitidas={pantId} path="/crearEmpleado" component={CrearEmpleado} /> */}
+        {/* <PrivateRoute pantId={1} permitidas={pantId} path="/editarEmpleado/:empe_Id" component={EditarEmpleado} /> */}
+        {/* <PrivateRoute pantId={1} permitidas={pantId} path="/pruebas" component={Pruebas} /> */}
+        {/* {rutas.map((ruta) =>
           canAccessPage(ruta.pant_Id) ? (
-            <PrivateRoute key={ruta.pant_Id} path={ruta.pant_Url} component={ruta.component} />
+            <PrivateRoute key={ruta.pant_Id} path={ruta.pant_Url} pantId={ruta.pant_Id} permitidas={pantId} component={ruta.component} />
           ) : (
             <Redirect key={ruta.pant_Id} to="/" />
-          )
-        )}
-        <Route path="/default-login" component={Defaultlogin} />
-        <PrivateRoute key="home" exact path="/" component={Dashboard} />
+            )
+          )} */}
         {/* <Route path="/pruebas" component={Pruebas} />
         <Route path="/proveedores" component={Proveedores} />
         <Route path="/usuarios" component={Usuarios} />
@@ -294,15 +306,167 @@ function App() {
         <Route path="/stock-management" component={Stockmanagement} />
         <Route path="/user-profile" component={Userprofile} />
         <Route path="/web-analytics" component={Webanalytics} /> */}
+        {/* paginas por defecto */}
+        <GeneralRoute path="/lock-screen" component={Lockscreen} />
+        <Route path="/default-login" component={Defaultlogin} />
+        <GeneralRoute key="home" exact path="/" component={Dashboard} />
+        <GeneralRoute path="/user-profile" component={Userprofile} />
+        <GeneralRoute path="/error" component={Error} />
+        
+
+        {/* Roles id:1 */}
+        <PrivateRoute pantId={1}  path="/roles" component={Roles} />
+        <PrivateRoute pantId={1}  path="/crearRoles" component={CrearRoles} />
+        <PrivateRoute pantId={1}  path="/editarRoles" component={EditarRoles} />
+        <PrivateRoute pantId={1}  path="/detallesRoles" component={DetallesRoles} />
+
+        {/* Usuarios id:2 */}
+        <PrivateRoute pantId={2}  path="/usuario" component={Usuarios} />
+        <PrivateRoute pantId={2}  path="/usuarios_create" component={UsuariosCreate} />
+        <PrivateRoute pantId={2}  path="/usuarios_edit" component={UsuariosEdit} />
+        <PrivateRoute pantId={2}  path="/usuarios_details" component={UsuariosDetails} />
+
+        {/* Cargos id:3 */}
+        <PrivateRoute pantId={3}  path="/cargos" component={Cargos} />
+
+        {/* Categorias id:4 */}
+        <PrivateRoute pantId={4}  path="/categorias" component={Categorias} />
+
+        {/* Departamentos id:5 */}
+        <PrivateRoute pantId={5}  path="/departamentos" component={Departamentos} />
+
+        {/* Estados Civiles id:6 */}
+        <PrivateRoute pantId={6}  path="/estadosCiviles" component={EstadosCiviles} />
+
+        {/* Metodos Pago id:7 */}
+        <PrivateRoute pantId={7}  path="/metodosPago" component={MetodosPago} />
+
+        {/* Municipios id:8 */}
+        <PrivateRoute pantId={8}  path="/municipios" component={Municipios} />
+
+        {/* Cliente id:9 */}
+        <PrivateRoute pantId={9}  path="/clientes" component={Clientes}/>
+        <PrivateRoute pantId={9}  path="/crearCliente" component={CrearCliente}/>
+        <PrivateRoute pantId={9}  path="/editarCliente/:clie_Id" component={EditarCliente} />
+
+        {/* Empleados id:10 */}
+        <PrivateRoute pantId={10}  path="/empleados" component={Empleados} />
+        <PrivateRoute pantId={10}  path="/crearEmpleado" component={CrearEmpleado}/>
+        <PrivateRoute pantId={10}  path="/editarEmpleado/:empe_Id" component={EditarEmpleado} />
+
+        {/* Factura id:11 */}
+        <PrivateRoute pantId={11}  path="/factura" component={Factura} />
+        <PrivateRoute pantId={11}  path="/factura_create" component={FacturaCreate} />
+        <PrivateRoute pantId={11}  path="/factura_edit" component={FacturaEdit} />
+        <PrivateRoute pantId={11}  path="/factura_details" component={FacturaDetails} />
+
+        {/* Ingredientes id:12 */}
+        <PrivateRoute pantId={12}  path="/ingredientes" component={Ingredientes} />
+
+        {/* Sucursales id:13 */}
+        <PrivateRoute pantId={13}  path="/sucursales" component={Sucursales} />
+
+        {/* Proveedores id:14 */}
+        <PrivateRoute pantId={14}  path="/proveedores" component={Proveedores} />
+        <PrivateRoute pantId={14}  path="/proveedores_create" component={ProveedoresCreate} />
+        <PrivateRoute pantId={14}  path="/proveedores_edit" component={ProveedoresEdit} />
+        <PrivateRoute pantId={14}  path="/proveedores_details" component={ProveedoresDetails} />
+        
+        
+        {/* Reportes id:15 - 17 */}
+        <PrivateRoute pantId={15}  path="/reportes_factura" component={ReporteFacturas} />
+        <PrivateRoute pantId={16}  path="/reportes_empleados" component={ReporteEmpleados} />
+        <PrivateRoute pantId={17}  path="/reportes_platillos" component={ReportePlatillos} />
+
+        {/* <PrivateRoute pantId={1} permitidas={pantId} path="/pruebas" component={Pruebas} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/accordions" component={Accordions} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/add-product" component={Addproduct} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/alerts" component={Alerts} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/animations" component={Animations} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/badges" component={Badges} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/basic-tables" component={Basictables} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/breadcrumbs" component={Breadcrumbs} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/buttons" component={Buttons} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/cards" component={Cards} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/chartjs" component={Chartjs} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/chat" component={Chat} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/cropper" component={Cropper} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/customer-list" component={Customerlist} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/customer-review" component={Customerreview} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/data-tables" component={Datatables} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/draggables" component={Draggables} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/email" component={Email} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/flaticons" component={Flaticons} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/fontawesome" component={Fontawesome} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/form-elements" component={Formelements} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/form-layouts" component={Formlayouts} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/form-validation" component={Formvalidation} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/form-wizard" component={Formwizard} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/google-maps" component={Googlemaps} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/invoice-detail" component={Invoicedetail} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/invoice-list" component={Invoicelist} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/materialize" component={Materialize} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/menu-catalogue" component={Menucatalogue} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/menu-grid" component={Menugrid} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/menu-list" component={Menulist} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/modals" component={Modals} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/google-chart" component={Googlechart} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/orders" component={Orders} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/pagination" component={Pagination} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/preloaders" component={Preloaders} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/product-detail" component={Productdetail} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/progress-bars" component={Progressbars} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/range-slider" component={Rangeslider} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/rating" component={Rating} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/restaurant-list" component={Restaurantlist} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/sales" component={Sales} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/sliders" component={Sliders} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/social-activity" component={Socialactivity} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/sweet-alerts" component={Sweetalerts} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/tabs" component={Tabs} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/toast" component={Toast} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/todo-list" component={Todolist} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/tour" component={Tour} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/typography" component={Typography} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/vector-maps" component={Vectormaps} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/widgets" component={Widgets} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/client-management" component={Clientmanagement} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/coming-soon" component={Comingsoon} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/default-register" component={Defaultregister} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/faq" component={Faq} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/invoice" component={Invoice} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/modal-login" component={Modallogin} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/modal-register" component={Modalregister} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/portfolio" component={Portfolio} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/stock-management" component={Stockmanagement} />
+        <PrivateRoute pantId={1} permitidas={pantId} path="/web-analytics" component={Webanalytics} /> */}
       </Switch>
     </Router>
 
   );
 }
 
-function PrivateRoute({ component: Component, ...rest }) {
+function PrivateRoute({pantId: pant_Id,component: Component, ...rest }) {
   const isAuthenticated = localStorage.getItem('token');
+  const pant_per = localStorage.getItem('Pantallas');
 
+  const pude = pant_per != null? pant_per.includes(pant_Id) : false;
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        isAuthenticated && pude? (
+          <Component {...props} />
+        ) : (
+          !isAuthenticated ? <Redirect to="/default-login" /> : <Redirect to="/" />
+        )
+      }
+    />
+  );
+}
+
+function GeneralRoute({component: Component, ...rest }) {
+  const isAuthenticated = localStorage.getItem('token');
   return (
     <Route
       {...rest}
@@ -310,12 +474,11 @@ function PrivateRoute({ component: Component, ...rest }) {
         isAuthenticated ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/default-login" />
+          !isAuthenticated ? <Redirect to="/default-login" /> : <Redirect to="/" />
         )
       }
     />
   );
 }
-
 
 export default App;

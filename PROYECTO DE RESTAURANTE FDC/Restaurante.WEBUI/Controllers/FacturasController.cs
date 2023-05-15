@@ -30,7 +30,14 @@ namespace Restaurante.WEBUI.Controllers
             var list = _restauranteServicio.ListadoFacturas();
             return Ok(list);
         }
-        
+
+        [HttpGet("Reporte")]
+        public IActionResult Reporte(int id)
+        {
+            var list = _restauranteServicio.ReporteFacturas(id);
+            return Ok(list);
+        }
+
         [HttpGet("FacturasPorSucursalChart")]
         public IActionResult Grafica()
         {

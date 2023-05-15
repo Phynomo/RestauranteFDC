@@ -54,6 +54,25 @@ namespace Restaurante.DataAccess.Repositories.REST
 
             return reques;
         }
+        public RequestStatus NewIngredienteStock(tbIngredientes item)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@ingr_Id", item.ingr_Id, DbType.String, ParameterDirection.Input);
+            parameters.Add("@sucu_Id", item.sucu_Id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@ingrsucu_StockEnGramos", item.ingrsucu_StockEnGramos, DbType.Decimal, ParameterDirection.Input);
+            parameters.Add("@ingrsucu_UsuCreacion", item.ingr_UsuCreacion, DbType.Int32, ParameterDirection.Input);
+
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var result = db.QueryFirst<int>(ScriptsDataBase.InsertarIngredientesStock, parameters, commandType: CommandType.StoredProcedure);
+
+            RequestStatus reques = new()
+            {
+                CodeStatus = result,
+                MessageStatus = "Ingrediente insertado !"
+            };
+
+            return reques;
+        }
 
         public IEnumerable<VW_tbIngredientes> List()
         {
@@ -61,6 +80,15 @@ namespace Restaurante.DataAccess.Repositories.REST
             var parametros = new DynamicParameters();
 
             return db.Query<VW_tbIngredientes>(ScriptsDataBase.UDP_Ingredientes_List, null, commandType: CommandType.StoredProcedure);
+        }
+
+        public IEnumerable<VW_tbIngredientes> List(int sucu_Id)
+        {
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@sucu_Id", sucu_Id, DbType.Int32, ParameterDirection.Input);
+
+            return db.Query<VW_tbIngredientes>(ScriptsDataBase.UDP_Ingredientes_ListSucu, parametros, commandType: CommandType.StoredProcedure);
         }
 
         public RequestStatus Update(tbIngredientes item)

@@ -80,18 +80,19 @@ CREATE OR ALTER PROCEDURE acce.UDP_InsertUsuario
 	@user_EsAdmin BIT,					
     @role_Id INT, 
 	@empe_Id INT, 
-	@clie_Id INT											
+	@clie_Id INT,
+	@image_Url NVARCHAR(MAX)
 AS
 BEGIN
 	DECLARE @password NVARCHAR(MAX)=(SELECT HASHBYTES('Sha2_512', @user_Contrasena));
 
-	INSERT acce.tbUsuarios(user_NombreUsuario,  user_Contrasena,user_Correo, user_EsAdmin, role_Id, empe_Id, clie_id, user_UsuCreacion)
-	VALUES(@user_NombreUsuario, @password, @user_Correo, @user_EsAdmin, @role_Id, @empe_Id,@clie_Id, 1);
+	INSERT acce.tbUsuarios(user_NombreUsuario,  user_Contrasena,user_Correo, user_EsAdmin, role_Id, empe_Id, clie_id, user_UsuCreacion, user_image)
+	VALUES(@user_NombreUsuario, @password, @user_Correo, @user_EsAdmin, @role_Id, @empe_Id,@clie_Id, 1,@image_Url);
 END;
 
 
 GO
-EXEC acce.UDP_InsertUsuario 'Admin', '123', 'correopurbaxd@gmail.com', 1, NULL, 1, null;
+EXEC acce.UDP_InsertUsuario 'Admin', '123', 'correopurbaxd@gmail.com', 1, NULL, 1, null,'https://i.ibb.co/RTYhr3L/340144934-963679991456468-641215963781610444-n-1.jpg';
 GO
 ALTER TABLE acce.tbRoles
 ADD CONSTRAINT FK_acce_tbRoles_acce_tbUsuarios_role_UsuCreacion_user_Id 	FOREIGN KEY(role_UsuCreacion) REFERENCES acce.tbUsuarios([user_Id]),

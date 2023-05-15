@@ -66,6 +66,14 @@ namespace Restaurante.DataAccess.Repositories.REST
 
             return db.Query<VW_tbFacturas>(ScriptsDataBase.UDP_Facturas_List, null, commandType: CommandType.StoredProcedure);
         }
+        public IEnumerable<VW_tbFacturas> Reporte(int id)
+        {
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@sucu_Id", id, DbType.Int32, ParameterDirection.Input);
+
+            return db.Query<VW_tbFacturas>(ScriptsDataBase.UDP_Facturas_Reporte, parametros, commandType: CommandType.StoredProcedure);
+        }
         public IEnumerable<VW_tbFacturas> Chart()
         {
             using var db = new SqlConnection(RestauranteCon.ConnectionString);

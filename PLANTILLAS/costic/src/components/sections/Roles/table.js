@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import "datatables.net-bs4/js/dataTables.bootstrap4"
-//import { DataGrid } from '@mui/x-data-grid';
 import { DataGrid, GridToolbar,esES } from '@mui/x-data-grid';
-import { Link } from 'react-router-dom';
-import ModalEdit2 from './ModalsPut3';
 import { Modal, Accordion, Card } from "react-bootstrap";
 import axios from 'axios';
 import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
 import toastr from 'toastr';
-import { param } from 'jquery';
 import { useHistory } from 'react-router-dom';
 
 
@@ -31,8 +26,6 @@ const DataTable = () => {
       state: {data:item}
     })
   }
-
-
 
 
 const columns = [

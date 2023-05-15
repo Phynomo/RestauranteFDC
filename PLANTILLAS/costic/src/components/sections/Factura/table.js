@@ -52,9 +52,8 @@ const DataTable = () => {
   ];
 
   useEffect(() => {
-    console.log(1);
     const fetchData = () => {
-      axios.get("api/Facturas/Listado")
+      axios.get("api/Facturas/Reporte?id="+JSON.parse(localStorage.getItem('token')).sucu_Id )
         .then(response => {
           const rows = response.data.data.map(item => {
             const date = new Date(item.fact_Fecha);

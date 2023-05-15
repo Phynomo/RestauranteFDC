@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom'
 import $ from 'jquery';
 import { Dropdown, NavLink } from 'react-bootstrap';
 import Scrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css';
+import axios from 'axios';
 
 import costiclogo from '../../assets/img/costic/costic-logo-84x41.png'
 
@@ -17,12 +18,53 @@ class Topnavigation extends Component {
         $('#ms-nav-options').toggleClass('ms-slide-down');
     }
 
+
+    constructor(props, context) {
+        super(props, context);
+        this.handleFetchSucursales = this.handleFetchSucursales.bind(this);
+        this.state = {
+            miListado: JSON.parse(localStorage.getItem('token')),
+            sucu_Id: JSON.parse(localStorage.getItem('token')).sucu_Id,
+            sucursales: [],
+        };
+    }
+
+    handleFetchSucursales() {
+        axios.get('api/Sucursales/Listado')
+            .then(response => {
+            this.setState({
+                sucursales: response.data.data
+            });
+            })
+            .catch(error => {
+            console.error('Error al cargar las sucursales :', error);
+            });
+        }
+
+        componentDidMount() {
+            this.handleFetchSucursales();
+        }
+
+    
     render() {
         const storedArray = JSON.parse(localStorage.getItem('token'));
         const defautImage = "https://i.ibb.co/NTYrJXY/Imagen-de-Whats-App-2023-04-23-a-las-12-47-54.jpg";
         const handleOutLog = () => {
             localStorage.clear();
           };
+
+          const handleInputChange =(event) => {
+            this.setState({
+              sucu_Id : event.target.value
+            });
+          
+            storedArray.sucu_Id = event.target.value;
+            localStorage.setItem('token', JSON.stringify(storedArray));
+          
+            window.location.reload();
+          }
+          
+
         return (
             <nav className="navbar ms-navbar">
                 <div className="ms-aside-toggler ms-toggler pl-0" onClick={this.addsidenavigation}>
@@ -34,13 +76,15 @@ class Topnavigation extends Component {
                     <Link className="pl-0 ml-0 text-center navbar-brand mr-0" to="/"><img src={costiclogo} alt="logo" /> </Link>
                 </div>
                 <ul className="ms-nav-list ms-inline mb-0" id="ms-nav-options">
-                    {/* <li className="ms-nav-item ms-search-form pb-0 py-0">
-                        <form className="ms-form" method="post">
-                            <div className="ms-form-group my-0 mb-0 has-icon fs-14">
-                                <input type="search" className="ms-form-input" name="search" placeholder="Search here..." /> <i className="flaticon-search text-disabled" />
-                            </div>
-                        </form>
-                    </li> */}
+                     {storedArray.user_EsAdmin? <li className="ms-nav-item ms-search-form pb-0 py-0">
+                     <div className="ms-form-group has-icon">
+                                    <select className='form-control' id="validationCustom13" name="sucu_Id" value={this.state.sucu_Id} onChange={handleInputChange} required>
+                                         {this.state.sucursales.map(sucu =>
+                                            <option key={sucu.sucu_Id} value={sucu.sucu_Id}>{sucu.sucu_Nombre}</option>
+                                        )} 
+                                        </select>
+                                </div>
+                    </li> : <></>}   
                     {/* <li className="ms-nav-item dropdown">
                         <Dropdown className="custom-dropdown">
 
@@ -132,7 +176,7 @@ class Topnavigation extends Component {
                                 <div className="ms-dropdown-list">
                                     <Link className="media fs-14 p-2" to="/user-profile"> <span><i className="flaticon-user mr-2" /> Profile</span>
                                     </Link>
-                                    <Link className="media fs-14 p-2" to="/email"> <span></span>
+                                    <Link className="media fs-14 p-2" href="https://chat.openai.com/"> <span></span>
                                     </Link>
                                 </div>
                                 <div className="dropdown-divider" />

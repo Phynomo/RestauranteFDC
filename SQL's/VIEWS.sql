@@ -15,6 +15,7 @@ SELECT T1.[user_Id]
 	  ,T3.empe_Nombres
 	  ,T3.empe_Apellidos
 	  ,T3.empe_Nombres + ' ' + T3.empe_Apellidos AS empe_NombreCompleto
+	  ,t3.sucu_Id
 	  ,t3.carg_Id
 	  ,T4.carg_Descripcion
       ,T1.clie_Id

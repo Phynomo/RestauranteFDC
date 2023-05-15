@@ -530,7 +530,7 @@ GO
 --************************************* Clientes **************************-
 
  INSERT INTO [rest].[tbClientes]([clie_Nombres],[clie_Apellidos],[clie_Identidad],[clie_RTN],[clie_Sexo],[clie_Telefono],[clie_UsuCreacion])
-VALUES('Karla','Alejandro','0502200302725','15478963248752','F','96137668',1);
+VALUES('Consumidor','Final','0','0','F','0',1);
 GO
 INSERT INTO [rest].[tbClientes]([clie_Nombres],[clie_Apellidos],[clie_Identidad],[clie_RTN],[clie_Sexo],[clie_Telefono],[clie_UsuCreacion])
 VALUES('Jason','Rivera','0502199674852','17896542358741','M','98562314',1);
@@ -626,7 +626,7 @@ VALUES ('Harina de trigo', 2.50, 1, 1),
 
 --************************************* Pantallas **************************-
 INSERT INTO acce.tbPantallas(pant_Nombre, pant_Url, pant_Menu, pant_HtmlId, pant_UsuCreacion)
-VALUES ('Roles','/Roles','acceso','RolesItem',1),
+VALUES ('Roles','/roles','acceso','RolesItem',1),
 	   ('Usuario','/usuario','acceso','UsuarioItem',1),
 	   ('Cargos','/cargos','general','cargosItem',1),
 	   ('Categorias','/categorias','general','CategoriasItem',1),
@@ -638,8 +638,12 @@ VALUES ('Roles','/Roles','acceso','RolesItem',1),
 	   ('Empleados','/empleados','restaurante','EmpleadosItem',1),
 	   ('Factura','/factura','restaurante','FacturasItem',1),
 	   ('Ingredientes','/ingredientes','restaurante','IngredientesItem',1),
-	   ('Sucursales','/sucursales','restarante','SucursalesItem',1)
-
+	   ('Sucursales','/sucursales','restaurante','SucursalesItem',1),
+	   ('Proveedores','/proveedores','restaurante','ProveedoresItem',1),
+	   ('Reportes facturas','/reportes_factura','reportes','reportesItem',1),
+	   ('Reportes empleados','/reportes_empleados','reportes','reportesItem',1),
+	   ('Reportes platillos','/reportes_platillos','reportes','reportesItem',1)
+	   
 
 --**************************************************************************-
 
@@ -722,3 +726,6 @@ GO
 ---NO FUNCIONA
 
 --**************************************************************************-
+UPDATE acce.tbUsuarios
+SET role_Id = 1
+WHERE [user_Id] = 1

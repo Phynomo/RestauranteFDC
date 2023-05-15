@@ -49,8 +49,8 @@ namespace Restaurante.DataAccess.Repositories.ACCE
             parametros.Add("@user_NombreUsuario", item.user_NombreUsuario, DbType.String, ParameterDirection.Input);
             parametros.Add("@user_Contrasena", item.user_Contrasena, DbType.String, ParameterDirection.Input);
 
-            var resultado = db.QueryFirst<string>(ScriptsDataBase.UDP_Recuperar_Usuarios, parametros, commandType: System.Data.CommandType.StoredProcedure);
-            result.MessageStatus = resultado;
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_Recuperar_Usuarios, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            result.CodeStatus = resultado;
 
             return result;
         }

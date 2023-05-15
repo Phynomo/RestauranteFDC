@@ -1,6 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Breadcrumb from './Breadcrumb'
+import jsPDF from 'jspdf';
 import { useHistory, useLocation } from 'react-router-dom';
 import toastr from 'toastr';
 import axios from 'axios';
@@ -8,16 +7,10 @@ import imagen from '../../../assets/img/FDCNegro.png';
 
 function Detailcontent() {
     const location = useLocation();
-    const myData = location.state.data;
+    const myData = location.state?.data ?? "";
     const [subtotal, setSubtotal] = useState(0);
     const [rows, setRows] = useState([]);
     const [facturaImpresa , setFacturaImpresa ] = useState(false);
-
-
-    const style = {
-        backgroundImage: imagen,
-        opacity: 0.5
-      };
 
     const fetchData = () => {
         axios.get('api/Facturas/ListadoDetalles?id=' + String(myData.fact_Id))

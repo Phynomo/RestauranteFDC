@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Modal, Accordion, Card } from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom'
 import toastr from 'toastr';
 
@@ -8,9 +9,28 @@ function Login() {
     const navigate = useHistory();
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [usuario, setusuario] = useState("")
+    const [password2, setPassword2] = useState("")
     const [validationErrors, setValidationErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [validado, setValidado] = useState(false);
+    const [isSubmitting2, setIsSubmitting2] = useState(false);
+    const [validado2, setValidado2] = useState(false);
+    const [modalRecuperar, setModalRecuperar] = useState(false);
+
+    async function fetchPermissionsForRole(role, admin) {
+        try {
+          const response = await axios.get(`api/Pantallas/PantallasPorRol?rol=${role}&esAdmin=${admin}`, {});
+          const pantIds = response.data.data.map(objeto => objeto.pant_Id);
+
+          localStorage.setItem('Pantallas', pantIds)
+          return pantIds;
+        } catch (error) {
+
+            localStorage.setItem('Pantallas', [])
+          return [];
+        }
+      }
 
 
     useEffect(() => {
@@ -19,6 +39,16 @@ function Login() {
         }
         console.log(localStorage.getItem('token'))
     }, [])
+
+    const abrirModalRecuperar = () => {
+        setValidado2(false);
+        setModalRecuperar(true);
+    }
+
+    const handleClose = () => {
+        setModalRecuperar(false);
+    }
+
 
     const loginAction = (e) => {
         setValidationErrors({})
@@ -33,15 +63,16 @@ function Login() {
             usua_Usuario: email,
             usua_Clave: password,
         }
-        console.log(payload);
         axios.get('api/Usuarios/Login?usuario='+email+'&contrasena='+password)
             .then((r) => {
-                console.log('lamao',r.data.data);
                 if (r.data.data != null && r.data.data.length > 0) {
                     //si existe el usuario entra aca 
                     setIsSubmitting(false)
                     localStorage.setItem('token', JSON.stringify(r.data.data[0]))
                     
+
+                    fetchPermissionsForRole(r.data.data[0].role_Id, r.data.data[0].user_EsAdmin ? 1:0);
+
                     //Para recuperar la info luego
                     // const storedArray = JSON.parse(localStorage.getItem('token'));
                     // console.log(storedArray);
@@ -58,8 +89,40 @@ function Login() {
                 console.log(e);
             });
         }
+        setIsSubmitting(false)
     }
 
+    const RecuperarAction = (e) => {
+        setValidationErrors({})
+        e.preventDefault();
+        setIsSubmitting2(true)
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            setValidado2(true);
+            e.stopPropagation();
+        }else{
+        let payload = {
+            user_NombreUsuario: usuario,
+            user_Contrasena: password2,
+        } 
+        axios.put('api/Usuarios/Recuperar',payload)
+            .then((r) => {
+                if (r.data.message == "exito" ) {
+                    setModalRecuperar(false);
+                    toastr.success("Usuario recupedaro con exito", "Logradi");
+                } else {
+
+                    toastr.error("No se pudo encontrar tu usuario", "Error");
+                }
+
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+        }
+        
+        setIsSubmitting2(false)
+    }
 
     return (
             <div className="ms-content-wrapper ms-auth">
@@ -74,7 +137,7 @@ function Login() {
                                 <p>Ingresa tu usuario y contraseña</p>
                                 {Object.keys(validationErrors).length != 0 &&
                                 <p className='text-center '><small className='text-danger'>Incorrect Email or Password</small></p>
-                            }
+                                }
                                 <div className="mb-3">
                                     <label htmlFor="validationCustom08">Usuario</label>
                                     <div className="input-group">
@@ -89,67 +152,44 @@ function Login() {
                                         <div className="invalid-feedback">Llena este campo.</div>
                                     </div>
                                 </div>
-                                <button className="btn btn-primary mt-4 d-block w-100" type="submit">Iniciar</button>
-                                <p className="mb-0 mt-3 text-center">¿No recuerdas tu contraseña?<Link className="btn-link" to="/default-register">¡Recuperala!</Link>
+                                <button disabled={isSubmitting} className="btn btn-primary mt-4 d-block w-100" type="submit">Iniciar</button>
+                                <p className="mb-0 mt-3 text-center">¿No recuerdas tu contraseña?<buttom className="btn-link" onClick={abrirModalRecuperar} >¡Recuperala!</buttom>
                                 </p>
                             </form>
                         </div>
                     </div>
                 </div>
-                {/* <Modal className="modal-min" show={this.state.show1} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
+                <Modal className="modal-min" show={modalRecuperar} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter"
                     centered>
-                    <Modal.Body className="text-center">
-                        <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
-                        <i className="flaticon-secure-shield d-block" />
-                        <h1>Forgot Password?</h1>
-                        <p>Enter your email to recover your password</p>
-                        <form method="post">
+                    <Modal.Body className="">
+                        <div className='text-center'>
+                            <button type="button" className="close" onClick={handleClose}><span aria-hidden="true">×</span></button>
+                            <i className="flaticon-secure-shield d-block" />
+                            <h1>Recuperar contraseña</h1>
+                            <p>Introduce tus datos</p>
+                        </div>
+                        
+                        <form onSubmit={(e) => { RecuperarAction(e) }} className={`needs-validation validation-fill ${validado2 ? 'was-validated' : ''}`} noValidate >
                             <div className="ms-form-group has-icon">
-                                <input type="text" placeholder="Email Address" className="form-control" name="forgot-password" /> <i class="material-icons">email</i>
-                            </div>
-                            <button type="submit" disabled={isSubmitting} className="btn btn-primary shadow-none">Reset Password</button>
-                        </form>
+                                    <label htmlFor="validationCustom09">Usuario</label>
+                                    <div className="input-group">
+                                        <input type="text" placeholder='Usuario' className="form-control" id="usu" name="usu" value={usuario} onChange={(e) => { setusuario(e.target.value) }} required/> {!validado2 ? <i class="material-icons">people</i> : null}
+                                        <div className="invalid-feedback">Llena este campo.</div>
+                                    </div>
+                                </div>
+                                <div className="ms-form-group has-icon">
+                                    <label htmlFor="validationCustom09">Contraseña</label>
+                                    <div className="input-group">
+                                        <input type="password" placeholder='Contraseña' className="form-control" id="pass" name="pass" value={password2} onChange={(e) => { setPassword2(e.target.value) }} required/> {!validado2 ? <i class="material-icons">lock</i> : null} 
+                                        <div className="invalid-feedback">Llena este campo.</div>
+                                    </div>
+                                </div>
+                                <div className='text-center'>
+                                   <button type="submit" disabled={isSubmitting2} className="btn btn-primary shadow-none text-center">Recuperar contraseña</button>       
+                                </div>
+                         </form>
                     </Modal.Body>
-                </Modal> */}
-                {/* <div className="col-4">
-                <div className="card">
-                    <div className="card-body">
-                        <h5 className="card-title mb-4">Sign In</h5>
-                        <form onSubmit={(e) => { loginAction(e) }}>
-                            {Object.keys(validationErrors).length != 0 &&
-                                <p className='text-center '><small className='text-danger'>Incorrect Email or Password</small></p>
-                            }
-
-                            <div className="mb-3">
-                                <label
-                                    htmlFor="email"
-                                    className="form-label">
-                                    Email address
-                                </label>
-                                <input
-                                    type="text" className="form-control" id="email" name="email" value={email} onChange={(e) => { setEmail(e.target.value) }}
-                                />
-                            </div>
-                            <div className="mb-3">
-                                <label
-                                    htmlFor="password"
-                                    className="form-label">Password
-                                </label>
-                                <input
-                                    type="password" className="form-control" id="password" name="password" value={password} onChange={(e) => { setPassword(e.target.value) }}
-                                />
-                            </div>
-                            <div className="d-grid gap-2">
-                                <button
-                                    disabled={isSubmitting}
-                                    type="submit"
-                                    className="btn btn-primary btn-block">Login</button>
-                                <p className="text-center">Don't have account? <Link to="/register">Registrase Aqui</Link></p>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div> */}
+                </Modal>
             </div>
             
     );
@@ -158,197 +198,3 @@ function Login() {
 export default Login;
 
 
-
-// import React, { Component, useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { Modal } from "react-bootstrap";
-// import axios from 'axios';
-
-
-// // class Content extends Component {
-// //     componentDidMount() {
-// //         //initialize datatable
-// //         function formValidation() {
-// //             window.addEventListener('load', function () {
-// //                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
-// //                 var forms = document.getElementsByClassName('needs-validation');
-// //                 // Loop over them and prevent submission
-// //                 Array.prototype.filter.call(forms, function (form) {
-// //                     form.addEventListener('submit', function (event) {
-// //                         if (form.checkValidity() === false) {
-// //                             event.preventDefault();
-// //                             event.stopPropagation();
-// //                         }
-// //                         form.classList.add('was-validated');
-// //                     }, false);
-// //                 });
-
-// //             }, false);
-// //         }
-// //         formValidation();
-// //     }
-// //     constructor(props, context) {
-// //         super(props, context);
-// //         this.handleShow1 = this.handleShow1.bind(this);
-// //         this.handleClose = this.handleClose.bind(this);
-// //         this.state = {
-// //             show: false,
-// //         };
-// //     }
-// //     handleShow1() {
-// //         this.setState({ show1: true });
-// //     }
-// //     handleClose() {
-// //         this.setState({ show1: false });
-// //     }
-// //     render() {
-// //         return (
-// //             <div className="ms-content-wrapper ms-auth">
-// //                 <div className="ms-auth-container">
-// //                     <div className="ms-auth-col">
-// //                         <div className="ms-auth-bg" />
-// //                     </div>
-// //                     <div className="ms-auth-col">
-// //                         <div className="ms-auth-form">
-// //                             <form className="needs-validation" noValidate>
-// //                                 <h3>Login to Account</h3>
-// //                                 <p>Please enter your email and password to continue</p>
-// //                                 <div className="mb-3">
-// //                                     <label htmlFor="validationCustom08">Email Address</label>
-// //                                     <div className="input-group">
-// //                                         <input type="email" className="form-control" id="validationCustom08" placeholder="Email Address" required />
-// //                                         <div className="invalid-feedback">Please provide a valid email.</div>
-// //                                     </div>
-// //                                 </div>
-// //                                 <div className="mb-2">
-// //                                     <label htmlFor="validationCustom09">Password</label>
-// //                                     <div className="input-group">
-// //                                         <input type="password" className="form-control" id="validationCustom09" placeholder="Password" required />
-// //                                         <div className="invalid-feedback">Please provide a password.</div>
-// //                                     </div>
-// //                                 </div>
-// //                                 <div className="form-group">
-// //                                     <label className="ms-checkbox-wrap">
-// //                                         <input className="form-check-input" type="checkbox" defaultValue /> <i className="ms-checkbox-check" />
-// //                                     </label> <span> Remember Password </span>
-// //                                     <label className="d-block mt-3"><Link to="/default-login" className="btn-link" onClick={this.handleShow1}>Forgot Password?</Link>
-// //                                     </label>
-// //                                 </div>
-// //                                 <button className="btn btn-primary mt-4 d-block w-100" type="submit">Sign In</button>
-// //                                 <p className="mb-0 mt-3 text-center">Don't have an account? <Link className="btn-link" to="/default-register">Create Account</Link>
-// //                                 </p>
-// //                             </form>
-// //                         </div>
-// //                     </div>
-// //                 </div>
-// //                 <Modal className="modal-min" show={this.state.show1} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
-// //                     centered>
-// //                     <Modal.Body className="text-center">
-// //                         <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
-// //                         <i className="flaticon-secure-shield d-block" />
-// //                         <h1>Forgot Password?</h1>
-// //                         <p>Enter your email to recover your password</p>
-// //                         <form method="post">
-// //                             <div className="ms-form-group has-icon">
-// //                                 <input type="text" placeholder="Email Address" className="form-control" name="forgot-password" /> <i class="material-icons">email</i>
-// //                             </div>
-// //                             <button type="submit" className="btn btn-primary shadow-none">Reset Password</button>
-// //                         </form>
-// //                     </Modal.Body>
-// //                 </Modal>
-// //             </div>
-
-// //         );
-// //     }
-// // }
-
-// function login (){
-//  const navigate = Link();
-//  const [email, setEmail] = useState("");
-//  const [password, setPassword] = useState("");
-
-//     useEffect(() =>{
-//         if (localStorage.getItem("token") != "") {
-//             navigate.push('/');
-//         }
-//     })
-
-//     const loginAction = (e) => {
-
-//         let parametro = {
-//             email: email,
-//             password:password
-//         }
-//         axios.post("/api/login", parametro)
-//         .then((r) => {
-//             localStorage.setItem('token', r.data.token)
-//             navigate.push('/');
-//         })
-//         .catch((e) => {
-//             localStorage.setItem("error", e.response.data.errors)
-//         })
-//     }
-
-//     return (
-//         <div className="ms-content-wrapper ms-auth">
-//             <div className="ms-auth-container">
-//                 <div className="ms-auth-col">
-//                     <div className="ms-auth-bg" />
-//                 </div>
-//                 <div className="ms-auth-col">
-//                     <div className="ms-auth-form">
-//                         <form onSubmit={loginAction()} className="needs-validation" noValidate>
-//                             <h3>Login to Account</h3>
-//                             <p>Please enter your email and password to continue</p>
-//                             <div className="mb-3">
-//                                 <label htmlFor="validationCustom08">Email Address</label>
-//                                 <div className="input-group">
-//                                     <input type="email" className="form-control" id="validationCustom08" placeholder="Email Address" required />
-//                                     <div className="invalid-feedback">Please provide a valid email.</div>
-//                                 </div>
-//                             </div>
-//                             <div className="mb-2">
-//                                 <label htmlFor="validationCustom09">Password</label>
-//                                 <div className="input-group">
-//                                     <input type="password" className="form-control" id="validationCustom09" placeholder="Password" required />
-//                                     <div className="invalid-feedback">Please provide a password.</div>
-//                                 </div>
-//                             </div>
-//                             <div className="form-group">
-//                                 <label className="ms-checkbox-wrap">
-//                                     <input className="form-check-input" type="checkbox" defaultValue /> <i className="ms-checkbox-check" />
-//                                 </label> <span> Remember Password </span>
-//                                 <label className="d-block mt-3"><Link to="/default-login" className="btn-link" onClick={this.handleShow1}>Forgot Password?</Link>
-//                                 </label>
-//                             </div>
-//                             <button className="btn btn-primary mt-4 d-block w-100" type="submit">Sign In</button>
-//                             <p className="mb-0 mt-3 text-center">Don't have an account? <Link className="btn-link" to="/default-register">Create Account</Link>
-//                             </p>
-//                         </form>
-//                     </div>
-//                 </div>
-//             </div>
-//             <Modal className="modal-min" show={this.state.show1} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
-//                 centered>
-//                 <Modal.Body className="text-center">
-//                     <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
-//                     <i className="flaticon-secure-shield d-block" />
-//                     <h1>Forgot Password?</h1>
-//                     <p>Enter your email to recover your password</p>
-//                     <form method="post">
-//                         <div className="ms-form-group has-icon">
-//                             <input type="text" placeholder="Email Address" className="form-control" name="forgot-password" /> <i class="material-icons">email</i>
-//                         </div>
-//                         <button type="submit" className="btn btn-primary shadow-none">Reset Password</button>
-//                     </form>
-//                 </Modal.Body>
-//             </Modal>
-//         </div>
-
-//     );
-
-
-// }
-
-
-// export default login;

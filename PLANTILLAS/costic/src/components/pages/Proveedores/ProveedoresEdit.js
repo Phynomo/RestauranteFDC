@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Sidenavigation from '../../layouts/Sidenavigation';
 import Topnavigation from '../../layouts/Topnavigation';
 import Quickbar from '../../layouts/Quickbar';
-import Content from '../../sections/UsuariosEdit/Content';
+import Content from '../../sections/ProveedoresEdit/Content';
 
 class UsuariosEdit extends Component {
     render() {

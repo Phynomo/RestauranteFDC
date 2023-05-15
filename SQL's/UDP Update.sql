@@ -455,6 +455,12 @@ AS
 BEGIN
 	BEGIN TRY
 
+	IF(EXISTS (select * from rest.tbProveedores WHERE prov_NombreEmpresa = @prov_NombreEmpresa AND prov_Id != @prov_Id))
+	BEGIN
+	select -2
+	END
+	ELSE
+	BEGIN
 	UPDATE [rest].[tbProveedores]
 	   SET [prov_NombreEmpresa] = @prov_NombreEmpresa
 		  ,[prov_NombreContacto] = @prov_NombreContacto
@@ -466,6 +472,8 @@ BEGIN
 	 WHERE @prov_Id = prov_Id
 
 		Select 1
+	END
+	
 
 	END TRY
 	BEGIN CATCH

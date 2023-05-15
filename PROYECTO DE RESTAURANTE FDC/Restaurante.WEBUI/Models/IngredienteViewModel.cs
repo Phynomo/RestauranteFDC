@@ -19,5 +19,14 @@ namespace Restaurante.WEBUI.Models
         public int? ingr_UsuModificacion { get; set; }
         public string user_NombreUsuModificacion { get; set; }
         public bool ingr_Estado { get; set; }
+
+        public int ingrsucu_Id { get; set; }
+        public int sucu_Id { get; set; }
+        public decimal ingrsucu_StockEnGramos { get; set; }
+        public DateTime ingrsucu_FechaCreacion { get; set; }
+        public int ingrsucu_UsuCreacion { get; set; }
+        public DateTime? ingrsucu_FechaModificacion { get; set; }
+        public int? ingrsucu_UsuModificacion { get; set; }
+        public bool? ingrsucu_Estado { get; set; }
     }
 }

@@ -32,6 +32,13 @@ namespace Restaurante.WEBUI.Controllers
             return Ok(list);
         }
 
+        [HttpGet("Reporte")]
+        public IActionResult Reporte(int id)
+        {
+            var list = _restauranteServicio.ReportePlatillos(id);
+            return Ok(list);
+        }
+
         [HttpGet("PlatillosGraficos")]
         public IActionResult Graficas()
         {

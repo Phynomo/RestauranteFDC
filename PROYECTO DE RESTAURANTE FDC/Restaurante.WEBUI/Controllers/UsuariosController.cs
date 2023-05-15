@@ -65,7 +65,7 @@ namespace Restaurante.WEBUI.Controllers
         }
 
         [HttpPut("Recuperar")]
-        public IActionResult Recuperar(tbUsuariosViewModel usuarios)
+        public IActionResult Recuperar(UsuarioViewModel usuarios)
         {
             var item = _mapper.Map<tbUsuarios>(usuarios);
             var response = _seguridadServivce.RecuperarUsuarios(item);

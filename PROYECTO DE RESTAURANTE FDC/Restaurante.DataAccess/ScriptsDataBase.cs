@@ -52,7 +52,8 @@ namespace Restaurante.DataAccess
         #region Empleados
 
         public static string UDP_Empleados_List = "rest.UDP_tbEmpleados_Select";
-        public static string UDP_Empleados_Cantidad = "dbo.UDP_TotalEmpleados_Chart";
+        public static string UDP_Empleados_Reporte = "rest.UDP_tbEmpleados_SelectReportes";
+        public static string UDP_Empleados_Cantidad = "rest.UDP_TotalEmpleados_Chart";
         public static string UDP_Empleados_Update = "rest.UDP_tbEmpleados_Update";
         public static string InsertarEmpleados = "rest.UDP_InsertarEmpleados";
         public static string UDP_Empleados_Delete = "rest.UDP_tbEmpleados_Delete";
@@ -73,9 +74,10 @@ namespace Restaurante.DataAccess
         #region Facturas
 
         public static string UDP_Facturas_List = "rest.UDP_tbFacturas_Select";
-        public static string UDP_Facturas_Chart = "dbo.UDP_FacturasPorSucursal_Chart";
-        public static string UDP_Facturas_ChartCantidad = "dbo.UDP_TotalFacturas_Chart";
-        public static string UDP_Facturas_ChartIngresos= "dbo.UDP_IngresosTotales_Chart";
+        public static string UDP_Facturas_Reporte = "rest.UDP_tbFacturas_SelectReporte";
+        public static string UDP_Facturas_Chart = "rest.UDP_FacturasPorSucursal_Chart";
+        public static string UDP_Facturas_ChartCantidad = "rest.UDP_TotalFacturas_Chart";
+        public static string UDP_Facturas_ChartIngresos= "rest.UDP_IngresosTotales_Chart";
         public static string UDP_Facturas_ListDetalles = "rest.UDP_tbFacturasDetalles_Select";
         public static string UDP_Facturas_Update = "rest.UDP_tbFacturas_Update";
         public static string InsertarFactura = "rest.UDP_InsertarFactura";
@@ -96,8 +98,10 @@ namespace Restaurante.DataAccess
         #region Ingredientes
 
         public static string UDP_Ingredientes_List = "rest.UDP_tbIngredientes_Select";
+        public static string UDP_Ingredientes_ListSucu = "rest.UDP_tbIngredientes_SelectSucu";
         public static string UDP_Ingredientes_Update = "rest.UDP_tbIngredientes_Update";
         public static string InsertarIngredientes = "rest.UDP_InsertarIngedientes";
+        public static string InsertarIngredientesStock = "rest.UDP_tbIngredientesXSucursales_Insert";
         public static string UDP_Ingredientes_Delete = "rest.UDP_tbIngredientes_Delete";
 
         #endregion
@@ -105,7 +109,7 @@ namespace Restaurante.DataAccess
         #region Metodos De Pago
 
         public static string UDP_MetodosPago_List = "gral.UDP_tbMetodosPago_Select";
-        public static string UDP_MetodosPago_Chart= "dbo.UDP_MetodosPago_Chart";
+        public static string UDP_MetodosPago_Chart= "gral.UDP_MetodosPago_Chart";
         public static string UDP_MetodosPago_Update = "gral.UDP_tbMetodosPago_Update";
         public static string InsertarMetodoPago = "gral.UDP_tbMetodoPago_Insert";
         public static string UDP_MetodosPago_Delete = "gral.UDP_tbMetodoPago_Delete";
@@ -135,8 +139,9 @@ namespace Restaurante.DataAccess
         #region Platillos
 
         public static string UDP_Platillos_List = "rest.UDP_tbPlatillos_Select";
-        public static string UDP_Platillos_Chart = "dbo.UDP_Platillos_Chart";
-        public static string UDP_Platillos_ChartPedidos = "dbo.UDP_PlatillosPedidos_Chart";
+        public static string UDP_Platillos_Reporte = "rest.UDP_tbPlatillos_Select_Reporte";
+        public static string UDP_Platillos_Chart = "rest.UDP_Platillos_Chart";
+        public static string UDP_Platillos_ChartPedidos = "rest.UDP_PlatillosPedidos_Chart";
         public static string UDP_Platillos_Update = "rest.UDP_tbPlatillos_Update";
         public static string UDP_IngredienteXPlatillos_Update = "rest.UDP_tbIngredientesXPlatillos_Update";
         public static string InsertarPlatillos = "rest.UDP_InsertarPlatillos";

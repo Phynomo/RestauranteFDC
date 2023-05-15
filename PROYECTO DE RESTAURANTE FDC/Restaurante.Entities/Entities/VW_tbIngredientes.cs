@@ -20,5 +20,6 @@ namespace Restaurante.Entities.Entities
         public int? ingr_UsuModificacion { get; set; }
         public string user_NombreUsuModificacion { get; set; }
         public bool ingr_Estado { get; set; }
+        public decimal ingrsucu_StockEnGramos { get; set; }
     }
 }

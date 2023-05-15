@@ -15,6 +15,7 @@ namespace Restaurante.Entities.Entities
         }
 
         public int ingr_Id { get; set; }
+        public int sucu_Id { get; set; }
         public string ingr_Nombre { get; set; }
         public decimal ingr_PrecioX100gr { get; set; }
         public int prov_Id { get; set; }
@@ -23,6 +24,7 @@ namespace Restaurante.Entities.Entities
         public DateTime? ingr_FechaModificacion { get; set; }
         public int? ingr_UsuModificacion { get; set; }
         public bool? ingr_Estado { get; set; }
+        public decimal ingrsucu_StockEnGramos { get; set; }
 
         public virtual tbUsuarios ingr_UsuCreacionNavigation { get; set; }
         public virtual tbUsuarios ingr_UsuModificacionNavigation { get; set; }

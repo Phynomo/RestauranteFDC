@@ -187,7 +187,12 @@ AS
 BEGIN
 BEGIN TRY
 
-			
+	IF(Exists (SELECT * FROM rest.tbProveedores WHERE prov_NombreEmpresa = @prov_NombreEmpresa AND prov_Estado = 1))
+	BEGIN
+	Select -2
+	END
+	ELSE IF (NOT Exists (SELECT * FROM rest.tbProveedores WHERE prov_NombreEmpresa = @prov_NombreEmpresa))
+	BEGIN
 				INSERT INTO [rest].tbProveedores
 					   (prov_NombreEmpresa		
 					   ,prov_NombreContacto	
@@ -212,6 +217,23 @@ BEGIN TRY
 						,1);
 
 			SELECT 1 as Proceso		
+	END
+	ELSE
+	BEGIN
+		
+		UPDATE [rest].tbProveedores
+		SET prov_NombreContacto	=	@prov_NombreContacto	,
+			prov_Telefono		=	@prov_Telefono			,
+			muni_Id				=	@muni_Id				,
+			prov_DireccionExacta=	@prov_DireccionExacta	,
+			prov_UsuCreacion	=	@prov_UsuCreacion		,
+			prov_FechaCreacion	=	GETDATE()				,
+			prov_Estado			=	1
+		WHERE prov_NombreEmpresa = @prov_NombreEmpresa
+
+		SELECT 1 as Proceso	
+	END								
+									
 	END TRY
 	BEGIN CATCH
 		SELECT 0 as Proceso
@@ -297,7 +319,7 @@ BEGIN TRY
 						,NULL 
 						,NULL 
 						,1);
-			SELECT 1 as Proceso
+			SELECT SCOPE_IDENTITY() as Proceso
 	END TRY
 	BEGIN CATCH
 		SELECT 0 as Proceso
