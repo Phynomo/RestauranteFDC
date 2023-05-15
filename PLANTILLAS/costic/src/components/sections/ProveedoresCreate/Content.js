@@ -152,7 +152,7 @@ function Content() {
                                                     <option key={option.depa_Id} value={option.depa_Id}>{option.depa_Nombre}</option>
                                                 ))}
                                             </select>
-                                            <div className="invalid-feedback">Selecciona un empleado para el usuario</div>
+                                            <div className="invalid-feedback">Seleccione un Departamento</div>
                                         </div>
 
                                     </div>
@@ -167,7 +167,7 @@ function Content() {
                                                     <option key={option.muni_Id} value={option.muni_Id}>{option.muni_Nombre}</option>
                                                 ))}
                                             </select>
-                                            <div className="invalid-feedback">Selecciona un rol para el usuario</div>
+                                            <div className="invalid-feedback">Seleccione un Municipio</div>
                                         </div>
                                     </div>
                                 </div>

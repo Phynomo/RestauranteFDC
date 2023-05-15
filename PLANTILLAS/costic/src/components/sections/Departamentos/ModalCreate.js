@@ -86,7 +86,7 @@ class ModalCreate extends Component {
                 <Modal show={this.state.create} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
                     centered>
                     <Modal.Header>
-                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar un nuevo Departamento</h3>
+                        <h4 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar un nuevo Departamento</h4>
                         <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
                     </Modal.Header>
                     <form onSubmit={this.handleSubmit} className={`needs-validation validation-fill ${this.state.validated ? 'was-validated' : ''}`} noValidate>
@@ -94,19 +94,19 @@ class ModalCreate extends Component {
                             <div className='row'>
                                 <div className='col-6'>
                                     <div className="ms-form-group has-icon">
-                                    <label htmlFor="validationCustom13">Ingresar Departamento</label>
+                                    <label htmlFor="validationCustom13">Departamento</label>
                                     <div className="input-group">
                                         <input type="text" className="form-control" id="validationCustom13" placeholder="Nombre" name="depa_Nombre" value={this.state.depa_Nombre} onChange={this.handleInputChange} required />
-                                        <div className="invalid-feedback">Ingresar la departamento es algo requerido</div>
+                                        <div className="invalid-feedback">Ingrese el departamento</div>
                                     </div>
                                 </div>
                             </div>
                             <div className='col-6'>
                                 <div className="ms-form-group has-icon">
-                                    <label htmlFor="validationCustom13">Ingresar Codigo</label>
+                                    <label htmlFor="validationCustom13">Codigo</label>
                                     <div className="input-group">
                                         <input type="text" className="form-control" id="validationCustom13" placeholder="Codigo" name="depa_Codigo" value={this.state.depa_Codigo} onChange={this.handleInputChange} required />
-                                        <div className="invalid-feedback">Ingresar el codigo es algo requerido</div>
+                                        <div className="invalid-feedback">Ingrese el codigo</div>
                                     </div>
                                 </div>
                                 </div>

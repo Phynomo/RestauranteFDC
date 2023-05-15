@@ -110,7 +110,7 @@ class ModalCreate extends Component {
                 <Modal show={this.state.create} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
                     centered>
                     <Modal.Header>
-                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar un nuevo Municipio</h3>
+                        <h4 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar un nuevo Municipio</h4>
                         <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
                     </Modal.Header>
                     <form onSubmit={this.handleSubmit} className={`needs-validation validation-fill ${this.state.validated ? 'was-validated' : ''}`} noValidate>
@@ -121,7 +121,7 @@ class ModalCreate extends Component {
                                     <label htmlFor="validationCustom13">Ingresar Municipio</label>
                                         <div className="input-group">
                                             <input type="text" className="form-control" id="validationCustom13" placeholder="Nombre" name="muni_Nombre" value={this.state.muni_Nombre} onChange={this.handleInputChange} required />
-                                            <div className="invalid-feedback">Ingresar el Municipio es algo requerido</div>
+                                            <div className="invalid-feedback">Ingrese el Municipio</div>
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@ class ModalCreate extends Component {
                                     <label htmlFor="validationCustom13">Ingresar Codigo</label>
                                         <div className="input-group">
                                             <input type="text" className="form-control" id="validationCustom13" placeholder="Codigo" name="muni_Codigo" value={this.state.muni_Codigo} onChange={this.handleInputChange} required />
-                                            <div className="invalid-feedback">Ingresar el Codigo es algo requerido</div>
+                                            <div className="invalid-feedback">Ingrese el Codigo</div>
                                         </div>
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@ class ModalCreate extends Component {
                                             <option key={departamento.depa_Id} value={departamento.depa_Id}>{departamento.depa_Nombre}</option>
                                         )}
                                         </select>
-                                        <div className="invalid-feedback">Seleccionar un departamento es obligatorio</div>
+                                        <div className="invalid-feedback">Seleccione un departamento</div>
                                     </div>
                                 </div>
                                 </div>
