@@ -66,12 +66,10 @@ const DataTable = () => {
     },
   ];
 
-
-  useEffect(() => {
-    fetch('https://localhost:44383/api/Clientes/Listado')
-    .then(response => response.json())
-    .then(data => {
-      const rows = data.data.map(item => {
+  const fetchData = () => {
+    axios.get('api/Clientes/Listado')
+    .then(response => {
+      const rows = response.data.data.map(item => {
         return {
           id: item.clie_Id,
           clie_Id: item.clie_Id,
@@ -87,7 +85,19 @@ const DataTable = () => {
     .catch(error => {
       console.log("Error en la solicitud axios:", error);
     });
-  }, []);
+  };
+
+
+ 
+useEffect(() => {
+  fetchData(); // llamada inicial
+
+  const interval = setInterval(() => {
+    fetchData(); // llamada cada 3 segundos
+  }, 3000);
+
+  return () => clearInterval(interval); // limpiar intervalo al desmontar el componente
+}, []);
   
   
 

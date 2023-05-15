@@ -3,6 +3,7 @@ import "datatables.net-bs4/js/dataTables.bootstrap4"
 //import { DataGrid } from '@mui/x-data-grid';
 import { DataGrid, GridToolbar,esES } from '@mui/x-data-grid';
 import ModalEdit2 from './ModalsPut2';
+import axios from 'axios';
 
 
 const DataTable = () => {
@@ -26,25 +27,35 @@ const columns = [
      ),
    },
 ];
+const fetchData = () => {
+  axios.get('api/EstadosCiviles/Listado')
+  .then(response => {
+    const rows = response.data.data.map(item => {
+      return {
+        id: item.eciv_Id,
+        eciv_Id: item.eciv_Id,
+        eciv_Descripcion: item.eciv_Descripcion
+      }
+    });
+    setRows(rows);
+    setIsLoading(false);
+  })
+  .catch(error => {
+    console.log("Error en la solicitud axios:", error);
+  });
+
+};
+
 
 useEffect(() => {
-  fetch('https://localhost:44383/api/EstadosCiviles/Listado')
-    .then(response => response.json())
-    .then(data => {
-      const rows = data.data.map(item => {
-        return {
-          id: item.eciv_Id,
-          eciv_Id: item.eciv_Id,
-          eciv_Descripcion: item.eciv_Descripcion
-        }
-      });
-      setRows(rows);
-      setIsLoading(false);
-    })
-    .catch(error => {
-      console.log("Error en la solicitud fetch:", error);
-    });
-}, [rows]);
+  fetchData(); // llamada inicial
+
+  const interval = setInterval(() => {
+    fetchData(); // llamada cada 3 segundos
+  }, 3000);
+
+  return () => clearInterval(interval); // limpiar intervalo al desmontar el componente
+}, []);
 
 const handleSearch = e => {
   setSearchText(e.target.value);

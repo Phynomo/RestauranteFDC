@@ -36,23 +36,34 @@ const columns = [
     setSearchText(e.target.value);
   };
 
-
+  const fetchData = () => {
+    axios.get('api/Empleados/Listado')
+    .then(response => {
+      const rows = response.data.data.map(item => {
+        return {
+          id: item.empe_Id,
+          empe_Id: item.empe_Id,
+          empe_NombreCompleto: item.empe_NombreCompleto,
+          empe_Sexo: item.empe_Sexo,
+          muni_Nombre: item.muni_Nombre
+        }
+      });
+      setRows(rows);
+    })
+    .catch(error => {
+      console.log("Error en la solicitud axios:", error);
+    });
+  
+  };
 
   useEffect(() => {
-    fetch('https://localhost:44383/api/Empleados/Listado')
-      .then(response => response.json())
-      .then(data => {
-        const rows = data.data.map(item => {
-          return {
-            id: item.empe_Id,
-            empe_Id: item.empe_Id,
-            empe_NombreCompleto: item.empe_NombreCompleto,
-            empe_Sexo: item.empe_Sexo,
-            muni_Nombre: item.muni_Nombre
-          }
-        });
-        setRows(rows);
-      });
+    fetchData(); // llamada inicial
+
+    const interval = setInterval(() => {
+      fetchData(); // llamada cada 3 segundos
+    }, 3000);
+
+    return () => clearInterval(interval); // limpiar intervalo al desmontar el componente
   }, []);
 
   const filterData = () => {
