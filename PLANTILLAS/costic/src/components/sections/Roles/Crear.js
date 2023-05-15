@@ -79,9 +79,8 @@ const Crear = () => {
   };
   
   useEffect(() => {
-    console.log("*gemidos*");
     console.log(selectedRoles);
-    fetch('https://localhost:44383/api/Pantallas/Listado')
+    fetch('api/Pantallas/Listado')
       .then(response => response.json())
       .then(data => {
         const options = data.data.map(item => {

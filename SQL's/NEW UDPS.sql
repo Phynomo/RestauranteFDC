@@ -334,7 +334,6 @@ SELECT * FROM [rest].[tbPlatillos] WHERE [plat_Id] = @plat_Id
 END
 GO
 
-
 CREATE OR ALTER PROCEDURE rest.UDP_MostrarPlatillosCate
 @cate_Id			INT
 AS

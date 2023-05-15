@@ -10,3 +10,15 @@ C:\Users\danie\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Resta
 C:\Users\danie\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Release\net5.0\Restaurante.Entities.dll
 C:\Users\danie\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Release\net5.0\ref\Restaurante.Entities.dll
 C:\Users\danie\Documents\GitHub\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Release\net5.0\Restaurante.Entities.pdb
+C:\Users\LAB01\Desktop\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\bin\Release\net5.0\Restaurante.Entities.deps.json
+C:\Users\LAB01\Desktop\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\bin\Release\net5.0\Restaurante.Entities.dll
+C:\Users\LAB01\Desktop\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\bin\Release\net5.0\ref\Restaurante.Entities.dll
+C:\Users\LAB01\Desktop\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\bin\Release\net5.0\Restaurante.Entities.pdb
+C:\Users\LAB01\Desktop\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Release\net5.0\Restaurante.Entities.csproj.AssemblyReference.cache
+C:\Users\LAB01\Desktop\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Release\net5.0\Restaurante.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LAB01\Desktop\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Release\net5.0\Restaurante.Entities.AssemblyInfoInputs.cache
+C:\Users\LAB01\Desktop\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Release\net5.0\Restaurante.Entities.AssemblyInfo.cs
+C:\Users\LAB01\Desktop\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Release\net5.0\Restaurante.Entities.csproj.CoreCompileInputs.cache
+C:\Users\LAB01\Desktop\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Release\net5.0\Restaurante.Entities.dll
+C:\Users\LAB01\Desktop\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Release\net5.0\ref\Restaurante.Entities.dll
+C:\Users\LAB01\Desktop\RestauranteFDC\PROYECTO DE RESTAURANTE FDC\Restaurante.Entities\obj\Release\net5.0\Restaurante.Entities.pdb
