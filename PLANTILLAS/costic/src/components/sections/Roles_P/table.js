@@ -146,7 +146,7 @@ const DataTable = () => {
         :
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-            <h5 style={{ marginLeft: "5px" }} >Cargos</h5>
+            <h5 style={{ marginLeft: "5px" }} >Roles</h5>
             <div className="input-group" style={{ width: '250px', marginTop: '5px', marginRight: "5px", marginBottom: "-5px" }}>
               <div className="input-group-prepend"> <span className="input-group-text" id="inputGroupPrepend"><i className="flaticon-search" /></span>
               </div>

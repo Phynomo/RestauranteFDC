@@ -72,7 +72,7 @@ class Trendingorder extends Component {
                             <div key={i} className='col-xl-3 col-lg-6 col-md-6 col-sm-6'>
                                 <div className="ms-card no-margin">
                                     <div className="ms-card-img">
-                                        <img src='https://statics-cuidateplus.marca.com/cms/styles/natural/azblob/hamburguesas.jpg.webp?itok=4airsSTm' alt="card_img" />
+                                        <img src={item.plat_Imagen} alt="card_img" style={{height:"140px", objectFit:"cover"}}/>
                                     </div>
                                     <div className="ms-card-body">
                                         <div className="ms-card-heading-title">
