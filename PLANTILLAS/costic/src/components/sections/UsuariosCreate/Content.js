@@ -268,7 +268,7 @@ function Content() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='d-flex justify-content-end'>
+                            <div className='d-flex justify-content-center'>
                                 <div className='col-4'>
                                     <button type='submit' disabled={botonEnviar} className='btn btn-danger btn-pill btn-block' >Enviar</button>
                                 </div>

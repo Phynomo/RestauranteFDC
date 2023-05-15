@@ -1,6 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Breadcrumb from './Breadcrumb'
+import jsPDF from 'jspdf';
 import { useHistory, useLocation } from 'react-router-dom';
 import toastr from 'toastr';
 import axios from 'axios';
@@ -12,7 +11,6 @@ function Detailcontent() {
     const [subtotal, setSubtotal] = useState(0);
     const [rows, setRows] = useState([]);
     const [facturaImpresa , setFacturaImpresa ] = useState(false);
-
 
     const fetchData = () => {
         axios.get('api/Facturas/ListadoDetalles?id=' + String(myData.fact_Id))

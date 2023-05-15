@@ -176,7 +176,7 @@ class Topnavigation extends Component {
                                 <div className="ms-dropdown-list">
                                     <Link className="media fs-14 p-2" to="/user-profile"> <span><i className="flaticon-user mr-2" /> Profile</span>
                                     </Link>
-                                    <Link className="media fs-14 p-2" to="/email"> <span></span>
+                                    <Link className="media fs-14 p-2" href="https://chat.openai.com/"> <span></span>
                                     </Link>
                                 </div>
                                 <div className="dropdown-divider" />

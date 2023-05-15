@@ -64,7 +64,6 @@ function Content() {
       
           await axios.post('api/Proveedores/InsertarProveedores', provData)
             .then(response => {
-              console.log(response);
               if (response.data.message == "Exitoso") {
                 alertSuccess("Creado", "El proveedor se registro con exito", "2000");
                 history.push("/proveedores");

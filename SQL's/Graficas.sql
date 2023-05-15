@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE UDP_FacturasPorSucursal_Chart
+CREATE OR ALTER PROCEDURE rest.UDP_FacturasPorSucursal_Chart
 AS
 BEGIN
 
@@ -10,7 +10,7 @@ FROM rest.VW_tbSucursales T1
 
 END
 GO
-CREATE OR ALTER PROCEDURE dbo.UDP_MetodosPago_Chart
+CREATE OR ALTER PROCEDURE gral.UDP_MetodosPago_Chart
 AS
 BEGIN
 
@@ -22,7 +22,7 @@ GROUP BY metp_Descripcion,metp_Id
 
 END
 GO
-CREATE OR ALTER PROCEDURE UDP_Platillos_Chart
+CREATE OR ALTER PROCEDURE rest.UDP_Platillos_Chart
 AS
 BEGIN
 
@@ -33,25 +33,25 @@ ORDER BY CantidadPlatillos desc
 
 END
 GO
-CREATE OR ALTER PROCEDURE dbo.UDP_TotalEmpleados_Chart
+CREATE OR ALTER PROCEDURE rest.UDP_TotalEmpleados_Chart
 AS
 BEGIN
 SELECT COUNT(*)as TotalEmpleados FROM rest.tbEmpleados WHERE empe_Estado = 1 
 END
 GO
-CREATE OR ALTER PROCEDURE dbo.UDP_TotalFacturas_Chart
+CREATE OR ALTER PROCEDURE rest.UDP_TotalFacturas_Chart
 AS
 BEGIN
 SELECT COUNT(*)as CantidadFacturas FROM rest.tbFacturas WHERE fact_Estado = 1 
 END
 GO
-CREATE OR ALTER PROCEDURE dbo.UDP_PlatillosPedidos_Chart
+CREATE OR ALTER PROCEDURE rest.UDP_PlatillosPedidos_Chart
 AS
 BEGIN
 SELECT sum(fade_Cantidad) AS CantidadPlatillos FROM rest.tbFacturasDetalles WHERE fade_Estado = 1 
 END
 GO
-CREATE OR ALTER PROCEDURE dbo.UDP_IngresosTotales_Chart
+CREATE OR ALTER PROCEDURE rest.UDP_IngresosTotales_Chart
 AS
 BEGIN
 SELECT sum(fade_Cantidad * fade_Precio) AS CantidadFacturas FROM rest.tbFacturasDetalles WHERE fade_Estado = 1 

@@ -77,7 +77,6 @@ function Content() {
       
           await axios.put('api/Proveedores/EditarProveedores', provData)
             .then(response => {
-              console.log(response);
               if (response.data.message == "Exitoso") {
                 alertSuccess("Editado", "El proveedor se edito con exito", "2000");
                 history.push("/proveedores");

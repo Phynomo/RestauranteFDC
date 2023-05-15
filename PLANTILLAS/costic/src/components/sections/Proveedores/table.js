@@ -46,7 +46,6 @@ const DataTable = () => {
   };
   axios.put('/api/Proveedores/Eliminar', data)
   .then(response => {
-      console.log(response.data);
       if (response.data.message == "Registro eliminado") {
           alertSuccess("Listo", "El registro se elimino con exito", "2000");
           setModalDelete(false);
