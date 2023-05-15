@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import { DataGrid, GridToolbar, esES } from '@mui/x-data-grid';
 import ModalEdit from './ModalsPut';
+import axios from 'axios';
 
 
 
@@ -29,27 +30,38 @@ const DataTable = () => {
     },
   ];
 
-  useEffect(() => {
-    console.log("*gemidos*");
-    fetch('https://localhost:44383/api/Municipios/Listado')
-      .then(response => response.json())
-      .then(data => {
-        const rows = data.data.map(item => {
-          return {
-            id: item.muni_Id,
-            muni_Id: item.muni_Id,
-            muni_Nombre: item.muni_Nombre,
-            muni_Codigo: item.muni_Codigo,
-            depa_Id: item.depa_Id,
-          }
-        });
-        setRows(rows);
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.log("Error en la solicitud fetch:", error);
+  const fetchData = () => {
+    axios.get('api/Municipios/Listado')
+    .then(response => {
+      const rows = response.data.data.map(item => {
+        return {
+          id: item.muni_Id,
+          muni_Id: item.muni_Id,
+          muni_Nombre: item.muni_Nombre,
+          muni_Codigo: item.muni_Codigo,
+          depa_Id: item.depa_Id,
+        }
       });
-  }, [rows]);
+      setRows(rows);
+      setIsLoading(false);
+    })
+    .catch(error => {
+      console.log("Error en la solicitud axios:", error);
+    });
+  
+  };
+
+
+useEffect(() => {
+    fetchData(); // llamada inicial
+
+    const interval = setInterval(() => {
+      fetchData(); // llamada cada 3 segundos
+    }, 3000);
+
+    return () => clearInterval(interval); // limpiar intervalo al desmontar el componente
+  }, []);
+
 
   const handleSearch = e => {
     setSearchText(e.target.value);

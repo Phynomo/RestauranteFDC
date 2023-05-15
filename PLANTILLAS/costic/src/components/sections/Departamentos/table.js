@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import { DataGrid, GridToolbar, esES } from '@mui/x-data-grid';
 import ModalEdit from './ModalsPut';
+import axios from 'axios';
 
 
 
@@ -28,11 +29,10 @@ const DataTable = () => {
     },
   ];
 
-  useEffect(() => {
-    fetch('https://localhost:44383/api/Departamentos/Listado')
-      .then(response => response.json())
-      .then(data => {
-        const rows = data.data.map(item => {
+  const fetchData = () => {
+    axios.get('api/Departamentos/Listado')
+      .then(response => {
+        const rows = response.data.data.map(item => {
           return {
             id: item.depa_Id,
             depa_Id: item.depa_Id,
@@ -44,9 +44,20 @@ const DataTable = () => {
         setIsLoading(false);
       })
       .catch(error => {
-        console.log("Error en la solicitud fetch:", error);
+        console.log("Error en la solicitud axios:", error);
       });
-  }, [rows]);
+    
+  };
+
+  useEffect(() => {
+    fetchData(); // llamada inicial
+
+    const interval = setInterval(() => {
+      fetchData(); // llamada cada 3 segundos
+    }, 3000);
+
+    return () => clearInterval(interval); // limpiar intervalo al desmontar el componente
+  }, []);
 
   const handleSearch = e => {
     setSearchText(e.target.value);
@@ -76,7 +87,7 @@ const DataTable = () => {
         :
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-            <h5 style={{ marginLeft: "5px" }} >Departamento</h5>
+            <h5 style={{ marginLeft: "5px" }} >Departamentos</h5>
             <div className="input-group" style={{ width: '250px', marginTop: '5px', marginRight: "5px", marginBottom: "-5px" }}>
               <div className="input-group-prepend"> <span className="input-group-text" id="inputGroupPrepend"><i className="flaticon-search" /></span>
               </div>

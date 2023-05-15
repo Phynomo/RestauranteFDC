@@ -3,7 +3,7 @@ import Breadcrumb from './Breadcrumb';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
 import $ from 'jquery';
-import Table from '../Platillos/table';
+import Table from './table';
 import { Link } from 'react-router-dom';
 
 class Content extends Component {
@@ -20,7 +20,7 @@ class Content extends Component {
                                 <div className='row d-flex justify-content-center'>
                                     <div className='col-5'>
                                     <Link to="/crearCliente">
-                                    <button className="btn btn-primary btn-pill btn-block">NUEVO REGISTRO</button>
+                                    <button className="btn btn-primary btn-pill btn-block">Nuevo Registro</button>
                                     </Link>
                                     </div>
                                 </div>

@@ -83,13 +83,13 @@ class ModalCreate2 extends Component {
                 <Modal show={this.state.create} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
                     centered>
                     <Modal.Header>
-                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar un nuevo Estado Civil</h3>
+                        <h4 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar un nuevo Estado Civil</h4>
                         <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
                     </Modal.Header>
                     <form onSubmit={this.handleSubmit} className={`needs-validation validation-fill ${this.state.validated ? 'was-validated' : ''}`} noValidate>
                         <Modal.Body>
                             <div className="ms-form-group has-icon">
-                                <label htmlFor="validationCustom13">Ingresar estado civil</label>
+                                <label htmlFor="validationCustom13">Ingresar Estado Civil</label>
                                 <div className="input-group">
                                     <input type="text" className="form-control" id="validationCustom13" placeholder="Estado Civil" name="eciv_Descripcion" value={this.state.eciv_Descripcion} onChange={this.handleInputChange} required />
                                     <div className="invalid-feedback">Ingresar el estado civil es algo requerido</div>

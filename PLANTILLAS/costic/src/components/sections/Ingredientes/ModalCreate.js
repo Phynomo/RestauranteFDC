@@ -153,7 +153,7 @@ class ModalCreate extends Component {
                 <Modal show={this.state.create} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
                     centered>
                     <Modal.Header>
-                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar un nuevo Ingrediente</h3>
+                        <h4 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar un nuevo Ingrediente</h4>
                         <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
                     </Modal.Header>
                     <form onSubmit={this.handleSubmit} className={`needs-validation validation-fill ${this.state.validated ? 'was-validated' : ''}`} noValidate>
@@ -164,7 +164,7 @@ class ModalCreate extends Component {
                                     <label htmlFor="validationCustom13">Ingresar Nombre</label>
                                         <div className="input-group">
                                             <input type="text" className="form-control" id="validationCustom13" placeholder="Ingrediente" name="ingr_Nombre" value={this.state.ingr_Nombre} onChange={this.handleInputChange} required />
-                                            <div className="invalid-feedback">Ingresar el Ingrediente es algo requerido</div>
+                                            <div className="invalid-feedback">Ingrese el Ingrediente</div>
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +173,7 @@ class ModalCreate extends Component {
                                     <label htmlFor="validationCustom13">Ingresar Precio</label>
                                         <div className="input-group">
                                             <input type="number" className="form-control" id="validationCustom13" placeholder="Precio x 100g" name="ingr_PrecioX100gr" value={this.state.ingr_PrecioX100gr} onChange={this.handleInputChange} required />
-                                            <div className="invalid-feedback">Ingresar el Precio es algo requerido</div>
+                                            <div className="invalid-feedback">Ingresar el Precio</div>
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@ class ModalCreate extends Component {
                             <div className='row'>
                                 <div className='col-6'>
                                 <div className="ms-form-group has-icon">
-                                <label htmlFor="validationCustom13">Seleccionar Proveedor</label>
+                                <label htmlFor="validationCustom13">Proveedor</label>
                                     <div className="input-group">
                                     <select className='form-control' id="validationCustom13" name="prov_Id" value={this.state.prov_Id} onChange={this.handleInputChange} required>
                                         <option value="">Seleccionar Proveedor</option>
@@ -189,7 +189,7 @@ class ModalCreate extends Component {
                                             <option key={proveedor.prov_Id} value={proveedor.prov_Id}>{proveedor.prov_NombreEmpresa}</option>
                                         )}
                                         </select>
-                                        <div className="invalid-feedback">Seleccionar un proveedor es obligatorio</div>
+                                        <div className="invalid-feedback">Seleccione un proveedor</div>
                                     </div>
                                 </div>
                                 </div>
@@ -198,7 +198,7 @@ class ModalCreate extends Component {
                                     <label htmlFor="validationCustom13">Ingresar stock</label>
                                     <div className="input-group">
                                         <input type="number" className="form-control" id="validationCustom13" placeholder="Stock" name="ingr_Stock" value={this.state.ingr_Stock} onChange={this.handleInputChangeStock} required />
-                                        <div className="invalid-feedback">Ingresar el stock es algo requerido</div>
+                                        <div className="invalid-feedback">Ingrese el stock</div>
                                         </div>
                                     </div>
                                 </div>

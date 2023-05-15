@@ -246,7 +246,7 @@ BEGIN
     END CATCH
 END
 GO
-
+SELECT * FROM [rest].[tbPlatillos]
 --Platillos
 CREATE OR ALTER PROCEDURE rest.UDP_tbPlatillos_Delete
 	@plat_Id INT

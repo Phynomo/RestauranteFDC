@@ -348,11 +348,13 @@ function App() {
         <PrivateRoute pantId={9}  path="/clientes" component={Clientes}/>
         <PrivateRoute pantId={9}  path="/crearCliente" component={CrearCliente}/>
         <PrivateRoute pantId={9}  path="/editarCliente/:clie_Id" component={EditarCliente} />
+        <PrivateRoute pantId={9}  path="/detallesCliente/:clie_Id" component={DetallesCliente} />
 
         {/* Empleados id:10 */}
         <PrivateRoute pantId={10}  path="/empleados" component={Empleados} />
         <PrivateRoute pantId={10}  path="/crearEmpleado" component={CrearEmpleado}/>
         <PrivateRoute pantId={10}  path="/editarEmpleado/:empe_Id" component={EditarEmpleado} />
+        <PrivateRoute pantId={10}  path="/detallesEmpleado/:empe_Id" component={DetallesEmpleado} />
 
         {/* Factura id:11 */}
         <PrivateRoute pantId={11}  path="/factura" component={Factura} />

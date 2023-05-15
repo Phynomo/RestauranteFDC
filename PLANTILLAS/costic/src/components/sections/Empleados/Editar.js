@@ -67,7 +67,7 @@ const Crear = ({ match }) => {
     empe_CorreoElectronico: ""
 
   });
-
+  const [muniA, setMuniA] = useState();
   useEffect(() => {
     const empe_Id = match.params.empe_Id;
     console.log(empe_Id);
@@ -77,20 +77,22 @@ const Crear = ({ match }) => {
         const empleado2 = response.data.data[0];
         const fechaNacimiento = new Date(empleado2.empe_FechaNacimiento);
         
-        /*//depto
-        var codeDepto = {code: empleado2.depa_Id, name: empleado2.depa_Nombre}
-        setDepartamento(codeDepto);*/
-
 
         console.log(fechaNacimiento);
 
         empleado2.empe_FechaNacimiento = fechaNacimiento.toISOString().substring(0, 10);
-
-        console.log(empleado2.empe_FechaNacimiento);
+        setMuniA(empleado2.muni_Id);
 
         setEmpleado(empleado2);  
-        console.log(response.data);
-        console.log(response.data.data[0]);
+
+        axios.get(`api/Municipios/CargarMunicipios?id=${response.data.data[0].depa_Id}`)
+        .then((response) => {
+          setMunicipios(response.data.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
        
       })
       .catch((error) => {
@@ -267,35 +269,6 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
   }, [selectedDepartamento]);
   
 
- /* function handleDepartamentoChange(event) {
-    setSelectedDepartamento(event.target.value);
-    setMunicipios([]);
-  }*/
-  
-    /* //cargar
-     const AsiganrlevalorMunicipioDDL = (depa_Id, datos) => 
-     {
-         setMunicipioActivated(false);
-         axios.put('api/Municipios/CargarMunicipios?id='+ depa_Id)
-         .then(response => response.data)
-         .then((data) => setMunicipioDDL( data.data.map((c) => ({ code: c.muni_Id, name: c.muni_Nombre }))))
-         .catch(error => console.error(error))
- 
-         var codeMuni  = {code: datos.muni_Id, name: datos.muni_Nombre}
-         setMunicipio(codeMuni);
-     }
- 
- 
-     //onchange
-     const ActivarMunicipioDDl = (depa_Id) => {
- 
-         setMunicipioActivated(false);
-         axios.put('api/Municipios/CargarMunicipios?id='+ depa_Id)
-         .then(response => response.data)
-         .then((data) => setMunicipioDDL( data.data.map((c) => ({ code: c.muni_Id, name: c.muni_Nombre }))))
-         .catch(error => console.error(error))
-     }
-     */
   
     return (
       <div className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">

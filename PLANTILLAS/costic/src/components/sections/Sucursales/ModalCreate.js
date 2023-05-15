@@ -131,7 +131,7 @@ class ModalCreate extends Component {
                 <Modal show={this.state.create} onHide={this.handleClose} aria-labelledby="contained-modal-title-vcenter"
                     centered>
                     <Modal.Header>
-                        <h3 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar una nueva Sucursal</h3>
+                        <h4 className="modal-title has-icon ms-icon-round "><i className="flaticon-network bg-primary text-white" />Insertar una nueva Sucursal</h4>
                         <button type="button" className="close" onClick={this.handleClose}><span aria-hidden="true">×</span></button>
                     </Modal.Header>
                     <form onSubmit={this.handleSubmit} className={`needs-validation validation-fill ${this.state.validated ? 'was-validated' : ''}`} noValidate>
@@ -142,13 +142,13 @@ class ModalCreate extends Component {
                                     <label htmlFor="validationCustom13">Ingresar Sucursal</label>
                                         <div className="input-group">
                                             <input type="text" className="form-control" id="validationCustom13" placeholder="Nombre" name="sucu_Nombre" value={this.state.sucu_Nombre} onChange={this.handleInputChange} required />
-                                            <div className="invalid-feedback">Ingresar la Sucursal es algo requerido</div>
+                                            <div className="invalid-feedback">Ingrese la Sucursal</div>
                                         </div>
                                     </div>
                                 </div>
                             <div className='col-6'>
                                 <div className="ms-form-group has-icon">
-                                <label htmlFor="validationCustom13">Seleccionar Departamento</label>
+                                <label htmlFor="validationCustom13">Departamento</label>
                                     <div className="input-group">
                                     <select className='form-control' id="validationCustom13" name="depa_Id" value={this.state.depa_Id} onChange={this.handleCargarMunicipios} required>
                                         <option value="">Seleccionar departamento</option>
@@ -156,7 +156,7 @@ class ModalCreate extends Component {
                                             <option key={departamento.depa_Id} value={departamento.depa_Id}>{departamento.depa_Nombre}</option>
                                         )}
                                         </select>
-                                        <div className="invalid-feedback">Seleccionar un departamento es obligatorio</div>
+                                        <div className="invalid-feedback">Seleccione el departamento</div>
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +164,7 @@ class ModalCreate extends Component {
                             <div className='row'>
                                 <div className='col-6'>
                                     <div className="ms-form-group has-icon">
-                                    <label htmlFor="validationCustom13">Seleccionar municipio</label>
+                                    <label htmlFor="validationCustom13">Municipio</label>
                                         <div className="input-group">
                                         <select className="form-control" id="validationCustom13" name="muni_Id" value={this.state.muni_Id} onChange={this.handleInputChange} required>
                                             <option value="">Seleccione un municipio</option>
@@ -172,7 +172,7 @@ class ModalCreate extends Component {
                                                 <option key={municipio.muni_Id} value={municipio.muni_Id}>{municipio.muni_Nombre}</option>
                                             )}
                                         </select>
-                                            <div className="invalid-feedback">Seleccionar un municipio es obligatorio</div>
+                                            <div className="invalid-feedback">Seleccione un municipio</div>
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@ class ModalCreate extends Component {
                                         <label htmlFor="validationCustom13">Ingresar Direccion</label>
                                         <div className="input-group">
                                             <input type="text" className="form-control" id="validationCustom13" placeholder="Direccion" name="sucu_Direccion" value={this.state.sucu_Direccion} onChange={this.handleInputChange} required />
-                                            <div className="invalid-feedback">Ingresar el codigo es algo requerido</div>
+                                            <div className="invalid-feedback">Ingrese la Dirección</div>
                                         </div>
                                     </div>
                                 </div>
