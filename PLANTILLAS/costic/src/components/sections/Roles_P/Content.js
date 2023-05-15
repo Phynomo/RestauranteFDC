@@ -21,7 +21,7 @@ function Content() {
                             <hr></hr>
                             <div className='row d-flex justify-content-center'>
                                 <div className='col-5'>
-                                    <button onClick={handleCreate} className='btn btn-primary btn-pill btn-block'>Nuevo rol</button>
+                                    <button onClick={handleCreate} className='btn btn-primary btn-pill btn-block'>Nuevo Registro</button>
                                 </div>
                             </div>
                         </div>

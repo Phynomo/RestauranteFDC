@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import { DataGrid, GridToolbar, esES } from '@mui/x-data-grid';
-import { Link } from 'react-router-dom';
-import Modal from './Modal';
+import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
-
+import toastr from 'toastr';
+import { Modal, Accordion, Card } from "react-bootstrap";
+import { alertSuccess, alertError } from '../Alertas/AlertasSweet';
+import { Link } from 'react-router-dom';
 
 
 const DataTable = () => {
@@ -12,33 +14,39 @@ const DataTable = () => {
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [showModal, setShowModal] = useState(false);
-  const [deleteId, setDeleteId] = useState(null);
+  const [modalDelete, setModalDelete] = useState(false);
+  const [clienteSeleccionado, setClienteSeleccionado] = useState('');
   
-  const handleDeleteClick = (id) => {
-    setShowModal(true);
-    setDeleteId(id);
-  };
+  const handleClose = () => {
+    setModalDelete(false);
+  }
   
-  const handleConfirmDelete = () => {
-    axios.put(`api/Clientes/Eliminar?id=${deleteId}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Error al eliminar el registro');
-        }
-        // Eliminar el registro eliminado del estado de `rows`
-        const updatedRows = rows.filter(row => row.id !== deleteId);
-        setRows(updatedRows);
-        setDeleteId(null);
-        setShowModal(false);
-      })
-      .catch(error => {
-        console.log('Error al eliminar el registro:', error);
-      });
+  const seleccionarCliente = (id) => {
+    setClienteSeleccionado(id);
+    setModalDelete(true);
+  }
+  
+  
+  const handleEliminarCliente = () => {
+    let data = {
+      clie_Id: clienteSeleccionado,
+      clie_UsuModificacion: 1,
   };
-  const handleCancelDelete = () => {
-    setShowModal(false);
-  };
+  axios.put('/api/Clientes/Eliminar?id='+ clienteSeleccionado)
+  .then(response => {
+      if (response.data.message == "Registro eliminado") {
+          alertSuccess("Listo", "El registro se elimino con exito", "2000");
+          setModalDelete(false);
+      }else {
+          alertError("Error", "Ocurrio un error mientras se eliminaba el registro", "2000")
+          setModalDelete(false);
+      }
+  })
+  .catch(error => {
+      console.log(error);
+  });
+  setModalDelete(false);
+  }
   
 
   const columns = [
@@ -57,10 +65,7 @@ const DataTable = () => {
         <div>
           <Link to={`/editarCliente/${params.row.clie_Id}`} style={{ margin: "5px" }}><i className='fas fa-pencil-alt text-secondary'></i></Link>
           <Link to={`/detallesCliente/${params.row.clie_Id}`} style={{ margin: "5px" }}><i className="fas fa-align-justify"></i></Link>
-
-          <button style={{ margin: "5px" }} onClick={() => handleDeleteClick(params.row.clie_Id)} className='btn btn-square'>
-            <i className='far fa-trash-alt ms-text-danger'></i>
-          </button>
+          <a style={{ margin: "5px" }} onClick={() => seleccionarCliente(params.row.clie_Id)} ><i class='fas fa-trash-alt text-danger'></i></a>
         </div>
       ),
     },
@@ -148,17 +153,22 @@ useEffect(() => {
             pageSizeOptions={[5, 10, 15, 25, 50]}
             localeText={esES.components.MuiDataGrid.defaultProps.localeText}
           />
-             <Modal
-            showModal={showModal}
-            title="Eliminar registro"
-            message="¿Está seguro que desea eliminar este registro?"
-            confirmText="Eliminar"
-            onConfirm={handleConfirmDelete}
-            onCancel={handleCancelDelete}
-          />
-         
+
+      <Modal show={modalDelete} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter"
+        centered>
+        <Modal.Header className="bg-primary">
+          <h3 className="modal-title has-icon ms-icon-round  text-white"><i className="flaticon-alert-1 bg-primary text-white" />¿Estas seguro?</h3>
+          <button type="button" className="close" onClick={() => handleClose()} ><span aria-hidden="true">×</span></button>
+        </Modal.Header>
+        <Modal.Body className='text-center'>
+          <h5>No podras recuperar este registro si lo eliminas</h5>
+        </Modal.Body>
+        <Modal.Footer className='d-flex justify-content-center'>
+          <button type="button" className="btn btn-light btn-sm" onClick={() => handleClose()} >Cancelar</button>
+          <button type="button" className="btn btn-primary shadow-none btn-sm" onClick={() => handleEliminarCliente()} >Eliminar</button>
+        </Modal.Footer>
+      </Modal>
         </div>
-       
       }
        
     </div>

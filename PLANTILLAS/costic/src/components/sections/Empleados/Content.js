@@ -20,7 +20,7 @@ class Content extends Component {
                                 <div className='row d-flex justify-content-center'>
                                     <div className='col-5'>
                                     <Link to="/crearEmpleado">
-                                    <button className="btn btn-primary btn-pill btn-block">NUEVO REGISTRO</button>
+                                    <button className="btn btn-primary btn-pill btn-block">Nuevo Registro</button>
                                     </Link>
                                     </div>
                                 </div>
