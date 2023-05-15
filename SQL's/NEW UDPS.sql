@@ -282,16 +282,17 @@ select*from rest.tbPlatillos
 ---UDP PARA QUE EDITE  
 GO
 CREATE OR ALTER PROCEDURE rest.UDP_EditarCreatePlatillo
-	@plat_Id			 INT,
-	@plat_Nombre         NVARCHAR(200), 
-	@cate_Id             INT,
-	@plat_Imagen         NVARCHAR(MAX)
+	@plat_Id				INT,
+	@plat_Nombre			NVARCHAR(200), 
+	@cate_Id				INT,
+	@plat_Imagen			NVARCHAR(MAX),
+	@plat_UsuModificacion	INT
 	AS
 	BEGIN
 	BEGIN TRY
 	IF NOT EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre )
         BEGIN
-		UPDATE [rest].[tbPlatillos] SET [plat_Nombre] = @plat_Nombre, [cate_Id] = @cate_Id, [plat_Imagen] = @plat_Imagen
+		UPDATE [rest].[tbPlatillos] SET [plat_Nombre] = @plat_Nombre, [cate_Id] = @cate_Id, [plat_Imagen] = @plat_Imagen, plat_UsuModificacion = @plat_UsuModificacion 
 		WHERE [plat_Id] = @plat_Id
 
 	SELECT 1 AS Proceso
@@ -305,7 +306,6 @@ BEGIN CATCH
 END CATCH 
 END
 GO
-
 
 
 --- UDP MOSTRAR PRECIO
@@ -322,8 +322,22 @@ CREATE OR ALTER PROCEDURE rest.UDP_MostrarPlatillosCate
 @cate_Id			INT
 AS
 BEGIN
-	SELECT*FROM [rest].[VW_tbPlatillos] WHERE [cate_Id] = @cate_Id
+	SELECT*FROM [rest].[VW_tbPlatillos] WHERE [cate_Id] = @cate_Id AND plat_Estado = 1
 END
 GO
 
 --rest.UDP_MostrarPlatillosCate 2
+
+
+--select*from [gral].[VW_tbCategorias]
+
+CREATE OR ALTER PROCEDURE rest.UDP_CargarDatosPlatillo
+@plat_Id		INT
+AS
+BEGIN
+
+	SELECT*FROM [rest].[VW_tbPlatillos] WHERE plat_Id = @plat_Id
+END
+GO
+
+--rest.UDP_CargarDatosPlatillo 2
