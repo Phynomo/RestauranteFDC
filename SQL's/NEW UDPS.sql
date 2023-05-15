@@ -168,7 +168,6 @@ GO
 
 
 -- INSERTAR INGREDIENTES DEL PLATILLO
-
 CREATE OR ALTER PROCEDURE rest.UDP_IngredientesPlatillo
    @plat_Id					INT,
    @ingr_Id					INT,
@@ -181,12 +180,30 @@ BEGIN
 BEGIN TRY
  BEGIN TRAN 
 	 
-	 INSERT INTO [rest].[tbIngredientesXPlatillos]([plat_Id],[ingr_Id],[ingrplat_Gramos],[ingrplat_UsuCreacion])
+
+	 if(NOT exists (SELECT * FROM rest.tbIngredientesXPlatillos WHERE plat_Id = @plat_Id AND ingr_Id = @ingr_Id))
+	 BEGIN
+	INSERT INTO [rest].[tbIngredientesXPlatillos]([plat_Id],[ingr_Id],[ingrplat_Gramos],[ingrplat_UsuCreacion])
 	 VALUES(@plat_Id,@ingr_Id,@ingrplat_Gramos,@ingrplat_UsuCreacion)
 
+	 
 	UPDATE [rest].[tbPlatillos] SET [plat_Precio] = [plat_Precio] + (@ingrplat_Gramos/100 *@ingr_PrecioX100gr)  WHERE [plat_Id] = @plat_Id
 
 	SELECT 1
+
+	 END
+	 ELSE
+	 BEGIN
+
+	 UPDATE rest.tbIngredientesXPlatillos
+	 SET [ingrplat_Gramos] = [ingrplat_Gramos] + @ingrplat_Gramos
+	 WHERE plat_Id = @plat_Id AND ingr_Id = @ingr_Id
+
+	UPDATE [rest].[tbPlatillos] SET [plat_Precio] = [plat_Precio] + (@ingrplat_Gramos/100 *@ingr_PrecioX100gr)  WHERE [plat_Id] = @plat_Id
+	
+	SELECT 1 
+	END
+
 		COMMIT
 
 END TRY
@@ -290,7 +307,7 @@ CREATE OR ALTER PROCEDURE rest.UDP_EditarCreatePlatillo
 	AS
 	BEGIN
 	BEGIN TRY
-	IF NOT EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre )
+	IF NOT EXISTS (SELECT * FROM rest.tbPlatillos WHERE @plat_Nombre = plat_Nombre AND @plat_Id != plat_Id )
         BEGIN
 		UPDATE [rest].[tbPlatillos] SET [plat_Nombre] = @plat_Nombre, [cate_Id] = @cate_Id, [plat_Imagen] = @plat_Imagen, plat_UsuModificacion = @plat_UsuModificacion 
 		WHERE [plat_Id] = @plat_Id

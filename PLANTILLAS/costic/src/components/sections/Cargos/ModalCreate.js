@@ -37,6 +37,9 @@ class ModalCreate extends Component {
     
         if (form.checkValidity() === false) {
             event.stopPropagation();
+            this.setState({
+                validated: true,
+            });
         } else {
             let data = {
                 carg_Descripcion: this.state.carg_Descripcion,

@@ -134,6 +134,7 @@ namespace Restaurante.DataAccess.Repositories.REST
             parametros.Add("@plat_Nombre", item.plat_Nombre, DbType.String, ParameterDirection.Input);
             parametros.Add("@cate_Id", item.cate_Id, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@plat_Imagen", item.plat_Imagen, DbType.String, ParameterDirection.Input);
+            parametros.Add("@plat_UsuModificacion", item.plat_UsuModificacion, DbType.Int32, ParameterDirection.Input);
 
             var resultado = db.QueryFirst<int>(ScriptsDataBase.EditarCreatePlatillo, parametros, commandType: System.Data.CommandType.StoredProcedure);
             result.CodeStatus = resultado;
