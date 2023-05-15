@@ -726,3 +726,6 @@ GO
 ---NO FUNCIONA
 
 --**************************************************************************-
+UPDATE acce.tbUsuarios
+SET role_Id = 1
+WHERE [user_Id] = 1
