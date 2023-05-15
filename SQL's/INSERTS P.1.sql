@@ -642,7 +642,8 @@ VALUES ('Roles','/roles','acceso','RolesItem',1),
 	   ('Proveedores','/proveedores','restaurante','ProveedoresItem',1),
 	   ('Reportes facturas','/reportes_factura','reportes','reportesItem',1),
 	   ('Reportes empleados','/reportes_empleados','reportes','reportesItem',1),
-	   ('Reportes platillos','/reportes_platillos','reportes','reportesItem',1)
+	   ('Reportes platillos','/reportes_platillos','reportes','reportesItem',1),
+	   ('Platillos','/platillos','restaurante','PlatillosItem',1)
 	   
 
 --**************************************************************************-
