@@ -31,7 +31,7 @@ const DataTable = () => {
   useEffect(() => {
     
     const fetchData = () => {
-      axios.get('https://localhost:44383/api/Cargos/Listado')
+      axios.get('api/Cargos/Listado')
   .then(response => {
     
     console.log("*gemidos*");
