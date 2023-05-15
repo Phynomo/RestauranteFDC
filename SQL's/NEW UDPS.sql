@@ -317,3 +317,13 @@ SELECT * FROM [rest].[tbPlatillos] WHERE [plat_Id] = @plat_Id
 END
 GO
 
+
+CREATE OR ALTER PROCEDURE rest.UDP_MostrarPlatillosCate
+@cate_Id			INT
+AS
+BEGIN
+	SELECT*FROM [rest].[VW_tbPlatillos] WHERE [cate_Id] = @cate_Id
+END
+GO
+
+--rest.UDP_MostrarPlatillosCate 2

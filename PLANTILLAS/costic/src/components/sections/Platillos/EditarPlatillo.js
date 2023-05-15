@@ -7,28 +7,21 @@ import axios from 'axios'
 import Sidenavigation from '../../layouts/Sidenavigation';
 import Topnavigation from '../../layouts/Topnavigation';
 import Quickbar from '../../layouts/Quickbar';
-import { color } from 'd3-color';
-import { Button } from 'react-bootstrap';
-import ReactPaginate from 'react-paginate';
-
+import { useParams } from 'react-router-dom';
 import { DataGrid, GridToolbar, esES } from '@mui/x-data-grid';
-import { colors } from '@mui/material';
 
   
 
 
   
 function Agregar() {
-     const [platilloId, setPlatilloId] = useState(0); /* sera para agregar los ingredientes*/
      const [rows, setRows] = useState([]); /* Filas de tabla de ingredientes */
      const [rows2, setRows2] = useState([]); /* Filas de tabla de ingredientes que lleva  */
-     
+
       /*  formulario */
      const [categorias, setCategorias] = useState([]);
-     const [cateId, setCateId] = useState('');
-     const [Nombre, setNombre] = useState('');
-     const [platImage, setPlaImage] = useState('');
-     const [UsuaCreacion, setUsuaCreacion] = useState('1');
+
+     const [UsuaModific, setUsuaModific] = useState('1');
 
      const apikey = '81a91816c209f6d64dfd56aa803647e5';
      //Imagen
@@ -38,20 +31,42 @@ function Agregar() {
       /*  formulario */
 
 
-     const [showEditButton, setShowEditButton] = useState(false); /*  mostrar y quitar boton editar*/
-     const [showGuardarButton, setShowGuardarButton] = useState(true); /*  mostrar y quitar bonton guardar */
-     const [showPrecio, setPrecio] = useState(false); /* mostrar input Precio */
-    const [precioplat, setPrecioPlat] = useState('');
+    
+     const [precioplat, setPrecioPlat] = useState('');
 
      const [isLoading, setIsLoading] = useState(false);
      const [validated, setValidated] = useState(false);
      const [editMode, setEditMode] = useState(false);
+     const { plat_Id } = useParams();
+
+
+  const [platillo, setPlatillo] = useState({
+    plat_Nombre: "",
+    plat_Imagen: "",
+    cate_Id: "",
+  });
+
+  useEffect(() => {
+    
+
+    console.log(plat_Id);
+    axios.get(`api/Platillos/DatosPlatillos?id=${plat_Id}`)
+      .then((response) => {
+        const platillos = response.data.data[0];
+        setPlatillo(platillos); 
+        
+        console.log(response.data.data[0]);
+       
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+
+
 
      /* ----------  TABLA DE INGREDIENTES   ----------   */
-
-
-   
-
 
    const fetchData = () => {
         axios.get('api/Ingredientes/Listado')
@@ -136,7 +151,7 @@ function Agregar() {
 
     const handleAgregar = (index) => {
         try {
-          if (!platilloId) {
+          if (!plat_Id) {
             toastr.error("Debe Agregar un Platillo primero", "Platillo requerido");
           } else if (index.cantidad > 0) {
             const ingrId = index.ingr_Id;
@@ -144,7 +159,7 @@ function Agregar() {
               toastr.warning("Este ingrediente ya fue agregado al platillo", "Ingrediente duplicado");
             } else {
               const data = {
-                plat_Id: platilloId,
+                plat_Id: plat_Id,
                 ingr_Id: ingrId,
                 ingrplat_UsuCreacion: 1,
                 ingr_PrecioX100gr: index.ingr_PrecioX100gr,
@@ -156,8 +171,7 @@ function Agregar() {
                     toastr.success("Se agregó el ingrediente al platillo","Excelente");
                     setIngredientesGuardados([...ingredientesGuardados, ingrId]); // Agregar el ingr_Id al estado ingredientesGuardados
                     // Actualizar el estado
-
-                    axios.get(`api/Ingredientes/IngredientesXplatillos?id=${platilloId}`) /* aqui hago la peticion par los ingredientes del platillo*/
+                    axios.get(`api/Ingredientes/IngredientesXplatillos?id=${plat_Id}`) /* aqui hago la peticion par los ingredientes del platillo*/
                     .then(response => {
                         const rows = response.data.data.map(item => {                
                             return {
@@ -169,26 +183,29 @@ function Agregar() {
                                 ingrplat_Gramos: item.ingrplat_Gramos
                             };
                         });  
+                        
+                    console.log(response.data.data);
+                    setIngredientesTabla(rows);
+                    console.log("hola");
+                    console.log(rows);
+                   setIsLoading(false);   
+                   
+                    })
+                    .catch(error => {
+                        console.log('Error en la solicitud Axios:', error);
+                    });
 
-                        axios.get(`api/Platillos/Precio?id=${platilloId}`) /* aqui hago la peticion par los ingredientes del platillo*/
+                        axios.get(`api/Platillos/Precio?id=${plat_Id}`) /* aqui hago la peticion par los ingredientes del platillo*/
                         .then(response => {
                            setPrecioPlat( response.data.data[0].plat_Precio);
                            console.log("precioiooooo" + response.data.data[0].plat_Precio);
-                           setPrecio(true);
+                         
                         })
                         .catch(error => {
                             console.log('Error en la solicitud Axios:', error);
                         });
                         
-                        console.log(response.data.data);
-                        setIngredientesTabla(rows);
-                        console.log("hola");
-                        console.log(rows);
-                       setIsLoading(false);      
-                    })
-                    .catch(error => {
-                        console.log('Error en la solicitud Axios:', error);
-                    });
+                      
                   } else {
                     toastr.warning("Error inesperado al guardar el ingrediente", "Error");
                   }
@@ -239,7 +256,36 @@ function Agregar() {
                 ),
             },
         ];
+    
 
+        const fetchData2 = () => {
+
+            axios.get(`api/Ingredientes/IngredientesXplatillos?id=${plat_Id}`) /* aqui hago la peticion par los ingredientes del platillo*/
+            .then(response => {
+                const rows = response.data.data.map(item => {                
+                    return {
+                        id: item.ingrplat_Id,
+                        plat_Id: item.plat_Id,
+                        plat_Nombre: item.plat_Nombre,
+                        ingr_Id: item.ingr_Id,
+                        ingr_Nombre: item.ingr_Nombre,
+                        ingrplat_Gramos: item.ingrplat_Gramos
+                    };
+                });  
+                
+            console.log(response.data.data);
+            setIngredientesTabla(rows);
+            console.log("hola");
+            console.log(rows);
+           setIsLoading(false);   
+           
+            })
+            .catch(error => {
+                console.log('Error en la solicitud Axios:', error);
+            });
+                    
+                   
+        }; 
 
         const [ingredientesTabla, setIngredientesTabla] = useState([]);
 
@@ -249,7 +295,7 @@ function Agregar() {
                 const ingrId = row.ingr_Id;        
                 const data = {
                     ingrplat_Id: row.id,
-                    plat_Id: platilloId,
+                    plat_Id: plat_Id,
                     ingr_Id: row.ingr_Id, 
                     ingrplat_Gramos: row.ingrplat_Gramos
                 };
@@ -260,6 +306,7 @@ function Agregar() {
                         toastr.success("Se ha eliminado el ingrediente del platillo","Excelente");
                         setIngredientesGuardados(ingredientesGuardados.filter(id => id !== ingrId));
                         setIngredientesTabla(ingredientesTabla.filter(item => item.id !== row.id));
+                      
                     } else {
                         toastr.warning("Error inesperado al eliminar el ingrediente", "Error");
                     }
@@ -296,6 +343,7 @@ function Agregar() {
    useEffect(() => {
     fetchCategoria();
     fetchData();
+    fetchData2();
     }, []);
 
 
@@ -306,85 +354,17 @@ function Agregar() {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-            setImage(reader.result);
+            setPlatillo({
+                ...platillo,
+                plat_Imagen:reader.result,
+                })
+           /* setImage(reader.result);*/
         };
     } else {
         toastr.warning("El archivo tiene que ser una imagen", "Seleciona una imagen");
     }
   };
 
-  async function handleCreate() {
-    
-    if (image != null) {
-      const base64Image = image.split(',')[1]; // obtener la cadena Base64 sin el prefijo "data:image/png;base64,"
-      const url = `https://api.imgbb.com/1/upload?key=${apikey}`;
-      const body = new FormData();
-      body.append('image', base64Image);
-  
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          body: body
-        });
-  
-        if (!response.ok) {
-          throw new Error('Error al enviar la imagen');
-        }
-  
-        const data = await response.json();
-        setPlaImage(data.data.url);
-        console.log(data.data.url);
-        const platData = {
-          plat_Nombre : Nombre,          
-          cate_Id: cateId,
-          plat_Precio : 30,
-          plat_Imagen: data.data.url,
-          plat_UsuCreacion: UsuaCreacion 
-
-        };
-       
-        await axios.post('api/Platillos/InsertarPlatillos', platData)
-          .then(response => {
-            console.log(response);
-            console.log(response.data.message.includes("Exitoso"));
-            if (response.data.message.includes("Exitoso")) { /* pendiente probar */
-            const splitMessage = response.data.message.split(".");
-            if (splitMessage.length > 1) {
-              const id = splitMessage[0];
-              setPlatilloId(id);
-              console.log(id + "holaaa");
-    
-              alertSuccess("Creado", "El platillo se creó exitosamente", "2000");
-              setShowEditButton(true); 
-              setShowGuardarButton(false);
-            } else {
-              toastr.error("Ocurrio un error inespero", "Inespero");
-              setShowEditButton(false);
-            }
-              }else if(response.data.message == "YaExiste") {
-              
-             toastr.warning("Este Platillo, inserte otro", "Platillo Existente");
-             setShowEditButton(false);
-              }else{
-                toastr.error("Ocurrio un error inespero", "Inespero");
-                setShowEditButton(false);
-              }
-             })
-            .catch(error => {
-            console.log('Error en la solicitud Axios:', error);
-            });
-        
-  
-        } catch (error) {
-        console.log('Error al enviar la imagen: ', error);
-        }
-        } else {
-        toastr.warning("Imagen requerida", "Error");
-        setShowEditButton(false);
-        setShowGuardarButton(true);
-        }
-    
-  };
   
   async function handleEdit() {
     if (image != null) {
@@ -404,15 +384,16 @@ function Agregar() {
           }
     
           const data = await response.json();
-          setPlaImage(data.data.url);
+   
           
           const platEdit = {
-            plat_Id: platilloId,
-            plat_Nombre : Nombre,          
-            cate_Id: cateId,
-            plat_Imagen: data.data.url  
+            plat_Id: plat_Id,
+            plat_Nombre: platillo.plat_Nombre,          
+            cate_Id: platillo.cate_Id,
+            plat_Imagen: platillo.plat_Imagen 
           };
-         
+          
+          console.log("haha" + platEdit);
           await axios.put('api/Platillos/EditCrearPlatillo', platEdit)
             .then(response => {
               console.log(response);
@@ -420,16 +401,14 @@ function Agregar() {
               if (response.data.message == "Exitoso") {
                 
                   alertSuccess("Guardado", "Cambios Guardados con éxito", "2000");
-                  setShowEditButton(true); 
-                  setShowGuardarButton(false);
-                  setPrecio(true);
+
                 }else if(response.data.message == "YaExiste") {
                 
                   toastr.warning("Este Platillo ya existe, inserte otro", "Platillo Existente");
-                  setShowEditButton(false);
+            
                 }else{
                   toastr.error("Ocurrio un error inespero", "Inespero");
-                  setShowEditButton(false);
+            
                 }
                 })
                 .catch(error => {
@@ -441,8 +420,8 @@ function Agregar() {
                 }
                  } else {
                 toastr.error("Hubo un error", "Error");
-                setShowEditButton(false);
-                setShowGuardarButton(true);
+       
+            
                  } 
                  setEditMode(true);
                 };
@@ -460,8 +439,6 @@ function Agregar() {
         } else {
           if (editMode) {
             handleEdit();
-          } else {
-            handleCreate();
           }
         }
       };
@@ -487,9 +464,9 @@ function Agregar() {
                     <div id="precio" className="col-md-3 mb-3" style={{ display: "inline-flex" }} >
                    
                     <h6  style={{ color: '#f14a5a'}}>PRECIO: </h6>
-                    {showPrecio && (
+                    
                     <input disabled type="text" id="precioInput" name="precio" className="form-control" value={precioplat}  />
-                     )}
+                  
                     </div>
                 </div>
                 {/* espacio para alertas */}
@@ -510,14 +487,24 @@ function Agregar() {
                                             <input type="text" className="form-control" 
                                             id="validationCustom18" placeholder="Nombre " 
                                             name="plat_Nombre "
-                                             value={Nombre} onChange={(event) => handleInputChange(event, setNombre)} required />                                        
+                                            value={platillo.plat_Nombre} onChange={(event) =>  {setPlatillo({
+                                                ...platillo,
+                                                plat_Nombre: event.target.value,
+                                                });
+                                            } } required />
+                                     
                                             </div>
                                             <div className="invalid-feedback">Ingresa el nombre del platillo</div>
                                         </div>
                                         <div className="col-md-10 mb-3">
                                             <label htmlFor="validationCustom22">Categoria</label>
                                             <div className="input-group">
-                                            <select value={cateId} onChange={(event) => handleInputChange(event, setCateId)} className="form-control" id="validationCustom22" required>
+                                            <select value={platillo.cate_Id} onChange={(event) => {setPlatillo({
+                                                ...platillo,
+                                                cate_Id: event.target.value,
+                                                });
+                                            } }
+                                                className="form-control" id="validationCustom22" required>
                                             <option value="" hidden>seleccione una categoria</option>
                                             {categorias.map((option) => (
                                                 <option key={option.cate_Id} value={option.cate_Id}>{option.cate_Descripcion}</option>
@@ -529,23 +516,19 @@ function Agregar() {
                                        <div className="col-md-12 mb-3">
                                         <div className='little-profilePhynomo text-center'>
                                         <div className="pro-imgPhynomo" style={{ width: '300px', height: '300px', overflow: 'hidden' }}>
-                                        {image == null ? <img src={platImage} alt="user" /> : <img src={image} alt="uploaded image" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />}
+                                        {image == null ? <img src={platillo.plat_Imagen} alt="user" /> : <img src={image} alt="uploaded image" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />}
                                         </div>
                                             <button   className="btn btn-pill btn-outline-light"type='button' onClick={() => fileInputRef.current.click()}>Seleccionar imagen</button>
                                             <input type="file" accept="image/*" ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageChange} />
                                         </div>
                                         </div>                                      
                                         <div className="ms-panel-footer d-flex">
-                                        {showGuardarButton && (
-                                        <button className="btn btn-primary d-block mr-3" type="submit">
-                                            Guardar
-                                        </button>
-                                         )}
-                                        {showEditButton && (
+                                    
+                                        
                                           <button className="btn btn-primary d-block ml-auto" type="button" onClick={handleEdit} >
                                           Editar
                                          </button>
-                                        )}
+                                        
                                     </div>                                 
                                   </div>
                                 </form>

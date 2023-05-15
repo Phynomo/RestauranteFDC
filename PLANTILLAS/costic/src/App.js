@@ -82,6 +82,8 @@ import EditarEmpleado from './components/sections/Empleados/Editar';
 import DetallesEmpleado from './components/sections/Empleados/Detalles';
 import DetallesCliente from './components/sections/Clientes/Detalles';
 import CrearPlatillo from './components/sections/Platillos/Agregar';
+import ListaPlatillos from './components/sections/Platillos/table';
+import EditarPlatillos from './components/sections/Platillos/EditarPlatillo';
 
 function App() {
   return (
@@ -104,6 +106,10 @@ function App() {
         <Route path="/detallesCliente/:clie_Id" component={DetallesCliente} />
         <Route path="/platillos" component={Platillos}></Route>
         <Route path="/crearPlatillo" component={CrearPlatillo}></Route>
+        <Route path="/listaPlatillos/:cate_Id" component={ListaPlatillos} />
+        <Route path="/editarPlatillos/:plat_Id" component={EditarPlatillos} />
+
+
 
         <Route path="/add-product" component={Addproduct} />
         <Route path="/alerts" component={Alerts} />

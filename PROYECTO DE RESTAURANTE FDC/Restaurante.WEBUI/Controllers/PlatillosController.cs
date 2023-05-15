@@ -73,6 +73,21 @@ namespace Restaurante.WEBUI.Controllers
         }
 
 
+        [HttpGet("ListaPlatillosCate")]
+        public IActionResult Platos(int id)
+        {
+            var list = _restauranteServicio.PlatillosCate(id);
+            return Ok(list);
+        }
+
+        [HttpGet("DatosPlatillos")]
+        public IActionResult Datos(int id)
+        {
+            var list = _restauranteServicio.DatosPlat(id);
+            return Ok(list);
+        }
+
+
 
     }
 }

@@ -37,10 +37,6 @@ namespace Restaurante.DataAccess.Repositories.REST
         }
 
 
-
-
-
-
         public RequestStatus NewPlatillos(tbPlatillos item)
         {
             var parameters = new DynamicParameters();
@@ -128,6 +124,23 @@ namespace Restaurante.DataAccess.Repositories.REST
             parametros.Add("@plat_Id", Id, DbType.Int32, ParameterDirection.Input);
 
             return db.Query<VW_tbPlatillos>(ScriptsDataBase.Precio, parametros, commandType: CommandType.StoredProcedure);
+        }
+
+        public IEnumerable<VW_tbPlatillos> ListaPlatosCate(int Id)
+        {
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@cate_Id", Id, DbType.Int32, ParameterDirection.Input);
+
+            return db.Query<VW_tbPlatillos>(ScriptsDataBase.PlatillosXcate, parametros, commandType: CommandType.StoredProcedure);
+        }
+        public IEnumerable<VW_tbPlatillos> DatosPlat(int Id)
+        {
+            using var db = new SqlConnection(RestauranteCon.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@plat_Id", Id, DbType.Int32, ParameterDirection.Input);
+
+            return db.Query<VW_tbPlatillos>(ScriptsDataBase.Datos, parametros, commandType: CommandType.StoredProcedure);
         }
 
     }
