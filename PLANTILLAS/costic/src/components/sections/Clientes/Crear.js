@@ -17,6 +17,7 @@ const Crear = () => {
   const [UsuarioCrea, setUsuarioCrea] = useState('1');
   const [validationErrors, setValidationErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [validated, setValidated] = useState(false);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -34,7 +35,8 @@ const Crear = () => {
     const errors = {};
     if (!Nombres || !Apellidos || !Identidad || !RTN || !Sexo || !Telefono) {
         toastr.warning("Todos los campos son requeridos","Advertencia");
-    }
+        setValidated(true);
+      }
    else {
       axios
         .post("api/Clientes/InsertarClientes", formData)
@@ -46,6 +48,7 @@ const Crear = () => {
               setTimeout(function() {
                 window.location.href = "/clientes"; // Redirecciono a la pagna clientes despues de 1 segundi
               }, 1000);
+              setValidated(false);
           } else if (response.data.message == "YaExiste") {
               toastr.warning("Este cliente ya existe", "Registro de cliente repetido");
           } else {
@@ -75,13 +78,14 @@ const Crear = () => {
               
             </div>
             <div className="ms-panel-body ">
-              <form className="row g-3" onSubmit={handleFormSubmit}>
+                  <form className={`row g-3 needs-validation validation-fill ${validated ? 'was-validated' : ''}`} noValidate onSubmit={handleFormSubmit}>
                 <div className="col-md-6">
                 <br></br>
                   <label htmlFor="Nombres" className="form-label">
                     Nombre:
                   </label>
                   <input
+                    required
                     type="text"
                     id="Nombres"
                     name="Nombres"
@@ -99,6 +103,7 @@ const Crear = () => {
                     Apellidos:
                   </label>
                   <input
+                    required
                     type="text"
                     id="Apellidos"
                     name="Apellidos"
@@ -115,6 +120,7 @@ const Crear = () => {
                     Identidad:
                   </label>
                   <input
+                    required
                     type="text"
                     id="Identidad"
                     name="Identidad"
@@ -132,6 +138,7 @@ const Crear = () => {
                     RTN:
                   </label>
                   <input
+                    required
                     type="text"
                     name="RTN"
                     id="RTN"
@@ -149,6 +156,7 @@ const Crear = () => {
                     Teléfono:
                   </label>
                   <input
+                    required
                     type="text"
                     name="Telefono"
                     id="Telefono"
@@ -168,6 +176,7 @@ const Crear = () => {
                 <br></br>
                 <div className="form-check form-check-inline">
                     <input
+                    required
                     type="radio"
                     name="sexo"
                     id="femenino"
@@ -184,6 +193,7 @@ const Crear = () => {
                 </div>
                 <div className="form-check form-check-inline">
                     <input
+                    required
                     type="radio"
                     name="sexo"
                     id="masculino"

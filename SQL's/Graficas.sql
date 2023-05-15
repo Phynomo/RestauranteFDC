@@ -29,6 +29,7 @@ BEGIN
 SELECT TOP(4) plat_Id,plat_Nombre,plat_Imagen,plat_Precio,
 	(SELECT SUM(T2.fade_Cantidad) FROM rest.VW_tbFacturaDetalles T2 WHERE T2.plat_Id = T1.plat_Id) AS CantidadPlatillos
 FROM rest.VW_tbPlatillos T1
+WHERE T1.plat_Estado = 1
 ORDER BY CantidadPlatillos desc
 
 END

@@ -18,6 +18,7 @@ const Crear = ({ match }) => {
     clie_Telefono: "",
     clie_UsuCreacion: "",
   });
+  const [validated, setValidated] = useState(false);
 
   useEffect(() => {
     const clie_Id = match.params.clie_Id;
@@ -59,6 +60,7 @@ const Crear = ({ match }) => {
       !cliente.clie_Sexo ||
       !cliente.clie_Telefono
     ) {
+      setValidated(true);
       toastr.warning("Todos los campos son requeridos", "Advertencia");
     } else {
       axios
@@ -76,6 +78,7 @@ const Crear = ({ match }) => {
               "El registro se actualizó con éxito",
               "2000"
             );
+            setValidated(false);
             setTimeout(function() {
                 window.location.href = "/clientes"; // Redirecciona a la página clientes después de 2 segundos
               }, 1000);
@@ -108,13 +111,14 @@ const Crear = ({ match }) => {
                 
               </div>
               <div className="ms-panel-body ">
-                <form className="row g-3" onSubmit={handleFormSubmit}>
+              <form className={`row g-3 needs-validation validation-fill ${validated ? 'was-validated' : ''}`} noValidate onSubmit={handleFormSubmit}>
                   <div className="col-md-6">
                   <br></br>
                     <label htmlFor="Nombres" className="form-label">
                       Nombre:
                     </label>
                     <input
+                    required
                     type="text"
                     id="clie_Nombres"
                     name="clie_Nombres"
@@ -136,6 +140,7 @@ const Crear = ({ match }) => {
                       Apellidos:
                     </label>
                     <input
+                    required
                       type="text"
                       id="clie_Apellidos"
                       name="clie_Apellidos"
@@ -152,6 +157,7 @@ const Crear = ({ match }) => {
                       Identidad:
                     </label>
                     <input
+                    required
                       type="text"
                       id="clie_Identidad"
                       name="clie_Identidad"
@@ -169,6 +175,7 @@ const Crear = ({ match }) => {
                       RTN:
                     </label>
                     <input
+                    required
                       type="text"
                       name="Rclie_RTNTN"
                       id="clie_RTN"
@@ -186,6 +193,7 @@ const Crear = ({ match }) => {
                       Teléfono:
                     </label>
                     <input
+                    required
                       type="text"
                       name="clie_Telefono"
                       id="clie_Telefono"
@@ -205,6 +213,7 @@ const Crear = ({ match }) => {
                   <br></br>
                   <div className="form-check form-check-inline">
                 <input
+                    required
                     type="radio"
                     name="clie_Sexo"
                     id="femenino"
@@ -221,6 +230,7 @@ const Crear = ({ match }) => {
                 </div>
                 <div className="form-check form-check-inline">
                 <input
+                    required
                     type="radio"
                     name="clie_Sexo"
                     id="masculino"

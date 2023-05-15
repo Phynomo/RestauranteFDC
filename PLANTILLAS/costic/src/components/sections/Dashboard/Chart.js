@@ -88,7 +88,7 @@ function chartData3() {
             fill: true,
             backgroundColor: "rgba(25, 25, 25, 0.12)",
             borderWidth: 2,
-            data: [5,6,8,1,5,3,9,7,5,8,7,3,6,9,1]
+            data: [5,6,8,1,5,3,9,7,5,8,7,3,6,9,8]
         }]
     }
 }
@@ -197,7 +197,7 @@ class Chart extends Component {
                     <div className="ms-card ms-widget has-graph-full-width ms-infographics-widget">
                         <div className="ms-card-body media">
                             <div className="media-body">
-                                <span className="black-text"><strong>Ingresos semanales</strong></span>
+                                <span className="black-text"><strong>Ingresos totales</strong></span>
                                 <h2>{this.state.IngresosTotales} Lps</h2>
                             </div>
                         </div>

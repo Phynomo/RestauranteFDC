@@ -24,7 +24,7 @@ class ModalCreate extends Component {
     handleCreate() {
         this.state.validated = false;
         this.state.carg_Descripcion = null;
-        this.setState({ create: true });
+        this.setState({ create: true, validated: false, });
     }
 
     handleClose() {

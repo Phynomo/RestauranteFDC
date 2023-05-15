@@ -14,7 +14,7 @@ const Crear = ({ match }) => {
     const [sucursales, setSucursales] = useState([]);
     const [departamentos, setDepartamentos] = useState([]);
     const [cargos, setCargos] = useState([]);
-
+    const [validated, setValidated] = useState(false);
 
     const [municipios, setMunicipios] = useState([]);
 
@@ -121,25 +121,8 @@ const Crear = ({ match }) => {
     empe_Id: empe_Id,
     empe_CorreoElectronico: empleado.empe_CorreoElectronico
     };
-
-console.log(formData.empe_FechaNacimiento + "  FECHA NACIMIENTO");
-console.log(formData.empe_Apellidos + "    APELLIDOS");
-console.log(formData.empe_Nombres + "   NOMBRE");
-console.log(formData.empe_Id + " ID");
-console.log(formData.empe_Identidad + " DNI");
-console.log(formData.empe_DireccionExacta + "   DIRECCION");
-console.log(formData.empe_Sexo + "  SEXO");
-console.log(formData.empe_Telefono + "  TELEFONO");
-console.log(formData.sucu_Id + "    SUCURSAL ID");
-console.log(formData.carg_Id + "    CARGO ID");
-console.log(formData.muni_Id + " MUNI ID");
-console.log(formData.eciv_Id + "    ESTADO CIVIL ID");
-console.log(formData.empe_UsuModificacion + " USUARIO MODF");
-console.log(formData.empe_CorreoElectronico + " CORREO");
-
-
-
-    // Validar campos
+    console.log(formData);
+ 
     const errors = {};
     if (
       !empleado.empe_Nombres ||
@@ -156,6 +139,7 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
       !empleado.depa_Id
     ) {
       toastr.warning("Todos los campos son requeridos", "Advertencia");
+      setValidated(true);
     } else {
       axios
         .put(`api/Empleados/EditarEmpleado`, formData)
@@ -176,6 +160,7 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
             setTimeout(function() {
                 window.location.href = "/empleados"; // Redirecciona a la página empleados después de 2 segundos
               }, 1000);
+              setValidated(false);
           }  else {
             alertError(
               "Error",
@@ -285,7 +270,7 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                 
               </div>
               <div className="ms-panel-body ">
-                <form className="row g-3" onSubmit={handleFormSubmit}>
+                <form className={`row g-3 needs-validation validation-fill ${validated ? 'was-validated' : ''}`} noValidate onSubmit={handleFormSubmit}>
                   <div className="col-md-6">
                   <br></br>
                     <label htmlFor="Nombres" className="form-label">
@@ -303,6 +288,7 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                         });
                     }}
                     className="form-control"
+                    required
                     />
 
 
@@ -321,6 +307,7 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                         setEmpleado({ ...empleado, empe_Apellidos: event.target.value });
                       }}
                       className="form-control"
+                    required
                     />
                   </div>
                   <div className="col-md-6">
@@ -337,6 +324,7 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                         setEmpleado({ ...empleado, empe_Identidad: event.target.value });
                       }}
                       className="form-control"
+                    required
                     />
                   </div>
 
@@ -350,6 +338,7 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                     <input
                         type="Date"
                         className="form-control"
+                    required
                         value={empleado.empe_FechaNacimiento}
                         onChange={(event) => {
                             setEmpleado({ ...empleado, empe_FechaNacimiento: event.target.value });
@@ -366,11 +355,12 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                   <br></br>
                   <div className="form-check form-check-inline">
                 <input
+                    required
                     type="radio"
                     name="empe_Sexo"
                     id="femenino"
-                    value="F"
-                    checked={empleado.empe_Sexo === "F"}
+                    value="Femenino"
+                    checked={empleado.empe_Sexo === "Femenino"}
                     onChange={(e) => {
                         setEmpleado({ ...empleado, empe_Sexo: e.target.value });
                     }}
@@ -382,11 +372,12 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                 </div>
                 <div className="form-check form-check-inline">
                 <input
+                    required
                     type="radio"
                     name="empe_Sexo"
                     id="masculino"
-                    value="M"
-                    checked={empleado.empe_Sexo === "M"}
+                    value="Masculino"
+                    checked={empleado.empe_Sexo === "Masculino"}
                     onChange={(e) => {
                         setEmpleado({ ...empleado, empe_Sexo: e.target.value });
                     }}
@@ -405,7 +396,8 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                     Estado Civil:
                   </label>
 
-                  <select id="EstadoCivil" value={empleado.eciv_Id} onChange={(event) => {
+                  <select 
+                    required id="EstadoCivil" value={empleado.eciv_Id} onChange={(event) => {
                           setEmpleado({ ...empleado, eciv_Id: event.target.value });
                         }} className="form-control">                 
                   <option value="" hidden>Seleccione un Estado Civil</option>
@@ -422,6 +414,7 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                       Teléfono:
                     </label>
                     <input
+                    required
                       type="text"
                       name="empe_Telefono"
                       id="empe_Telefono"
@@ -441,6 +434,7 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                     Correo Electrónico:
                   </label>
                   <input
+                    required
                     type="email"
                     name="Correo"
                     id="Correo"
@@ -460,6 +454,7 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                     Direccion:
                     </label>
                     <input
+                    required
                       type="text"
                       name="empe_DireccionExacta"
                       id="empe_DireccionExacta"
@@ -479,7 +474,8 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                   <label htmlFor="departamento" className="form-label">
                   Departamentos:
                   </label>
-                  <select id="departamento" value={empleado.depa_Id} onChange={handleDepartamentoChange} className="form-control">                 
+                  <select 
+                    required id="departamento" value={empleado.depa_Id} onChange={handleDepartamentoChange} className="form-control">                 
                   {departamentos.map(departamento => (
                   <option key={departamento.depa_Id} value={departamento.depa_Id}>{departamento.depa_Nombre}</option>
                    ))}
@@ -493,6 +489,7 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                   Municipios:
                   </label>
                   <select 
+                    required
                     id="municipio" 
                     value={empleado.muni_Id} 
                     onChange={(event) => setEmpleado({...empleado, muni_Id: event.target.value})} 
@@ -513,7 +510,8 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                     Sucursal:
                   </label>
 
-                  <select id="Sucursal" value={empleado.sucu_Id} onChange={(event) => {
+                  <select  
+                    required id="Sucursal" value={empleado.sucu_Id} onChange={(event) => {
                           setEmpleado({ ...empleado, sucu_Id: event.target.value });
                         }} className="form-control">                  
                   <option value="" hidden>Seleccione una sucursal</option>
@@ -529,7 +527,8 @@ console.log(formData.empe_CorreoElectronico + " CORREO");
                     Cargo:
                   </label>
 
-                  <select id="Cargo" value={empleado.carg_Id} onChange={(event) => {
+                  <select 
+                    required id="Cargo" value={empleado.carg_Id} onChange={(event) => {
                           setEmpleado({ ...empleado, carg_Id: event.target.value });
                         }} className="form-control">                 
                   <option value="" hidden>Seleccione un Cargo</option>

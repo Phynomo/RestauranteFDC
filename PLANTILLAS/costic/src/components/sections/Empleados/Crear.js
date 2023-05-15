@@ -22,6 +22,7 @@ const Crear = () => {
   const [municipios, setMunicipios] = useState([]);
   const [cargos, setCargos] = useState([]);
   const [selectedDepartamento, setSelectedDepartamento] = useState('');
+  const [validated, setValidated] = useState(false);
 
   const [Nombres, setNombres] = useState('');
   const [Apellidos, setApellidos] = useState('');
@@ -69,6 +70,7 @@ const Crear = () => {
     const errors = {};
     if (!Nombres || !Apellidos || !Identidad || !Direccion || !Sexo || !Telefono || !Sucursal || !Cargo|| !Municipio || !EstadoCivil || !selectedDate || !Correo ) {
         toastr.warning("Todos los campos son requeridos","Advertencia");
+        setValidated(true);
     }
    else {
       axios
@@ -81,6 +83,7 @@ const Crear = () => {
               setTimeout(function() {
                 window.location.href = "/empleados"; // Redirecciono a la pagna clientes despues de 1 segundi
               }, 1000);
+              setValidated(false);
           } else if (response.data.message == "YaExiste") {
               toastr.warning("Este cliente ya existe", "Registro del Empleado repetido");
           } else {
@@ -170,13 +173,14 @@ const Crear = () => {
               
                   </div>
                   <div className="ms-panel-body ">
-                  <form className="row g-3" onSubmit={handleFormSubmit}>
+                  <form className={`row g-3 needs-validation validation-fill ${validated ? 'was-validated' : ''}`} noValidate onSubmit={handleFormSubmit}>
                  <div className="col-md-6">
                  <br></br>
                   <label htmlFor="Nombres" className="form-label">
                     Nombre:
                   </label>
-                  <input
+                  <div className="input-group">
+                     <input
                     type="text"
                     id="Nombres"
                     name="Nombres"
@@ -186,7 +190,11 @@ const Crear = () => {
 
                     }}
                     className="form-control"
+                    required
                   />
+                  <div className="invalid-feedback">Este campo es necesario</div>
+                  </div>
+                 
                  </div>
                  <div className="col-md-6">
                  <br></br>
@@ -202,6 +210,7 @@ const Crear = () => {
                       setApellidos(event.target.value);
                     }}
                     className="form-control"
+                    required
                   />
                  </div>
                  <div className="col-md-6">
@@ -218,6 +227,7 @@ const Crear = () => {
                       setIdentidad(event.target.value);
                     }}
                     className="form-control"
+                    required
                   />
                  </div>
 
@@ -235,6 +245,7 @@ const Crear = () => {
                     setSelectedDate(event.target.value);
                   }}
                   className="form-control"
+                  required
                 />
                   </div>
 
@@ -255,6 +266,7 @@ const Crear = () => {
                         setSexo(e.target.value);
                     }}
                     className="form-check-input"
+                    required
                     />
                     <label htmlFor="femenino" className="form-check-label">
                     Femenino
@@ -271,6 +283,7 @@ const Crear = () => {
                         setSexo(e.target.value);
                     }}
                     className="form-check-input"
+                    required
                     />
                     <label htmlFor="masculino" className="form-check-label">
                     Masculino
@@ -285,7 +298,8 @@ const Crear = () => {
                     Estado Civil:
                   </label>
 
-                  <select id="EstadoCivil" value={EstadoCivil} onChange={(event) => setEstadoC(event.target.value)} className="form-control">                 
+                  <select
+                    required id="EstadoCivil" value={EstadoCivil} onChange={(event) => setEstadoC(event.target.value)} className="form-control">                 
                   <option value="" hidden>Seleccione un Estado Civil</option>
                   {estadosCiviles.map(EstadoCivil => (
                   <option key={EstadoCivil.eciv_Id} value={EstadoCivil.eciv_Id}>{EstadoCivil.eciv_Descripcion}</option>
@@ -307,6 +321,7 @@ const Crear = () => {
                         setTelefono(event.target.value) 
                     }}
                     className="form-control"
+                    required
                     />
                  </div>
 
@@ -324,6 +339,7 @@ const Crear = () => {
                         setCorreo(event.target.value) 
                     }}
                     className="form-control"
+                    required
                     />
                  </div>
 
@@ -334,7 +350,8 @@ const Crear = () => {
                   Departamentos:
                   </label>
 
-                  <select id="departamento" value={selectedDepartamento} onChange={handleDepartamentoChange} className="form-control">                 
+                  <select 
+                    required id="departamento" value={selectedDepartamento} onChange={handleDepartamentoChange} className="form-control">                 
                   <option value="" hidden>Seleccione un Departamento</option>
                   {departamentos.map(departamento => (
                   <option key={departamento.depa_Id} value={departamento.depa_Id}>{departamento.depa_Nombre}</option>
@@ -348,7 +365,8 @@ const Crear = () => {
                   Municipios:
                   </label>
 
-                  <select id="municipio" value={Municipio} onChange={(event) => setMunicipio(event.target.value)} className="form-control">                 
+                  <select 
+                    required id="municipio" value={Municipio} onChange={(event) => setMunicipio(event.target.value)} className="form-control">                 
                   <option value="" hidden>Seleccione un Municipio</option>
                   {municipios.map(Municipio => (
                   <option key={Municipio.muni_Id} value={Municipio.muni_Id}>{Municipio.muni_Nombre}</option>
@@ -370,6 +388,7 @@ const Crear = () => {
                       setDireccion(event.target.value);
                     }}
                     className="form-control"
+                    required
                   />
                  </div>
    
@@ -382,7 +401,8 @@ const Crear = () => {
                     Sucursal:
                   </label>
 
-                  <select id="Sucursal" value={Sucursal} onChange={(event) => setSucursal(event.target.value)} className="form-control">                 
+                  <select 
+                    required id="Sucursal" value={Sucursal} onChange={(event) => setSucursal(event.target.value)} className="form-control">                 
                   <option value="" hidden>Seleccione una sucursal</option>
                   {sucursales.map(Sucursal => (
                   <option key={Sucursal.sucu_Id} value={Sucursal.sucu_Id}>{Sucursal.sucu_Nombre}</option>
@@ -396,7 +416,8 @@ const Crear = () => {
                     Cargo:
                   </label>
 
-                  <select id="Cargo" value={Cargo} onChange={(event) => setCargo(event.target.value)} className="form-control">                 
+                  <select 
+                    required id="Cargo" value={Cargo} onChange={(event) => setCargo(event.target.value)} className="form-control">                 
                   <option value="" hidden>Seleccione un Cargo</option>
                   {cargos.map(Cargo => (
                   <option key={Cargo.carg_Id} value={Cargo.carg_Id}>{Cargo.carg_Descripcion}</option>

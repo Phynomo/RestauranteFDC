@@ -39,7 +39,12 @@ class Notes extends Component {
                                 <h6 className="ms-card-title">Karla</h6>
                             </div>
                             <div className="ms-card-body">
-                                <p></p>
+                            <p>
+                                Platillos<br></br>
+                                Plantilla<br></br>
+                                Empleados<br></br>
+                                Clientes<br></br>
+                            </p>
                             </div>
                         </div>
                         <div className="ms-card ms-qa-card ms-deletable">
@@ -47,7 +52,20 @@ class Notes extends Component {
                                 <h6 className="ms-card-title">Phynomo</h6>
                             </div>
                             <div className="ms-card-body">
-                                <p>No hizo nada</p>
+                                <p>
+                                Dibujado<br></br>
+                                Dashboard<br></br>
+                                Login, recuperar<br></br>
+                                Cargos<br></br>
+                                Factura<br></br>
+                                Usuarios<br></br>
+                                Roles (editar)<br></br>
+                                Limpiado de plantilla<br></br>
+                                Validaciones de paginas<br></br>
+                                Intercambiar entre sucursales<br></br>
+                                Graficas<br></br>
+                                Reportes<br></br>
+                                </p>
                             </div>
                         </div>
                         <div className="ms-card ms-qa-card ms-deletable">
@@ -55,7 +73,18 @@ class Notes extends Component {
                                 <h6 className="ms-card-title">Panxho</h6>
                             </div>
                             <div className="ms-card-body">
-                                <p></p>
+                            <p>
+                                8 Pantallas<br></br>
+                                Categorias<br></br>
+                                Departamentos<br></br>
+                                Estados Civiles<br></br>
+                                Metodos de Pago<br></br>
+                                Municipios<br></br>
+                                Ingredientes<br></br>
+                                Sucursales<br></br>
+                                Roles(Listado, Crear, Eliminar)<br></br>
+                                Modales eliminar (Empleados, Clientes)<br></br>
+                            </p>
                             </div>
                         </div>
                     </Scrollbar>
