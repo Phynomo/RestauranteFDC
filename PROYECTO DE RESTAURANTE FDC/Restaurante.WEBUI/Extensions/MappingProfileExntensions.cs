@@ -32,6 +32,7 @@ namespace Restaurante.WEBUI.Extensions
             CreateMap<SucuarsalViewModel,tbSucursales>().ReverseMap();
             CreateMap<UsuarioViewModel,tbUsuarios>().ReverseMap();
             CreateMap<IngredientePlatilloViewModel,tbIngredientesXPlatillos>().ReverseMap();
+            CreateMap<MetodoPagoViewModel,tbMetodosPago>().ReverseMap();
       
         }
     }
